@@ -1,0 +1,9 @@
+# Anexa D. Metoda de studiu si utilizarea responsabila a surselor
+
+O lucrare educationala despre AI imbatraneste repede daca amesteca principiile generale cu descrieri ale unor functii comerciale trecatoare. De aceea, este util sa pastram in Markdown data accesarii, titlul sursei si legatura dintre afirmatie si documentatie. Cand un furnizor modifica o platforma, actualizam exemplele, nu rescriem intreaga arhitectura conceptuala.
+
+Pentru a invata gradual, propunem un ciclu repetabil: citeste o definitie, reformuleaz-o cu propriile cuvinte, incearca un exemplu mic, observa un esec, identifica sursa cauzei si noteaza ce s-a schimbat. Articolele practice despre baze personale de cunostinte si invatarea prin proiecte sustin ideea de a pastra surse, versiuni si rezultate reutilizabile [S21, S24]. Nu este necesara o colectie uriasa de documente. O nota bine verificata este mai valoroasa decat douazeci de linkuri uitate.
+
+O varianta aplicata la securitate poate porni de la un buletin oficial, trece printr-o sursa de context si se incheie cu un raport scurt care separa vulnerabilitatea, produsul afectat, verificarea si masura recomandata. Metoda este ilustrata in ghiduri educationale despre studierea CVE-urilor si advisories [S25]. In acest manual, ea devine un exemplu general despre provenienta si verificabilitate, nu un curs separat de cybersecurity.
+
+**Ce nu includem ca dovezi.** Nu preluam procente de crestere a productivitatii din brosuri fara sa cunoastem esantionul, contextul si metodologia. Nu transformam etichetele de marketing in taxonomii stiintifice. Nu copiem instructiuni comerciale asociate unui produs doar pentru ca sunt prezentate ca reteta universala. Cand folosim materiale ale furnizorilor, extragem mecanismele generalizabile, le verificam pe cat posibil in alte surse si notam limitele.

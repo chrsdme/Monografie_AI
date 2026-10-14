@@ -1,0 +1,96 @@
+site_name: De la conversatia cu AI la sisteme agentice verificabile
+site_description: Documentatie educationala despre modele AI, context, RAG, harness, agenti, orchestrare si evaluare.
+site_url: https://chrsdme.github.io/Monografie_AI/
+repo_url: https://github.com/chrsdme/Monografie_AI
+repo_name: chrsdme/Monografie_AI
+edit_uri: edit/main/wiki/
+docs_dir: wiki
+site_dir: site
+
+theme:
+  name: material
+  language: ro
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Treci la tema intunecata
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: light blue
+      toggle:
+        icon: material/brightness-4
+        name: Treci la tema luminoasa
+
+plugins:
+  - search:
+      lang: ro
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+
+nav:
+  - Acasa: index.md
+  - Introducere: introducere.md
+  - Partea I:
+      - Prezentare: partea-1/index.md
+      - 1. Ce este AI si ce este un model?: partea-1/01-ce-este-ai.md
+      - 2. Cum produce un LLM un raspuns: partea-1/02-cum-functioneaza-llm.md
+      - 3. Browser, CLI, API si local: partea-1/03-browser-cli-api-local.md
+      - 4. Contextul: partea-1/04-context.md
+      - 5. Ce putem face cu AI: partea-1/05-ce-putem-face-cu-ai.md
+  - Partea II:
+      - Prezentare: partea-2/index.md
+      - 6. Prompturi, instructiuni si briefuri: partea-2/06-prompturi-instructiuni-briefuri.md
+      - 7. Instrumente, API, conectori si MCP: partea-2/07-instrumente-api-conectori-mcp.md
+      - 8. RAG, memorie si cunostinte: partea-2/08-rag-memorie-cunostinte.md
+      - 9. Automatizare, workflow si agent: partea-2/09-automatizare-workflow-agent.md
+  - Partea III:
+      - Prezentare: partea-3/index.md
+      - 10. Harness: partea-3/10-harness.md
+      - 11. Arhitectura unui workflow AI: partea-3/11-arhitectura-workflow-ai.md
+      - 12. Anatomia unui agent: partea-3/12-anatomia-agentului.md
+      - 13. Specializare, clase si instante: partea-3/13-specializare-clase-instante.md
+      - 14. Orchestrarea: partea-3/14-orchestrare.md
+      - 15. Disciplinele AI Engineering: partea-3/15-ai-engineering.md
+  - Partea IV:
+      - Prezentare: partea-4/index.md
+      - 16. Observabilitate: partea-4/16-observabilitate.md
+      - 17. Evaluare si Trust Score: partea-4/17-evaluare-trust-score.md
+      - 18. Securitate si guardrails: partea-4/18-securitate-guardrails.md
+      - 19. Fiabilitate si recuperare: partea-4/19-fiabilitate-recuperare.md
+      - 20. Cost, viteza si calitate: partea-4/20-cost-viteza-calitate.md
+  - Partea V:
+      - Prezentare: partea-5/index.md
+      - 21. Studii de caz: partea-5/21-studii-de-caz.md
+      - 22. Cum incepi propriul sistem: partea-5/22-cum-incepi.md
+  - Anexe:
+      - Dictionar de termeni: anexe/glosar.md
+      - Sabloane neutre: anexe/sabloane.md
+      - Protocol de evaluare: anexe/evaluare.md
+      - Metoda si surse: anexe/metoda-surse.md
+      - Bibliografie: anexe/bibliografie.md
+  - Contribuie: contribuie.md
+  - Despre: despre.md

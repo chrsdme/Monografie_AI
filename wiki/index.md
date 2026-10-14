@@ -1,0 +1,35 @@
+# De la conversatia cu AI la sisteme agentice verificabile
+
+**Documentatie educationala vie, construita din monografia publicata si deschisa contributiilor comunitatii.**
+
+Aceasta versiune web sparge materialul in capitole usor de parcurs, cu navigare, cautare rapida si posibilitatea de a propune corecturi sau completari prin GitHub.
+
+## Cum poti folosi site-ul
+
+- daca esti la inceput, porneste cu [Introducerea](introducere.md) si Partea I;
+- daca stii deja bazele, poti sari direct la context, RAG, harness, agenti sau orchestrare;
+- foloseste cautarea pentru termeni precum **context**, **RAG**, **agent**, **orchestrator**, **MCP** sau **Trust Score**;
+- fiecare pagina poate fi editata pe GitHub si trimisa ca Pull Request;
+- PDF-ul ramane editia stabila, iar acest site este varianta vie a materialului.
+
+## Traseul recomandat
+
+1. Model si LLM
+2. Context
+3. Prompturi si instrumente
+4. RAG si memorie
+5. Workflow si agent
+6. Harness
+7. Specializare si orchestrare
+8. Observabilitate, evaluare si securitate
+9. Studii de caz si proiectare practica
+
+## Editia PDF
+
+[Descarca monografia PDF](https://github.com/chrsdme/Monografie_AI/raw/main/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf)
+
+## Contribuie
+
+Corecturile, completarile, exemplele si sursele noi sunt binevenite. Vezi [Cum contribui](contribuie.md).
+
+> Principiul proiectului: nu construim documentatia in jurul unui furnizor sau framework. Explicam conceptele astfel incat materialul sa ramana util chiar daca produsele actuale se schimba.

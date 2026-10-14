@@ -27,4 +27,7 @@ Vezi [CONTRIBUTING.md](CONTRIBUTING.md).
 - `Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf` - snapshot PDF
 - `wiki/` - sursa documentatiei web
 - `docs/` - materiale suplimentare / atasamente
+- `resurse/` - colectie de resurse si tool-uri
+- `experimente/` - experimente, configurari si rezultate
+- `fb_ai_romania/` - materiale asociate comunitatii Facebook AI Romania
 - `mkdocs.yml` - configuratia site-ului

@@ -28,8 +28,18 @@ Aceasta versiune web sparge materialul in capitole usor de parcurs, cu navigare,
 
 [Descarca monografia PDF](https://github.com/chrsdme/Monografie_AI/raw/main/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf)
 
+## Colectii si continut comunitar
+
+Pe langa capitolele monografiei, proiectul include trei zone care pot creste continuu:
+
+- [Resurse si tool-uri](colectii/resurse.md) - documentatie, linkuri, framework-uri si instrumente utile;
+- [Experimente](colectii/experimente.md) - configurari, teste, rezultate si materiale reproductibile;
+- [Material Facebook - AI Romania](colectii/fb-ai-romania.md) - idei si materiale dezvoltate pornind din discutiile comunitatii.
+
+Vezi si [pagina generala a colectiilor](colectii/index.md).
+
 ## Contribuie
 
-Corecturile, completarile, exemplele si sursele noi sunt binevenite. Vezi [Cum contribui](contribuie.md).
+Corecturile, completarile, exemplele, experimentele si sursele noi sunt binevenite. Vezi [Cum contribui](contribuie.md).
 
 > Principiul proiectului: nu construim documentatia in jurul unui furnizor sau framework. Explicam conceptele astfel incat materialul sa ramana util chiar daca produsele actuale se schimba.

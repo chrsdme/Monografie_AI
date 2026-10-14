@@ -92,5 +92,10 @@ nav:
       - Protocol de evaluare: anexe/evaluare.md
       - Metoda si surse: anexe/metoda-surse.md
       - Bibliografie: anexe/bibliografie.md
+  - Colectii si comunitate:
+      - Prezentare: colectii/index.md
+      - Resurse si tool-uri: colectii/resurse.md
+      - Experimente: colectii/experimente.md
+      - Material Facebook - AI Romania: colectii/fb-ai-romania.md
   - Contribuie: contribuie.md
   - Despre: despre.md

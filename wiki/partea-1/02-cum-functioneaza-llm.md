@@ -14,7 +14,7 @@ Un exemplu: daca ii furnizam manualul unei centrale termice, modelul poate raspu
 
 ## 2.3. De unde vine impresia de rationament?
 
-Modelele moderne pot executa transformari logice si pot rezolva probleme complexe. Uneori produc planuri coerente, cod functional si explicatii foarte bune. Aceasta capacitate este reala, dar nu inseamna ca fiecare afirmatie generata a fost verificata impotriva unei surse externe. Modelul poate formula un raspuns foarte convingator care contine o data inventata sau o referinta inexistenta.
+Modelele moderne pot produce comportamente care seamana cu rationamentul si pot rezolva probleme complexe. Uneori genereaza planuri coerente, cod functional si explicatii foarte bune. Natura exacta a acestor procese este in continuare cercetata; pentru utilizarea practica este suficient sa retinem ca un raspuns bine argumentat nu inseamna automat ca fiecare afirmatie a fost verificata impotriva unei surse externe. Modelul poate formula un raspuns foarte convingator care contine o data inventata sau o referinta inexistenta.
 
 **Halucinatie** este termenul folosit curent pentru un continut generat care nu este sustinut de fapte ori de datele disponibile. Dar nu toate esecurile sunt halucinatii. Modelul poate calcula gresit, poate intelege ambiguu o cerinta, poate folosi un document invechit sau poate executa instrumentul potrivit cu parametrii nepotriviti. Diferentierea conteaza pentru remediere.
 

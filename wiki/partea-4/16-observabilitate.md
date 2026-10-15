@@ -25,7 +25,7 @@ TRACE report-0082
   10:00:08 human approval      pending
 ```
 
-Aici observam ca procesarea a avut loc si ca exista o neconcordanta. Nu putem concluziona insa ca cele 22 de documente valide au fost clasificate perfect. Pentru aceasta avem nevoie de teste si comparatii independente. Observabilitatea raspunde mai intai la intrebarea **ce s-a intamplat?**, evaluarea raspunde la **cat de corect a fost?**.
+Aici observam ca procesarea a avut loc si ca exista o neconcordanta. Nu putem concluziona insa ca toate documentele care au trecut verificarile automate au fost clasificate perfect. Pentru aceasta avem nevoie de teste si comparatii independente. Observabilitatea raspunde mai intai la intrebarea **ce s-a intamplat?**, evaluarea raspunde la **cat de corect a fost?**.
 
 ## 16.4. Cum evitam logurile imposibil de folosit
 

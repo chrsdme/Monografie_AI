@@ -1,5 +1,6 @@
 # 14. Orchestrarea: cine decide, cine executa si cine verifica
 
+![Figura 3. Trei clase de agenti si sapte instante, cu serviciu de inferenta partajat.](../../assets/figuri/clase_instante.svg)
 
 *Figura 3 — Trei clase distincte nu inseamna doar trei executii. Instantele separate pot partaja infrastructura de inferenta, iar orchestratorul le coordoneaza.*
 
@@ -12,7 +13,6 @@ Orchestratorul nu trebuie sa faca toate sarcinile. Rolul lui seamana cu cel al u
 ## 14.2. O cerere care devine proiect
 
 Utilizatorul spune: „Construieste o aplicatie web cu autentificare, panou de administrare si notificari”. Cererea este prea larga pentru un singur pas. Orchestratorul poate incepe cu clarificarea cerintelor, apoi solicita arhitectura, creeaza sarcini de implementare, asteapta integrarea si porneste verificari. Un proiect poate avea sarcini care depind unele de altele: schema bazei de date trebuie stabilita inainte ca anumite componente sa poata fi conectate corect.
-
 
 ## 14.3. Alocarea sarcinilor si rutarea
 
@@ -44,7 +44,7 @@ Aceste tipare sunt prezentate si in ghidul Anthropic despre construirea agentilo
 
 Un serviciu de inferenta poate raspunde cererilor pentru Research, Development si QA. Fiecare configuratie ii transmite modelului instructiuni si contexte diferite. **Nu pornim obligatoriu trei copii ale greutatilor modelului**. Serviciul poate programa cererile in serie, poate face batching sau poate procesa concurent in limitele infrastructurii.
 
-Sa luam un singur model Qwen accesibil prin API. Instanta `Research-R1` intreaba ce cerinte trebuie indeplinite. `Development-D1` foloseste acelasi endpoint pentru a propune cod, dar primeste acces numai la spatiul sau de lucru. `QA-Q1` consulta specificatia si rezultatele testelor, dar nu are permisiune de scriere in cod. Diferentele de rol apar din sistemul care construieste contextul si impune drepturile, nu dintr-o presupusa schimbare a greutatilor modelului.
+Sa luam un singur model Qwen accesibil prin API. Instanta `Research-R1` intreaba ce cerinte trebuie indeplinite. `Development-D1` foloseste acelasi endpoint pentru a propune cod, dar primeste acces numai la spatiul sau de lucru. `QA-Q1` consulta specificatia si rezultatele testelor, dar nu modifica implementarea evaluata. Poate crea si executa teste intr-un spatiu separat, cu drepturi limitate asupra fisierelor temporare si datelor de test, fara acces de scriere in productie. Diferentele de rol apar din sistemul care construieste contextul si impune drepturile, nu dintr-o presupusa schimbare a greutatilor modelului.
 
 **Acelasi model** poate insemna raspunsuri corelate si greseli similare. Pentru verificari critice, preferam date si teste independente; folosirea altui model poate fi o masura suplimentara, nu un substitut pentru dovezi.
 

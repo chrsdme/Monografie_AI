@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="280" viewBox="0 0 1000 280">
+<style>.b{fill:#eef4f8;stroke:#7890a4;stroke-width:2}.g{fill:#edf7ef;stroke:#6e9b7d;stroke-width:2}.p{fill:#f5effa;stroke:#8f79a6;stroke-width:2}.t{font:18px sans-serif;fill:#203247}.s{font:14px sans-serif;fill:#40566b}.a{stroke:#5b7a93;stroke-width:3;fill:none;marker-end:url(#m)}</style>
+<defs><marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#5b7a93"/></marker></defs>
+<rect class="b" x="30" y="95" rx="12" width="160" height="70"/><text class="t" x="110" y="125" text-anchor="middle">Utilizator</text><text class="s" x="110" y="150" text-anchor="middle">cerere / obiectiv</text>
+<rect class="b" x="285" y="70" rx="12" width="250" height="120"/><text class="t" x="410" y="110" text-anchor="middle">Aplicatie / Harness</text><text class="s" x="410" y="138" text-anchor="middle">context, reguli, stare</text><text class="s" x="410" y="160" text-anchor="middle">validare si tool calls</text>
+<rect class="g" x="650" y="35" rx="12" width="270" height="75"/><text class="t" x="785" y="66" text-anchor="middle">Model AI</text><text class="s" x="785" y="90" text-anchor="middle">inferenta / generare</text>
+<rect class="p" x="650" y="165" rx="12" width="270" height="75"/><text class="t" x="785" y="196" text-anchor="middle">Instrumente si surse</text><text class="s" x="785" y="220" text-anchor="middle">fisiere, web, baze de date</text>
+<path class="a" d="M190 130 L278 130"/><path class="a" d="M535 105 L642 78"/><path class="a" d="M535 160 L642 195"/><path class="a" d="M650 215 C580 250,430 245,420 198"/>
+</svg>

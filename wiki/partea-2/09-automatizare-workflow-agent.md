@@ -14,7 +14,7 @@ O definitie operationala utila este aceasta: **agentul este o componenta executa
 
 ## 9.3. O distinctie folosita frecvent in inginerie
 
-Anthropic propune o diferenta practica: intr-un workflow, traseul principal este stabilit de cod; intr-un agent, modelul dirijeaza dinamic utilizarea instrumentelor si succesiunea actiunilor [S10]. Delimitarea nu este absoluta. Un sistem real poate contine pasi ficsi la exterior si agenti autonomi pe anumite portiuni. Tocmai aceste combinatii ne intereseaza.
+Anthropic propune o diferenta practica: intr-un workflow, traseul principal este stabilit de cod; intr-un agent, modelul dirijeaza dinamic utilizarea instrumentelor si succesiunea actiunilor [S10]. Delimitarea nu este absoluta. Un sistem real poate contine pasi fixi la exterior si agenti autonomi pe anumite portiuni. Tocmai aceste combinatii ne intereseaza.
 
 ## 9.4. Comparatie pe aceeasi sarcina
 
@@ -38,7 +38,7 @@ Daca problema poate fi descrisa in reguli clare, incepem cu reguli. Daca necesit
 
 ---
 
-## 9.8. Cartografierea procesului inainte sa alegem tehnologia
+## 9.7. Cartografierea procesului inainte sa alegem tehnologia
 
 Inainte de orice automatizare, trebuie sa descriem ce se intampla acum. Este tentant sa sarim direct la intrebarea „ce model AI folosim?”, dar o alegere tehnica nu poate repara un proces pe care nimeni nu l-a inteles. Ghidurile IBM despre workflow si materialele de automatizare operationala insista asupra definirii pasilor, a obiectivelor si a integrarii cu sistemele existente [S17, S19].
 
@@ -48,7 +48,7 @@ Abia dupa aceasta cartografiere putem decide daca este necesara inteligenta arti
 
 O metoda accesibila este tabelul cu sase coloane: *pas, intrare, iesire, responsabil, eroare posibila, dovada de succes*. Nu trebuie sa fie un desen sofisticat. Important este sa expuna dependentele ascunse si locurile unde un om repara in prezent, din memorie, greselile procesului.
 
-## 9.9. Masurarea situatiei initiale: fara ea nu stim daca am progresat
+## 9.8. Masurarea situatiei initiale: fara ea nu stim daca am progresat
 
 Inainte de prima schimbare, colectam un set de referinta (*baseline*): cat dureaza o cerere, cat costa, cate corectii necesita si in cate cazuri avem nevoie de un operator. Aceste cifre trebuie obtinute din propriul proces, nu imprumutate dintr-un material de marketing. Un workflow poate reduce timpul de raspuns, dar poate creste numarul de corectii. Sau poate fi mai ieftin la volume mici si mult mai scump cand avem mii de apeluri API.
 
@@ -56,7 +56,7 @@ Un exemplu ilustrativ: o firma rezolva manual 100 de cereri pe saptamana, in med
 
 In plus, trebuie sa definim ce inseamna un rezultat corect. „Clientul a primit un raspuns” nu inseamna „problema clientului s-a rezolvat”. Aceasta distinctie este utila in suport, marketing, vanzari, analiza documentelor, educatie si administratie. Ghidul practic publicat de Mersi AI pune accent pe identificarea procesului potrivit, masurarea performantei initiale si pastrarea unui traseu de recuperare [S23]. Retinem metoda, nu estimarile de eficienta neverificate pentru un proiect concret.
 
-## 9.10. Alegerea locului unde introducem AI-ul
+## 9.9. Alegerea locului unde introducem AI-ul
 
 Un sistem mixt poate fi mai bun decat unul integral agentic. Sa luam o solicitare de schimbare a adresei de livrare. Un model poate identifica intentia si extrage adresa din mesaj. Un validator de cod poate verifica formatul codului postal si existenta comenzii. O regula poate bloca schimbarile dupa expediere. Daca solicitarea este ambigua, sistemul cere informatii suplimentare. Daca toate conditiile sunt indeplinite, se poate pregati actualizarea sau executa operatia autorizata.
 

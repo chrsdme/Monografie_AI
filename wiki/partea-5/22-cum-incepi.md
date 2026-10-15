@@ -38,8 +38,6 @@ Modelele vor evolua, API-urile se vor modifica si vor aparea alte framework-uri.
 
 Daca cititorul retine aceste intrebari, poate evalua un nou produs fara sa porneasca de la zero. Aceasta este finalitatea lucrarii: nu memorarea unor nume comerciale, ci intelegerea unui mod de lucru.
 
----
-
 
 ## 22.9. O metoda de selectare a proiectului pilot
 
@@ -49,6 +47,6 @@ De exemplu, generarea unui sumar saptamanal din tichete inchise este un pilot ma
 
 ## 22.10. Exercitiu de consolidare: procesul inaintea produsului
 
-Alegeti o activitate pe care o repetati cel putin o data pe saptamana. Scrieti manual pasii actuali si notati pentru fiecare: informatia de intrare, persoana sau sistemul care decide, instrumentul care modifica datele si dovada ca etapa s-a incheiat corect. Marcati etapele care sunt doar copii de date, etapele care solicita interpretarea textului si etapele care produc efecte externe. Apoi proiectati trei variante: fara AI, asistat de AI si agentic. Comparati-le pe cost, timp, erori si capacitatea de a reveni dupa un esec.
+Alege o activitate pe care o repeti cel putin o data pe saptamana. Scrie manual pasii actuali si noteaza pentru fiecare: informatia de intrare, persoana sau sistemul care decide, instrumentul care modifica datele si dovada ca etapa s-a incheiat corect. Marcheaza etapele care sunt doar copii de date, etapele care solicita interpretarea textului si etapele care produc efecte externe. Apoi proiecteaza trei variante: fara AI, asistat de AI si agentic. Compara-le pe cost, timp, erori si capacitatea de a reveni dupa un esec.
 
 Daca varianta fara agenti este cea mai buna, exercitiul a reusit. Scopul nu este sa dovedim ca un anumit tip de AI trebuie folosit, ci sa intelegem ce arhitectura rezolva problema cu cel mai mic risc rezonabil.

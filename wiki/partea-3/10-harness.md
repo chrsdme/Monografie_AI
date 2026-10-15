@@ -1,5 +1,6 @@
 # 10. Harness-ul: mediul care transforma modelul intr-un executant
 
+![Figura 1. Aplicatia si harness-ul coordoneaza contextul si instrumentele; modelul genereaza raspunsul.](../../assets/figuri/model_aplicatie.svg)
 
 *Figura 1 — Model, aplicatie, instrumente si infrastructura de inferenta. Este o schema logica, valabila atat pentru cloud, cat si pentru modele locale.*
 
@@ -20,7 +21,6 @@ Nu toate aceste componente trebuie sa fie procese independente. Un script Python
 ## 10.3. Harness versus motor de inferenta
 
 Confuzia apare frecvent cand cineva instaleaza un motor pentru modele locale si observa ca acesta poate raspunde prin API. **Motorul de inferenta** incarca modelul si efectueaza calculul necesar generarii. **Harness-ul** gestioneaza sarcina, contextul, instrumentele si procesul de executie. Un motor poate include unele functii de servire, gestionare a cererilor sau apeluri structurate, dar asta nu inseamna automat ca executa un workflow complet de dezvoltare software.
-
 
 Exemplu local: un serviciu de inferenta primeste intrebarea si returneaza text. Un harness separat ii trimite cerinte, ii ofera fisierele relevante, interpreteaza o solicitare de rulare a testelor si transmite rezultatul. Exemplu cloud: acelasi harness poate folosi un API administrat de un furnizor. Din perspectiva proiectului, responsabilitatile de context si executie raman asemanatoare. Furnizorul poate insa oferi propriul harness administrat, caz in care o parte din responsabilitati se muta in serviciul extern.
 

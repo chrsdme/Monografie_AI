@@ -1,5 +1,6 @@
 # 17. Evaluarea si Trust Score: incredere acordata treptat
 
+![Figura 4. Evaluare progresiva: cazuri, executie, validare, decizie si reevaluare.](../../assets/figuri/evaluare.svg)
 
 *Figura 4 — Increderea se construieste prin teste si dovezi, cu reevaluare dupa modificari, nu prin declaratii de succes ale agentului.*
 

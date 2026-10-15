@@ -2,6 +2,8 @@
 
 **De la conversatia cu AI la sisteme agentice verificabile**
 
+**Editia curenta a sursei si wiki-ului: 1.1 (15 octombrie 2026).**
+
 Acest repository contine:
 
 - editia stabila a monografiei in Markdown;
@@ -31,3 +33,9 @@ Vezi [CONTRIBUTING.md](CONTRIBUTING.md).
 - `experimente/` - experimente, configurari si rezultate
 - `fb_ai_romania/` - materiale asociate comunitatii Facebook AI Romania
 - `mkdocs.yml` - configuratia site-ului
+
+
+## Audit si roadmap
+
+- `docs/RAPORT_AUDIT_MONOGRAFIE_v1.1.md` - audit editorial si tehnic
+- `docs/ROADMAP_MONOGRAFIE.md` - directii propuse pentru 1.2 si 2.0

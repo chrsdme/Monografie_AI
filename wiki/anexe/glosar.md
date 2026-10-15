@@ -4,9 +4,9 @@ Glosarul este organizat alfabetic, nu dupa ordinea aparitiei. Pentru intelegerea
 
 **Agent AI.** Componenta software care urmareste un obiectiv si poate decide, in limite definite, ce actiune sa execute si cum sa foloseasca rezultatul. Nu orice chatbot este automat un agent.
 
-**API — Application Programming Interface.** Interfata prin care doua programe comunica. De exemplu, o aplicatie solicita unui serviciu meteo temperatura pentru o localitate si primeste date structurate.
-
 **Apel de instrument (tool call).** Cererea structurata prin care modelul solicita o operatie externa. Instrumentul este executat de mediul de lucru, nu de simpla generare a textului.
+
+**API — Application Programming Interface.** Interfata prin care doua programe comunica. De exemplu, o aplicatie solicita unui serviciu meteo temperatura pentru o localitate si primeste date structurate.
 
 **Automatizare determinista.** Proces in care pasii si regulile sunt stabilite explicit. Datele identice, in aceleasi conditii, ar trebui sa duca la acelasi rezultat.
 
@@ -36,9 +36,9 @@ Glosarul este organizat alfabetic, nu dupa ordinea aparitiei. Pentru intelegerea
 
 **Fallback.** Alternativa controlata folosita atunci cand fluxul principal nu poate continua. De exemplu, o cerere este trimisa unui operator in loc sa fie executata automat.
 
-**Fine-tuning.** Adaptarea unui model prin antrenare suplimentara. Este diferit de adaugarea unui document in context sau intr-o baza RAG.
-
 **Fereastra de context.** Limita de informatii exprimata in tokeni pe care modelul le poate procesa intr-o anumita interactiune. Limita declarata nu garanteaza utilizare corecta a tuturor informatiilor.
+
+**Fine-tuning.** Adaptarea unui model prin antrenare suplimentara. Este diferit de adaugarea unui document in context sau intr-o baza RAG.
 
 **Foundation model.** Model general antrenat pe date ample, utilizabil pentru mai multe sarcini, eventual adaptat ulterior.
 
@@ -50,9 +50,9 @@ Glosarul este organizat alfabetic, nu dupa ordinea aparitiei. Pentru intelegerea
 
 **Human-in-the-loop.** Etapa in care o persoana verifica, decide sau aproba anumite actiuni. Nu inseamna ca omul trebuie sa supravegheze fiecare token.
 
-**IDP — Intelligent Document Processing.** Combinatie de extragere, clasificare si verificare a datelor din documente. Poate folosi OCR, reguli, modele de limbaj si operatori umani.
-
 **Idempotenta.** Proprietatea unei operatii prin care repetarea aceleiasi cereri nu produce efecte suplimentare nedorite. Esentiala la plati, comenzi si operatii reluate dupa erori.
+
+**IDP — Intelligent Document Processing.** Combinatie de extragere, clasificare si verificare a datelor din documente. Poate folosi OCR, reguli, modele de limbaj si operatori umani.
 
 **Inferenta.** Utilizarea unui model deja antrenat pentru a genera un raspuns sau o predictie. Nu trebuie confundata cu antrenarea.
 
@@ -62,17 +62,17 @@ Glosarul este organizat alfabetic, nu dupa ordinea aparitiei. Pentru intelegerea
 
 **Loop engineering.** Proiectarea buclelor de executie, observatie, evaluare si corectare, cu limite si conditii de oprire.
 
-**Memorie persistenta.** Informatii pastrate intre sesiuni. Ele nu modifica automat parametrii modelului si trebuie gestionate din perspectiva provenientei si actualizarii.
-
 **MCP — Model Context Protocol.** Protocol care standardizeaza integrarea dintre aplicatii AI si surse de date sau instrumente externe.
+
+**Memorie persistenta.** Informatii pastrate intre sesiuni. Ele nu modifica automat parametrii modelului si trebuie gestionate din perspectiva provenientei si actualizarii.
 
 **Motor de inferenta.** Program care incarca si executa modelul, de exemplu intr-un serviciu local. Un motor de inferenta nu este automat un harness agentic.
 
 **Observabilitate.** Capacitatea de a intelege starea si comportamentul sistemului prin jurnale, metrici si trasee de executie.
 
-**Orchestrator.** Componenta care aloca sarcini, coordoneaza dependente, urmareste stari si decide transferurile intre etapele unui workflow. Poate fi cod cu reguli sau poate folosi si un model AI.
-
 **OCR — Optical Character Recognition.** Transformarea textului aflat intr-o imagine sau scanare in caractere procesabile de calculator.
+
+**Orchestrator.** Componenta care aloca sarcini, coordoneaza dependente, urmareste stari si decide transferurile intre etapele unui workflow. Poate fi cod cu reguli sau poate folosi si un model AI.
 
 **Prompt.** Mesaj, instructiune sau colectie de intrari oferite unui model pentru o sarcina. Promptul nu este acelasi lucru cu permisiunea tehnica de a executa actiuni.
 

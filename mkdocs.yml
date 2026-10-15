@@ -74,7 +74,7 @@ nav:
       - 12. Anatomia unui agent: partea-3/12-anatomia-agentului.md
       - 13. Specializare, clase si instante: partea-3/13-specializare-clase-instante.md
       - 14. Orchestrarea: partea-3/14-orchestrare.md
-      - 15. Disciplinele AI Engineering: partea-3/15-ai-engineering.md
+      - 15. Patru perspective de inginerie: partea-3/15-ai-engineering.md
   - Partea IV:
       - Prezentare: partea-4/index.md
       - 16. Observabilitate: partea-4/16-observabilitate.md
@@ -92,6 +92,10 @@ nav:
       - Protocol de evaluare: anexe/evaluare.md
       - Metoda si surse: anexe/metoda-surse.md
       - Bibliografie: anexe/bibliografie.md
+  - Audit si evolutie:
+      - Auditul editiei 1.1: audit-v1.1.md
+      - Istoric versiuni: istoric-versiuni.md
+      - Roadmap 1.2 / 2.0: roadmap.md
   - Colectii si comunitate:
       - Prezentare: colectii/index.md
       - Resurse si tool-uri: colectii/resurse.md

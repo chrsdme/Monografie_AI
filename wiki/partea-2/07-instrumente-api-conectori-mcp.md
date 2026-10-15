@@ -31,7 +31,7 @@ Un conector nu inseamna automat acces complet. Permisiunile pot fi numai de citi
 
 ## 7.4. Ce este MCP si de ce a aparut
 
-**Model Context Protocol** (MCP) este un protocol pentru conectarea aplicatiilor AI la instrumente si surse de context prin interfete standardizate. In loc sa implementeze o integrare complet diferita pentru fiecare combinatie de aplicatie si serviciu, dezvoltatorii pot folosi componente interoperabile. Documentatia protocolului descrie concepte precum *tools*, *resources* si *prompts*, precum si rolurile de host, client si server [S07].
+**Model Context Protocol** (MCP) este un protocol pentru conectarea aplicatiilor AI la instrumente si surse de context prin interfete standardizate. In loc sa implementeze o integrare complet diferita pentru fiecare combinatie de aplicatie si serviciu, dezvoltatorii pot folosi componente interoperabile. Ecosistemul descrie concepte precum *tools*, *resources* si *prompts*, precum si roluri de host, client si server. Protocolul evolueaza rapid: revizia 2026-07-28 a schimbat inclusiv mecanica de sesiune si a introdus un nucleu stateless, astfel incat o implementare trebuie raportata la versiunea de protocol pe care o foloseste [S07].
 
 Un server MCP pentru un sistem de fisiere ar putea expune operatia de citire a unui document. Un server pentru o baza de date ar putea oferi cautari autorizate si informatii despre schema. Dar MCP nu garanteaza siguranta, calitatea datelor sau dreptul de acces. Acestea depind de configuratia hostului, autentificare, autorizare si felul in care sunt implementate instrumentele.
 

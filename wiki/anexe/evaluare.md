@@ -18,7 +18,7 @@ Un sistem care trece doar testele pe care le-a vazut poate fi perfect ajustat pe
 
 ## C.3. Ce masuram si cum evitam cifrele inselatoare
 
-Rata de succes este utila, dar insuficienta. O prezentam impreuna cu numarul executarilor si cu tipurile de eroare. La zece teste, noua reusite inseamna 90%; la o mie de teste, 900 de reusite inseamna tot 90%. Insa precizia estimarii si varietatea cazurilor sunt foarte diferite. Pentru rapoarte serioase putem adauga intervale de incredere statistice si rezultate separate pe categorii.
+Rata de succes este utila, dar insuficienta. O prezentam impreuna cu numarul executarilor si cu tipurile de eroare. La zece teste, noua reusite inseamna 90%; la o mie de teste, 900 de reusite inseamna tot 90%. Un esantion mai mare poate reduce incertitudinea statistica daca observatiile sunt colectate in conditii adecvate, dar varietatea si reprezentativitatea cazurilor trebuie evaluate separat; ele nu cresc automat odata cu numarul executarilor. Pentru rapoarte serioase putem adauga intervale de incredere statistice si rezultate separate pe categorii.
 
 Indicatori recomandati:
 
@@ -38,7 +38,7 @@ Mai intai verificam traseul obisnuit: date valide, instrumente disponibile, rasp
 
 Urmeaza intreruperile: procesul se opreste intre pregatirea si aplicarea unei actiuni, un raspuns de instrument soseste prea tarziu, apare un duplicat de mesaj. Verificam daca reluarea produce acelasi efect permis, nu doua efecte. Acesta este motivul pentru care idempotenta, checkpointurile si jurnalizarea sunt componente de fiabilitate, nu detalii decorative.
 
-Pentru testarea securitatii introducem date de intrare care incearca sa depaseasca limitele: o pagina web care contine instructiuni de a ignora regula de aprobare sau un fisier care cere trimiterea unor date in afara sistemului. Agentul trebuie sa trateze acele texte ca date neautorizate, nu ca ordine superioare. OWASP descrie prompt injection si autonomia excesiva printre riscurile importante ale aplicatiilor LLM [S16].
+Pentru testarea securitatii introducem date de intrare care incearca sa depaseasca limitele: o pagina web care contine instructiuni de a ignora regula de aprobare sau un fisier care cere trimiterea unor date in afara sistemului. Agentul trebuie sa trateze acele texte ca date neautorizate, nu ca ordine superioare. OWASP trateaza prompt injection si excessive agency in Top 10 pentru aplicatii LLM si, separat, riscuri precum goal hijack, tool misuse, identity and privilege abuse sau memory/context poisoning in ghidul pentru aplicatii agentice [S09, S16].
 
 ## C.5. Niveluri de autonomie propuse
 
@@ -55,6 +55,8 @@ Nivelurile sunt doar o schema didactica. Nu reprezinta un standard de certificar
 De asemenea, un agent poate avea nivel 3 pentru clasificarea tichetelor si nivel 0 pentru operatii financiare. Autonomia este specifica sarcinii si instrumentului, nu un titlu global acordat modelului.
 
 ## C.6. Cum tratam un Trust Score
+
+**Nota:** in aceasta lucrare, *Trust Score* este un instrument didactic si intern de evaluare, nu un standard industrial, o certificare sau o proprietate universala a unui model.
 
 Un scor util poate sintetiza rezultate obtinute in conditii bine precizate. De pilda, o organizatie poate combina corectitudinea, respectarea permisiunilor si recuperarea dupa intreruperi. Ponderile sunt decizii de politica interna, nu adevaruri stiintifice. Trebuie explicat de ce un anumit tip de eroare are greutate mai mare.
 

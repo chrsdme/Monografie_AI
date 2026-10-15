@@ -1,6 +1,6 @@
-# 21. Studii de caz: factura si aplicatia web
+# 21. Studii de caz: facturi, aplicatii web, suport si documente scanate
 
-Cele doua studii sunt **simulari didactice**, nu sisteme implementate si masurate in cadrul acestei lucrari. Ne intereseaza sa intelegem de ce am alege o arhitectura, ce rezultate vrem sa verificam si ce se modifica atunci cand acordam mai multa autonomie. Vom parcurge aceleasi trepte: chat, documente, instrumente, workflow si, numai daca exista motive, orchestrare intre agenti.
+Primele doua studii sunt **simulari didactice dezvoltate in detaliu**, urmate de doua exemple complementare mai scurte. Niciunul nu reprezinta un sistem implementat si masurat in cadrul acestei lucrari. Ne intereseaza sa intelegem de ce am alege o arhitectura, ce rezultate vrem sa verificam si ce se modifica atunci cand acordam mai multa autonomie. Vom parcurge aceleasi trepte: chat, documente, instrumente, workflow si, numai daca exista motive, orchestrare intre agenti.
 
 ## 21.1. Cazul A: procesarea facturilor unei firme mici
 
@@ -61,7 +61,7 @@ Daca verificam numai egalitatea dintre doua numere, un program clasic este mai s
 
 ### De ce avem nevoie de spatii de lucru izolate
 
-Daca doua instante modifica simultan acelasi fisier, pot suprascrie schimbarile sau pot produce conflicte. O strategie este folosirea unor ramuri Git ori a unor copii de lucru separate. Orchestratorul urmareste ce ramura apartine fiecarui task si impune o etapa de integrare. Un test trecut intr-o ramura nu echivaleaza cu o verificare pe versiunea finala integrata.
+Daca doua instante modifica simultan acelasi fisier, pot suprascrie schimbarile sau pot produce conflicte. O strategie este folosirea unor directoare de lucru separate, de exemplu clone sau Git worktrees, asociate unor ramuri distincte. Ramurile organizeaza modificarile, iar directoarele separate evita editarea concurenta a aceleiasi copii de lucru. Orchestratorul urmareste ce spatiu de lucru si ce ramura apartin fiecarui task si impune o etapa de integrare. Un test trecut intr-o ramura nu echivaleaza cu o verificare pe versiunea finala integrata. Aceasta separare protejeaza fluxul de lucru asupra fisierelor; nu reprezinta, singura, izolare de securitate.
 
 ### Un exemplu de defect introdus fara intentie
 

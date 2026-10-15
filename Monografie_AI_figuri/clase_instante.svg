@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="360" viewBox="0 0 1100 360">
+<style>.o{fill:#dceaf7;stroke:#7890a4;stroke-width:2}.r{fill:#eef2fb;stroke:#7890a4;stroke-width:2}.d{fill:#eaf6ee;stroke:#739985;stroke-width:2}.q{fill:#f5eef9;stroke:#9277a5;stroke-width:2}.m{fill:#fff2dc;stroke:#b9955a;stroke-width:2}.t{font:17px sans-serif;fill:#203247}.s{font:14px sans-serif;fill:#40566b}.a{stroke:#5b7a93;stroke-width:2.5;fill:none;marker-end:url(#x)}</style>
+<defs><marker id="x" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#5b7a93"/></marker></defs>
+<rect class="o" x="330" y="20" rx="12" width="440" height="65"/><text class="t" x="550" y="48" text-anchor="middle">Orchestrator</text><text class="s" x="550" y="70" text-anchor="middle">sarcini, dependente, reguli si verificari</text>
+<rect class="r" x="70" y="140" rx="12" width="200" height="70"/><text class="t" x="170" y="170" text-anchor="middle">Research</text><text class="s" x="170" y="194" text-anchor="middle">R1, R2 ...</text>
+<rect class="d" x="450" y="140" rx="12" width="200" height="70"/><text class="t" x="550" y="170" text-anchor="middle">Development</text><text class="s" x="550" y="194" text-anchor="middle">D1 ... Dn</text>
+<rect class="q" x="830" y="140" rx="12" width="200" height="70"/><text class="t" x="930" y="170" text-anchor="middle">QA</text><text class="s" x="930" y="194" text-anchor="middle">Q1, Q2 ...</text>
+<rect class="m" x="350" y="280" rx="12" width="400" height="60"/><text class="t" x="550" y="307" text-anchor="middle">Serviciu de inferenta partajat</text><text class="s" x="550" y="329" text-anchor="middle">un model sau o selectie de modele</text>
+<path class="a" d="M430 85 L210 133"/><path class="a" d="M550 85 L550 133"/><path class="a" d="M670 85 L890 133"/><path class="a" d="M170 210 C220 260,350 270,430 280"/><path class="a" d="M550 210 L550 272"/><path class="a" d="M930 210 C880 260,750 270,670 280"/>
+</svg>

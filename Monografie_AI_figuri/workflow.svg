@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="260" viewBox="0 0 1100 260">
+<style>.b{fill:#eef4f8;stroke:#7890a4;stroke-width:2}.ok{fill:#edf7ef;stroke:#6e9b7d;stroke-width:2}.w{fill:#fff4e5;stroke:#b9955a;stroke-width:2}.x{fill:#fdeeee;stroke:#b66d6d;stroke-width:2}.t{font:16px sans-serif;fill:#203247}.a{stroke:#5b7a93;stroke-width:3;fill:none;marker-end:url(#m)}</style>
+<defs><marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#5b7a93"/></marker></defs>
+<rect class="b" x="20" y="60" rx="10" width="140" height="60"/><text class="t" x="90" y="95" text-anchor="middle">Intrare</text>
+<rect class="b" x="200" y="60" rx="10" width="140" height="60"/><text class="t" x="270" y="95" text-anchor="middle">Validare</text>
+<rect class="w" x="380" y="60" rx="10" width="140" height="60"/><text class="t" x="450" y="95" text-anchor="middle">Decizie</text>
+<rect class="b" x="560" y="60" rx="10" width="140" height="60"/><text class="t" x="630" y="95" text-anchor="middle">Actiune</text>
+<rect class="w" x="740" y="60" rx="10" width="140" height="60"/><text class="t" x="810" y="95" text-anchor="middle">Verificare</text>
+<rect class="ok" x="920" y="60" rx="10" width="140" height="60"/><text class="t" x="990" y="95" text-anchor="middle">Livrare</text>
+<rect class="x" x="740" y="175" rx="10" width="140" height="55"/><text class="t" x="810" y="208" text-anchor="middle">Escalare</text>
+<path class="a" d="M160 90 L192 90"/><path class="a" d="M340 90 L372 90"/><path class="a" d="M520 90 L552 90"/><path class="a" d="M700 90 L732 90"/><path class="a" d="M880 90 L912 90"/><path class="a" d="M810 120 L810 167"/>
+</svg>

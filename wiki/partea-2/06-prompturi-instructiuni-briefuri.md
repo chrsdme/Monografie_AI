@@ -1,6 +1,6 @@
 # 6. Prompturi, instructiuni si briefuri: cum definim treaba
 
-## 6.1. Promptul nu este un incantatie secreta
+## 6.1. Promptul nu este o incantatie secreta
 
 Un **prompt** este intrarea care solicita modelului un raspuns sau o actiune. Poate contine o intrebare scurta, documente, exemple si restrictii. Unele aplicatii separa mesajele dupa roluri, precum instructiuni de nivel superior, mesaje ale utilizatorului si raspunsuri ale instrumentelor. Modul exact de prioritizare depinde de aplicatie si API. O instructiune bine formulata ajuta, dar nu constituie o garantie tehnica de comportament.
 
@@ -14,7 +14,7 @@ Un **brief** este o descriere organizata a unei lucrari. Il putem construi din c
 
 Exemplu simplu: „Foloseste fisierul `vanzari_septembrie.csv`. Calculeaza vanzarile pe categorie, arata primele cinci produse, semnaleaza randurile fara pret si livreaza un tabel plus 300 de cuvinte de explicatie. Nu inventa valori lipsa. Consider sarcina finalizata daca totalurile corespund sumei din CSV.” Avem acum un rezultat clar si o verificare posibila.
 
-## 6.3. Instruciuni permanente versus cerinte de moment
+## 6.3. Instructiuni permanente versus cerinte de moment
 
 O instructiune permanenta poate preciza limba, stilul, formatul fisierelor sau regulile proiectului. Cererea curenta contine sarcina concreta. Documentatia furnizata reprezinta date, nu ordine cu autoritate nelimitata. Distinctia va deveni cruciala cand agentii vor citi pagini web si fisiere de la terti: un text gasit intr-un document nu trebuie sa poata rescrie automat regulile de securitate ale sistemului.
 

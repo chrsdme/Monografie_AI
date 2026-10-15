@@ -1,12 +1,12 @@
 # 11. Arhitectura de referinta: straturile unui workflow AI
 
+![Figura 2. De la cererea initiala la validare, actiune, verificare si escalare.](../../assets/figuri/workflow.svg)
 
 *Figura 2 — Flux generic cu verificari si ruta de escalare. Nu orice etapa are nevoie de un model AI.*
 
 ## 11.1. De ce vorbim despre straturi
 
 Cand o aplicatie creste, nu mai putem trata totul ca pe un singur prompt. Apar surse diferite, utilizatori cu permisiuni distincte, sarcini care dureaza, intreruperi, documente, instrumente, alerte si aprobari. Pentru a intelege sistemul, il descompunem in responsabilitati. **Straturile** sunt o metoda de analiza, nu opt sau zece servere obligatorii. Intr-un prototip pot functiona in acelasi program; intr-o organizatie mare pot fi servicii diferite.
-
 
 ## 11.2. Stratul de intrare
 
@@ -36,7 +36,7 @@ Separarea rolurilor se justifica prin responsabilitati, instrumente, criterii de
 
 Aici sunt executate efectiv operatiile: interogari SQL, citire sau scriere de fisiere, cautare web, apeluri catre sisteme de gestiune, build-uri software ori trimiterea unor notificari. Instrumentele trebuie sa valideze argumentele, sa impuna drepturile de acces si sa returneze coduri de rezultat precise. Daca o actiune este esuata, modelul nu trebuie sa poata transforma esecul in succes prin formularea raspunsului final.
 
-Pentru operatiile cu efecte secundare, stratul de integrare trebuie sa suporte, unde este posibil, **idempotenta**: repetarea aceleiasi cereri sa nu dubleze efectul. De exemplu, un identificator unic al unei plati poate preveni trimiterea aceleiasi tranzactii de doua ori dupa o eroare de retea.
+Pentru operatiile cu efecte secundare, stratul de integrare trebuie sa suporte, unde este posibil, **idempotenta**: repetarea aceleiasi cereri sa nu dubleze efectul. Un identificator de idempotenta ajuta numai daca este reutilizat la reincercarea aceleiasi operatii si daca serviciul care aplica efectul il recunoaste si deduplica. Generarea unui identificator nou la fiecare retry nu previne dublarea. De exemplu, o plata reluata dupa o eroare de retea trebuie verificata fata de starea operatiei initiale, nu retrimisa orbeste.
 
 ## 11.7. Stratul de cunostinte si memorie
 

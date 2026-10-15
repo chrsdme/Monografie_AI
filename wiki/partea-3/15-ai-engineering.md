@@ -1,8 +1,8 @@
-# 15. Cele patru discipline de inginerie: prompt, context, harness si loop
+# 15. Patru perspective de inginerie: prompt, context, harness si loop
 
 ## 15.1. De ce au aparut denumiri diferite
 
-Pe masura ce aplicatiile cu LLM-uri au trecut de la un singur raspuns la procese care dureaza, atentia inginerilor s-a mutat spre probleme mai largi. Mai intai optimizam cererea. Apoi ne-am intrebat ce context trebuie transmis. Apoi ce mediu ii oferim modelului, cum controlam actiunile si cum verificam ciclurile repetate. Termenii **prompt engineering**, **context engineering**, **harness engineering** si **loop engineering** descriu niveluri care se suprapun partial; nu sunt patru faze istorice oficiale prin care trebuie sa treaca fiecare proiect.
+Pe masura ce aplicatiile cu LLM-uri au trecut de la un singur raspuns la procese care dureaza, atentia inginerilor s-a mutat spre probleme mai largi. Mai intai optimizam cererea. Apoi ne-am intrebat ce context trebuie transmis. Apoi ce mediu ii oferim modelului, cum controlam actiunile si cum verificam ciclurile repetate. Termenii **prompt engineering**, **context engineering**, **harness engineering** si **loop engineering** descriu niveluri care se suprapun partial; nu sunt patru faze istorice oficiale prin care trebuie sa treaca fiecare proiect. In special, *harness engineering* si *loop engineering* sunt etichete emergente, fara o definitie normativa unica; in aceasta lucrare le folosim in sens operational, conform explicatiilor de mai jos.
 
 ## 15.2. Prompt engineering
 

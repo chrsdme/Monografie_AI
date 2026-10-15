@@ -22,6 +22,6 @@ Cand aceeasi sarcina apare saptamanal, merita sa discutam despre automatizare. D
 
 ## 5.5. Nivelul cinci: sisteme de lucru
 
-Cand apar mai multe tipuri de sarcini, dependente, verificari si decizii conditionale, putem proiecta un sistem cu agenti specializati si orchestrare. Acest nivel presupune competente suplimentare: modelarea procesului, permisiuni, tratarea erorilor, evaluare si observabilitate. Le vom introduce pas cu pas, fara sa sari peste nivelurile precedente.
+Cand apar mai multe tipuri de sarcini, dependente, verificari si decizii conditionale, putem proiecta un sistem cu agenti specializati si orchestrare. Acest nivel presupune competente suplimentare: modelarea procesului, permisiuni, tratarea erorilor, evaluare si observabilitate. Le vom introduce pas cu pas, fara sa sarim peste nivelurile precedente.
 
 **Intrebarea corecta nu este „ce poate face AI-ul, in general?”, ci „care parte din problema noastra este verificabila, ce instrumente ii putem oferi si cat risc acceptam?”.**

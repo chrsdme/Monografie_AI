@@ -314,7 +314,6 @@ Solutia este sa pastram documentele intr-un sistem separat si sa recuperam numai
 4. Sistemul cauta fragmente relevante si le trimite modelului impreuna cu intrebarea.
 5. Modelul redacteaza raspunsul folosind materialul recuperat, eventual cu indicarea sursei.
 
-![Flux simplificat RAG](Monografie_AI_figuri/02_rag.svg)
 
 Un **embedding** este o reprezentare numerica a continutului, utila in unele sisteme de cautare semantica. O **baza vectoriala** poate stoca asemenea reprezentari si cauta vecini similari. Dar RAG nu necesita in mod obligatoriu o baza vectoriala: cautarea dupa cuvinte-cheie, SQL sau o combinatie intre metode pot fi suficiente, uneori chiar mai potrivite.
 
@@ -424,9 +423,7 @@ Prin urmare, arhitectura nu se alege prin vot intre „automatizare veche” si 
 
 ## 10. Harness-ul: mediul care transforma modelul intr-un executant
 
-![Figura 1. Aplicatia si harness-ul coordoneaza contextul si instrumentele; modelul genereaza raspunsul.](Monografie_AI_figuri/model_aplicatie.svg)
 
-*Figura 1 — Model, aplicatie, instrumente si infrastructura de inferenta. Este o schema logica, valabila atat pentru cloud, cat si pentru modele locale.*
 
 ### 10.1. Ce problema rezolva
 
@@ -446,7 +443,6 @@ Nu toate aceste componente trebuie sa fie procese independente. Un script Python
 
 Confuzia apare frecvent cand cineva instaleaza un motor pentru modele locale si observa ca acesta poate raspunde prin API. **Motorul de inferenta** incarca modelul si efectueaza calculul necesar generarii. **Harness-ul** gestioneaza sarcina, contextul, instrumentele si procesul de executie. Un motor poate include unele functii de servire, gestionare a cererilor sau apeluri structurate, dar asta nu inseamna automat ca executa un workflow complet de dezvoltare software.
 
-![Harness versus motor de inferenta](Monografie_AI_figuri/03_harness.svg)
 
 Exemplu local: un serviciu de inferenta primeste intrebarea si returneaza text. Un harness separat ii trimite cerinte, ii ofera fisierele relevante, interpreteaza o solicitare de rulare a testelor si transmite rezultatul. Exemplu cloud: acelasi harness poate folosi un API administrat de un furnizor. Din perspectiva proiectului, responsabilitatile de context si executie raman asemanatoare. Furnizorul poate insa oferi propriul harness administrat, caz in care o parte din responsabilitati se muta in serviciul extern.
 
@@ -486,15 +482,12 @@ Un harness poate rula corect o comanda gresita. Poate arhiva impecabil un raspun
 
 ## 11. Arhitectura de referinta: straturile unui workflow AI
 
-![Figura 2. De la cererea initiala la validare, actiune, verificare si escalare.](Monografie_AI_figuri/workflow.svg)
 
-*Figura 2 — Flux generic cu verificari si ruta de escalare. Nu orice etapa are nevoie de un model AI.*
 
 ### 11.1. De ce vorbim despre straturi
 
 Cand o aplicatie creste, nu mai putem trata totul ca pe un singur prompt. Apar surse diferite, utilizatori cu permisiuni distincte, sarcini care dureaza, intreruperi, documente, instrumente, alerte si aprobari. Pentru a intelege sistemul, il descompunem in responsabilitati. **Straturile** sunt o metoda de analiza, nu opt sau zece servere obligatorii. Intr-un prototip pot functiona in acelasi program; intr-o organizatie mare pot fi servicii diferite.
 
-![Arhitectura de referinta a unui sistem AI](Monografie_AI_figuri/04_arhitectura.svg)
 
 ### 11.2. Stratul de intrare
 
@@ -649,9 +642,7 @@ Aceasta distinctie are valoare economica si operationala: actualizarile unei con
 
 ## 14. Orchestrarea: cine decide, cine executa si cine verifica
 
-![Figura 3. Trei clase de agenti si sapte instante, cu serviciu de inferenta partajat.](Monografie_AI_figuri/clase_instante.svg)
 
-*Figura 3 — Trei clase distincte nu inseamna doar trei executii. Instantele separate pot partaja infrastructura de inferenta, iar orchestratorul le coordoneaza.*
 
 ### 14.1. Ce este, de fapt, orchestratorul?
 
@@ -663,7 +654,6 @@ Orchestratorul nu trebuie sa faca toate sarcinile. Rolul lui seamana cu cel al u
 
 Utilizatorul spune: „Construieste o aplicatie web cu autentificare, panou de administrare si notificari”. Cererea este prea larga pentru un singur pas. Orchestratorul poate incepe cu clarificarea cerintelor, apoi solicita arhitectura, creeaza sarcini de implementare, asteapta integrarea si porneste verificari. Un proiect poate avea sarcini care depind unele de altele: schema bazei de date trebuie stabilita inainte ca anumite componente sa poata fi conectate corect.
 
-![Clasa, instanta si orchestrator](Monografie_AI_figuri/05_orchestrare.svg)
 
 ### 14.3. Alocarea sarcinilor si rutarea
 
@@ -813,9 +803,7 @@ Una dintre regulile cele mai folositoare este separarea dintre **actiuni observa
 
 ## 17. Evaluarea si Trust Score: incredere acordata treptat
 
-![Figura 4. Evaluare progresiva: cazuri, executie, validare, decizie si reevaluare.](Monografie_AI_figuri/evaluare.svg)
 
-*Figura 4 — Increderea se construieste prin teste si dovezi, cu reevaluare dupa modificari, nu prin declaratii de succes ale agentului.*
 
 ### 17.1. Intrebarea pe care trebuie s-o formulam corect
 

@@ -1,7 +1,7 @@
 ---
 title: "De la conversatia cu AI la sisteme agentice verificabile"
 subtitle: "O introducere graduala in modele, context, instrumente, memorie, harness, agenti, orchestrare si evaluare"
-author: "Material educational independent de furnizor"
+description: "Material educational independent de furnizor"
 date: "15 octombrie 2026"
 version: "1.1"
 lang: ro
@@ -729,7 +729,7 @@ Un orchestrator care depinde exclusiv de o conversatie foarte lunga poate pierde
 
 **Concluzia capitolului:** orchestrarea nu inseamna doar delegare. Inseamna control asupra dependentelor, identitatilor, resurselor, verificarilor si recuperarii.
 
-## 15. Cele patru discipline de inginerie: prompt, context, harness si loop
+## 15. Patru perspective de inginerie: prompt, context, harness si loop
 
 ### 15.1. De ce au aparut denumiri diferite
 

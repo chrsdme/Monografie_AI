@@ -74,7 +74,7 @@ nav:
       - 12. Anatomia unui agent: partea-3/12-anatomia-agentului.md
       - 13. Specializare, clase si instante: partea-3/13-specializare-clase-instante.md
       - 14. Orchestrarea: partea-3/14-orchestrare.md
-      - 15. Disciplinele AI Engineering: partea-3/15-ai-engineering.md
+      - 15. Perspectivele AI Engineering: partea-3/15-ai-engineering.md
   - Partea IV:
       - Prezentare: partea-4/index.md
       - 16. Observabilitate: partea-4/16-observabilitate.md
@@ -84,7 +84,7 @@ nav:
       - 20. Cost, viteza si calitate: partea-4/20-cost-viteza-calitate.md
   - Partea V:
       - Prezentare: partea-5/index.md
-      - 21. Studii de caz: partea-5/21-studii-de-caz.md
+      - 21. Studii de caz extinse: partea-5/21-studii-de-caz.md
       - 22. Cum incepi propriul sistem: partea-5/22-cum-incepi.md
   - Anexe:
       - Dictionar de termeni: anexe/glosar.md
@@ -97,5 +97,6 @@ nav:
       - Resurse si tool-uri: colectii/resurse.md
       - Experimente: colectii/experimente.md
       - Material Facebook - AI Romania: colectii/fb-ai-romania.md
+  - Istoric versiuni: istoric.md
   - Contribuie: contribuie.md
   - Despre: despre.md

@@ -2,6 +2,8 @@
 
 **Documentatie educationala vie, construita din monografia publicata si deschisa contributiilor comunitatii.**
 
+**Versiunea curenta a continutului: 1.1 (revizie editoriala si tehnica, 15 octombrie 2026).**
+
 Aceasta versiune web sparge materialul in capitole usor de parcurs, cu navigare, cautare rapida si posibilitatea de a propune corecturi sau completari prin GitHub.
 
 ## Cum poti folosi site-ul
@@ -37,6 +39,10 @@ Pe langa capitolele monografiei, proiectul include trei zone care pot creste con
 - [Material Facebook - AI Romania](colectii/fb-ai-romania.md) - idei si materiale dezvoltate pornind din discutiile comunitatii.
 
 Vezi si [pagina generala a colectiilor](colectii/index.md).
+
+## Istoric versiuni
+
+Modificarile dintre editii sunt documentate in [Istoric versiuni](istoric.md).
 
 ## Contribuie
 

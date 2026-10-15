@@ -1,7 +1,6 @@
 # 17. Evaluarea si Trust Score: incredere acordata treptat
 
 
-*Figura 4 — Increderea se construieste prin teste si dovezi, cu reevaluare dupa modificari, nu prin declaratii de succes ale agentului.*
 
 ## 17.1. Intrebarea pe care trebuie s-o formulam corect
 
@@ -68,3 +67,21 @@ Un operator poate aproba o plata, poate revizui o concluzie ambigua sau poate co
 ## 17.10. Legatura cu gestionarea riscului
 
 NIST trateaza gestionarea riscului AI ca pe un proces care include guvernare, intelegerea contextului, masurare si gestionare continua [S15]. Nu extragem din aceasta abordare un „scor NIST” inventat. O folosim ca principiu: masurarea are valoare numai daca este conectata la decizii operationale si la responsabilitati clare.
+
+## 17.11. Competenta demonstrata nu este acelasi lucru cu autoritatea acordata
+
+Un agent poate executa corect mii de sarcini si totusi sa nu primeasca automat dreptul de a produce consecinte mai mari. **Competenta** descrie ce a demonstrat ca poate face in conditiile testate. **Autoritatea** descrie ce ii permite organizatia sa faca prin politici si permisiuni tehnice.
+
+Rezultatele bune pot justifica reevaluarea mandatului, nu extinderea automata a acestuia. Autonomia poate creste in interiorul unei zone deja autorizate, in timp ce operatiile cu risc ridicat raman conditionate de aprobare. Invers, regresiile sau incidentele pot reduce autonomia chiar daca modelul nu s-a schimbat. Aceasta separare este compatibila cu principiile de gestionare a riscului si cu evitarea autonomiei excesive [S15, S16].
+
+## 17.12. Evaluarea unui RAG: retrieval-ul si raspunsul se masoara separat
+
+Un raspuns RAG poate esua in cel putin doua locuri: sistemul poate recupera fragmente nepotrivite sau modelul poate folosi prost fragmentele corecte. De aceea, evaluarea nu ar trebui redusa la impresia ca „raspunsul suna bine”.
+
+Framework-uri precum **RAGAS** separa dimensiuni precum *Context Precision*, *Context Recall*, *Response Relevancy* si *Faithfulness*. Context Precision urmareste daca fragmentele relevante sunt clasate inaintea celor irelevante; Faithfulness verifica daca afirmatiile raspunsului sunt sustinute de contextul recuperat. Unele metrici folosesc un LLM evaluator, ceea ce inseamna ca si evaluatorul trebuie calibrat si verificat, nu tratat ca oracol [S27].
+
+## 17.13. Consensul nu inseamna independenta dovezilor
+
+Zece agenti care repeta aceeasi informatie nu ofera zece confirmari independente daca toti au pornit de la aceeasi sursa. Un sistem multi-agent poate crea impresia de consens in timp ce propaga o singura eroare initiala.
+
+Pentru concluziile importante, jurnalul ar trebui sa pastreze provenienta afirmatiilor si sa permita identificarea surselor comune. Cand cerem verificare independenta, diversitatea agentilor conteaza mai putin decat independenta dovezilor, a testelor si a mecanismelor de validare. Aceasta este una dintre limitele evaluarii prin „mai multi agenti care se verifica intre ei”.

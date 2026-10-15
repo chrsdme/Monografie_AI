@@ -1,6 +1,6 @@
 # Bibliografie si resurse de aprofundare
 
-*Selectie comentata de surse pentru concepte, exemple si metodologie. Adresele au fost verificate ca resurse publice in etapa de documentare. Accesate la 13 octombrie 2026, acolo unde nu este mentionata alta data. Linkurile trimit la materialele originale, nu la pagini comerciale intermediare.*
+*Selectie comentata de surse pentru concepte, exemple si metodologie. Adresele au fost verificate ca resurse publice in etapa de documentare. Accesate sau reverificate la 15 octombrie 2026, acolo unde nu este mentionata alta data. Bibliografia include lucrari de cercetare, documentatie oficiala si articole explicative ale unor furnizori sau autori independenti. Materialele comerciale sunt folosite pentru exemple si descrieri de implementare, nu ca dovezi universale ale performantei.*
 
 **[S01] Vaswani, A. et al. (2017).** *Attention Is All You Need.* arXiv:1706.03762. Disponibil la: https://arxiv.org/abs/1706.03762 — fundament pentru arhitectura Transformer, nu pentru toate formele de AI.
 
@@ -18,13 +18,13 @@
 
 **[S08] Lewis, P. et al. (2020).** *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.* arXiv:2005.11401. Disponibil la: https://arxiv.org/abs/2005.11401 — o sursa fundamentala pentru RAG.
 
-**[S09] OWASP GenAI Security Project (2026).** *OWASP Top 10 for Large Language Model Applications.* Disponibil la: https://owasp.org/www-project-top-10-for-large-language-model-applications/ — limite de incredere, surse neautorizate si riscuri de integrare.
+**[S09] OWASP GenAI Security Project (2025).** *LLM01:2025 Prompt Injection.* Disponibil la: https://genai.owasp.org/llmrisk/llm01-prompt-injection/ — injectie directa si indirecta, inclusiv continut extern care incearca sa influenteze instructiunile sistemului.
 
 **[S10] Anthropic (2024).** *Building effective agents.* 19 decembrie. Disponibil la: https://www.anthropic.com/engineering/building-effective-agents — workflow versus agent si tipare simple de coordonare.
 
 **[S11] OpenAI (2026).** Lopopolo, R., *Harness engineering: leveraging Codex in an agent-first world.* 11 februarie. Disponibil la: https://openai.com/index/harness-engineering/ — observabilitate, reguli si autonomie controlata in ingineria unui harness.
 
-**[S12] OpenTelemetry (2026).** *Semantic Conventions for Generative AI.* Disponibil la: https://opentelemetry.io/docs/specs/semconv/ — vocabular comun pentru trace-uri, metrici si operatii AI; unele conventii sunt inca in evolutie.
+**[S12] OpenTelemetry (2026).** *Generative AI semantic conventions.* Disponibil la: https://opentelemetry.io/docs/specs/semconv/registry/attributes/gen-ai/ — vocabular comun pentru atribute, trace-uri si operatii AI. Conventiile GenAI sunt in evolutie, iar documentatia indica mutarea lor intr-un repository dedicat.
 
 **[S13] Valorem Reply (2026).** *7 Types of AI Agents to Automate Your Workflows.* Disponibil la: https://www.reply.com/valorem-reply/en/resources/insights/blog/7-types-of-ai-agents-to-automate-your-workflows — clasificare orientativa de aplicatii, nu taxonomie exhaustiva.
 
@@ -32,7 +32,7 @@
 
 **[S15] NIST (2023).** *Artificial Intelligence Risk Management Framework (AI RMF 1.0).* Disponibil la: https://www.nist.gov/itl/ai-risk-management-framework — principii de guvernare, masurare si management continuu al riscului.
 
-**[S16] OWASP GenAI Security Project (2026).** *Top 10 for LLM Applications: Prompt Injection, Excessive Agency si alte riscuri.* Disponibil la: https://owasp.github.io/www-project-top-10-for-large-language-model-applications/ — exemple pentru proiectarea securitatii.
+**[S16] OWASP GenAI Security Project (2025).** *LLM06:2025 Excessive Agency.* Disponibil la: https://genai.owasp.org/llmrisk/llm062025-excessive-agency/ — riscul actiunilor daunatoare atunci cand sistemul primeste autonomie sau permisiuni prea largi.
 
 **[S17] IBM (2026).** O'Brien, K., Downie, A. si Hayes, M., *What is AI workflow automation?* Actualizat la 26 martie. Disponibil la: https://www.ibm.com/think/topics/ai-workflow — componente, utilizari si limite operationale.
 
@@ -52,7 +52,9 @@
 
 **[S25] Cyber AI Romania (2026).** *Cum transformi advisories, CVE-uri si documentatie oficiala intr-un plan saptamanal de studiu.* Disponibil la: https://cyberairomania.ro/plan-saptamanal-studiu-cve-advisories-documentatie-oficiala/ — exemplu despre provenienta surselor si verificarea informatiilor tehnice.
 
-**[S26] Kuse (2026).** *AI Workflow: The Complete Guide to Intelligent Automation.* Disponibil la: https://www.kuse.ai/blog/workflows-productivity/ai-workflow-the-complete-guide-to-intelligent-automation — exemple de utilizare si diferenta dintre automatizarea aplicatiilor si sarcinile bazate pe cunostinte. Informatiile comerciale sunt excluse.
+**[S26] Kuse (2025).** *AI Workflow: The Complete Guide to Intelligent Automation.* 29 decembrie. Disponibil la: https://www.kuse.ai/blog/workflows-productivity/ai-workflow-the-complete-guide-to-intelligent-automation — exemple de utilizare si diferenta dintre automatizarea aplicatiilor si sarcinile bazate pe cunostinte. Informatiile comerciale sunt excluse.
+
+**[S27] Es, S., James, J., Espinosa-Anke, L. si Schockaert, S. (2023).** *RAGAS: Automated Evaluation of Retrieval Augmented Generation.* arXiv:2309.15217. Disponibil la: https://arxiv.org/abs/2309.15217 — evaluarea separata a recuperarii si generarii in pipeline-uri RAG. Documentatia actuala a metricilor: https://docs.ragas.io/en/latest/concepts/metrics/available_metrics/
 
 ## Nota privind materialele din arhiva furnizata
 
@@ -60,4 +62,4 @@ Au fost consultate sase PDF-uri educationale furnizate pentru aceasta lucrare. A
 
 ---
 
-*Sfarsitul editiei 1.0. Documentul Markdown ramane sursa editabila pentru completari, exemple suplimentare si actualizarea bibliografiei.*
+*Sfarsitul editiei 1.1. Documentul Markdown ramane sursa editabila pentru completari, exemple suplimentare si actualizarea bibliografiei.*

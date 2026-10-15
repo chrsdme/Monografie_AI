@@ -1,6 +1,6 @@
 # Anexa A. Dictionar de termeni: de la vocabularul de baza la arhitecturi agentice
 
-Glosarul este organizat alfabetic, nu dupa ordinea aparitiei. Pentru intelegerea treptata, explicatiile complete se gasesc in capitolele anterioare. Definitii de referinta pentru vocabularul general pot fi consultate si in glosarul Stanford HAI [S18]. Cand termenii au sensuri diferite in produse diferite, am ales intelesul operational folosit in aceasta carte.
+Glosarul este organizat pentru consultare rapida. Termenii sunt grupati in mare parte alfabetic, dar prioritatea este claritatea si legatura cu explicatiile din capitole. Pentru intelegerea treptata, explicatiile complete se gasesc in capitolele anterioare. Definitii de referinta pentru vocabularul general pot fi consultate si in glosarul Stanford HAI [S18]. Cand termenii au sensuri diferite in produse diferite, am ales intelesul operational folosit in aceasta carte.
 
 **Agent AI.** Componenta software care urmareste un obiectiv si poate decide, in limite definite, ce actiune sa execute si cum sa foloseasca rezultatul. Nu orice chatbot este automat un agent.
 

@@ -18,7 +18,7 @@ Un sistem care trece doar testele pe care le-a vazut poate fi perfect ajustat pe
 
 ## C.3. Ce masuram si cum evitam cifrele inselatoare
 
-Rata de succes este utila, dar insuficienta. O prezentam impreuna cu numarul executarilor si cu tipurile de eroare. La zece teste, noua reusite inseamna 90%; la o mie de teste, 900 de reusite inseamna tot 90%. Insa precizia estimarii si varietatea cazurilor sunt foarte diferite. Pentru rapoarte serioase putem adauga intervale de incredere statistice si rezultate separate pe categorii.
+Rata de succes este utila, dar insuficienta. O prezentam impreuna cu numarul executarilor si cu tipurile de eroare. La zece teste, noua reusite inseamna 90%; la o mie de teste, 900 de reusite inseamna tot 90%. Un esantion mai mare poate reduce incertitudinea statistica daca observatiile sunt colectate in conditii adecvate, dar varietatea si reprezentativitatea cazurilor trebuie evaluate separat: ele nu cresc automat odata cu numarul executarilor. Pentru rapoarte serioase putem adauga intervale de incredere si rezultate separate pe categorii.
 
 Indicatori recomandati:
 

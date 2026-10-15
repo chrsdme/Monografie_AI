@@ -8,7 +8,7 @@ Un workflow real intalneste servicii indisponibile, documente corupte, permisiun
 
 ## 19.2. Idempotenta: de ce conteaza enorm
 
-Daca un instrument de citire a vremii este apelat de doua ori, costul poate creste, dar efectul extern este redus. Daca o functie de transfer financiar este apelata de doua ori, putem avea doua plati. **Idempotenta** este proprietatea prin care repetarea aceleiasi cereri nu produce efecte suplimentare nedorite. O tehnica este utilizarea unui identificator unic de operatie, verificat de serviciul care aplica modificarea.
+Daca un instrument de citire a vremii este apelat de doua ori, costul poate creste, dar efectul extern este redus. Daca o functie de transfer financiar este apelata de doua ori, putem avea doua plati. **Idempotenta** este proprietatea prin care repetarea aceleiasi cereri nu produce efecte suplimentare nedorite. O tehnica este utilizarea unui identificator unic de operatie, verificat de serviciul care aplica modificarea. Acelasi identificator trebuie reutilizat la reincercarea aceleiasi operatii; generarea unui identificator nou la fiecare retry nu previne dublarea. Garantia depinde si de modul in care serviciul pastreaza si verifica aceste chei.
 
 Daca starea unei operatii sensibile este necunoscuta dupa un timeout, procesul trebuie sa interogheze mai intai sistemul pentru a vedea daca efectul exista deja. Reincercarea oarba este periculoasa.
 

@@ -1,7 +1,6 @@
 # 14. Orchestrarea: cine decide, cine executa si cine verifica
 
 
-*Figura 3 — Trei clase distincte nu inseamna doar trei executii. Instantele separate pot partaja infrastructura de inferenta, iar orchestratorul le coordoneaza.*
 
 ## 14.1. Ce este, de fapt, orchestratorul?
 

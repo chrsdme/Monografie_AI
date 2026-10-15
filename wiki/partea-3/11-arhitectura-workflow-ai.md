@@ -1,7 +1,6 @@
 # 11. Arhitectura de referinta: straturile unui workflow AI
 
 
-*Figura 2 — Flux generic cu verificari si ruta de escalare. Nu orice etapa are nevoie de un model AI.*
 
 ## 11.1. De ce vorbim despre straturi
 

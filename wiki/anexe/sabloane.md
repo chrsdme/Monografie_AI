@@ -53,7 +53,7 @@ specificatie_aprobata: SPEC-12, revizia 3
 cerinte_obligatorii: [C1, C2, C3]
 decizii_confirmate: [D1, D2]
 probleme_deschise: [P4]
-linkuri_surze: [URL sau identificatori de fisiere]
+linkuri_surse: [URL sau identificatori de fisiere]
 artefacte: [calea / identificatorul documentelor]
 criterii_de_acceptare: [T1, T2, T3]
 stare: READY sau BLOCKED
@@ -72,7 +72,7 @@ Permisiune: citire si pregatire, fara aplicare
 Validari: comanda exista; campul este permis; noua valoare este valida
 Rezultat: proposed_change_id, current_value, proposed_value
 Erori: NOT_FOUND, INVALID_FIELD, INVALID_VALUE, ACCESS_DENIED
-Efecte secundare: niciunul
+Efecte secundare: salveaza o propunere interna; nu modifica datele comenzii si nu declanseaza actiuni externe
 Urmatorul pas: aprobare separata inainte de apply
 ```
 

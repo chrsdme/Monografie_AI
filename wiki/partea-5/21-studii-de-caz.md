@@ -1,4 +1,4 @@
-# 21. Studii de caz: factura si aplicatia web
+# 21. Studii de caz: facturi, aplicatii web, suport si documente scanate
 
 Cele doua studii sunt **simulari didactice**, nu sisteme implementate si masurate in cadrul acestei lucrari. Ne intereseaza sa intelegem de ce am alege o arhitectura, ce rezultate vrem sa verificam si ce se modifica atunci cand acordam mai multa autonomie. Vom parcurge aceleasi trepte: chat, documente, instrumente, workflow si, numai daca exista motive, orchestrare intre agenti.
 
@@ -53,7 +53,7 @@ Daca verificam numai egalitatea dintre doua numere, un program clasic este mai s
 
 **Nivelul 3 — Un agent de dezvoltare.** Agentul primeste proiectul, cerintele si instrumente pentru editare, build si teste. Scrie cod, ruleaza testele si corecteaza erorile. Daca o cerere spune ca intervalele sunt de 30 de minute, agentul poate introduce un test pentru rezervari de 45 de minute si poate observa respingerea. In aceasta faza nu este nevoie de un agent separat pentru fiecare comanda `git`, fiecare functie ori fiecare test.
 
-**Nivelul 4 — Verificare independenta.** Un agent QA primeste cerintele initiale, modificarile, rezultatele testelor si acces de citire la cod. Construieste cazuri noi: dubla rezervare, doua cereri simultane, schimbarea fusului orar, utilizator neautorizat, anulare dupa termen. Nu porneste de la afirmatia dezvoltatorului „am acoperit toate cazurile”. Testele executabile si rezultatul din baza de date constituie dovezile relevante.
+**Nivelul 4 — Verificare independenta.** Un agent QA primeste cerintele initiale, modificarile, rezultatele testelor si acces de citire la implementarea evaluata. Poate crea si executa teste intr-un spatiu separat, cu drepturi limitate asupra fisierelor si datelor de test, fara acces de scriere in productie. Construieste cazuri noi: dubla rezervare, doua cereri simultane, schimbarea fusului orar, utilizator neautorizat, anulare dupa termen. Nu porneste de la afirmatia dezvoltatorului „am acoperit toate cazurile”. Testele executabile si rezultatul din baza de date constituie dovezile relevante.
 
 **Nivelul 5 — Orchestrare.** Cand proiectul creste, orchestratorul descompune sarcina: Research poate analiza documentatia si cerintele, Development poate lucra la componente independente, QA verifica integrarea. Daca o regula de securitate nu este stabilita, sarcina care depinde de ea ramane `BLOCKED`. Daca testele nu trec, rezultatul revine la implementare cu erorile exacte.
 
@@ -61,7 +61,7 @@ Daca verificam numai egalitatea dintre doua numere, un program clasic este mai s
 
 ### De ce avem nevoie de spatii de lucru izolate
 
-Daca doua instante modifica simultan acelasi fisier, pot suprascrie schimbarile sau pot produce conflicte. O strategie este folosirea unor ramuri Git ori a unor copii de lucru separate. Orchestratorul urmareste ce ramura apartine fiecarui task si impune o etapa de integrare. Un test trecut intr-o ramura nu echivaleaza cu o verificare pe versiunea finala integrata.
+Daca doua instante modifica simultan acelasi fisier, pot suprascrie schimbarile sau pot produce conflicte. O strategie este folosirea unor directoare de lucru separate, de exemplu clone sau Git worktrees, asociate unor ramuri distincte. Ramurile organizeaza modificarile, iar directoarele separate evita editarea concurenta a aceleiasi copii de lucru. Aceasta izolare protejeaza procesul de lucru asupra fisierelor; nu este, singura, o bariera de securitate. Orchestratorul urmareste ce spatiu de lucru apartine fiecarui task si impune o etapa de integrare. Un test trecut intr-o ramura nu echivaleaza cu o verificare pe versiunea finala integrata.
 
 ### Un exemplu de defect introdus fara intentie
 

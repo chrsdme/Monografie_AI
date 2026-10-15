@@ -1,4 +1,4 @@
-# 15. Cele patru discipline de inginerie: prompt, context, harness si loop
+# 15. Patru perspective de inginerie: prompt, context, harness si loop
 
 ## 15.1. De ce au aparut denumiri diferite
 

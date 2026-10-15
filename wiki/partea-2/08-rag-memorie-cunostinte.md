@@ -15,7 +15,7 @@ Solutia este sa pastram documentele intr-un sistem separat si sa recuperam numai
 5. Modelul redacteaza raspunsul folosind materialul recuperat, eventual cu indicarea sursei.
 
 
-O **embedding** este o reprezentare numerica a continutului, utila in unele sisteme de cautare semantica. O **baza vectoriala** poate stoca asemenea reprezentari si cauta vecini similari. Dar RAG nu necesita in mod obligatoriu o baza vectoriala: cautarea dupa cuvinte-cheie, SQL sau o combinatie intre metode pot fi suficiente, uneori chiar mai potrivite.
+Un **embedding** este o reprezentare numerica a continutului, utila in unele sisteme de cautare semantica. O **baza vectoriala** poate stoca asemenea reprezentari si cauta vecini similari. Dar RAG nu necesita in mod obligatoriu o baza vectoriala: cautarea dupa cuvinte-cheie, SQL sau o combinatie intre metode pot fi suficiente, uneori chiar mai potrivite.
 
 ## 8.3. Ce poate sa mearga prost intr-un RAG
 
@@ -40,7 +40,7 @@ Un mecanism simplu poate salva la finalul unei sarcini doar deciziile aprobate s
 RAG este o **metoda de a recupera informatie pentru generare**. Memoria desemneaza **ce informatie este pastrata si cum supravietuieste intre sarcini**. Putem folosi RAG peste o biblioteca de manuale fara sa avem memorie personala. Putem avea memorie persistenta intr-o baza SQL fara sa folosim RAG. Deseori cele doua se combina, dar au responsabilitati diferite.
 
 
-## 8.9. Provenienta, versiunea si expirarea cunostintelor
+## 8.7. Provenienta, versiunea si expirarea cunostintelor
 
 O baza de cunostinte nu este doar o colectie de raspunsuri reutilizabile. Fiecare afirmatie importanta ar trebui sa poata indica sursa originala, data consultarii, versiunea relevanta si statutul verificarii. Acest principiu apare si in ghidurile practice despre construirea unei baze personale de cunostinte tehnice: separam sursa, interpretarea si experimentul [S21].
 
@@ -48,7 +48,7 @@ Sa presupunem ca pastram regula „clientii pot returna produsele in 30 de zile�
 
 Acelasi principiu se aplica documentatiei software, preturilor, procedurilor interne si notelor de cercetare. Un rezultat de test trebuie pastrat impreuna cu mediul in care a fost obtinut. „A functionat” este insuficient daca nu mai stim ce versiune, ce fisiere sau ce configuratie au fost folosite.
 
-## 8.10. Un flux de cunoastere cu aprobare
+## 8.8. Un flux de cunoastere cu aprobare
 
 Intr-un sistem robust, agentul poate propune o noua nota de memorie, dar o regula sau un responsabil verifica daca nota reprezinta un fapt, o preferinta, o ipoteza sau doar un rezultat temporar. O concluzie neverificata nu trebuie transformata in regula generala pentru toate executarile viitoare. De asemenea, nu pastram inutil date sensibile doar pentru ca pot deveni folositoare candva.
 

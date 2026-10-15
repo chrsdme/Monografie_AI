@@ -31,6 +31,8 @@ Un conector nu inseamna automat acces complet. Permisiunile pot fi numai de citi
 
 ## 7.4. Ce este MCP si de ce a aparut
 
+Pe masura ce aplicatiile AI au primit tot mai multe instrumente, fiecare integrare proprietara a inceput sa repete aceleasi probleme: descoperirea functiilor, descrierea argumentelor, transportul rezultatelor si controlul accesului. Un protocol comun nu elimina aceste probleme, dar ofera un limbaj tehnic comun pentru ele.
+
 **Model Context Protocol** (MCP) este un protocol pentru conectarea aplicatiilor AI la instrumente si surse de context prin interfete standardizate. In loc sa implementeze o integrare complet diferita pentru fiecare combinatie de aplicatie si serviciu, dezvoltatorii pot folosi componente interoperabile. Documentatia protocolului descrie concepte precum *tools*, *resources* si *prompts*, precum si rolurile de host, client si server [S07].
 
 Un server MCP pentru un sistem de fisiere ar putea expune operatia de citire a unui document. Un server pentru o baza de date ar putea oferi cautari autorizate si informatii despre schema. Dar MCP nu garanteaza siguranta, calitatea datelor sau dreptul de acces. Acestea depind de configuratia hostului, autentificare, autorizare si felul in care sunt implementate instrumentele.
@@ -48,3 +50,9 @@ Exemplu: `draft_email(recipient, body)` poate salva o ciorna fara s-o trimita. `
 Intr-o configuratie de tip `auto`, modelul poate avea libertatea sa decida daca solicita instrumentul, in functie de API si instructiuni. Daca unealta este obligatorie pentru sarcina, aplicatia ar trebui sa impuna acest lucru sau sa verifice in cod ca a avut loc apelul necesar. Un prompt de tip „nu inventa vremea” ajuta, dar nu este suficient drept garantie daca runtime-ul accepta raspunsuri fara apelul sursei.
 
 **De retinut:** calitatea unui agent cu instrumente depinde cel putin de trei lucruri: decizia de a folosi unealta, argumentele transmise si interpretarea rezultatului. Fiecare se evalueaza separat.
+
+## 7.7. Iesiri structurate: format valid nu inseamna continut corect
+
+Pentru transferul dintre componente, textul liber este adesea prea ambiguu. Putem cere sau constrange iesirea la o schema structurata, de exemplu un obiect JSON cu campuri, tipuri si valori permise. Unele API-uri si motoare pot valida ori constrange forma rezultatului, iar instrumentele pot valida separat argumentele inainte de executie.
+
+Aceasta rezolva o problema de **forma**, nu una de **adevar**. Un obiect poate respecta perfect schema si totusi sa contina o suma gresita, un identificator inventat sau o decizie neautorizata. De aceea distingem intre validarea structurala si validarea semantica: prima confirma ca rezultatul poate fi procesat, a doua verifica daca este corect si permis [S06].

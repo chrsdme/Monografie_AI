@@ -1,6 +1,8 @@
 # Partea I. De unde pornim: modelul, conversatia si contextul
 
-Aceasta parte grupeaza capitolele 1-5. Foloseste meniul din stanga sau lista de mai jos pentru navigare.
+Inainte de unelte, memorie si agenti, avem nevoie de o baza comuna. Aici lamurim ce este un model, cum ajunge sa scrie ceva care suna a raspuns, de ce uita o conversatie lunga si cum arata drumul de la o intrebare simpla la un sistem de lucru.
+
+## Capitolele acestei parti
 
 - [1. Ce este inteligenta artificiala si ce este un model?](01-ce-este-ai.md)
 - [2. Cum produce un LLM un raspuns](02-cum-functioneaza-llm.md)

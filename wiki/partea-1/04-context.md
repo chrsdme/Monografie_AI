@@ -1,37 +1,39 @@
 # 4. Contextul: ce vede modelul in momentul raspunsului
 
-## 4.1. Conversatia nu este acelasi lucru cu memoria umana
+## 4.1. O conversatie nu e memorie omeneasca
 
-Sa presupunem ca discutam trei ore cu un chatbot. Am mentionat obiective, am corectat presupuneri, am incarcat documente, am schimbat subiectul de cateva ori. Cand cerem o sinteza, unele detalii lipsesc. De ce? Pentru ca modelul raspunde pe baza **contextului efectiv disponibil la acea inferenta**, nu pe baza unei amintiri nelimitate a intregii relatii cu utilizatorul.
+Discuti trei ore cu un chatbot. Ai spus obiective, ai corectat presupuneri, ai incarcat documente si ai schimbat subiectul de cateva ori. Apoi ceri o sinteza si observi ca lipsesc detalii. De ce? Pentru ca modelul raspunde pe baza **contextului disponibil in momentul acelei cereri**, nu dintr-o amintire nelimitata a intregii relatii cu tine.
 
-**Fereastra de context** este cantitatea maxima de informatie, masurata de regula in tokeni, pe care modelul o poate procesa intr-o cerere. In acest buget intra instructiuni, mesajele relevante, fragmente de documente, descrieri ale instrumentelor, rezultatele apelurilor si, uneori, o parte din generarea curenta. Nu este garantat ca orice produs foloseste intreaga fereastra anuntata de model.
+**Fereastra de context** este cantitatea maxima de informatie, de obicei masurata in tokeni, pe care modelul o poate procesa intr-o singura cerere. In acest buget intra instructiunile, mesajele relevante, fragmentele de documente, descrierile uneltelor, rezultatele apelurilor si, uneori, o parte din raspunsul aflat in curs de generare. Nu e sigur ca un produs foloseste toata fereastra anuntata pentru model.
 
-## 4.2. Patru lucruri care se confunda frecvent
+## 4.2. Patru lucruri care se confunda des
 
-**Istoricul vizibil** este ceea ce vedem in interfata. **Contextul transmis** este pachetul concret primit de model la o cerere. **Memoria aplicatiei** este informatia salvata pentru sesiuni viitoare. **Cunostintele antrenate** sunt tipare codificate in parametrii modelului. Sunt patru lucruri diferite. O aplicatie poate afisa o conversatie foarte lunga, dar sa transmita doar mesajele recente si un rezumat al celor vechi.
+**Istoricul vizibil** este ce vezi in interfata. **Contextul transmis** este pachetul concret primit de model la o cerere. **Memoria aplicatiei** este informatia salvata pentru sesiuni viitoare. **Cunostintele antrenate** sunt tiparele codificate in parametrii modelului. Sunt patru lucruri diferite. O aplicatie poate afisa o conversatie foarte lunga si totusi sa trimita modelului doar mesajele recente si un rezumat al celor vechi.
 
-Invers, un chat nou poate primi preferinte salvate sau informatii recuperate din fisiere, chiar daca acele informatii nu apar in istoricul recent. Nu este un comportament universal si trebuie verificat pentru aplicatia folosita.
+Si invers: un chat nou poate primi preferinte salvate sau informatii recuperate din fisiere, chiar daca ele nu apar in istoricul recent. Comportamentul nu e universal, deci merita verificat pentru aplicatia pe care o folosesti.
 
-## 4.3. Context mare nu inseamna automat context bun
+## 4.3. Context mare nu inseamna context bun
 
-O fereastra mare permite introducerea mai multor informatii, dar nu garanteaza ca modelul va folosi corect fiecare detaliu. Cercetarea despre fenomenul *lost in the middle* a aratat ca unele modele performeaza mai slab cand informatia relevanta se afla in mijlocul unor intrari lungi [S02]. Concluzia practica nu este sa eliminam toate documentele, ci sa selectam si sa prezentam informatia utila astfel incat sa poata fi verificata.
+O fereastra mare te lasa sa pui mai multa informatie, dar nu garanteaza ca modelul va folosi bine fiecare detaliu. Cercetarea despre fenomenul *lost in the middle* a aratat ca unele modele se descurca mai prost cand informatia relevanta e in mijlocul unei intrari lungi [S02](../anexe/bibliografie.md#s02). Concluzia practica nu e sa elimini documentele, ci sa alegi si sa prezinti ce e util in asa fel incat sa poata fi verificat.
 
-Exemplu: intr-un proiect software avem 500 de pagini de loguri, dar intrebarea priveste eroarea aparuta la ultima instalare. Trimiterea tuturor logurilor poate introduce zgomot. Mai util este un extras cu eroarea, perioada, versiunea aplicatiei si pasii de reproducere. Originalele pot ramane disponibile pentru consultare ulterioara.
+Anthropic formuleaza ideea direct, in ghidul lor despre ingineria contextului: "Context, therefore, must be treated as a finite resource with diminishing marginal returns" [S03](../anexe/bibliografie.md#s03). Pe romaneste: contextul e o resursa limitata, iar fiecare token in plus aduce tot mai putin.
 
-## 4.4. Cloud versus local: diferenta reala
+Un exemplu: ai 500 de pagini de loguri, dar intrebarea priveste eroarea de la ultima instalare. Daca trimiti tot, adaugi zgomot. Mai util este un extras cu eroarea, perioada, versiunea aplicatiei si pasii de reproducere. Originalele pot ramane la indemana, pentru consultare ulterioara.
 
-La un model local, aplicatia noastra stabileste ce trimite catre motorul de inferenta si cum pastreaza istoricul. Putem avea un control mai direct asupra fisierelor si a mecanismelor de compresie, dar suntem limitati de software si hardware. La un serviciu cloud, fereastra modelului poate fi mare, insa furnizorul sau produsul intermediar poate impune limite, trata separat atasamentele ori gestiona memoria in mod propriu.
+## 4.4. Cloud contra local: diferenta reala
 
-Nu exista regula ca „local inseamna context mic” si „cloud inseamna context mare”. O comparatie corecta specifica modelul, varianta, fereastra efectiva, formatul intrarilor, aplicatia, configuratia si momentul testului. Un CLI care foloseste un API cloud nu mosteneste automat toate functiile chatbotului web de la acelasi furnizor. Un serviciu local cu aceleasi greutati poate folosi alte setari si poate avea rezultate diferite.
+La un model local, aplicatia ta hotaraste ce trimite motorului de inferenta si cum pastreaza istoricul. Ai control mai direct asupra fisierelor si a mecanismelor de compresie, dar esti limitat de software si hardware. La un serviciu cloud, fereastra modelului poate fi mare, dar furnizorul sau produsul intermediar poate impune limite, poate trata separat atasamentele sau poate gestiona memoria in felul lui.
 
-## 4.5. Reducerea contextului fara pierderea deciziilor importante
+Nu exista regula "local inseamna context mic" si "cloud inseamna context mare". O comparatie corecta spune ce model, ce varianta, ce fereastra efectiva, ce format de intrare, ce aplicatie, ce configuratie si ce moment al testului. Un CLI care apeleaza un API cloud nu mosteneste automat toate functiile chatbotului web de la acelasi furnizor. Iar un serviciu local cu aceleasi greutati poate avea alte setari si alte rezultate.
 
-Trei strategii frecvente sunt selectia informatiilor relevante, rezumarea istoricului si recuperarea din surse externe la nevoie. Prima reduce zgomotul. A doua economiseste spatiu, dar poate elimina detalii importante sau poate introduce erori. A treia permite consultarea documentelor atunci cand devin relevante. Niciuna nu functioneaza perfect fara verificare.
+## 4.5. Cum reducem contextul fara sa pierdem deciziile importante
 
-Un rezumat operational bun contine starea curenta, deciziile aprobate, sursele, lucrurile nerezolvate si urmatorii pasi. Nu ar trebui sa transforme o presupunere intr-un fapt doar pentru ca a fost repetata de mai multe ori. Acesta este unul dintre motivele pentru care **context engineering** a devenit o preocupare centrala in construirea agentilor [S03].
+Trei strategii sunt des folosite: selectezi informatiile relevante, rezumi istoricul si recuperezi din surse externe doar cand e nevoie. Prima reduce zgomotul. A doua economiseste spatiu, dar poate sterge detalii importante sau poate introduce erori. A treia lasa documentele sa intre in joc atunci cand devin relevante. Niciuna nu merge bine fara verificare.
+
+Un rezumat operational bun contine starea curenta, deciziile aprobate, sursele, lucrurile nerezolvate si urmatorii pasi. Nu transforma o presupunere in fapt doar pentru ca a fost repetata de mai multe ori. Ghidul Anthropic descrie aceeasi tinta: sa gasesti "the smallest set of high-signal tokens that maximize the likelihood of your desired outcome" [S03](../anexe/bibliografie.md#s03). De aici a ajuns **context engineering** o preocupare centrala in construirea agentilor.
 
 ## 4.6. Exemplu: un agent care prelucreaza facturi
 
-Agentul primeste cererea „Identifica facturile neachitate”. Nu are nevoie de toate emailurile persoanei din ultimii cinci ani. Are nevoie de perioada, sursa facturilor, registrul platilor, regulile pentru identificarea dublurilor si permisiunea de a citi documentele. Daca trebuie sa pregateasca, dar nu sa execute, o plata, aceasta limita trebuie sa fie parte din configuratia instrumentelor, nu doar dintr-o promisiune textuala.
+Agentul primeste cererea "Identifica facturile neachitate". Nu are nevoie de toate emailurile persoanei din ultimii cinci ani. Are nevoie de perioada, sursa facturilor, registrul platilor, regulile pentru dubluri si permisiunea de a citi documentele. Daca trebuie sa pregateasca o plata, dar nu sa o execute, limita asta trebuie sa fie parte din configuratia uneltelor, nu o simpla promisiune scrisa in text.
 
-**De retinut:** gestionarea contextului este o sarcina de inginerie a sistemului, nu o simpla problema de a cere modelului sa „tina minte mai bine”.
+**De retinut:** gestionarea contextului e munca de inginerie a sistemului. Nu se rezolva cerandu-i modelului sa "tina minte mai bine".

@@ -1,7 +1,6 @@
 # 10. Harness-ul: mediul care transforma modelul intr-un executant
 
 
-*Figura 1 — Model, aplicatie, instrumente si infrastructura de inferenta. Este o schema logica, valabila atat pentru cloud, cat si pentru modele locale.*
 
 ## 10.1. Ce problema rezolva
 

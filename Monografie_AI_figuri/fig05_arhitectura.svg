@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200px" height="580px" viewBox="0 0 1200 580" baseProfile="full" version="1.1">
+<rect width="1200" height="580" fill="#FFFFFF"/><rect width="1200" height="6" fill="#15253E"/>
+<text x="48" y="50" font-family="DejaVu Sans, Arial, sans-serif" font-size="25" font-weight="bold" fill="#15253E">Straturile unui workflow AI</text>
+<text x="48" y="77" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" fill="#42536D">Responsabilitati logice, nu servere obligatorii. Un prototip le poate rula in acelasi program.</text>
+<rect x="48" y="100" width="830" height="48" rx="11" ry="11" fill="#F2F5F9" stroke="#B7C6D8" stroke-width="1.8"/>
+<text x="68" y="130" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="bold" fill="#17253A">1. Intrare</text>
+<text x="430" y="130" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" fill="#42536D">Cerere, utilizator, fisiere, autentificare</text>
+<rect x="48" y="154" width="830" height="48" rx="11" ry="11" fill="#E6F0FF" stroke="#6F96CD" stroke-width="1.8"/>
+<text x="68" y="184" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="bold" fill="#17253A">2. Interpretare si pregatire</text>
+<text x="430" y="184" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" fill="#42536D">Obiectiv, intrari, iesiri, reguli, nivel de risc</text>
+<rect x="48" y="208" width="830" height="48" rx="11" ry="11" fill="#F2EAFE" stroke="#9A85C8" stroke-width="1.8"/>
+<text x="68" y="238" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="bold" fill="#17253A">3. Orchestrare si stare</text>
+<text x="430" y="238" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" fill="#42536D">Plan, dependente, stari, aprobari, reluare</text>
+<rect x="48" y="262" width="830" height="48" rx="11" ry="11" fill="#E6F5F0" stroke="#6FB7A0" stroke-width="1.8"/>
+<text x="68" y="292" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="bold" fill="#17253A">4. Modele si agenti</text>
+<text x="430" y="292" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" fill="#42536D">Roluri, generare, decizii asistate de model</text>
+<rect x="48" y="316" width="830" height="48" rx="11" ry="11" fill="#FFF3E0" stroke="#D9A05B" stroke-width="1.8"/>
+<text x="68" y="346" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="bold" fill="#17253A">5. Actiune si integrare</text>
+<text x="430" y="346" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" fill="#42536D">Unelte, API, fisiere, idempotenta, efecte reale</text>
+<rect x="48" y="370" width="830" height="48" rx="11" ry="11" fill="#F2F5F9" stroke="#B7C6D8" stroke-width="1.8"/>
+<text x="68" y="400" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="bold" fill="#17253A">6. Cunostinte si memorie</text>
+<text x="430" y="400" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" fill="#42536D">RAG, documente, decizii confirmate, provenienta</text>
+<rect x="48" y="424" width="830" height="48" rx="11" ry="11" fill="#E6F0FF" stroke="#6F96CD" stroke-width="1.8"/>
+<text x="68" y="454" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="bold" fill="#17253A">7. Verificare si control</text>
+<text x="430" y="454" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" fill="#42536D">Validatori, evaluatori, aprobari, limite in cod</text>
+<rect x="48" y="478" width="830" height="48" rx="11" ry="11" fill="#F2EAFE" stroke="#9A85C8" stroke-width="1.8"/>
+<text x="68" y="508" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="bold" fill="#17253A">8. Observabilitate si imbunatatire</text>
+<text x="430" y="508" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" fill="#42536D">Loguri, trace-uri, metrici, evaluari repetate</text>
+<rect x="910" y="100" width="242" height="426" rx="11" ry="11" fill="#FFFFFF" stroke="#15253E" stroke-width="1.8" stroke-dasharray="7 5"/>
+<text x="1031" y="140" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="bold" fill="#17253A">Transversale</text>
+<text x="1031" y="185" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" fill="#42536D">Securitate</text>
+<text x="1031" y="225" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" fill="#42536D">Confidentialitate</text>
+<text x="1031" y="265" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" fill="#42536D">Identitati si permisiuni</text>
+<text x="1031" y="305" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" fill="#42536D">Audit</text>
+<text x="1031" y="345" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" fill="#42536D">Costuri</text>
+<text x="1031" y="385" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" fill="#42536D">Disponibilitate</text>
+<text x="48" y="554" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" fill="#42536D">Fiecare strat are responsabilitati si controale verificabile. Responsabilitatile transversale strabat toate straturile.</text>
+</svg>

@@ -24,6 +24,12 @@ Aceasta versiune web sparge materialul in capitole usor de parcurs, cu navigare,
 8. Observabilitate, evaluare si securitate
 9. Studii de caz si proiectare practica
 
+<!-- MONOGRAFIE:START -->
+## Editia curenta
+
+Editia 1.1, 15 octombrie 2026. Autor: chrsdme. Licenta: MIT. [Ce s-a schimbat fata de editia 1.0](anexe/metoda-surse.md#e2-changelog-10-la-11). [Sursa pe GitHub](https://github.com/chrsdme/Monografie_AI).
+<!-- MONOGRAFIE:END -->
+
 ## Editia PDF
 
 [Descarca monografia PDF](https://github.com/chrsdme/Monografie_AI/raw/main/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf)

@@ -1,6 +1,8 @@
 # Partea III. Din componente separate construim un sistem
 
-Aceasta parte grupeaza capitolele 10-15. Foloseste meniul din stanga sau lista de mai jos pentru navigare.
+Pana aici am vorbit despre piese: model, context, unelte, memorie. Acum le punem laolalta. Vedem ce este un harness, cum se imparte un sistem pe straturi, ce face un agent, cum impartim munca intre mai multi si cine tine sirul tuturor.
+
+## Capitolele acestei parti
 
 - [10. Harness-ul: mediul care transforma modelul intr-un executant](10-harness.md)
 - [11. Arhitectura de referinta: straturile unui workflow AI](11-arhitectura-workflow-ai.md)

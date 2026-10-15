@@ -1,61 +1,67 @@
 # 11. Arhitectura de referinta: straturile unui workflow AI
 
+Figura 4 arata fluxul general, de la cerere pana la actiune sau escaladare. Observa ca nu fiecare casuta are nevoie de un model.
 
-*Figura 2 — Flux generic cu verificari si ruta de escalare. Nu orice etapa are nevoie de un model AI.*
+![Figura 4. Cerere, pregatire, actiune, validare si escalare.](../figuri/fig04_workflow.svg)
+
+*Figura 4. Flux generic cu verificari si cale de escalare. Nu orice etapa are nevoie de un model AI.*
 
 ## 11.1. De ce vorbim despre straturi
 
-Cand o aplicatie creste, nu mai putem trata totul ca pe un singur prompt. Apar surse diferite, utilizatori cu permisiuni distincte, sarcini care dureaza, intreruperi, documente, instrumente, alerte si aprobari. Pentru a intelege sistemul, il descompunem in responsabilitati. **Straturile** sunt o metoda de analiza, nu opt sau zece servere obligatorii. Intr-un prototip pot functiona in acelasi program; intr-o organizatie mare pot fi servicii diferite.
+Cand o aplicatie creste, nu mai poti trata totul ca pe un singur prompt. Apar surse diferite, utilizatori cu permisiuni diferite, sarcini care dureaza, intreruperi, documente, unelte, alerte si aprobari. Ca sa intelegi sistemul, il imparti pe responsabilitati. **Straturile** sunt o metoda de analiza, nu opt sau zece servere obligatorii. Intr-un prototip pot rula in acelasi program, iar intr-o organizatie mare pot fi servicii separate. Figura 5 aseaza cele opt straturi, numerotate ca sectiunile 11.2 pana la 11.9, plus responsabilitatile transversale din sectiunea 11.10.
 
+![Figura 5. Straturile logice ale unui workflow AI.](../figuri/fig05_arhitectura.svg)
+
+*Figura 5. Straturile sunt responsabilitati logice, nu servere obligatorii.*
 
 ## 11.2. Stratul de intrare
 
-Acesta primeste cererea. Intrarea poate fi un mesaj in chat, o actiune intr-o aplicatie, un email, un eveniment de monitorizare sau un apel API. Aici aflam cine este utilizatorul, ce a solicitat, in ce limba doreste raspunsul si daca cererea contine fisiere. Inainte de orice inferenta, este rezonabil sa aplicam verificari elementare: dimensiunea fisierelor, tipul continutului, autentificarea, autorizarea si eventualele date lipsa.
+Primeste cererea. Poate fi un mesaj intr-un chat, o actiune intr-o aplicatie, un email, un eveniment de monitorizare sau un apel API. Aici afli cine e utilizatorul, ce a cerut, in ce limba vrea raspunsul si daca cererea include fisiere. Inainte de orice inferenta e rezonabil sa faci verificari elementare: dimensiunea fisierelor, tipul continutului, autentificarea, autorizarea si datele lipsa.
 
-Nu orice intrare trebuie trimisa direct unui LLM. Daca primim un eveniment „backup finalizat”, o regula clasica poate actualiza starea fara model. AI intervine atunci cand natura informatiei sau a deciziei o justifica.
+Nu orice intrare trebuie trimisa unui LLM. Daca soseste un eveniment "backup finalizat", o regula clasica poate actualiza starea fara model. AI-ul intervine cand natura informatiei sau a deciziei o justifica.
 
 ## 11.3. Stratul de interpretare si pregatire
 
-Acest strat transforma cererea intr-o descriere operationala: obiectiv, intrari, iesiri, reguli si nivel de risc. De exemplu, „verifica platile restante” poate necesita stabilirea perioadei si identificarea bazei de date. Daca informatia esentiala lipseste, sistemul poate intreba utilizatorul in loc sa inventeze. In alte cazuri, poate aplica valori implicite aprobate.
+Transforma cererea intr-o descriere operationala: obiectiv, intrari, iesiri, reguli si nivel de risc. De exemplu, "verifica platile restante" poate cere stabilirea perioadei si identificarea bazei de date. Daca lipseste informatia esentiala, sistemul poate intreba utilizatorul in loc sa inventeze. In alte cazuri poate aplica valori implicite aprobate.
 
-Aici pot functiona validatoare clasice, un clasificator sau un model de limbaj. Rezultatul ar trebui sa fie o structura clara, nu un paragraf vag care urmeaza sa fie ghicit de alte componente.
+Aici pot lucra validatoare clasice, un clasificator sau un model de limbaj. Rezultatul ar trebui sa fie o structura clara, nu un paragraf vag pe care alte componente trebuie sa il ghiceasca.
 
 ## 11.4. Stratul de orchestrare si stare
 
-Orchestratorul primeste sarcina pregatita si stabileste cum trebuie procesata. Poate alege un singur agent, poate porni un workflow fix, poate imparti problema intre specialisti si poate astepta finalizarea dependentelor. Mai important, **pastreaza adevarul operational**: ce s-a cerut, ce este in lucru, cine raspunde, ce versiune a unui artefact este aprobata si ce conditii au blocat executia.
+Orchestratorul primeste sarcina pregatita si hotaraste cum se proceseaza. Poate alege un singur agent, poate porni un workflow fix, poate imparti problema intre specialisti si poate astepta terminarea dependentelor. Mai important, **tine adevarul operational**: ce s-a cerut, ce e in lucru, cine raspunde, ce versiune a unui rezultat e aprobata si ce conditii au blocat executia.
 
-Un orchestrator care doar spune „delegat cu succes” fara sa aiba identificatori de sarcini, rezultate si stari verificabile nu ofera o garantie utila. Starea trebuie sa existe intr-o sursa controlata de aplicatie, nu doar intr-un rezumat conversational.
+Un orchestrator care spune doar "delegat cu succes", fara identificatori de sarcini, rezultate si stari verificabile, nu ofera nicio garantie. Starea trebuie sa traiasca intr-o sursa controlata de aplicatie, nu doar intr-un rezumat din conversatie.
 
 ## 11.5. Stratul modelelor si agentilor
 
-Aici sunt executate cererile de generare si deciziile asistate de model. Agentii pot avea roluri diferite, dar toti trebuie sa respecte contractele stabilite de arhitectura. Un specialist in cercetare poate avea acces la cautare si documentatie; un specialist in dezvoltare poate utiliza fisiere si teste; un evaluator poate inspecta rezultate fara sa modifice implementarea.
+Aici se executa cererile de generare si deciziile asistate de model. Agentii pot avea roluri diferite, dar toti respecta contractele stabilite de arhitectura. Un specialist in cercetare poate avea acces la cautare si documentatie; unul de dezvoltare poate folosi fisiere si teste; un evaluator poate inspecta rezultate fara sa modifice implementarea.
 
-Separarea rolurilor se justifica prin responsabilitati, instrumente, criterii de acceptare sau niveluri de risc diferite. Nu trebuie sa existe un agent nou pentru fiecare comanda de terminal.
+Rolurile se separa cand difera responsabilitatile, uneltele, criteriile de acceptare sau nivelurile de risc. Nu ai nevoie de un agent nou pentru fiecare comanda de terminal.
 
 ## 11.6. Stratul de actiune si integrare
 
-Aici sunt executate efectiv operatiile: interogari SQL, citire sau scriere de fisiere, cautare web, apeluri catre sisteme de gestiune, build-uri software ori trimiterea unor notificari. Instrumentele trebuie sa valideze argumentele, sa impuna drepturile de acces si sa returneze coduri de rezultat precise. Daca o actiune este esuata, modelul nu trebuie sa poata transforma esecul in succes prin formularea raspunsului final.
+Aici se executa efectiv operatiile: interogari SQL, citirea sau scrierea fisierelor, cautare web, apeluri catre sisteme de gestiune, build-uri sau notificari. Uneltele trebuie sa valideze argumentele, sa impuna drepturile de acces si sa returneze coduri de rezultat precise. Daca o actiune a esuat, modelul nu trebuie sa poata transforma esecul in succes prin felul in care formuleaza raspunsul final.
 
-Pentru operatiile cu efecte secundare, stratul de integrare trebuie sa suporte, unde este posibil, **idempotenta**: repetarea aceleiasi cereri sa nu dubleze efectul. De exemplu, un identificator unic al unei plati poate preveni trimiterea aceleiasi tranzactii de doua ori dupa o eroare de retea.
+Pentru operatiile cu efecte secundare, stratul de integrare trebuie sa sustina, unde se poate, **idempotenta**: repetarea aceleiasi cereri sa nu dubleze efectul. Un identificator unic al unei plati, de exemplu, poate preveni trimiterea tranzactiei de doua ori dupa o eroare de retea.
 
 ## 11.7. Stratul de cunostinte si memorie
 
-Documentele, registrele, bazele de date si deciziile confirmate trebuie pastrate intr-o forma administrabila. Unele date se recupereaza prin RAG; altele prin interogari structurate. Memoria de proiect are alta durata de viata decat contextul unei sarcini. Nu orice conversatie trebuie arhivata pentru totdeauna si nu orice rezumat merita sa devina regula.
+Documentele, registrele, bazele de date si deciziile confirmate se pastreaza intr-o forma administrabila. Unele date se recupereaza prin RAG, altele prin interogari structurate. Memoria de proiect are alta durata de viata decat contextul unei sarcini. Nu orice conversatie merita arhivata pentru totdeauna si nu orice rezumat merita sa devina regula.
 
-Aici conteaza sursele, versiunile, accesul si politicile de pastrare a datelor. Un sistem care recupereaza dintr-o arhiva invechita poate genera erori consistente, chiar daca modelul si orchestratorul functioneaza impecabil.
+Conteaza sursele, versiunile, accesul si politicile de pastrare a datelor. Un sistem care recupereaza dintr-o arhiva invechita poate genera erori constante, chiar daca modelul si orchestratorul merg impecabil.
 
 ## 11.8. Stratul de verificare si control
 
-Acesta compara actiunile si rezultatele cu criterii independente. Poate verifica schema unui JSON, suma unei facturi, rezultatul unei suite de teste ori conformitatea unei operatii cu permisiunile aprobate. Pentru decizii complexe, poate folosi un evaluator AI si poate solicita verificare umana. Dar un evaluator AI nu este o instanta magica a adevarului; verdictul lui trebuie calibrat si verificat.
+Compara actiunile si rezultatele cu criterii independente. Poate verifica schema unui JSON, suma unei facturi, rezultatul unei suite de teste sau conformitatea unei operatii cu permisiunile aprobate. Pentru decizii complexe poate folosi un evaluator AI si poate cere verificare umana. Un evaluator AI nu e insa o instanta magica a adevarului: verdictul lui trebuie calibrat si verificat.
 
-Limitele cu efect juridic, financiar sau de securitate trebuie aplicate de cod si infrastructura. O cerere de confirmare intr-un prompt nu este echivalenta cu blocarea efectiva a functiei `send_payment` pana la aprobarea unui operator autorizat.
+Limitele cu efect juridic, financiar sau de securitate trebuie aplicate de cod si infrastructura. O cerere de confirmare scrisa intr-un prompt nu echivaleaza cu blocarea efectiva a functiei `send_payment` pana la aprobarea unui operator autorizat.
 
 ## 11.9. Stratul de observabilitate si imbunatatire
 
-Jurnalele si trace-urile descriu ce s-a intamplat, cand si cu ce rezultat. Metricile agrega durata, costul, rata de succes, frecventa erorilor si numarul de interventii umane. Aceste date ajuta la investigarea incidentelor si la compararea versiunilor. Standardele OpenTelemetry includ conventii pentru operatii de inferenta, recuperare si apeluri de instrumente, dar sistemele concrete pot avea implementari diferite [S12].
+Jurnalele si trace-urile descriu ce s-a intamplat, cand si cu ce rezultat. Metricile aduna durata, costul, rata de succes, frecventa erorilor si numarul de interventii umane. Datele astea ajuta la investigarea incidentelor si la compararea versiunilor. Conventiile semantice OpenTelemetry pentru AI generativ acopera operatii de inferenta, recuperare si apeluri de unelte, dar au statutul "Development", deci se pot schimba, iar sistemele concrete pot avea implementari diferite [S12](../anexe/bibliografie.md#s12).
 
-Aici trebuie facuta distinctia dintre **a pastra date pentru diagnostic** si **a utiliza datele pentru imbunatatirea unui model**. Ultima poate implica evaluari, modificari de prompt, noi instrumente sau antrenare separata. Nu se intampla automat numai pentru ca am conectat un registru de loguri.
+Aici trebuie sa deosebesti **pastrarea datelor pentru diagnostic** de **folosirea datelor pentru a imbunatati un model**. A doua poate presupune evaluari, modificari de prompt, unelte noi sau antrenare separata. Nu se intampla automat doar pentru ca ai conectat un registru de loguri.
 
 ## 11.10. Responsabilitati transversale
 
-Securitatea, confidentialitatea, administrarea identitatilor, auditul, costurile si disponibilitatea nu apartin unui singur strat. Ele traverseaza intreaga arhitectura. Sistemul trebuie sa stie ce utilizator a initiat o cerere, ce agent a executat-o, ce permisiuni erau active si cum poate fi izolata o componenta compromisa. Aceasta preocupare devine cu atat mai importanta cand agentii au acces la sisteme reale.
+Securitatea, confidentialitatea, administrarea identitatilor, auditul, costurile si disponibilitatea nu apartin unui singur strat. Ele strabat toata arhitectura. Sistemul trebuie sa stie ce utilizator a pornit o cerere, ce agent a executat-o, ce permisiuni erau active si cum poate fi izolata o componenta compromisa. Cu cat agentii ating sisteme reale, cu atat grija asta conteaza mai mult.

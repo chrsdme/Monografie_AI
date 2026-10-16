@@ -11,9 +11,13 @@ Acest repository contine:
 
 ## Citeste online
 
-Dupa activarea GitHub Pages, documentatia va fi disponibila la:
+Documentatia actualizata automat prin GitHub Actions este disponibila la:
 
 https://chrsdme.github.io/Monografie_AI/
+
+[Descarca PDF-ul publicat automat](https://chrsdme.github.io/Monografie_AI/downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf)
+
+Pentru modificari, editeaza sursa Markdown integrala, deschide un Pull Request si verifica artefactul de previzualizare. Dupa merge in `main`, Actions regenereaza wiki-ul si PDF-ul si le publica impreuna. Detalii: [Ghid de publicare automata](docs/PUBLICARE_AUTOMATA.md).
 
 ## Contributii
 
@@ -24,7 +28,7 @@ Vezi [CONTRIBUTING.md](CONTRIBUTING.md).
 ## Structura
 
 - `Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md` - editia completa Markdown
-- `Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf` - snapshot PDF
+- `Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf` - snapshot PDF din repository; versiunea web actualizata este publicata automat
 - `wiki/` - sursa documentatiei web
 - `docs/` - materiale suplimentare / atasamente
 - `resurse/` - colectie de resurse si tool-uri

@@ -545,24 +545,38 @@ def build_pdf(repo, md_path, out_pdf):
     from pypdf import PdfReader
 
     def find_pages(pdf_path):
+        """Citeste paginile din destinatiile bookmark-urilor PDF.
+
+        Textul extras din PDF poate avea randuri frante si antete repetitive.
+        Chromium plaseaza bookmark-uri direct la antetele HTML; destinatiile lor
+        reprezinta pozitiile reale ale titlurilor din cuprins.
+        """
         reader = PdfReader(str(pdf_path))
-        texts = [norm(pg.extract_text() or "") for pg in reader.pages]
-        # sare peste paginile cuprinsului: prima pagina dupa ce apare 'nota editoriala' ca antet
-        start = 0
-        for i, t in enumerate(texts):
-            if i > 0 and "nota editoriala" in t and "cuprins" not in t[:80]:
-                start = i
-                break
+        outlines = {}
+
+        def key_for(s):
+            return re.sub(r"\s+", "", norm(s))
+
+        def walk(items):
+            for item in items:
+                if isinstance(item, list):
+                    walk(item)
+                    continue
+                page_idx = reader.get_destination_page_number(item)
+                if page_idx is not None and page_idx >= 0:
+                    outlines.setdefault(key_for(item.title), []).append(page_idx + 1)
+
+        walk(reader.outline)
+        used = {}
         pages = {}
-        pos = start
         for hid, label in entries:
-            key = norm(label)
-            for i in range(pos, len(texts)):
-                if key in texts[i]:
-                    pages[hid] = str(i + 1)
-                    pos = i
-                    break
-        return pages, len(texts)
+            key = key_for(label)
+            idx = used.get(key, 0)
+            candidates = outlines.get(key, [])
+            if idx < len(candidates):
+                pages[hid] = str(candidates[idx])
+                used[key] = idx + 1
+        return pages, len(reader.pages)
 
     pages, total = find_pages(first)
     missing = [l for h, l in entries if h not in pages]

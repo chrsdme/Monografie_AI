@@ -1,12 +1,16 @@
-name: Validate documentation
+name: Validate publication (Markdown, wiki, PDF)
 
 on:
   pull_request:
     paths:
+      - "Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md"
+      - "Monografie_AI_figuri/**"
       - "wiki/**"
+      - "tools/**"
       - "mkdocs.yml"
       - "requirements.txt"
       - ".github/workflows/**"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -14,14 +18,34 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 40
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-      - name: Validate MkDocs site
-        run: mkdocs build --strict
+      - name: Install Pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+      - name: Install Python requirements
+        run: |
+          python -m pip install -r requirements.txt -r tools/requirements.txt
+      - name: Install Chromium for PDF rendering
+        run: python -m playwright install --with-deps chromium
+      - name: Generate and verify monograph, wiki and PDF
+        run: bash tools/ci-build.sh
+      - name: Upload publication preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: monografie-preview
+          retention-days: 7
+          if-no-files-found: error
+          path: |
+            Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md
+            Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf
+            site/

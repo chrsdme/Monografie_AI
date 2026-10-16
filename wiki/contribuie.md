@@ -4,7 +4,7 @@ Ai gasit o greseala, o explicatie neclara sau ai o idee pentru un capitol nou? N
 
 ## Varianta recomandata
 
-**[Trimite o propunere sau o sugestie prin formularul Monografie AI](https://tally.so/r/rDyV1M?page=https%3A%2F%2Fchrsdme.github.io%2FMonografie_AI%2Fcontribuie%2F)**{: target="_blank" rel="noopener noreferrer" }
+[**Trimite o propunere sau o sugestie prin formularul Monografie AI**](https://tally.so/r/rDyV1M?page=https%3A%2F%2Fchrsdme.github.io%2FMonografie_AI%2Fcontribuie%2F){: target="_blank" rel="noopener noreferrer" }
 
 Formularul este singura modalitate de contributie promovata pe acest site. Poti raporta o eroare, sugera o imbunatatire sau propune continut nou. Nu trebuie sa modifici fisiere si nici sa cunosti Git.
 

@@ -1,37 +1,21 @@
-# Contributii
+# Contributii la Monografie AI
 
 Multumim pentru interesul de a imbunatati documentatia.
 
-## Nu ai nevoie de acces direct la repository
+## Trimite o sugestie
 
-Repository-ul este public. Oricine poate face fork si poate trimite un Pull Request. Continutul din `main` ramane sub controlul maintainerului.
+**[Formularul public de propuneri si sugestii](https://tally.so/r/rDyV1M)** este metoda recomandata pentru cititori. Nu necesita autentificare GitHub si poate fi folosit pentru corecturi, completari, surse sau propuneri de capitole.
 
-## Flux recomandat
+Daca ai pornit de la o pagina a documentatiei, foloseste legatura de feedback de la finalul paginii: formularul va primi automat identificatorul acesteia.
 
-1. Fork repository-ul.
-2. Creeaza un branch pentru schimbare.
-3. Modifica fisierele din `wiki/`.
-4. Pastreaza schimbarea cat mai focalizata.
-5. Adauga surse pentru afirmatiile tehnice sau factuale importante.
-6. Deschide Pull Request catre `main`.
+## Ce cautam
 
-## Acceptam
-
-- corecturi;
-- clarificari;
-- exemple;
-- diagrame;
-- studii de caz;
-- surse;
+- explicatii clare si corecte;
+- exemple practice si scheme utile;
+- surse verificabile pentru afirmatiile importante;
 - rezultate experimentale reproductibile;
-- capitole noi, daca se integreaza logic in structura.
+- propuneri de sectiuni si capitole noi.
 
-## Evitam
+Nu acceptam reclama mascata, texte copiate fara drept de utilizare sau afirmatii prezentate ca fapte fara dovezi. Nu trimite materiale confidentiale sau date personale inutile.
 
-- reclame mascate;
-- continut copiat integral;
-- afirmatii comerciale fara dovezi;
-- schimbari masive fara explicatie;
-- continut AI neverificat.
-
-Maintainerul decide cand si daca o contributie este integrata.
+Autorul verifica si decide ce intra in documentatia oficiala. Trimiterea unei sugestii nu garanteaza publicarea.

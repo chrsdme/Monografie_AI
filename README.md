@@ -21,9 +21,9 @@ Pentru modificari, editeaza sursa Markdown integrala, deschide un Pull Request s
 
 ## Contributii
 
-Oricine poate propune modificari prin fork + Pull Request. Nu este nevoie de acces direct la repository.
+Cititorii pot trimite greseli, surse si propuneri prin [formularul Tally](https://tally.so/r/rDyV1M), fara cont GitHub. Formularul este metoda de contributie promovata in wiki.
 
-Vezi [CONTRIBUTING.md](CONTRIBUTING.md).
+Vezi [Cum contribui](https://chrsdme.github.io/Monografie_AI/contribuie/) si [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Structura
 

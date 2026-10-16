@@ -10,4 +10,4 @@ Pe langa monografia propriu-zisa, proiectul are trei zone care pot creste indepe
 
 Fisierele efective sunt pastrate in directoare dedicate din repository. Paginile de aici functioneaza ca puncte de intrare si index pentru varianta web.
 
-Contributiile se fac prin Pull Request, iar continutul oficial este integrat numai dupa review.
+Ai o propunere pentru aceste colectii? [Trimite-o prin formularul public](../contribuie.md). Continutul este verificat inainte de integrare.

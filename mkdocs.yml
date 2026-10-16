@@ -3,7 +3,6 @@ site_description: Documentatie educationala despre modele AI, context, RAG, harn
 site_url: https://chrsdme.github.io/Monografie_AI/
 repo_url: https://github.com/chrsdme/Monografie_AI
 repo_name: chrsdme/Monografie_AI
-edit_uri: edit/main/wiki/
 docs_dir: wiki
 site_dir: site
 
@@ -18,8 +17,6 @@ theme:
     - search.suggest
     - search.highlight
     - search.share
-    - content.action.edit
-    - content.action.view
     - content.code.copy
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -40,6 +37,9 @@ theme:
 plugins:
   - search:
       lang: ro
+
+hooks:
+  - tools/feedback_hook.py
 
 markdown_extensions:
   - admonition

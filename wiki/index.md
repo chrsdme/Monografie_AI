@@ -2,14 +2,14 @@
 
 **Documentatie educationala vie, construita din monografia publicata si deschisa contributiilor comunitatii.**
 
-Aceasta versiune web sparge materialul in capitole usor de parcurs, cu navigare, cautare rapida si posibilitatea de a propune corecturi sau completari prin GitHub.
+Aceasta versiune web sparge materialul in capitole usor de parcurs, cu navigare, cautare rapida si posibilitatea de a propune corecturi sau completari printr-un formular public.
 
 ## Cum poti folosi site-ul
 
 - daca esti la inceput, porneste cu [Introducerea](introducere.md) si Partea I;
 - daca stii deja bazele, poti sari direct la context, RAG, harness, agenti sau orchestrare;
 - foloseste cautarea pentru termeni precum **context**, **RAG**, **agent**, **orchestrator**, **MCP** sau **Trust Score**;
-- fiecare pagina poate fi editata pe GitHub si trimisa ca Pull Request;
+- fiecare pagina are o legatura de trimitere a sugestiilor, fara cont GitHub;
 - PDF-ul ramane editia stabila, iar acest site este varianta vie a materialului.
 
 ## Traseul recomandat
@@ -46,6 +46,6 @@ Vezi si [pagina generala a colectiilor](colectii/index.md).
 
 ## Contribuie
 
-Corecturile, completarile, exemplele, experimentele si sursele noi sunt binevenite. Vezi [Cum contribui](contribuie.md).
+Corecturile, completarile, exemplele, experimentele si sursele noi sunt binevenite. [Trimite o propunere prin formular](contribuie.md), fara cont GitHub.
 
 > Principiul proiectului: nu construim documentatia in jurul unui furnizor sau framework. Explicam conceptele astfel incat materialul sa ramana util chiar daca produsele actuale se schimba.

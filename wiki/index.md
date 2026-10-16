@@ -32,7 +32,7 @@ Editia 1.1, 15 octombrie 2026. Autor: chrsdme. Licenta: MIT. [Ce s-a schimbat fa
 
 ## Editia PDF
 
-[Descarca monografia PDF](https://github.com/chrsdme/Monografie_AI/raw/main/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf)
+[Descarca monografia PDF](downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf)
 
 ## Colectii si continut comunitar
 

@@ -27,7 +27,7 @@ Aceasta versiune web sparge materialul in capitole usor de parcurs, cu navigare,
 <!-- MONOGRAFIE:START -->
 ## Editia curenta
 
-Editia 1.1, 15 octombrie 2026. Autor: chrsdme. Licenta: MIT. [Ce s-a schimbat fata de editia 1.0](anexe/metoda-surse.md#e2-changelog-10-la-11). [Sursa pe GitHub](https://github.com/chrsdme/Monografie_AI).
+Editia 1.2, 17 octombrie 2026. Autor: chrsdme. Licenta: MIT. [Ce s-a schimbat fata de editia 1.1](anexe/metoda-surse.md#e4-modificari-de-la-editia-11-la-12). [Descarca PDF-ul curent](downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf). [Arhiva editiilor PDF](https://github.com/chrsdme/Monografie_AI/tree/main/docs). [Sursa pe GitHub](https://github.com/chrsdme/Monografie_AI).
 <!-- MONOGRAFIE:END -->
 
 ## Editia PDF

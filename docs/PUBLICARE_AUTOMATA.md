@@ -1,51 +1,31 @@
-# Publicare automata a monografiei
+# Publicare automata si arhiva editiilor
 
-## Obiectiv
+`main` este protejat de regula GitHub `Wiki_Rules`: fiecare modificare necesita Pull Request. Workflow-ul nu incearca sa ocoleasca aceasta regula.
 
-Sursa editoriala curenta este `Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md`. Workflow-urile GitHub Actions regenereaza paginile wiki si un PDF nou din acest fisier, fara sa creeze commit-uri automate pe `main`.
+## Editii, date si changelog
 
-Acest document se refera la **PR 1**, inainte de modularizarea capitolelor. Paginile comunitatii sunt pastrate de generator si in configuratia MkDocs.
+La un merge editorial in `main`, `tools/release.py` verifica versiunea din sursa. Pastreaza editia declarata in PR (de exemplu 1.2), cu data efectiva de publicare Europe/London, ori creste incremental: `1.2 -> 1.2.1 -> 1.2.2`.
 
-## Pentru o corectie sau completare
+Actualizeaza coperta, front matter, citarea, Anexa E si changelog-ul. Generatorul reconstruieste cuprinsul, wiki-ul, PDF-ul si blocul automat de pe pagina Acasa. Acesta include versiunea, data, linkul catre changelog, PDF-ul curent si arhiva.
 
-1. Creeaza un branch pornind din `main`.
-2. Modifica fisierul `Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md`. Nu edita separat paginile generate din `wiki/partea-*/` sau anexele generate.
-3. Pentru schimbari ale structurii actuale (capitol/parte noua), generatorul necesita inca modificarea maparii din `tools/build.py` si navigatiei din `mkdocs.yml`. Aceasta limitare va fi eliminata in PR 2.
-4. Deschide un Pull Request. Workflow-ul de validare executa lint, construieste wiki si PDF, verifica paginile si ruleaza `mkdocs build --strict`.
-5. Descarca din Actions artefactul `monografie-preview` pentru verificarea PDF si a site-ului. Nu se publica un PR in GitHub Pages.
-6. Dupa review, face merge proprietarul. Workflow-ul de deploy regenereaza din `main` si publica site-ul cu PDF-ul.
+## PDF-ul si arhiva
 
-## URL-uri stabile
+PDF-ul validat este publicat automat la https://chrsdme.github.io/Monografie_AI/downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf . Copiile istorice au numele `docs/Monografie_AI_De_la_Chat_la_Sisteme_Agentice_X.Y[.Z].pdf`, iar `docs/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf` este copia curenta.
 
-- Documentatie: https://chrsdme.github.io/Monografie_AI/
-- PDF publicat: https://chrsdme.github.io/Monografie_AI/downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf
+Pentru ca botul **nu are voie sa faca push direct in main**, jobul `archive_pr` pregateste automat o ramura `auto/archive-...` si deschide un PR cu PDF-ul numerotat, copia curenta, manifestul `docs/.publication.json`, sursa, changelog-ul si paginile wiki. **Proprietarul trebuie sa faca merge la acel PR pentru persistenta arhivei in main.** PDF-ul de pe Pages este disponibil imediat, independent de acel merge.
 
-Fisierul PDF aflat la radacina repository-ului ramane un snapshot istoric. PDF-ul din Pages este regenerat la fiecare deploy care atinge fisierele urmarite.
+Cand PR-ul de arhivare este integrat, workflow-ul detecteaza modificarea manifestului, **nu incrementeaza editia din nou**, iar fisierul PDF istoric este reutilizat fara suprascriere.
 
-## Comenzi locale (optionale)
+## Permisiuni necesare
 
-Necesita Python 3.12, Pandoc, Playwright cu Chromium si pypdf / MkDocs:
+Jobul `build` are numai `contents: read`; jobul `archive_pr` are drepturi `contents: write` si `pull-requests: write`, doar pentru ramura de arhivare si crearea PR-ului. In `Settings > Actions > General > Workflow permissions` poate fi necesara activarea optiunii **Allow GitHub Actions to create and approve pull requests**. Botul nu face merge. Daca optiunea este blocata, jobul raporteaza eroare si lasa ramura `auto/archive-...` disponibila pentru PR manual.
 
-```bash
-python -m pip install -r requirements.txt -r tools/requirements.txt
-python -m playwright install --with-deps chromium
-bash tools/ci-build.sh
-```
+Changelog-ul automat enumera provenienta commitului si domeniile afectate. Pentru o editie importanta, rezumatul editorial detaliat trebuie verificat in PR, pentru ca lista de fisiere nu demonstreaza singura semnificatia modificarilor.
 
-GitHub Actions instaleaza singur dependintele. Pentru o editare obisnuita nu este nevoie sa rulezi generatorul pe calculator.
+## Linkuri
 
-## Restrictii si verificari
+- Wiki: https://chrsdme.github.io/Monografie_AI/
+- PDF curent: https://chrsdme.github.io/Monografie_AI/downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf
+- Arhiva GitHub: https://github.com/chrsdme/Monografie_AI/tree/main/docs
 
-- Workflow-urile nu trimit credentiale de scriere catre codul venit prin PR; au doar `contents: read` la validare.
-- Merge-ul si publicarea pe `main` necesita in continuare decizia proprietarului.
-- Scriptul publica PDF-ul doar daca verificarea internala a cuprinsului este stabila si site-ul trece `mkdocs build --strict`.
-- Dependintele de pe runner pot produce diferente de font sau paginare; verifica vizual previzualizarea PDF cand introduci modificari ample.
-- Nu sunt create automat GitHub Releases si nici commit-uri cu PDF la radacina. Arhivarea editiilor oficiale prin Releases necesita un pas ulterior, separat de publicarea zilnica.
-- Modificari doar in fisiere neincluse in filtrele de eveniment nu declanseaza automat publicarea; exista si `workflow_dispatch` pentru rulare manuala.
-- Nu activa AI Scan sau alte servicii platite pentru acest workflow.
-
-## Etapele urmatoare, separate
-
-**PR 2 - Sursa modulara.** Migrare fara pierderi la `content/...` si un manifest `book.yml` pentru ordinea partilor, capitolelor si anexelor. Generatorul uneste sursele in Markdown integral si pastreaza URL-urile wiki existente. Verificam comparatia continutului si o editie PDF inainte de merge.
-
-**PR 3 - Feedback Tally.** Un formular Tally public, fara cont GitHub pentru cititori. Linkurile contextuale din capitole vor transmite URL-ul paginii prin `?page=...` catre un camp ascuns Tally. Sugestiile raman private pana la triere si nu creeaza automat PR-uri. URL-ul real al formularului si campurile de confidentialitate sunt necesare inainte de activare.
+`workflow_dispatch` regenereaza aceeasi editie fara incrementare.

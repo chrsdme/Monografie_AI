@@ -5,6 +5,7 @@ cd "$(dirname "$0")/.."
 
 python -m unittest discover -s tests -p "test_feedback_hook.py"
 python -m unittest discover -s tests -p "test_intent_crossrefs.py" -v
+python -m unittest discover -s tests -p "test_release_archive.py" -v
 python -m unittest discover -s examples/agent_studies/tests -v
 
 python tools/build.py --repo . --toc --wiki --pdf

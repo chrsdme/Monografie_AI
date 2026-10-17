@@ -1,6 +1,6 @@
 # Bibliografie si resurse de aprofundare
 
-*Selectie comentata de surse pentru concepte, exemple si metodologie. Toate linkurile au fost deschise sau confruntate cu pagina originala la 15 octombrie 2026. Un link care functioneaza nu garanteaza ca fiecare afirmatie din pagina respectiva este adevarata: pentru paginile comerciale, citarea indica un exemplu sau un mod de clasificare, nu validarea cifrelor promotionale. Continutul online se poate schimba dupa aceasta data. Sursele Cyber AI Romania provin de la un contributor independent din comunitatea AI Romania; autorul acestei lucrari nu este afiliat cu acel site.*
+*Selectie comentata de surse pentru concepte, exemple si metodologie. Sursele editiei 1.1 au fost verificate la 15 octombrie 2026; pentru completarea din 17 octombrie 2026 au fost adaugate intrarile S41-S44. Consultarea unui link nu garanteaza validarea tuturor afirmatiilor sale. Un link care functioneaza nu garanteaza ca fiecare afirmatie din pagina respectiva este adevarata: pentru paginile comerciale, citarea indica un exemplu sau un mod de clasificare, nu validarea cifrelor promotionale. Continutul online se poate schimba dupa aceasta data. Sursele Cyber AI Romania provin de la un contributor independent din comunitatea AI Romania; autorul acestei lucrari nu este afiliat cu acel site.*
 
 <a id="s01"></a>
 
@@ -184,4 +184,4 @@ Pe langa materialele documentate si citate mai sus, in aceasta lucrare intra si 
 
 ---
 
-*Sfarsitul editiei 1.1. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*
+*Sfarsitul editiei 1.2. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*

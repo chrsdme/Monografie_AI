@@ -41,6 +41,17 @@ class CrossrefTests(unittest.TestCase):
             found.add(u.fragment)
         self.assertEqual(found, set(LINKS))
 
+    def test_pdf_maps_numeric_mkdocs_slug_to_pandoc_id(self):
+        wiki_anchor = "217-studiul-de-caz-e-acelasi-retur-prin-trei-arhitecturi"
+        pdf_anchor = "studiul-de-caz-e-acelasi-retur-prin-trei-arhitecturi"
+        url = BASE + "partea-5/21-studii-de-caz/#" + wiki_anchor
+        doc = ('<h2 id="' + pdf_anchor + '">'
+               '21.7. Studiul de caz E: acelasi retur prin trei arhitecturi</h2>'
+               '<a href="' + url + '">studiu</a>')
+        rendered = internalize_wiki_links_for_pdf(doc, BASE)
+        self.assertIn('href="#' + pdf_anchor + '"', rendered)
+        self.assertNotIn('href="' + url + '"', rendered)
+
     def test_pdf_internalizes_existing_targets_only(self):
         target = next(iter(LINKS))
         link = BASE+"partea-2/06-prompturi-instructiuni-briefuri/#"+target

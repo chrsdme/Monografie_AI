@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Arhiveaza editii PDF imuabile in docs/, mentinand PDF-ul curent in Pages."""
 import argparse
+import hashlib
+import json
 import pathlib
 import re
 import shutil
@@ -45,6 +47,14 @@ def archive(repo, reuse_existing=False):
             shutil.copyfile(archived, file)
         if file.read_bytes() != archived.read_bytes():
             raise AssertionError("Copie PDF diferita: " + str(file))
+    manifest = {
+        "edition": version,
+        "pdf_sha256": hashlib.sha256(archived.read_bytes()).hexdigest(),
+        "archived_pdf": archived.name,
+    }
+    (docs / ".publication.json").write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     copies = sorted(docs.glob(STEM + "_*.pdf"), key=version_key, reverse=True)
     lines = [
         "<!-- ARCHIVE:START -->",

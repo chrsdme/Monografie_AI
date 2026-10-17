@@ -80,6 +80,7 @@ class ReleaseTests(unittest.TestCase):
             archived = repo / "docs" / (archiver.STEM + "_1.2.pdf")
             self.assertTrue(archived.exists())
             self.assertIn("Editia 1.2", (repo / "docs/README.md").read_text())
+            self.assertEqual(__import__("json").loads((repo / "docs/.publication.json").read_text())["edition"], "1.2")
             archiver.archive(repo)
             pdf.write_bytes(b"b" * 52000)
             with self.assertRaises(ValueError):

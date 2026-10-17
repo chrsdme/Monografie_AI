@@ -124,6 +124,8 @@ Aplicata asupra propriilor tale proiecte, aceeasi lista te protejeaza de entuzia
 
 ## 21.7. Studiul de caz E: acelasi retur prin trei arhitecturi
 
+**Legatura cu [Intent Engineering, 6.7](https://chrsdme.github.io/Monografie_AI/partea-2/06-prompturi-instructiuni-briefuri/#67-intent-engineering-de-la-cerere-la-obiectiv-verificabil):** obiectivul este solutionarea corecta, nu maximizarea rambursarilor; [sablonul B.8](https://chrsdme.github.io/Monografie_AI/anexe/sabloane/#b8-specificatie-de-intentie-de-la-obiectiv-la-verificare) expliciteaza limitele si verificarile.
+
 **Statut:** simulare didactica, nu implementare comerciala. Un client solicita la ora 23:00 rambursarea unui produs deteriorat. Magazinul fictiv permite procesarea automata numai pentru sume de cel mult **100 RON**, cu identitate, comanda, dovezi si eligibilitate verificate. Pragul este inventat pentru exercitiu, nu reprezinta o obligatie legala.
 
 ### E1. Automatizare clasica: codul decide
@@ -213,6 +215,8 @@ safety:
 **Evaluare:** verificam separat 62 RON, 350 RON, lipsa dovezii, client neverificat, solicitare duplicata, API indisponibil, unealta interzisa si limita de pasi. Pentru tranzactii, o singura plata neautorizata este un defect critic, indiferent de rata globala de succes.
 
 ## 21.8. Studiul de caz F: cercetare YouTube si productie editoriala cu doi agenti
+
+**Legatura cu [Intent Engineering, 6.7](https://chrsdme.github.io/Monografie_AI/partea-2/06-prompturi-instructiuni-briefuri/#67-intent-engineering-de-la-cerere-la-obiectiv-verificabil):** rezultatul urmarit este un material original si aprobat, nu doar producerea de fisiere. [Sablonul B.8](https://chrsdme.github.io/Monografie_AI/anexe/sabloane/#b8-specificatie-de-intentie-de-la-obiectiv-la-verificare) defineste dovezile si limitele.
 
 **Scop:** un creator urmareste canalele X, Y si Z, vrea sa detecteze materiale noi, sa obtina idei originale si sa aprobe personal orice publicare. Materialul analizat apartine creatorilor sai; ideile trebuie dezvoltate independent si conditiile platformei respectate.
 

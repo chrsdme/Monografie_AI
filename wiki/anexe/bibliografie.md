@@ -162,6 +162,22 @@
 
 **[S40] Linux Foundation (2025).** *Linux Foundation Announces the Formation of the Agentic AI Foundation (AAIF).* 9 decembrie. <https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation> . Contributia MCP, goose si AGENTS.md.
 
+<a id="s41"></a>
+
+**[S41] Clemm, A. et al. (2022).** *Intent-Based Networking - Concepts and Definitions.* RFC 9315, IRTF. <https://www.rfc-editor.org/rfc/rfc9315.html> . Precedent pentru obiective declarative; document informational despre retele, nu standard de agenti AI.
+
+<a id="s42"></a>
+
+**[S42] monaxovdulov (2026).** *Awesome Intent Engineering.* <https://github.com/monaxovdulov/awesome-intent-engineering> . Catalog si model de lucru pentru pastrarea intentiei; domeniu emergent, nu standard formal.
+
+<a id="s43"></a>
+
+**[S43] Pathmode (f.d.).** *What Is Intent Engineering? Definition, Examples, and FAQ.* <https://pathmode.io/glossary/intent-engineering> . Perspectiva comerciala asupra problemelor, dovezilor si specificatiilor; nu un benchmark independent.
+
+<a id="s44"></a>
+
+**[S44] roboco-io (2026).** *Intent Engineering: Why / What / Not.* <https://github.com/roboco-io/intent-engineering> . Exemplu de specificatie versionata, nu schema universala.
+
 ## Nota privind materialele folosite
 
 Pe langa materialele documentate si citate mai sus, in aceasta lucrare intra si materiale personale, nepublicate, folosite ca parte a contextului. Pentru ele nu oferim nume si surse exacte. Exemplele si instructiunile legate de produse au fost generalizate, iar recomandarile comerciale, preturile promotionale si promisiunile de productivitate nu au fost preluate.

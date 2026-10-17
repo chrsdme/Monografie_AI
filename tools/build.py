@@ -416,6 +416,22 @@ def check_wiki(wiki, written, body):
         sys.exit("WIKI INCOMPLET: " + "; ".join(problems))
 
 
+def internalize_wiki_links_for_pdf(html_text, site_url):
+    """Convert same-site wiki links to internal PDF links if the heading exists."""
+    prefix = site_url.rstrip("/") + "/"
+    ids = set(re.findall(r'\bid="([^"]+)"', html_text))
+
+    def rep(match):
+        link = html.unescape(match.group(1))
+        if link.startswith(prefix) and "#" in link:
+            anchor = link.split("#", 1)[1]
+            if anchor in ids:
+                return f'href="#{anchor}"'
+        return match.group(0)
+
+    return re.sub(r'href="(https?://[^"]+)"', rep, html_text)
+
+
 # ----------------------------------------------------------------------- PDF
 PDF_CSS = """
 @page { size: A4; margin: 22mm 18mm 22mm 18mm; }
@@ -503,6 +519,7 @@ def build_pdf(repo, md_path, out_pdf):
     ]
     subprocess.run(cmd, check=True)
     page = html_out.read_text(encoding="utf-8")
+    page = internalize_wiki_links_for_pdf(page, fm.get("wiki", ""))
 
     # structura TOC: <a href="#id" id="toc-id">Titlu</a>; adauga spatiu pentru numere de pagina
     entries = re.findall(r'<a href="#([^"]+)" id="toc-[^"]+"[^>]*>(.*?)</a>', page, flags=re.S)

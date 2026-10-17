@@ -80,6 +80,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Hash.** Amprenta calculata din continutul unui fisier, utila pentru compararea versiunilor. Nu dovedeste singura autenticitatea.
 
+**Health Metric (indicator de protectie).** Masura care verifica daca atingerea unui obiectiv degradeaza alte rezultate importante, de exemplu rata redeschiderii tichetelor.
+
 **Human-in-the-loop.** Etapa in care o persoana verifica, decide sau aproba anumite actiuni. Nu inseamna ca omul supravegheaza fiecare token.
 
 **Idempotenta.** Proprietatea unei operatii prin care repetarea aceleiasi cereri nu produce efecte suplimentare nedorite. Esentiala la plati, comenzi si operatii reluate dupa erori.
@@ -89,6 +91,14 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 **Inferenta.** Folosirea unui model deja antrenat pentru a genera un raspuns sau o predictie. Nu trebuie confundata cu antrenarea.
 
 **Instanta de agent.** O activare concreta a configuratiei unui agent pentru o sarcina. Mai multe instante pot folosi acelasi model partajat.
+
+**Intent Drift (abatere fata de intentie).** Diferenta dintre obiectivul aprobat si directia efectiva a executiei sau a modificarilor ulterioare.
+
+**Intent Engineering (ingineria intentiei).** Abordare emergenta ce leaga problema, obiectivele, dovezile, constrangerile si verificarea rezultatului unui sistem AI. Nu este un standard unic.
+
+**Intent Specification (Intent Spec).** Document structurat si versionabil care descrie obiectivul, criteriile de succes, limitele, aprobarile si dovezile necesare. Nu impune singur reguli tehnice.
+
+**Intentie operationala.** Scopul unui proces si limitele in care trebuie realizat; diferit de identificarea intentiei dintr-un mesaj individual.
 
 **JSON (JavaScript Object Notation).** Format text structurat pentru date, folosit de API-uri si jurnale. Structura si sintaxa pot fi validate automat.
 
@@ -115,6 +125,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 **OCR (Optical Character Recognition).** Transformarea textului dintr-o imagine sau scanare in caractere procesabile de calculator.
 
 **Orchestrator.** Componenta care aloca sarcini, coordoneaza dependente, urmareste stari si decide transferurile dintre etapele unui workflow. Poate fi cod cu reguli sau poate folosi si un model AI.
+
+**Outcome (rezultat efectiv).** Starea reala verificata dupa executie, distincta de afirmatia agentului ca a finalizat sarcina.
 
 **Permisiuni.** Drepturi tehnice acordate unei componente pentru citire, scriere sau actiuni. Se aplica in mediul de executie, nu doar in instructiuni.
 
@@ -165,6 +177,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 **Token.** Unitatea in care modelul proceseaza textul, adesea un cuvant scurt, o parte de cuvant sau un simbol. Nu coincide obligatoriu cu un cuvant intreg.
 
 **Trace.** Reconstructie a traseului unei executii prin evenimente corelate: cerere, apeluri de unelte, raspunsuri, erori si rezultate.
+
+**Trade-off (compromis intre obiective).** Alegerea unei prioritati cand cerintele intra in conflict, de exemplu intre corectitudine, cost, viteza si siguranta.
 
 **Trust Score (scor de incredere).** Indicator propus pentru evaluarea unui agent intr-un domeniu concret. Nu este o proprietate universala a modelului si nu inlocuieste analiza riscului.
 

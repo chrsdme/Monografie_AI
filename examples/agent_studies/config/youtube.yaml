@@ -1,0 +1,19 @@
+version: 1
+name: editorial_research_demo
+model:
+  provider: mock
+  name: qwen2.5:14b
+  base_url: http://127.0.0.1:11434
+research:
+  source_mode: fixture
+  channel_ids: []
+  youtube_api_key_env: YOUTUBE_API_KEY
+  max_videos: 12
+  allowed_content: metadata_only
+  allow_third_party_caption_download: false
+production:
+  variant_names: [scurt_dinamic, explicativ, demonstratie]
+  video_renderer: not_configured
+  publisher: disabled
+  approval_required: true
+  publish_default_privacy: private

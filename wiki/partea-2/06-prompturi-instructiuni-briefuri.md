@@ -37,3 +37,37 @@ O solutie buna este sa imparti informatiile dupa rol: regulile stabile in config
 Alege o sarcina reala, de pilda rezumatul unor facturi. Scrie mai intai cererea in zece cuvinte. Apoi completeaz-o cu sursele, regulile pentru datele lipsa, forma rezultatului si doua conditii de acceptare. Ruleaza ambele variante pe aceleasi date si compara nu cat de frumos suna rezultatele, ci daca se pot verifica. Diferenta dintre "pare profesionist" si "poate fi acceptat" se vede imediat.
 
 **De retinut:** un brief bun defineste succesul. Un test executabil arata, in limitele cazurilor acoperite, daca succesul a fost atins.
+
+## 6.7. Intent Engineering: de la cerere la obiectiv verificabil
+
+Un prompt poate descrie foarte clar un livrabil si totusi sa conduca spre problema gresita. Un agent poate produce un raport corect despre rambursari, desi magazinul avea nevoie sa inteleaga de ce au crescut retururile produselor deteriorate. Documentul este corect, dar poate fi inutil pentru decizia dorita.
+
+**Intent Engineering** (ingineria intentiei) este o abordare emergenta care pastreaza legatura dintre problema, dovezile care o sustin, obiectiv, constrangeri si verificarea rezultatului. Nu exista o definitie sau o schema universala. Ideea de a declara rezultatul dorit fara prescrierea fiecarui pas exista si in Intent-Based Networking, intr-un domeniu diferit [S41](../anexe/bibliografie.md#s41).
+
+**Prompt engineering** se ocupa de formularea instructiunilor, **context engineering** de informatiile furnizate modelului, iar **intent engineering** de scopul urmarit, limitele si dovada reusitei [S42](../anexe/bibliografie.md#s42), [S43](../anexe/bibliografie.md#s43). Sunt preocupari complementare, nu trei generatii care se inlocuiesc succesiv.
+
+### 6.7.1. De la cerere la problema reala
+
+"Fa un raport despre tichetele de suport" descrie un livrabil. "Identifica principalele cauze ale solicitarilor repetate, astfel incat echipa sa aleaga trei probleme de investigat" descrie mai bine scopul. Pentru verificare, precizam perioada, sursa autorizata, tratamentul datelor lipsa si reconcilierea totalurilor cu sistemul de suport.
+
+**Intentia operationala** descrie scopul unui proces si limitele lui. Nu trebuie confundata cu *intent recognition*, clasificarea intentiei unui mesaj individual, de exemplu detectarea unei cereri de rambursare intr-un email.
+
+O **specificatie de intentie** (*Intent Spec*) poate fi un document Markdown sau YAML care pastreaza problema, dovezile, rezultatele asteptate, criteriile de succes, prioritatile, permisiunile, exceptiile si verificarile. Un format minimal raspunde la *Why / What / Not*: de ce lucram, ce trebuie obtinut si ce nu este permis [S44](../anexe/bibliografie.md#s44). Pentru agenti si proiecte mai ample, deciziile si modificarile lor trebuie pastrate si transmise intre etape [S42](../anexe/bibliografie.md#s42).
+
+### 6.7.2. Cand succesul inseamna sa te opresti
+
+In [studiul 21.7, despre rambursari](https://chrsdme.github.io/Monografie_AI/partea-5/21-studii-de-caz/#217-studiul-de-caz-e-acelasi-retur-prin-trei-arhitecturi), obiectivul nu este "aproba cat mai multe retururi", ci **solutioneaza corect cererile eligibile, fara plati duplicate sau neautorizate**. Pentru 62 RON putem pregati si verifica rambursarea; pentru 350 RON rezultatul corect este escalarea; daca lipsesc dovezi, solicitam clarificari. Pragul de 100 RON este fictiv. Autorizarea trebuie impusa de aplicatie, nu doar mentionata in prompt.
+
+In [studiul 21.8, despre agentii Research si Production pentru YouTube](https://chrsdme.github.io/Monografie_AI/partea-5/21-studii-de-caz/#218-studiul-de-caz-f-cercetare-youtube-si-productie-editoriala-cu-doi-agenti), intentia nu este "genereaza trei fisiere", ci obtinerea unor propuneri originale, documentate si aprobate. Daca Research a consultat doar metadate, nu pretindem ca a analizat videoclipurile integral. Daca Production a produs trei scenarii JSON, nu afirmam ca a randat trei videoclipuri. Publicarea necesita aprobarea ceruta.
+
+Specificatia poate preciza **compromisuri intre obiective**: siguranta si corectitudinea au prioritate fata de viteza. Un **indicator de protectie** (*health metric*), precum rata de redeschidere a tichetelor, previne optimizarea artificiala a timpului de rezolvare prin inchiderea prematura a cazurilor.
+
+### 6.7.3. Verificare si actualizare
+
+Un agent poate declara o operatiune finalizata fara ca efectul sa existe in sistemul real. Verificam starea tranzactiei, fisierele produse sau testele executate, nu doar raspunsul modelului [S33](../anexe/bibliografie.md#s33). Aceeasi diferenta separa un raport convingator de o decizie fundamentata.
+
+Cand apar dovezi noi, putem modifica obiectivul, pastrand motivul schimbarii si persoana care a aprobat-o. Agentul poate propune ajustari, dar nu isi poate acorda singur permisiuni suplimentare sau elimina restrictiile obligatorii.
+
+**Exercitiu:** aplica [sablonul B.8 - specificatia de intentie](https://chrsdme.github.io/Monografie_AI/anexe/sabloane/#b8-specificatie-de-intentie-de-la-obiectiv-la-verificare) uneia dintre sarcinile din sectiunea 6.2. Noteaza separat problema reala, rezultatul verificabil si ceea ce nu trebuie sa se intample.
+
+**De retinut:** Intent Engineering nu inseamna prompturi mai lungi si nu garanteaza fiabilitatea. Inseamna sa mentinem legatura dintre problema, obiectiv, limite si dovezi pana la acceptarea rezultatului.

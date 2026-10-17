@@ -31,7 +31,7 @@ acceptance:
 on_failure: "Raporteaza eroarea si cere verificare"
 ```
 
-E un exemplu conceptual, nu un format obligatoriu pentru vreun framework. Rolurile si permisiunile se aplica in aplicatie, iar campurile de acceptare trebuie transformate in verificari reale. O lista YAML nu poate bloca singura nicio operatie.
+E un exemplu conceptual, nu un format obligatoriu pentru vreun framework. Rolurile si permisiunile se aplica in aplicatie, iar campurile de acceptare trebuie transformate in verificari reale. O lista YAML nu poate bloca singura nicio operatie. Pentru a lega contractul de problema reala si de criteriile succesului, vezi [Intent Engineering (6.7)](https://chrsdme.github.io/Monografie_AI/partea-2/06-prompturi-instructiuni-briefuri/#67-intent-engineering-de-la-cerere-la-obiectiv-verificabil).
 
 ## 12.3. Starea si sesiunile
 

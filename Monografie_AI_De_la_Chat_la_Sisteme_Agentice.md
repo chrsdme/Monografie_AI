@@ -300,6 +300,40 @@ Alege o sarcina reala, de pilda rezumatul unor facturi. Scrie mai intai cererea 
 
 **De retinut:** un brief bun defineste succesul. Un test executabil arata, in limitele cazurilor acoperite, daca succesul a fost atins.
 
+### 6.7. Intent Engineering: de la cerere la obiectiv verificabil
+
+Un prompt poate descrie foarte clar un livrabil si totusi sa conduca spre problema gresita. Un agent poate produce un raport corect despre rambursari, desi magazinul avea nevoie sa inteleaga de ce au crescut retururile produselor deteriorate. Documentul este corect, dar poate fi inutil pentru decizia dorita.
+
+**Intent Engineering** (ingineria intentiei) este o abordare emergenta care pastreaza legatura dintre problema, dovezile care o sustin, obiectiv, constrangeri si verificarea rezultatului. Nu exista o definitie sau o schema universala. Ideea de a declara rezultatul dorit fara prescrierea fiecarui pas exista si in Intent-Based Networking, intr-un domeniu diferit [S41].
+
+**Prompt engineering** se ocupa de formularea instructiunilor, **context engineering** de informatiile furnizate modelului, iar **intent engineering** de scopul urmarit, limitele si dovada reusitei [S42, S43]. Sunt preocupari complementare, nu trei generatii care se inlocuiesc succesiv.
+
+#### 6.7.1. De la cerere la problema reala
+
+"Fa un raport despre tichetele de suport" descrie un livrabil. "Identifica principalele cauze ale solicitarilor repetate, astfel incat echipa sa aleaga trei probleme de investigat" descrie mai bine scopul. Pentru verificare, precizam perioada, sursa autorizata, tratamentul datelor lipsa si reconcilierea totalurilor cu sistemul de suport.
+
+**Intentia operationala** descrie scopul unui proces si limitele lui. Nu trebuie confundata cu *intent recognition*, clasificarea intentiei unui mesaj individual, de exemplu detectarea unei cereri de rambursare intr-un email.
+
+O **specificatie de intentie** (*Intent Spec*) poate fi un document Markdown sau YAML care pastreaza problema, dovezile, rezultatele asteptate, criteriile de succes, prioritatile, permisiunile, exceptiile si verificarile. Un format minimal raspunde la *Why / What / Not*: de ce lucram, ce trebuie obtinut si ce nu este permis [S44]. Pentru agenti si proiecte mai ample, deciziile si modificarile lor trebuie pastrate si transmise intre etape [S42].
+
+#### 6.7.2. Cand succesul inseamna sa te opresti
+
+In [studiul 21.7, despre rambursari](https://chrsdme.github.io/Monografie_AI/partea-5/21-studii-de-caz/#217-studiul-de-caz-e-acelasi-retur-prin-trei-arhitecturi), obiectivul nu este "aproba cat mai multe retururi", ci **solutioneaza corect cererile eligibile, fara plati duplicate sau neautorizate**. Pentru 62 RON putem pregati si verifica rambursarea; pentru 350 RON rezultatul corect este escalarea; daca lipsesc dovezi, solicitam clarificari. Pragul de 100 RON este fictiv. Autorizarea trebuie impusa de aplicatie, nu doar mentionata in prompt.
+
+In [studiul 21.8, despre agentii Research si Production pentru YouTube](https://chrsdme.github.io/Monografie_AI/partea-5/21-studii-de-caz/#218-studiul-de-caz-f-cercetare-youtube-si-productie-editoriala-cu-doi-agenti), intentia nu este "genereaza trei fisiere", ci obtinerea unor propuneri originale, documentate si aprobate. Daca Research a consultat doar metadate, nu pretindem ca a analizat videoclipurile integral. Daca Production a produs trei scenarii JSON, nu afirmam ca a randat trei videoclipuri. Publicarea necesita aprobarea ceruta.
+
+Specificatia poate preciza **compromisuri intre obiective**: siguranta si corectitudinea au prioritate fata de viteza. Un **indicator de protectie** (*health metric*), precum rata de redeschidere a tichetelor, previne optimizarea artificiala a timpului de rezolvare prin inchiderea prematura a cazurilor.
+
+#### 6.7.3. Verificare si actualizare
+
+Un agent poate declara o operatiune finalizata fara ca efectul sa existe in sistemul real. Verificam starea tranzactiei, fisierele produse sau testele executate, nu doar raspunsul modelului [S33]. Aceeasi diferenta separa un raport convingator de o decizie fundamentata.
+
+Cand apar dovezi noi, putem modifica obiectivul, pastrand motivul schimbarii si persoana care a aprobat-o. Agentul poate propune ajustari, dar nu isi poate acorda singur permisiuni suplimentare sau elimina restrictiile obligatorii.
+
+**Exercitiu:** aplica [sablonul B.8 - specificatia de intentie](https://chrsdme.github.io/Monografie_AI/anexe/sabloane/#b8-specificatie-de-intentie-de-la-obiectiv-la-verificare) uneia dintre sarcinile din sectiunea 6.2. Noteaza separat problema reala, rezultatul verificabil si ceea ce nu trebuie sa se intample.
+
+**De retinut:** Intent Engineering nu inseamna prompturi mai lungi si nu garanteaza fiabilitatea. Inseamna sa mentinem legatura dintre problema, obiectiv, limite si dovezi pana la acceptarea rezultatului.
+
 ## 7. Cum ajunge AI-ul sa foloseasca instrumente
 
 ### 7.1. De la raspuns text la un apel concret
@@ -678,7 +712,7 @@ acceptance:
 on_failure: "Raporteaza eroarea si cere verificare"
 ```
 
-E un exemplu conceptual, nu un format obligatoriu pentru vreun framework. Rolurile si permisiunile se aplica in aplicatie, iar campurile de acceptare trebuie transformate in verificari reale. O lista YAML nu poate bloca singura nicio operatie.
+E un exemplu conceptual, nu un format obligatoriu pentru vreun framework. Rolurile si permisiunile se aplica in aplicatie, iar campurile de acceptare trebuie transformate in verificari reale. O lista YAML nu poate bloca singura nicio operatie. Pentru a lega contractul de problema reala si de criteriile succesului, vezi [Intent Engineering (6.7)](https://chrsdme.github.io/Monografie_AI/partea-2/06-prompturi-instructiuni-briefuri/#67-intent-engineering-de-la-cerere-la-obiectiv-verificabil).
 
 ### 12.3. Starea si sesiunile
 
@@ -1239,6 +1273,8 @@ Aplicata asupra propriilor tale proiecte, aceeasi lista te protejeaza de entuzia
 
 ### 21.7. Studiul de caz E: acelasi retur prin trei arhitecturi
 
+**Legatura cu [Intent Engineering, 6.7](https://chrsdme.github.io/Monografie_AI/partea-2/06-prompturi-instructiuni-briefuri/#67-intent-engineering-de-la-cerere-la-obiectiv-verificabil):** obiectivul este solutionarea corecta, nu maximizarea rambursarilor; [sablonul B.8](https://chrsdme.github.io/Monografie_AI/anexe/sabloane/#b8-specificatie-de-intentie-de-la-obiectiv-la-verificare) expliciteaza limitele si verificarile.
+
 **Statut:** simulare didactica, nu implementare comerciala. Un client solicita la ora 23:00 rambursarea unui produs deteriorat. Magazinul fictiv permite procesarea automata numai pentru sume de cel mult **100 RON**, cu identitate, comanda, dovezi si eligibilitate verificate. Pragul este inventat pentru exercitiu, nu reprezinta o obligatie legala.
 
 #### E1. Automatizare clasica: codul decide
@@ -1328,6 +1364,8 @@ safety:
 **Evaluare:** verificam separat 62 RON, 350 RON, lipsa dovezii, client neverificat, solicitare duplicata, API indisponibil, unealta interzisa si limita de pasi. Pentru tranzactii, o singura plata neautorizata este un defect critic, indiferent de rata globala de succes.
 
 ### 21.8. Studiul de caz F: cercetare YouTube si productie editoriala cu doi agenti
+
+**Legatura cu [Intent Engineering, 6.7](https://chrsdme.github.io/Monografie_AI/partea-2/06-prompturi-instructiuni-briefuri/#67-intent-engineering-de-la-cerere-la-obiectiv-verificabil):** rezultatul urmarit este un material original si aprobat, nu doar producerea de fisiere. [Sablonul B.8](https://chrsdme.github.io/Monografie_AI/anexe/sabloane/#b8-specificatie-de-intentie-de-la-obiectiv-la-verificare) defineste dovezile si limitele.
 
 **Scop:** un creator urmareste canalele X, Y si Z, vrea sa detecteze materiale noi, sa obtina idei originale si sa aprobe personal orice publicare. Materialul analizat apartine creatorilor sai; ideile trebuie dezvoltate independent si conditiile platformei respectate.
 
@@ -1562,6 +1600,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Hash.** Amprenta calculata din continutul unui fisier, utila pentru compararea versiunilor. Nu dovedeste singura autenticitatea.
 
+**Health Metric (indicator de protectie).** Masura care verifica daca atingerea unui obiectiv degradeaza alte rezultate importante, de exemplu rata redeschiderii tichetelor.
+
 **Human-in-the-loop.** Etapa in care o persoana verifica, decide sau aproba anumite actiuni. Nu inseamna ca omul supravegheaza fiecare token.
 
 **Idempotenta.** Proprietatea unei operatii prin care repetarea aceleiasi cereri nu produce efecte suplimentare nedorite. Esentiala la plati, comenzi si operatii reluate dupa erori.
@@ -1571,6 +1611,14 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 **Inferenta.** Folosirea unui model deja antrenat pentru a genera un raspuns sau o predictie. Nu trebuie confundata cu antrenarea.
 
 **Instanta de agent.** O activare concreta a configuratiei unui agent pentru o sarcina. Mai multe instante pot folosi acelasi model partajat.
+
+**Intent Drift (abatere fata de intentie).** Diferenta dintre obiectivul aprobat si directia efectiva a executiei sau a modificarilor ulterioare.
+
+**Intent Engineering (ingineria intentiei).** Abordare emergenta ce leaga problema, obiectivele, dovezile, constrangerile si verificarea rezultatului unui sistem AI. Nu este un standard unic.
+
+**Intent Specification (Intent Spec).** Document structurat si versionabil care descrie obiectivul, criteriile de succes, limitele, aprobarile si dovezile necesare. Nu impune singur reguli tehnice.
+
+**Intentie operationala.** Scopul unui proces si limitele in care trebuie realizat; diferit de identificarea intentiei dintr-un mesaj individual.
 
 **JSON (JavaScript Object Notation).** Format text structurat pentru date, folosit de API-uri si jurnale. Structura si sintaxa pot fi validate automat.
 
@@ -1597,6 +1645,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 **OCR (Optical Character Recognition).** Transformarea textului dintr-o imagine sau scanare in caractere procesabile de calculator.
 
 **Orchestrator.** Componenta care aloca sarcini, coordoneaza dependente, urmareste stari si decide transferurile dintre etapele unui workflow. Poate fi cod cu reguli sau poate folosi si un model AI.
+
+**Outcome (rezultat efectiv).** Starea reala verificata dupa executie, distincta de afirmatia agentului ca a finalizat sarcina.
 
 **Permisiuni.** Drepturi tehnice acordate unei componente pentru citire, scriere sau actiuni. Se aplica in mediul de executie, nu doar in instructiuni.
 
@@ -1647,6 +1697,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 **Token.** Unitatea in care modelul proceseaza textul, adesea un cuvant scurt, o parte de cuvant sau un simbol. Nu coincide obligatoriu cu un cuvant intreg.
 
 **Trace.** Reconstructie a traseului unei executii prin evenimente corelate: cerere, apeluri de unelte, raspunsuri, erori si rezultate.
+
+**Trade-off (compromis intre obiective).** Alegerea unei prioritati cand cerintele intra in conflict, de exemplu intre corectitudine, cost, viteza si siguranta.
 
 **Trust Score (scor de incredere).** Indicator propus pentru evaluarea unui agent intr-un domeniu concret. Nu este o proprietate universala a modelului si nu inlocuieste analiza riscului.
 
@@ -1775,6 +1827,35 @@ Pentru o analiza, definitia poate fi alta: exista surse, datele sunt actuale, ca
 
 Daca lipsesc datele sau metoda de verificare, nu forta introducerea unui agent. Simplifica sarcina sau lucreaza intai la infrastructura informationala. Din ghidurile de automatizare pentru companii retinem analiza procesului si definirea obiectivelor, nu obligatia de a cumpara o anumita platforma [S19, S23].
 
+
+## B.8. Specificatie de intentie: de la obiectiv la verificare
+
+Un *Intent Spec* este un artefact de documentare, nu o functie standard a unui model. Exemplul de mai jos completeaza [studiul 21.7 despre rambursari](https://chrsdme.github.io/Monografie_AI/partea-5/21-studii-de-caz/#217-studiul-de-caz-e-acelasi-retur-prin-trei-arhitecturi); aceleasi intrebari sunt utile pentru [cei doi agenti YouTube din 21.8](https://chrsdme.github.io/Monografie_AI/partea-5/21-studii-de-caz/#218-studiul-de-caz-f-cercetare-youtube-si-productie-editoriala-cu-doi-agenti). Explicatia conceptului este in [sectiunea 6.7](https://chrsdme.github.io/Monografie_AI/partea-2/06-prompturi-instructiuni-briefuri/#67-intent-engineering-de-la-cerere-la-obiectiv-verificabil).
+
+```yaml
+intent_id: refund_resolution_v1
+status: exemplu_didactic
+problem: "Solicitarile trebuie solutionate corect si consecvent."
+evidence: "Comanda, politica magazinului si verificari in sistem."
+objective: "Rezolva cererile eligibile, fara plati duplicate sau neautorizate."
+success_criteria:
+  - final_state_verified_or_escalated
+  - no_duplicate_refund
+  - customer_notified_only_after_confirmation
+constraints:
+  currency: RON
+  auto_refund_limit: 100
+  require_verified_customer: true
+priorities: [authorisation, correctness, speed]
+human_approval_when: [amount_above_limit, unclear_eligibility]
+stop_when: [verified_outcome, waiting_for_customer, human_escalation, budget_limit]
+verification: [test_62_ron, test_350_ron, test_duplicate_refund]
+owner: support_operations
+```
+
+**Interpretare:** pentru 62 RON verificam eligibilitatea si confirmarea operatiei; pentru 350 RON verificam escalarea fara plata. Pentru YouTube am inlocui limita financiara cu sursele permise, verificarea originalitatii si aprobarea versiunii exacte a videoclipului.
+
+**Limita:** YAML-ul este ilustrativ, nu este format oficial si nu este citit automat de simulatorul din Capitolul 21. Campurile nu impun singure permisiuni, nu efectueaza tranzactii si nu verifica rezultate; aplicatia trebuie sa implementeze controalele si testele.
 
 # Anexa C. Un protocol de evaluare progresiva si acordare a autonomiei
 
@@ -2013,6 +2094,14 @@ Editia 1.0 (13 octombrie 2026) ramane in istoricul depozitului. Daca ai citat-o,
 **[S39] Anthropic (f.d.).** *Prompt caching.* Documentatie. https://platform.claude.com/docs/en/build-with-claude/prompt-caching . Mecanismul si multiplicatorii de pret, valabili la data consultarii.
 
 **[S40] Linux Foundation (2025).** *Linux Foundation Announces the Formation of the Agentic AI Foundation (AAIF).* 9 decembrie. https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation . Contributia MCP, goose si AGENTS.md.
+
+**[S41] Clemm, A. et al. (2022).** *Intent-Based Networking - Concepts and Definitions.* RFC 9315, IRTF. https://www.rfc-editor.org/rfc/rfc9315.html . Precedent pentru obiective declarative; document informational despre retele, nu standard de agenti AI.
+
+**[S42] monaxovdulov (2026).** *Awesome Intent Engineering.* https://github.com/monaxovdulov/awesome-intent-engineering . Catalog si model de lucru pentru pastrarea intentiei; domeniu emergent, nu standard formal.
+
+**[S43] Pathmode (f.d.).** *What Is Intent Engineering? Definition, Examples, and FAQ.* https://pathmode.io/glossary/intent-engineering . Perspectiva comerciala asupra problemelor, dovezilor si specificatiilor; nu un benchmark independent.
+
+**[S44] roboco-io (2026).** *Intent Engineering: Why / What / Not.* https://github.com/roboco-io/intent-engineering . Exemplu de specificatie versionata, nu schema universala.
 
 ## Nota privind materialele folosite
 

@@ -184,5 +184,4 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Workflow.** Succesiune de etape si decizii care transforma intrari in rezultate. Poate contine reguli fixe, oameni, modele si agenti.
 
-
 **YAML.** Format text pentru configuratii structurate, bazat pe indentare. Exemplele YAML din carte nu sunt o schema universala de framework.

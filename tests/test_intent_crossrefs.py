@@ -45,8 +45,8 @@ class CrossrefTests(unittest.TestCase):
         wiki_anchor = "217-studiul-de-caz-e-acelasi-retur-prin-trei-arhitecturi"
         pdf_anchor = "studiul-de-caz-e-acelasi-retur-prin-trei-arhitecturi"
         url = BASE + "partea-5/21-studii-de-caz/#" + wiki_anchor
-        doc = ('<h2 id="' + pdf_anchor + '">'
-               '21.7. Studiul de caz E: acelasi retur prin trei arhitecturi</h2>'
+        doc = ('<h2\n id="' + pdf_anchor + '">'
+               '21.7.\nStudiul de caz E: acelasi retur prin trei arhitecturi</h2>'
                '<a href="' + url + '">studiu</a>')
         rendered = internalize_wiki_links_for_pdf(doc, BASE)
         self.assertIn('href="#' + pdf_anchor + '"', rendered)

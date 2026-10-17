@@ -1423,6 +1423,8 @@ production:
 
 **Regula practica:** alegem cel mai simplu sistem care rezolva verificabil problema. Daca deciziile sunt previzibile, folosim reguli; daca doar anumite etape cer interpretare, folosim workflow AI; daca ordinea actiunilor trebuie adaptata dinamic, evaluam un agent; daca apar responsabilitati distincte, evaluam orchestrarea. Alegerea trebuie sustinuta de rezultate, nu de numarul agentilor.
 
+**Simulator si configuratii:** [exemplele Python, YAML si testele pentru studiile E/F](https://github.com/chrsdme/Monografie_AI/tree/main/examples/agent_studies). Sunt exercitii sandbox; codul nu executa plati si nu publica videoclipuri.
+
 Studiile E si F sunt **fictive**. Pseudocodul ilustreaza arhitectura, configurarile YAML sunt demonstrative, iar teste cu mock nu reprezinta probe de plata Shopify, transcriere YouTube ori incarcare video reala. Recomandarea de a incepe cu cea mai simpla arhitectura este sustinuta de [Anthropic, Building effective agents](https://www.anthropic.com/engineering/building-effective-agents).
 
 

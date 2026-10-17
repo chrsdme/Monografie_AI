@@ -84,7 +84,7 @@ def update_text(text, previous, edition, date, changed, message, sha):
                     f'*Editia {edition} | {date} | Autor: {field(text, "author")} | Licenta: {field(text, "license")}*',
                     "cover")
     text = swap_one(text, r'^\*\*Ce este nou fata de editia [^\n]+\n',
-                    f'**Ce este nou fata de editia {previous}.** Modificarile sunt descrise in Anexa {heading.split(".",1)[0]}.{n}; '
+                    f'**Ce este nou fata de editia {previous}.** Modificarile sunt descrise in Anexa E.{n}; '
                     f'vezi istoricul E.{n} pentru provenienta commitului si domeniile afectate.\n',
                     "intro")
     text = swap_one(text, r'^- \*\*Editia curenta:\*\* [^\n]+$',
@@ -99,7 +99,54 @@ def update_text(text, previous, edition, date, changed, message, sha):
                     'versiunea web si PDF-ul se regenereaza din aceeasi revizie.*',
                     "footer")
     section = "\n## " + heading + "\n\n" + changelog_changes(changed, message, sha) + "\n"
-    text = swap_one(text, r'^# Bibliografie$', section + "# Bibliografie", "bibliography boundary")
+    text = swap_one(text, r'^# Bibliografie si resurse de aprofundare
+    return text
+
+
+def prepare(repo, event):
+    if event != "push":
+        print(f"RELEASE: {event} - fara incrementare de editie")
+        return "unchanged"
+    source = repo / MASTER
+    current = source.read_text(encoding="utf-8")
+    try:
+        parent = run_git("rev-parse", "HEAD^")
+        previous_text = run_git("show", f"{parent}:{MASTER}")
+    except subprocess.CalledProcessError as exc:
+        raise RuntimeError("Nu se poate citi versiunea precedenta; refuz incrementarea") from exc
+    edition = field(current, "edition")
+    preceding = field(previous_text, "edition")
+    if edition != preceding:
+        print(f"RELEASE: versiune stabilita editorial {preceding} -> {edition}; nu o incrementam din nou")
+        return "declared"
+    changed = run_git("diff", "--name-only", parent, "HEAD").splitlines()
+    changed = [p for p in changed if not (
+        p.startswith("docs/") and p.endswith(".pdf"))]
+    if not changed:
+        print("RELEASE: nu exista fisiere publicabile modificate")
+        return "unchanged"
+    new_version = next_patch(edition)
+    now = datetime.datetime.now(ZoneInfo("Europe/London")).date()
+    date = f"{now.day} {MONTHS[now.month - 1]} {now.year}"
+    updated = update_text(current, edition, new_version, date, changed,
+                          run_git("log", "-1", "--format=%B"), run_git("rev-parse", "HEAD"))
+    source.write_text(updated, encoding="utf-8")
+    print(f"RELEASE: {edition} -> {new_version}; {date}; changelog si citare actualizate")
+    return "incremented"
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--repo", default=".")
+    ap.add_argument("--event", choices=["push", "workflow_dispatch"], required=True)
+    args = ap.parse_args()
+    prepare(pathlib.Path(args.repo), args.event)
+
+
+if __name__ == "__main__":
+    main()
+,
+                    section + "# Bibliografie si resurse de aprofundare", "bibliography boundary")
     return text
 
 

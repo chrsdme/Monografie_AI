@@ -2,3 +2,4 @@ pypdf
 playwright
 mkdocs
 mkdocs-material
+PyYAML>=6,<7

@@ -331,7 +331,7 @@ def index_block(fm):
     previous = esc(fm.get("previous_edition", ""))
     anchor = esc(fm.get("changelog_anchor", ""), quote=True)
     source = esc(fm.get("source", ""), quote=True)
-    return (f"{IDX_START}\\n"
+    return (f"{IDX_START}\n"
             '<section class="tech-edition" aria-label="Editia curenta">'
             '<div class="tech-edition-copy">'
             '<span class="tech-edition-label">BUILD / EDITIA CURENTA</span>'
@@ -344,7 +344,7 @@ def index_block(fm):
             f'<a href="{source}/tree/main/docs">Arhiva editiilor PDF ↗</a>'
             f'<a href="{source}">Sursa pe GitHub ↗</a>'
             '</div></section>'
-            f"\\n{IDX_END}")
+            f"\n{IDX_END}")
 
 
 def merge_index(wiki, fm):

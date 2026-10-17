@@ -47,6 +47,8 @@ class TechThemeTests(unittest.TestCase):
                 continue
             if dest.endswith("/"):
                 target = ROOT / "wiki" / dest / "index.md"
+                if not target.is_file():
+                    target = ROOT / "wiki" / (dest.rstrip("/") + ".md")
             else:
                 target = ROOT / "wiki" / dest
             self.assertTrue(target.is_file(), "Broken homepage link: " + href)

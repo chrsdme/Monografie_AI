@@ -1,0 +1,7 @@
+{
+  "ok": {"request_id":"REQ-001","order_id":"ORD-62","amount":"62.00","currency":"RON","verified_customer":true,"eligible":true,"evidence_present":true,"already_refunded":false},
+  "above_limit": {"request_id":"REQ-002","order_id":"ORD-350","amount":"350.00","currency":"RON","verified_customer":true,"eligible":true,"evidence_present":true,"already_refunded":false},
+  "missing_proof": {"request_id":"REQ-003","order_id":"ORD-47","amount":"47.00","currency":"RON","verified_customer":true,"eligible":true,"evidence_present":false,"already_refunded":false},
+  "duplicate": {"request_id":"REQ-004","order_id":"ORD-15","amount":"15.00","currency":"RON","verified_customer":true,"eligible":true,"evidence_present":true,"already_refunded":true},
+  "unverified": {"request_id":"REQ-005","order_id":"ORD-88","amount":"88.00","currency":"RON","verified_customer":false,"eligible":true,"evidence_present":true,"already_refunded":false}
+}

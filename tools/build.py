@@ -522,7 +522,7 @@ def build_pdf(repo, md_path, out_pdf):
     wiki_prefix = fm.get("wiki", "").rstrip("/") + "/"
     # Toate trimiterile Markdown catre capitolele acestei carti trebuie sa
     # ajunga in PDF la ancore interne, nu sa forteze iesirea spre browser.
-    source_refs = re.findall(r"\\]\\((https?://[^)]+)\\)", body)
+    source_refs = re.findall(r"\]\((https?://[^)]+)\)", body)
     internal_refs = [u for u in source_refs if u.startswith(wiki_prefix) and "#" in u]
     page = internalize_wiki_links_for_pdf(page, fm.get("wiki", ""))
     unresolved = [u for u in internal_refs if 'href="' + u + '"' in page]

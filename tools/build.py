@@ -327,6 +327,8 @@ def index_block(fm):
     return (f"{IDX_START}\n## Editia curenta\n\n"
             f"Editia {fm.get('edition', '')}, {fm.get('date', '')}. Autor: {fm.get('author', '')}. Licenta: {fm.get('license', '')}. "
             f"[Ce s-a schimbat fata de editia {previous}](anexe/metoda-surse.md#{anchor}). "
+            f"[Descarca PDF-ul curent](downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf). "
+            f"[Arhiva editiilor PDF]({fm.get('source', '')}/tree/main/docs). "
             f"[Sursa pe GitHub]({fm.get('source', '')}).\n{IDX_END}")
 
 

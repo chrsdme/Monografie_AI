@@ -1285,13 +1285,23 @@ Daca varianta fara agenti iese cea mai buna, exercitiul a reusit. Scopul nu e sa
 
 Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile complete se gasesc in capitolele corespunzatoare. Definitii generale pot fi consultate si in glosarul Stanford HAI [S18]. Cand un termen are sensuri diferite in produse diferite, am ales intelesul operational folosit in aceasta carte.
 
+**Resursa externa complementara:** [Lexiconul agentilor AI - Ovidiu Boticiu](https://ovidiuboticiu.github.io/lexiconul-agentilor-ai/index.html), cu 361 de intrari EN-RO. Este un proiect independent (text CC BY-NC 4.0; cod fara licenta de reutilizare). Definitiile din aceasta carte sunt formulate independent, nu copiate din lexicon; aceasta recomandare nu certifica toate cele 361 de intrari.
+
 **A2A (Agent2Agent).** Protocol deschis pentru comunicarea dintre agenti de la furnizori diferiti, dezvoltat initial de Google si gazduit acum de Linux Foundation.
 
 **Agent AI.** Componenta software care urmareste un obiectiv si poate decide, in limite definite, ce actiune sa execute si cum sa foloseasca rezultatul. Nu orice chatbot este automat un agent.
 
+**AI Employee (angajat digital).** Eticheta operationala/comerciala pentru un sistem care gestioneaza responsabilitati recurente, cu automatizari si eventual agenti. Nu este un standard tehnic sau un nou tip de model.
+
 **Apel de unealta (tool call).** Cererea structurata prin care modelul solicita o operatie externa. Unealta este executata de mediul de lucru, nu de simpla generare a textului.
 
 **API (Application Programming Interface).** Interfata prin care doua programe comunica. De exemplu, o aplicatie cere unui serviciu meteo temperatura pentru o localitate si primeste date structurate.
+
+**Artefact.** Rezultat identificabil si versionabil al unui proces, precum un raport, un scenariu ori un fisier video. Aprobarile trebuie legate de o versiune concreta.
+
+**Autentificare.** Verificarea identitatii utilizatorului sau serviciului care solicita o operatie.
+
+**Autorizare.** Verificarea dreptului unei identitati de a consulta date ori executa o operatie. Un prompt nu poate inlocui verificarea tehnica.
 
 **Automatizare deterministica.** Proces in care pasii si regulile sunt stabilite explicit. Aceleasi date, in aceleasi conditii, ar trebui sa duca la acelasi rezultat.
 
@@ -1304,6 +1314,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 **Bucla agentica.** Secventa repetata *observa, decide, actioneaza, verifica*. O bucla corecta are conditii de oprire si limita de resurse.
 
 **Checkpoint.** Punct de salvare a starii, din care executia poate fi reluata dupa o intrerupere, fara a repeta tot procesul.
+
+**Cheie de idempotenta.** Identificator unic al unei cereri cu efecte externe, folosit pentru a recunoaste reincercarile si a evita duplicatele, de exemplu la rambursari.
 
 **Clasa de agenti.** Categorie logica de responsabilitati, precum Research, Development sau QA. Este un termen de proiectare folosit aici, nu neaparat o clasa din limbajul Python.
 
@@ -1333,6 +1345,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Fine-tuning.** Adaptarea unui model prin antrenare suplimentara. Este diferit de adaugarea unui document in context sau intr-o baza RAG.
 
+**Fixture.** Date de test pregatite in avans, cu rezultate cunoscute, care permit verificari repetabile fara servicii reale.
+
 **Foundation model.** Model general, antrenat pe date ample, utilizabil pentru mai multe sarcini si eventual adaptat ulterior.
 
 **GraphRAG.** Varianta de RAG in care documentele sunt transformate intr-un graf de entitati si relatii, cu rezumate pe comunitati, utila pentru intrebari despre o colectie intreaga.
@@ -1347,6 +1361,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Harness engineering.** Proiectarea acelui mediu astfel incat executia sa fie clara, repetabila, observabila si controlabila.
 
+**Hash.** Amprenta calculata din continutul unui fisier, utila pentru compararea versiunilor. Nu dovedeste singura autenticitatea.
+
 **Human-in-the-loop.** Etapa in care o persoana verifica, decide sau aproba anumite actiuni. Nu inseamna ca omul supravegheaza fiecare token.
 
 **Idempotenta.** Proprietatea unei operatii prin care repetarea aceleiasi cereri nu produce efecte suplimentare nedorite. Esentiala la plati, comenzi si operatii reluate dupa erori.
@@ -1357,6 +1373,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Instanta de agent.** O activare concreta a configuratiei unui agent pentru o sarcina. Mai multe instante pot folosi acelasi model partajat.
 
+**JSON (JavaScript Object Notation).** Format text structurat pentru date, folosit de API-uri si jurnale. Structura si sintaxa pot fi validate automat.
+
 **LLM (Large Language Model).** Model de limbaj antrenat la scara mare, capabil sa produca text si, in functie de arhitectura, alte tipuri de iesiri.
 
 **Loop engineering.** Proiectarea buclelor de executie, observatie, evaluare si corectare, cu limite si conditii de oprire.
@@ -1365,15 +1383,23 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Memorie persistenta.** Informatii pastrate intre sesiuni. Nu modifica automat parametrii modelului si trebuie gestionata din perspectiva provenientei si actualizarii.
 
+**Metadate.** Informatii care descriu un obiect, de exemplu titlu, autor, data publicarii si identificator. Nu sunt echivalente cu continutul integral.
+
+**Mock.** Componenta simulata care inlocuieste un serviciu sau model real intr-un test. Testarea cu mock nu verifica integrarea externa.
+
 **Model multimodal.** Model care proceseaza sau genereaza mai multe tipuri de informatie, de exemplu text si imagini.
 
 **Motor de inferenta.** Program care incarca si executa modelul, de exemplu intr-un serviciu local. Nu este automat un harness agentic.
+
+**OAuth.** Protocol pentru autorizare delegata: o aplicatie poate primi acces limitat la resurse fara sa primeasca parola utilizatorului.
 
 **Observabilitate.** Capacitatea de a intelege starea si comportamentul sistemului prin jurnale, metrici si trasee de executie.
 
 **OCR (Optical Character Recognition).** Transformarea textului dintr-o imagine sau scanare in caractere procesabile de calculator.
 
 **Orchestrator.** Componenta care aloca sarcini, coordoneaza dependente, urmareste stari si decide transferurile dintre etapele unui workflow. Poate fi cod cu reguli sau poate folosi si un model AI.
+
+**Permisiuni.** Drepturi tehnice acordate unei componente pentru citire, scriere sau actiuni. Se aplica in mediul de executie, nu doar in instructiuni.
 
 **Principiul privilegiului minim.** Regula potrivit careia fiecare componenta primeste doar accesul necesar sarcinii sale.
 
@@ -1391,6 +1417,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Rata de succes.** Proportia executiilor care indeplinesc criteriile stabilite. Fara distributia cazurilor si gravitatea erorilor, poate induce in eroare.
 
+**Reconciliere.** Compararea rezultatului asteptat cu starea reala, mai ales dupa erori sau timeouts, inainte de a repeta operatii cu efect extern.
+
 **Retry.** Reluarea unei operatii dupa un esec. Se aplica in functie de efectele operatiei: nu orice esec se repara prin repetare.
 
 **Rollback.** Revenirea la o stare anterioara. Pentru unele efecte (un email trimis) revenirea completa nu este posibila.
@@ -1403,11 +1431,15 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Sandbox.** Mediu izolat sau restrictionat pentru executie. Restrictiile reale depind de sistemul de operare, containere, retea, permisiuni si configuratie.
 
+**Scheduler (planificator).** Mecanism care porneste sarcini la ore ori intervale stabilite. Poate declansa un agent fara sa fie el insusi un agent.
+
 **Sesiune.** Istoric si stare legate de una sau mai multe interactiuni. Poate traversa mai multe apeluri de model, dar nu inseamna neaparat memorie permanenta.
 
 **Shadow mode.** Mod de testare in care sistemul ruleaza procesul in paralel, fara a aplica modificari reale, iar propunerile sunt comparate cu deciziile procedurii existente.
 
 **Sistem agentic.** Agentul impreuna cu infrastructura din jurul lui: harness, unelte, memorie, verificari, observabilitate si, uneori, orchestrare.
+
+**Sursa de adevar (source of truth).** Inregistrarea sau sistemul autoritativ din care se verifica o informatie operationala, cum ar fi suma comenzii in baza magazinului.
 
 **Temperatura.** Parametru de decodare care influenteaza variatia raspunsurilor. O valoare mai mica reduce variatia, dar nu garanteaza exactitate.
 
@@ -1421,6 +1453,7 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Workflow.** Succesiune de etape si decizii care transforma intrari in rezultate. Poate contine reguli fixe, oameni, modele si agenti.
 
+**YAML.** Format text pentru configuratii structurate, bazat pe indentare. Exemplele YAML din carte nu sunt o schema universala de framework.
 # Anexa B. Sabloane neutre: cum documentam sarcina, agentul si verificarile
 
 Sabloanele de mai jos nu apartin niciunui produs. Sunt propuneri de documentare, cu campuri pe care le poti pastra intr-un fisier Markdown, intr-un tabel sau intr-o aplicatie de proiect. Nu trebuie sa completezi toate campurile pentru un exercitiu simplu. Incepi cu esentialul si adaugi detalii cand riscul le justifica.

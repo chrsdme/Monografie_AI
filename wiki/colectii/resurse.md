@@ -8,10 +8,14 @@ Aceasta sectiune este punctul de intrare catre colectia de resurse a proiectului
 
 Colectia poate include documentatie oficiala, articole tehnice, framework-uri, tool-uri, benchmark-uri, proiecte open-source si materiale educationale.
 
-Continutul brut si fisierele sunt pastrate in repository, in folderul `resurse/`. Pe aceasta pagina vom putea mentine, pe masura ce colectia creste, un index curatorial cu cele mai utile materiale si o scurta explicatie pentru fiecare.
+Continutul brut si fisierele sunt pastrate in repository, in folderul `resurse/`. Pe aceasta pagina mentinem un index de resurse externe, fara a copia continutul lor.
 
 ## Contribuie
 
-Daca vrei sa adaugi o resursa, poti propune un fisier sau o completare prin Pull Request.
+Daca vrei sa recomanzi o resursa, foloseste formularul Tally. Nu ai nevoie de cont GitHub.
 
 [Vezi cum poti contribui](../contribuie.md)
+
+## Lexicoane si dictionare
+
+**[Lexiconul agentilor AI - Ovidiu Boticiu](https://ovidiuboticiu.github.io/lexiconul-agentilor-ai/index.html)** - 361 de intrari bilingve EN-RO, cu explicatii practice, cautare si legaturi interne. Resursa externa independenta; continut CC BY-NC 4.0, cod fara licenta de reutilizare. Nu reproducem definitiile sau codul si nu consideram toate intrarile validate independent.

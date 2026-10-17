@@ -14,6 +14,7 @@ def module(file, name):
 
 release = module("release.py", "release_module")
 archiver = module("archive_pdf.py", "archive_module")
+builder = module("build.py", "build_module")
 
 
 class ReleaseTests(unittest.TestCase):
@@ -36,6 +37,28 @@ class ReleaseTests(unittest.TestCase):
         self.assertIn("Sfarsitul editiei " + version, output)
         self.assertIn("## E.2. Changelog 1.0 la 1.1", output)
         self.assertEqual(output.count("## E.5."), 1)
+
+    def test_homepage_block_follows_current_edition(self):
+        raw = (ROOT / archiver.STEM).with_suffix(".md").read_text(encoding="utf-8")
+        fm = {key: release.field(raw, key) for key in
+              ("edition", "date", "author", "previous_edition",
+               "changelog_anchor", "license", "source")}
+        block = builder.index_block(fm)
+        self.assertIn("Editia " + fm["edition"] + ", " + fm["date"], block)
+        self.assertIn("fata de editia " + fm["previous_edition"], block)
+        self.assertIn("#" + fm["changelog_anchor"], block)
+        self.assertIn("Descarca PDF-ul curent", block)
+        self.assertIn("Arhiva editiilor PDF", block)
+        self.assertNotIn("#e2-changelog-10-la-11", block)
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = pathlib.Path(tmp)
+            wiki = repo / "wiki"
+            wiki.mkdir()
+            index = wiki / "index.md"
+            index.write_text("# Acasa\\n\\n<!-- MONOGRAFIE:START -->\\nVechi\\n"
+                             "<!-- MONOGRAFIE:END -->\\n", encoding="utf-8")
+            builder.merge_index(wiki, fm)
+            self.assertIn(block, index.read_text(encoding="utf-8"))
 
     def test_archive_idempotence_and_immutability(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -54,6 +54,34 @@ def main(argv):
                 err(f"front matter: lipseste '{k}'")
     info["front_matter"] = fm
 
+    # Controlul editiei curente este separat de istoricul editiilor vechi.
+    for key in ("previous_edition", "changelog_anchor"):
+        if not fm.get(key):
+            err(f"front matter: lipseste '{key}'")
+    needed = ("edition", "date", "author", "previous_edition", "changelog_anchor")
+    if all(fm.get(k) for k in needed):
+        edition, date, author = fm["edition"], fm["date"], fm["author"]
+        checks = (
+            ("coperta", f"*Editia {edition} | {date} | Autor: {author} |"),
+            ("anexa E.1", f"**Editia curenta:** {edition}, {date}"),
+            ("citare", f"editia {edition}, {date}, {fm.get('wiki', '')}"),
+            ("final", f"*Sfarsitul editiei {edition}."),
+            ("introducere", f"**Ce este nou fata de editia {fm['previous_edition']}.**"),
+        )
+        for area, expected in checks:
+            if expected not in text:
+                err(f"metadata editie neactualizata in {area}: {expected!r}")
+        changelogs = re.findall(r"^## (E\.\d+\. Modificari de la editia .+)$", text, re.M)
+        expected_name = f"Modificari de la editia {fm['previous_edition']} la {edition}"
+        found = [t for t in changelogs if expected_name in t]
+        if len(found) != 1:
+            err(f"lipseste istoricul editiei {edition}: {expected_name}")
+        else:
+            slug = re.sub(r"[^a-z0-9 _-]", "", found[0].lower()).replace(" ", "-")
+            if fm["changelog_anchor"] != slug:
+                err(f"changelog_anchor gresit: {fm['changelog_anchor']!r} != {slug!r}")
+
+
     # ---- caractere
     nonascii = {}
     for n, ln in enumerate(lines, 1):

@@ -2,8 +2,10 @@
 title: "De la conversatia cu AI la sisteme agentice verificabile"
 subtitle: "O introducere graduala in modele, context, instrumente, memorie, harness, agenti, orchestrare si evaluare"
 author: "chrsdme"
-edition: "1.1"
-date: "15 octombrie 2026"
+edition: "1.2"
+previous_edition: "1.1"
+changelog_anchor: "e4-modificari-de-la-editia-11-la-12"
+date: "17 octombrie 2026"
 lang: ro
 license: "MIT"
 wiki: "https://chrsdme.github.io/Monografie_AI/"
@@ -14,7 +16,7 @@ source: "https://github.com/chrsdme/Monografie_AI"
 
 **O introducere graduala in modele, context, instrumente, memorie, harness, agenti, orchestrare si evaluare**
 
-*Editia 1.1 | 15 octombrie 2026 | Autor: chrsdme | Licenta: MIT*
+*Editia 1.2 | 17 octombrie 2026 | Autor: chrsdme | Licenta: MIT*
 
 *Versiunea web: https://chrsdme.github.io/Monografie_AI/ | Sursa: https://github.com/chrsdme/Monografie_AI*
 
@@ -32,13 +34,13 @@ Pe langa materialele documentate si citate, in aceasta lucrare au intrat si mate
 
 ## Cum se citeste aceasta carte
 
-Partile se construiesc una peste alta. **Partea I** explica modelul si contextul. **Partea II** aduce informatii externe, instrumente si primele automatizari. **Partea III** construieste arhitectura, pana la orchestrarea mai multor agenti. **Partea IV** arata cum verificam, securizam si operam sistemul. **Partea V** urmareste doua proiecte complete, de la cerere pana la livrare, si arata cum citim un caz din presa care vine cu cifre. Anexele dau definitii, sabloane si un protocol de evaluare pe care le poti copia.
+Partile se construiesc una peste alta. **Partea I** explica modelul si contextul. **Partea II** aduce informatii externe, instrumente si primele automatizari. **Partea III** construieste arhitectura, pana la orchestrarea mai multor agenti. **Partea IV** arata cum verificam, securizam si operam sistemul. **Partea V** prezinta studii de caz despre proiectarea si evaluarea sistemelor AI, inclusiv rambursari si productie editoriala, si arata cum citim critic exemplele publice. Anexele dau definitii, sabloane si un protocol de evaluare pe care le poti copia.
 
 Poti sari la un capitol, dar ordinea e gandita pentru invatare. Nu are rost sa te ocupi de un protocol nou inainte sa fi inteles ce este o cerere HTTP, nici de un orchestrator inainte sa fi vazut un agent care foloseste o singura unealta.
 
 **Conventii.** Cand spunem *model*, ne referim la componenta care produce predictii sau genereaza continut. *Aplicatia* este produsul care il pune la dispozitie. *Agentul* este o configuratie executabila care urmareste un obiectiv prin actiuni si feedback. Un *sistem agentic* include si infrastructura din jurul agentului. Figurile sunt numerotate in ordinea in care apar (Figura 1 pana la Figura 8), iar fiecare are o legenda sub ea.
 
-**Ce s-a schimbat fata de editia 1.0.** Lista completa este in Anexa E. Pe scurt: text rescris, surse reverificate, numerotare continua, figuri numerotate, sectiuni noi si un tratament mai clar al datelor care se schimba repede.
+**Ce este nou fata de editia 1.1.** Anexa E.4 documenteaza clarificarile din Capitolul 1, Intent Engineering, studiile de caz despre rambursari si YouTube, glosarul extins si exemplele executabile. Istoricul 1.0 -> 1.1 ramane in E.2.
 
 
 ## Cuprins
@@ -77,7 +79,7 @@ Poti sari la un capitol, dar ordinea e gandita pentru invatare. Nu are rost sa t
 - [Anexa B. Sabloane neutre: cum documentam sarcina, agentul si verificarile](#anexa-b-sabloane-neutre-cum-documentam-sarcina-agentul-si-verificarile)
 - [Anexa C. Un protocol de evaluare progresiva si acordare a autonomiei](#anexa-c-un-protocol-de-evaluare-progresiva-si-acordare-a-autonomiei)
 - [Anexa D. Metoda de studiu si utilizarea responsabila a surselor](#anexa-d-metoda-de-studiu-si-utilizarea-responsabila-a-surselor)
-- [Anexa E. Istoricul editiilor si ce s-a schimbat in editia 1.1](#anexa-e-istoricul-editiilor-si-ce-s-a-schimbat-in-editia-11)
+- [Anexa E. Istoricul editiilor](#anexa-e-istoricul-editiilor)
 - [Bibliografie si resurse de aprofundare](#bibliografie-si-resurse-de-aprofundare)
 <!-- TOC:END -->
 
@@ -1968,17 +1970,17 @@ O varianta aplicata la securitate porneste de la un buletin oficial, trece print
 **Cum marcam ce stim si ce nu.** In text, o afirmatie legata de o sursa poarta trimiterea [Sxx]. O inferenta a autorului, adica o concluzie care nu apare ca atare in sursa, este formulata cu verbe precum "poate", "de regula" sau "in practica". Informatiile care se schimba repede (versiuni de protocol, termene legale, preturi) poarta data consultarii in bibliografie si trebuie reverificate inainte de folosire.
 
 
-# Anexa E. Istoricul editiilor si ce s-a schimbat in editia 1.1
+# Anexa E. Istoricul editiilor
 
 ## E.1. Informatii despre lucrare
 
 - **Titlu:** De la conversatia cu AI la sisteme agentice verificabile.
 - **Autor:** chrsdme.
-- **Editia curenta:** 1.1, 15 octombrie 2026 (editia 1.0: 13 octombrie 2026).
+- **Editia curenta:** 1.2, 17 octombrie 2026 (editia 1.1: 15 octombrie 2026; editia 1.0: 13 octombrie 2026).
 - **Licenta:** MIT. Reutilizarea trebuie sa respecte conditiile licentei din depozit.
 - **Versiunea web:** https://chrsdme.github.io/Monografie_AI/
 - **Sursa editabila:** https://github.com/chrsdme/Monografie_AI
-- **Citare recomandata:** chrsdme (2026), *De la conversatia cu AI la sisteme agentice verificabile*, editia 1.1, 15 octombrie 2026, https://chrsdme.github.io/Monografie_AI/.
+- **Citare recomandata:** chrsdme (2026), *De la conversatia cu AI la sisteme agentice verificabile*, editia 1.2, 17 octombrie 2026, https://chrsdme.github.io/Monografie_AI/.
 
 Fisierul Markdown este sursa unica. Pagina web si PDF-ul se genereaza din aceeasi revizie, ca sa afiseze aceeasi editie si aceeasi data.
 
@@ -2011,9 +2013,34 @@ Fisierul Markdown este sursa unica. Pagina web si PDF-ul se genereaza din aceeas
 
 Editia 1.0 (13 octombrie 2026) ramane in istoricul depozitului. Daca ai citat-o, referinta ramane valida; numerotarea sectiunilor din 1.1 este insa diferita acolo unde au fost completate golurile.
 
+## E.4. Modificari de la editia 1.1 la 1.2
+
+Aceasta sectiune descrie modificarile introduse dupa editia 1.1. E.2 pastreaza separat istoricul 1.0 -> 1.1; descrierea editiilor anterioare nu trebuie rescrisa.
+
+**Clarificari si completari**
+
+- Capitolul 1: exemple despre reguli versus modele, clarificarea tokenilor, relatia dintre machine learning, deep learning, generativ si multimodal, si distinctia model/aplicatie/sistem. Sectiunea 1.4 ramane pastrata.
+- Capitolul 6: noua sectiune 6.7 despre Intent Engineering, cu obiective, limite, dovezi si criterii de succes.
+- Capitolul 12: trimitere de la contractul agentului la intentia operationala.
+
+**Exemple si studii de caz**
+
+- Capitolul 21: 21.7 compara automatizarea, workflow-ul AI si agentul in cazul unor rambursari fictive de 62/350 RON; 21.8 prezinta cercetarea YouTube si productia editoriala cu doi agenti; 21.9 compara arhitecturile si autonomia.
+- Pseudocod, configuratii YAML, contract de predare, aprobari, escalari si limite impuse de aplicatie. Simulatorul Python asociat si cele opt teste lucreaza cu date fictive: nu efectueaza plati si nu publica videoclipuri.
+- Anexa B: sablonul B.8 pentru o specificatie de intentie, explicit ilustrativ.
+
+**Dictionar, surse si publicare**
+
+- Anexa A: completari ale glosarului pentru studiile practice si Intent Engineering; trimitere la lexiconul independent EN-RO al lui Ovidiu Boticiu, fara copierea definitiilor sale.
+- Bibliografie: sursele S41-S44 pentru Intent Engineering, cu distinctii intre precedente tehnice, proiecte open-source si articole comerciale.
+- Wiki si PDF: legaturi intre 6.7, 21.7, 21.8 si B.8, cu verificarea cuprinsului si a destinatiilor interne.
+- Platforma: feedback public prin Tally si generarea automata a wiki-ului si PDF-ului din sursa Markdown, dupa integrarea modificarilor in `main`.
+
+**Limite:** exemplele nu sunt integrari de productie; nu atribuim Intent Engineering castiguri de performanta care nu au fost demonstrate.
+
 # Bibliografie si resurse de aprofundare
 
-*Selectie comentata de surse pentru concepte, exemple si metodologie. Toate linkurile au fost deschise sau confruntate cu pagina originala la 15 octombrie 2026. Un link care functioneaza nu garanteaza ca fiecare afirmatie din pagina respectiva este adevarata: pentru paginile comerciale, citarea indica un exemplu sau un mod de clasificare, nu validarea cifrelor promotionale. Continutul online se poate schimba dupa aceasta data. Sursele Cyber AI Romania provin de la un contributor independent din comunitatea AI Romania; autorul acestei lucrari nu este afiliat cu acel site.*
+*Selectie comentata de surse pentru concepte, exemple si metodologie. Sursele editiei 1.1 au fost verificate la 15 octombrie 2026; pentru completarea din 17 octombrie 2026 au fost adaugate intrarile S41-S44. Consultarea unui link nu garanteaza validarea tuturor afirmatiilor sale. Un link care functioneaza nu garanteaza ca fiecare afirmatie din pagina respectiva este adevarata: pentru paginile comerciale, citarea indica un exemplu sau un mod de clasificare, nu validarea cifrelor promotionale. Continutul online se poate schimba dupa aceasta data. Sursele Cyber AI Romania provin de la un contributor independent din comunitatea AI Romania; autorul acestei lucrari nu este afiliat cu acel site.*
 
 **[S01] Vaswani, A. et al. (2017).** *Attention Is All You Need.* arXiv:1706.03762. https://arxiv.org/abs/1706.03762 . Fundament pentru arhitectura Transformer, nu pentru toate formele de AI.
 
@@ -2109,4 +2136,4 @@ Pe langa materialele documentate si citate mai sus, in aceasta lucrare intra si 
 
 ---
 
-*Sfarsitul editiei 1.1. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*
+*Sfarsitul editiei 1.2. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*

@@ -9,30 +9,34 @@ site_dir: site
 theme:
   name: material
   language: ro
+  logo: material/book-open-variant
   features:
     - navigation.sections
     - navigation.indexes
     - navigation.top
     - navigation.footer
+    - navigation.instant
+    - navigation.tracking
     - search.suggest
     - search.highlight
     - search.share
     - content.code.copy
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: blue grey
-      accent: indigo
+    - scheme: slate
+      primary: indigo
+      accent: cyan
       toggle:
         icon: material/brightness-7
-        name: Treci la tema intunecata
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: blue grey
-      accent: light blue
+        name: Activeaza tema luminoasa
+    - scheme: default
+      primary: indigo
+      accent: cyan
       toggle:
         icon: material/brightness-4
-        name: Treci la tema luminoasa
+        name: Revino la tema Tech intunecata
+
+extra_css:
+  - stylesheets/tech.css
 
 plugins:
   - search:

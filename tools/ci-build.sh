@@ -4,6 +4,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 python -m unittest discover -s tests -p "test_feedback_hook.py"
+python -m unittest discover -s tests -p "test_tech_theme.py" -v
 python -m unittest discover -s tests -p "test_intent_crossrefs.py" -v
 python -m unittest discover -s tests -p "test_release_archive.py" -v
 python -m unittest discover -s examples/agent_studies/tests -v
@@ -50,6 +51,11 @@ from pathlib import Path
 pdf = "Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf"
 site = Path("site")
 assert (site / "index.html").exists(), "Lipseste pagina principala"
+home_html = (site / "index.html").read_text(encoding="utf-8")
+assert 'tech-hero' in home_html and 'tech-edition' in home_html, "Homepage Tech nu a fost randat"
+assert 'stylesheets/tech.css' in home_html, "Stilul Tech nu este incarcat"
+assert (site / "stylesheets/tech.css").exists(), "Fisierul CSS Tech lipseste"
+print("PASS: homepage Tech, tema si panoul editiei curente")
 assert (site / "anexe/sabloane/index.html").exists(), "Lipseste Anexa B"
 assert (site / "anexe/evaluare/index.html").exists(), "Lipseste Anexa C"
 assert (site / "downloads" / pdf).read_bytes() == Path(pdf).read_bytes(), "PDF-ul publicat difera de sursa"

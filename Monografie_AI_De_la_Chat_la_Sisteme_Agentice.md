@@ -1651,6 +1651,7 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 **Workflow.** Succesiune de etape si decizii care transforma intrari in rezultate. Poate contine reguli fixe, oameni, modele si agenti.
 
 **YAML.** Format text pentru configuratii structurate, bazat pe indentare. Exemplele YAML din carte nu sunt o schema universala de framework.
+
 # Anexa B. Sabloane neutre: cum documentam sarcina, agentul si verificarile
 
 Sabloanele de mai jos nu apartin niciunui produs. Sunt propuneri de documentare, cu campuri pe care le poti pastra intr-un fisier Markdown, intr-un tabel sau intr-o aplicatie de proiect. Nu trebuie sa completezi toate campurile pentru un exercitiu simplu. Incepi cu esentialul si adaugi detalii cand riscul le justifica.

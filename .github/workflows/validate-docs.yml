@@ -7,6 +7,7 @@ on:
       - "Monografie_AI_figuri/**"
       - "wiki/**"
       - "tools/**"
+      - "examples/**"
       - "mkdocs.yml"
       - "requirements.txt"
       - ".github/workflows/**"

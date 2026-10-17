@@ -1237,6 +1237,197 @@ Observatii de cititor atent: pagina da in prezentare cifra de 66 de conturi AWS,
 
 Aplicata asupra propriilor tale proiecte, aceeasi lista te protejeaza de entuziasmul de dupa o demonstratie reusita. Cazurile de mai sus sunt, ca exemple de comunicare publica, utile tocmai pentru ce lasa nespus, nu pentru ca ar fi false.
 
+### 21.7. Studiul de caz E: acelasi retur prin trei arhitecturi
+
+**Statut:** simulare didactica, nu implementare comerciala. Un client solicita la ora 23:00 rambursarea unui produs deteriorat. Magazinul fictiv permite procesarea automata numai pentru sume de cel mult **100 RON**, cu identitate, comanda, dovezi si eligibilitate verificate. Pragul este inventat pentru exercitiu, nu reprezinta o obligatie legala.
+
+#### E1. Automatizare clasica: codul decide
+
+```text
+LA primirea unei cereri:
+    verifica_identitatea()
+    comanda = obtine_comanda()
+    DACA eligibila(comanda) SI dovada_suficienta
+         SI nu_exista_rambursare SI suma <= 100 RON:
+         initiaza_cu_cheie_de_idempotenta()
+         reconciliaza_rezultatul()
+         confirma_doar_dupa_succes()
+    ALTFEL: escaladeaza()
+```
+
+Nu exista un LLM. Ramificatiile sunt programate, iar operatiile cu efect extern sunt controlate in cod. Daca datele sunt standardizate si regulile suficiente, aceasta poate fi alegerea potrivita.
+
+#### E2. Workflow AI: modelul ajuta in etape delimitate
+
+```text
+LA primirea unui email:
+    intentie, order_id = AI.extrage_date(email)
+    DACA order_id_lipseste: solicita_completare(); OPRESTE
+    comanda = cauta_comanda(order_id)
+    eligibil = valideaza_in_cod(comanda, client)
+    DACA eligibil SI suma <= 100 RON:
+        rezultat = proceseaza_controlat()
+        DACA rezultat.confirmat:
+            text = AI.redacteaza_confirmare(rezultat)
+            trimite_email(text)
+    ALTFEL: escaladeaza()
+```
+
+AI interpreteaza emailul si redacteaza un mesaj, dar nu alege liber traseul complet. Workflow-ul poate avea ramificatii, etape paralele si rutare cu AI fara a deveni automat un agent.
+
+#### E3. Agent AI: modelul propune urmatoarea actiune
+
+Agentul primeste obiectivul, instructiunile, contextul, instrumentele disponibile si o bucla de actiune-feedback. El poate decide sa caute comanda, sa verifice istoricul, sa ceara o fotografie sau sa escaladeze cazul. **Autorizarea nu vine din prompt.**
+
+```text
+OBIECTIV = "Rezolva cererea de rambursare"
+INSTRUMENTE = [cauta_comanda, verifica_politica,
+               verifica_duplicat, cere_dovezi, pregateste_rambursare,
+               verifica_rezultat, trimite_confirmare, escaladeaza]
+CONTEXT = [cerere, rezultate_verificate, actiuni_anterioare]
+
+REPETA maximum 12 pasi:
+    actiune = MODEL.alege_urmatorul_pas(OBIECTIV, CONTEXT, INSTRUMENTE)
+    DACA actiunea este interzisa: escaladeaza(); OPRESTE
+    DACA actiunea produce rambursare:
+        verifica_identitate_eligibilitate_moneda_suma()
+        verifica_duplicat_si_aprobare()
+        DACA verificarea_esueaza: escaladeaza(); OPRESTE
+    rezultat = DISPATCHER.executa_doar_actiunea_autorizata(actiune)
+    CONTEXT.adauga(rezultat)
+    DACA asteptam_clientul: salveaza_starea(); OPRESTE_TEMPORAR
+    DACA rezultatul_final_este_verificat: OPRESTE
+ALTFEL: escaladeaza_pentru_limita_de_pasi()
+```
+
+O bucla `REPETA` nu defineste singura un agent: conteaza daca modelul poate alege dinamic actiunile. Dispatcher-ul din aplicatie trebuie sa valideze argumentele, permisiunile, limitele si rezultatele.
+
+**Trei cazuri:** 62 RON cu dovezi complete -> pregatire si verificare a operatiunii; 350 RON -> escalare fara plata; lipsa dovezii -> solicitare de clarificari si stare `WAITING_CUSTOMER`. Reincercarea unui API dupa timeout cere mai intai reconcilierea tranzactiei, ca sa nu rambursam de doua ori.
+
+#### E4. Configuratie de demonstratie
+
+```yaml
+name: refund_assistant_demo
+model:
+  provider: mock
+  name: qwen2.5:14b
+policy:
+  currency: RON
+  auto_refund_max: 100.00
+  max_steps: 12
+  require_verified_customer: true
+  require_proof_for_damage: true
+  allow_production_refunds: false
+safety:
+  backend: sandbox
+  idempotency: request_id
+```
+
+**Citirea configuratiei:** `mock` inseamna model simulat, `sandbox` inseamna fara operatii financiare reale, iar `request_id` este cheia folosita pentru a recunoaste aceeasi cerere. YAML este un format de configurare, nu un standard Shopify. Un test cu mock verifica regulile simulatoare, nu demonstreaza integrarea reala. Pentru Shopify, mutatia `refundCreate` necesita o cheie de idempotenta in versiunile API incepand cu 2026-04. [Documentatie Shopify](https://shopify.dev/docs/api/admin-graphql/2026-10/mutations/refundCreate).
+
+**Evaluare:** verificam separat 62 RON, 350 RON, lipsa dovezii, client neverificat, solicitare duplicata, API indisponibil, unealta interzisa si limita de pasi. Pentru tranzactii, o singura plata neautorizata este un defect critic, indiferent de rata globala de succes.
+
+### 21.8. Studiul de caz F: cercetare YouTube si productie editoriala cu doi agenti
+
+**Scop:** un creator urmareste canalele X, Y si Z, vrea sa detecteze materiale noi, sa obtina idei originale si sa aprobe personal orice publicare. Materialul analizat apartine creatorilor sai; ideile trebuie dezvoltate independent si conditiile platformei respectate.
+
+#### F1. Inaintea agentilor: automatizare si workflow
+
+O automatizare clasica salveaza titlul, descrierea si URL-ul videoclipurilor noi. Un workflow AI poate adauga un rezumat al datelor accesibile si o schita de scenariu, prin etape prestabilite. Nu este obligatoriu sa introducem agenti daca asta rezolva problema.
+
+#### F2. Agentul Research: documentare si propuneri
+
+Agentul primeste obiectivul editorial, canalele, publicul tinta, istoria propriilor materiale si reguli de cercetare. Poate alege ce metadate sa compare si unde sa caute documentatie suplimentara. Foloseste numai surse si unelte autorizate.
+
+```text
+PERIODIC: preia_metadate_noi(); elimina_duplicate()
+PENTRU cel_mult_N_iteratii:
+    actiune = RESEARCH.alege_urmatoarea_actiune()
+    DACA cere o sursa permisa: consulta_sursa()
+    DACA informatia este insuficienta: marcheaza_incertitudine()
+    DACA propunerea este documentata: finalizeaza_brief(); OPRESTE
+```
+
+Titlurile, descrierile si data publicarii sunt **metadate**, nu transcrieri. Nu putem afirma ca agentul a analizat integral un videoclip pentru care nu are acces la continut. Nici trei videoclipuri asemanatoare nu confirma singure un trend.
+
+Exemplu de propunere: "De ce nu orice workflow AI este automat agent AI?", cu trei titluri candidate, o schita de clip de 60-90 secunde si sursele documentate.
+
+#### F3. Contractul de predare catre Production
+
+```yaml
+handoff_id: VID-041
+from: research_agent
+to: production_agent
+status: READY_FOR_DRAFT
+proposed_topic: "De ce nu orice AI workflow este agent?"
+analysis_scope: metadata_only
+source_urls:
+  - "https://www.youtube.com/watch?v=EXEMPLU_1"
+  - "https://www.youtube.com/watch?v=EXEMPLU_2"
+limitations:
+  - "Transcrierile altor autori nu au fost accesate"
+  - "Trendul nu este demonstrat"
+requested_variants: 3
+requires_human_approval: true
+```
+
+Identificatorii de mai sus sunt fictivi. Contractul este un artefact de predare, nu o dovada ca sursele au fost vizionate ori verificate. `READY_FOR_DRAFT` permite redactarea, nu publicarea.
+
+#### F4. Agentul Production: trei variante si aprobare
+
+Production poate folosi **acelasi model** ca Research, dar primeste alte instructiuni, contexte si instrumente. El propune variantele A (scurt si dinamic), B (explicativ cu diagrame) si C (demonstratie practica). Video-ul efectiv necesita un motor de randare, continut vizual autorizat si integrare tehnica.
+
+```text
+DACA handoff_invalid: OPRESTE
+PENTRU stil IN [A, B, C]:
+    genereaza_scenariu_original()
+    genereaza_storyboard()
+    verifica_durata_si_afirmatiile_factuale()
+    DACA exista_renderer_autorizat: genereaza_preview()
+    ALTFEL: livreaza_documente_de_productie()
+STATUS = WAITING_HUMAN_APPROVAL
+```
+
+Utilizatorul poate aproba, combina sau respinge variante. Aprobarea trebuie asociata **hash-ului artefactului concret**; orice modificare ulterioara necesita o noua aprobare. Incarcarea unui clip pe canal necesita OAuth si drepturi efective de publicare, iar schimbarea vizibilitatii din privat in public poate cere o aprobare distincta. In configuratia didactica publicarea este dezactivata.
+
+```yaml
+name: editorial_research_demo
+research:
+  source_mode: fixture
+  max_videos: 12
+  allowed_content: metadata_only
+  allow_third_party_caption_download: false
+production:
+  variant_names: [scurt_dinamic, explicativ, demonstratie]
+  video_renderer: not_configured
+  publisher: disabled
+  approval_required: true
+  publish_default_privacy: private
+```
+
+`fixture` inseamna date de test cunoscute. YouTube Data API permite citirea anumitor metadate publice, dar `captions.download` necesita drept de editare a videoclipului, deci nu ofera transcrierile oricarui creator: [PlaylistItems.list](https://developers.google.com/youtube/v3/docs/playlistItems/list), [Captions.download](https://developers.google.com/youtube/v3/docs/captions/download), [Videos.insert](https://developers.google.com/youtube/v3/docs/videos/insert).
+
+**Evaluare:** urmarim identificarea clipurilor noi, duplicatele, provenienta surselor, afirmatiile neverificate, originalitatea scenariilor, versiunile aprobate si absenta oricarei publicari neautorizate. Un sistem care produce trei scenarii JSON nu a generat trei videoclipuri MP4.
+
+### 21.9. Comparatie: cine decide pasul urmator?
+
+| Sistem | Traseu | Decizia AI | Control necesar |
+| --- | --- | --- | --- |
+| Automatizare clasica | Ramificatii programate | Nu este necesara | Validari si drepturi in cod |
+| Workflow AI | Trasee definite in avans | Interpretare si decizii delimitate | Scheme, conditii, aprobari |
+| Agent AI | Obiectiv si limite fixe; pasi dinamici | Modelul propune urmatoarea actiune | Dispatcher, verificari, buget si oprire |
+| Doi agenti | Contract de predare si responsabilitati distincte | Alegeri in aria fiecarui agent | Validarea handoff-ului si a livrabilelor |
+| "AI Employee" | Responsabilitate recurenta | Optional, daca include agenti | Monitorizare, escalare si responsabil uman |
+
+"AI Employee" este o **eticheta operationala sau comerciala**, nu o categorie tehnica standard si nici o garantie de memorie persistenta ori autonomie nelimitata. Un scheduler, o baza de date si un agent pot colabora fara sa transforme fiecare componenta intr-un agent.
+
+**Regula practica:** alegem cel mai simplu sistem care rezolva verificabil problema. Daca deciziile sunt previzibile, folosim reguli; daca doar anumite etape cer interpretare, folosim workflow AI; daca ordinea actiunilor trebuie adaptata dinamic, evaluam un agent; daca apar responsabilitati distincte, evaluam orchestrarea. Alegerea trebuie sustinuta de rezultate, nu de numarul agentilor.
+
+**Simulator si configuratii:** [exemplele Python, YAML si testele pentru studiile E/F](https://github.com/chrsdme/Monografie_AI/tree/main/examples/agent_studies). Sunt exercitii sandbox; codul nu executa plati si nu publica videoclipuri.
+
+Studiile E si F sunt **fictive**. Pseudocodul ilustreaza arhitectura, configurarile YAML sunt demonstrative, iar teste cu mock nu reprezinta probe de plata Shopify, transcriere YouTube ori incarcare video reala. Recomandarea de a incepe cu cea mai simpla arhitectura este sustinuta de [Anthropic, Building effective agents](https://www.anthropic.com/engineering/building-effective-agents).
+
+
 ## 22. Cum incepi propriul sistem, fara sa sari etapele
 
 ### 22.1. Alegerea sarcinii

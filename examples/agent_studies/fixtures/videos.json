@@ -1,0 +1,5 @@
+[
+  {"video_id":"DEMO001","title":"Instrumentele agentilor AI","description":"Introducere in API si tool calling","url":"https://www.youtube.com/watch?v=DEMO001"},
+  {"video_id":"DEMO002","title":"Memorie si context","description":"Cum sunt pastrate informatiile relevante","url":"https://www.youtube.com/watch?v=DEMO002"},
+  {"video_id":"DEMO003","title":"Automatizare vs agent","description":"Workflow fix si decizii dinamice","url":"https://www.youtube.com/watch?v=DEMO003"}
+]

@@ -19,7 +19,23 @@ source = Path("Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf")
 target = Path("wiki/downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf")
 assert source.is_file() and source.stat().st_size > 50_000, "PDF lipsa sau prea mic"
 assert target.read_bytes() == source.read_bytes(), "PDF-ul din wiki difera de cel generat"
-pages = len(PdfReader(str(source)).pages)
+reader = PdfReader(str(source))
+pages = len(reader.pages)
+
+# Previne pierderea tacuta a anexelor din PDF daca lipseste un rand gol Markdown.
+def titles(items):
+    for item in items:
+        if isinstance(item, list):
+            yield from titles(item)
+        else:
+            yield item.title
+
+pdf_headings = list(titles(reader.outline))
+for required in ("Anexa A.", "Anexa B.", "Anexa C.", "Anexa D.", "Anexa E.", "Bibliografie"):
+    assert any(t.startswith(required) for t in pdf_headings), (
+        f"Lipseste heading-ul PDF: {required}"
+    )
+print("PASS: anexele A-E si bibliografia sunt prezente in outline-ul PDF")
 assert pages >= 20, f"PDF suspect: {pages} pagini"
 print(f"PDF verificat: {pages} pagini, {source.stat().st_size} octeti")
 PY

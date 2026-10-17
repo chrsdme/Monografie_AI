@@ -6,6 +6,7 @@ on:
       - "Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md"
       - "Monografie_AI_figuri/**"
       - "wiki/**"
+      - "docs/**"
       - "tools/**"
       - "examples/**"
       - "mkdocs.yml"

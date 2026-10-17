@@ -1,30 +1,42 @@
-# Publicare automata a monografiei
+# Publicarea automata a monografiei
 
-## Obiectiv
+## Sursa canonica si previzualizarea
 
-Sursa editoriala curenta este `Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md`. Workflow-urile GitHub Actions regenereaza paginile wiki si un PDF nou din acest fisier, fara sa creeze commit-uri automate pe `main`.
+Sursa editoriala este `Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md`. PR-urile sunt validate doar cu drepturi de citire: `bash tools/ci-build.sh` produce Markdown, wiki, PDF si un artefact `monografie-preview` in GitHub Actions.
 
-Acest document se refera la **PR 1**, inainte de modularizarea capitolelor. Paginile comunitatii sunt pastrate de generator si in configuratia MkDocs.
+Doar proprietarul face merge in `main`. Niciun PR nu poate publica automat PDF-ul final.
 
-## Pentru o corectie sau completare
+## Publicarea dupa merge in main
 
-1. Creeaza un branch pornind din `main`.
-2. Modifica fisierul `Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md`. Nu edita separat paginile generate din `wiki/partea-*/` sau anexele generate.
-3. Pentru schimbari ale structurii actuale (capitol/parte noua), generatorul necesita inca modificarea maparii din `tools/build.py` si navigatiei din `mkdocs.yml`. Aceasta limitare va fi eliminata in PR 2.
-4. Deschide un Pull Request. Workflow-ul de validare executa lint, construieste wiki si PDF, verifica paginile si ruleaza `mkdocs build --strict`.
-5. Descarca din Actions artefactul `monografie-preview` pentru verificarea PDF si a site-ului. Nu se publica un PR in GitHub Pages.
-6. Dupa review, face merge proprietarul. Workflow-ul de deploy regenereaza din `main` si publica site-ul cu PDF-ul.
+La fiecare modificare care declanseaza workflow-ul de publicare:
 
-## URL-uri stabile
+1. `tools/release.py` verifica editia din sursa in raport cu primul parinte Git al merge-ului. Daca PR-ul a stabilit deja explicit o editie noua (de exemplu 1.1 -> 1.2), o respecta. Altfel, creste incremental: **1.2 -> 1.2.1 -> 1.2.2**.
+2. Se actualizeaza data in fusul Europe/London, coperta, citarea, Anexa E si sumarul editiei. Se adauga o sectiune E.n pentru modificarile publicate, derivata transparent din commitul integrat. Rezumatul generat identifica tipurile de fisiere schimbate si provenienta, nu inventeaza modificari de continut.
+3. `tools/build.py --toc --wiki --pdf` reconstruieste cuprinsul, paginile wiki si PDF-ul. Lint, teste, MkDocs strict si verificarea PDF-ului trebuie sa treaca.
+4. `tools/archive_pdf.py` creeaza in `docs/` o copie cu numarul exact al editiei, actualizeaza si PDF-ul cu nume stabil si reconstruieste lista istorica din `docs/README.md`.
+5. Workflow-ul face un singur commit tehnic al versiunii si al arhivei catre `main`, numai dupa validare, apoi publica site-ul prin GitHub Pages.
 
-- Documentatie: https://chrsdme.github.io/Monografie_AI/
-- PDF publicat: https://chrsdme.github.io/Monografie_AI/downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf
+Commitul automat este facut cu tokenul standard GitHub Actions si `[skip ci]`. Nu provoaca o noua rulare `push`, deci nu genereaza o editie noua in bucla. Daca regulile de protectie ale ramurii interzic commitul botului, jobul **esueaza explicit**, iar arhivarea nu este declarata completa.
 
-Fisierul PDF aflat la radacina repository-ului ramane un snapshot istoric. PDF-ul din Pages este regenerat la fiecare deploy care atinge fisierele urmarite.
+O noua editie este atasata **fiecarui merge relevant in main**, nu fiecarui commit intermediar dintr-un PR. Un `workflow_dispatch` manual regenereaza aceeasi editie fara incrementare; daca exista deja o arhiva, se reutilizeaza fisierul istoric imuabil.
 
-## Comenzi locale (optionale)
+## URL-uri
 
-Necesita Python 3.12, Pandoc, Playwright cu Chromium si pypdf / MkDocs:
+- Wiki: https://chrsdme.github.io/Monografie_AI/
+- PDF curent (link stabil): https://chrsdme.github.io/Monografie_AI/downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf
+- Arhiva pe GitHub: https://github.com/chrsdme/Monografie_AI/tree/main/docs
+- Lista versiunilor: https://github.com/chrsdme/Monografie_AI/blob/main/docs/README.md
+
+## Controlul editiei si istoriei
+
+- `tools/lint.py` impune coerenta dintre front matter, coperta, citare, Anexa E, notele finale si changelog.
+- Fisierele PDF numerotate nu sunt suprascrise. Incercarea de a republica alte octeti sub acelasi numar de editie la un eveniment `push` produce eroare.
+- Changelogurile vechi sunt pastrate; cele noi sunt adaugate incremental.
+- Mesajele de commit pot fi insuficient de detaliate. Pentru o versiune majora, descrierea istoricului trebuie revizuita editorial in PR inainte de merge.
+- PDF-ul din radacina repo ramane snapshot istoric; `docs/` este arhiva oficiala.
+- GitHub Pages si `docs/` folosesc aceeasi copie verificata a PDF-ului.
+
+## Publicare locala (optionala)
 
 ```bash
 python -m pip install -r requirements.txt -r tools/requirements.txt
@@ -32,20 +44,8 @@ python -m playwright install --with-deps chromium
 bash tools/ci-build.sh
 ```
 
-GitHub Actions instaleaza singur dependintele. Pentru o editare obisnuita nu este nevoie sa rulezi generatorul pe calculator.
+Pentru editare obisnuita sunt suficiente PR-ul si verificarea artefactului PDF din Actions.
 
-## Restrictii si verificari
+## Plan editorial separat
 
-- Workflow-urile nu trimit credentiale de scriere catre codul venit prin PR; au doar `contents: read` la validare.
-- Merge-ul si publicarea pe `main` necesita in continuare decizia proprietarului.
-- Scriptul publica PDF-ul doar daca verificarea internala a cuprinsului este stabila si site-ul trece `mkdocs build --strict`.
-- Dependintele de pe runner pot produce diferente de font sau paginare; verifica vizual previzualizarea PDF cand introduci modificari ample.
-- Nu sunt create automat GitHub Releases si nici commit-uri cu PDF la radacina. Arhivarea editiilor oficiale prin Releases necesita un pas ulterior, separat de publicarea zilnica.
-- Modificari doar in fisiere neincluse in filtrele de eveniment nu declanseaza automat publicarea; exista si `workflow_dispatch` pentru rulare manuala.
-- Nu activa AI Scan sau alte servicii platite pentru acest workflow.
-
-## Etapele urmatoare, separate
-
-**PR 2 - Sursa modulara.** Migrare fara pierderi la `content/...` si un manifest `book.yml` pentru ordinea partilor, capitolelor si anexelor. Generatorul uneste sursele in Markdown integral si pastreaza URL-urile wiki existente. Verificam comparatia continutului si o editie PDF inainte de merge.
-
-**PR 3 - Feedback Tally.** Un formular Tally public, fara cont GitHub pentru cititori. Linkurile contextuale din capitole vor transmite URL-ul paginii prin `?page=...` catre un camp ascuns Tally. Sugestiile raman private pana la triere si nu creeaza automat PR-uri. URL-ul real al formularului si campurile de confidentialitate sunt necesare inainte de activare.
+Migrarea optionala la surse modulare `content/` si `book.yml` ramane o lucrare diferita. Feedbackul cititorilor este deja disponibil prin formularul Tally integrat in wiki.

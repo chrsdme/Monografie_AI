@@ -7,6 +7,7 @@ on:
       - "Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md"
       - "Monografie_AI_figuri/**"
       - "wiki/**"
+      - "docs/**"
       - "tools/**"
       - "mkdocs.yml"
       - "requirements.txt"
@@ -18,21 +19,29 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    permissions:
+      contents: write
     steps:
-      - name: Checkout
+      - name: Checkout with short history
         uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          fetch-depth: 2
+          persist-credentials: true
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Prepare edition, date and changelog for changed main
+        if: github.ref == 'refs/heads/main'
+        env:
+          EVENT: ${{ github.event_name }}
+        run: python tools/release.py --repo . --event "$EVENT"
       - name: Install Pandoc
         run: |
           sudo apt-get update
@@ -44,6 +53,32 @@ jobs:
         run: python -m playwright install --with-deps chromium
       - name: Generate and verify monograph, wiki and PDF
         run: bash tools/ci-build.sh
+      - name: Archive edition in docs and update published PDF
+        if: github.ref == 'refs/heads/main'
+        env:
+          EVENT: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            python tools/archive_pdf.py --repo . --reuse-existing
+          else
+            python tools/archive_pdf.py --repo .
+          fi
+      - name: Commit validated metadata, wiki and PDF archives
+        if: github.ref == 'refs/heads/main'
+        run: |
+          set -euo pipefail
+          version=$(python -c 'import pathlib,re; s=pathlib.Path("Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md").read_text(); print(re.search(r"^edition: \"([^\"]+)\"",s,re.M).group(1))')
+          name="Monografie_AI_De_la_Chat_la_Sisteme_Agentice"
+          git add -- "${name}.md" "docs/README.md" "docs/${name}.pdf" "docs/${name}_${version}.pdf"
+          git add -- 'wiki/*.md' 'wiki/**/*.md'
+          if git diff --cached --quiet; then
+            echo "No publication commit needed"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "chore(release): archive edition ${version} [skip ci]"
+            git push origin HEAD:main
+          fi
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact

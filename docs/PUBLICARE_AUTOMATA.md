@@ -1,51 +1,31 @@
-# Publicarea automata a monografiei
+# Publicare automata si arhiva editiilor
 
-## Sursa canonica si previzualizarea
+`main` este protejat de regula GitHub `Wiki_Rules`: fiecare modificare necesita Pull Request. Workflow-ul nu incearca sa ocoleasca aceasta regula.
 
-Sursa editoriala este `Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md`. PR-urile sunt validate doar cu drepturi de citire: `bash tools/ci-build.sh` produce Markdown, wiki, PDF si un artefact `monografie-preview` in GitHub Actions.
+## Editii, date si changelog
 
-Doar proprietarul face merge in `main`. Niciun PR nu poate publica automat PDF-ul final.
+La un merge editorial in `main`, `tools/release.py` verifica versiunea din sursa. Pastreaza editia declarata in PR (de exemplu 1.2), cu data efectiva de publicare Europe/London, ori creste incremental: `1.2 -> 1.2.1 -> 1.2.2`.
 
-## Publicarea dupa merge in main
+Actualizeaza coperta, front matter, citarea, Anexa E si changelog-ul. Generatorul reconstruieste cuprinsul, wiki-ul, PDF-ul si blocul automat de pe pagina Acasa. Acesta include versiunea, data, linkul catre changelog, PDF-ul curent si arhiva.
 
-La fiecare modificare care declanseaza workflow-ul de publicare:
+## PDF-ul si arhiva
 
-1. `tools/release.py` verifica editia din sursa in raport cu primul parinte Git al merge-ului. Daca PR-ul a stabilit deja explicit o editie noua (de exemplu 1.1 -> 1.2), o respecta. Altfel, creste incremental: **1.2 -> 1.2.1 -> 1.2.2**.
-2. Se actualizeaza data in fusul Europe/London, coperta, citarea, Anexa E si sumarul editiei. Se adauga o sectiune E.n pentru modificarile publicate, derivata transparent din commitul integrat. Rezumatul generat identifica tipurile de fisiere schimbate si provenienta, nu inventeaza modificari de continut.
-3. `tools/build.py --toc --wiki --pdf` reconstruieste cuprinsul, paginile wiki si PDF-ul. Lint, teste, MkDocs strict si verificarea PDF-ului trebuie sa treaca.
-4. `tools/archive_pdf.py` creeaza in `docs/` o copie cu numarul exact al editiei, actualizeaza si PDF-ul cu nume stabil si reconstruieste lista istorica din `docs/README.md`.
-5. Workflow-ul face un singur commit tehnic al versiunii si al arhivei catre `main`, numai dupa validare, apoi publica site-ul prin GitHub Pages.
+PDF-ul validat este publicat automat la https://chrsdme.github.io/Monografie_AI/downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf . Copiile istorice au numele `docs/Monografie_AI_De_la_Chat_la_Sisteme_Agentice_X.Y[.Z].pdf`, iar `docs/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf` este copia curenta.
 
-Commitul automat este facut cu tokenul standard GitHub Actions si `[skip ci]`. Nu provoaca o noua rulare `push`, deci nu genereaza o editie noua in bucla. Daca regulile de protectie ale ramurii interzic commitul botului, jobul **esueaza explicit**, iar arhivarea nu este declarata completa.
+Pentru ca botul **nu are voie sa faca push direct in main**, jobul `archive_pr` pregateste automat o ramura `auto/archive-...` si deschide un PR cu PDF-ul numerotat, copia curenta, manifestul `docs/.publication.json`, sursa, changelog-ul si paginile wiki. **Proprietarul trebuie sa faca merge la acel PR pentru persistenta arhivei in main.** PDF-ul de pe Pages este disponibil imediat, independent de acel merge.
 
-O noua editie este atasata **fiecarui merge relevant in main**, nu fiecarui commit intermediar dintr-un PR. Un `workflow_dispatch` manual regenereaza aceeasi editie fara incrementare; daca exista deja o arhiva, se reutilizeaza fisierul istoric imuabil.
+Cand PR-ul de arhivare este integrat, workflow-ul detecteaza modificarea manifestului, **nu incrementeaza editia din nou**, iar fisierul PDF istoric este reutilizat fara suprascriere.
 
-## URL-uri
+## Permisiuni necesare
+
+Jobul `build` are numai `contents: read`; jobul `archive_pr` are drepturi `contents: write` si `pull-requests: write`, doar pentru ramura de arhivare si crearea PR-ului. In `Settings > Actions > General > Workflow permissions` poate fi necesara activarea optiunii **Allow GitHub Actions to create and approve pull requests**. Botul nu face merge. Daca optiunea este blocata, jobul raporteaza eroare si lasa ramura `auto/archive-...` disponibila pentru PR manual.
+
+Changelog-ul automat enumera provenienta commitului si domeniile afectate. Pentru o editie importanta, rezumatul editorial detaliat trebuie verificat in PR, pentru ca lista de fisiere nu demonstreaza singura semnificatia modificarilor.
+
+## Linkuri
 
 - Wiki: https://chrsdme.github.io/Monografie_AI/
-- PDF curent (link stabil): https://chrsdme.github.io/Monografie_AI/downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf
-- Arhiva pe GitHub: https://github.com/chrsdme/Monografie_AI/tree/main/docs
-- Lista versiunilor: https://github.com/chrsdme/Monografie_AI/blob/main/docs/README.md
+- PDF curent: https://chrsdme.github.io/Monografie_AI/downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf
+- Arhiva GitHub: https://github.com/chrsdme/Monografie_AI/tree/main/docs
 
-## Controlul editiei si istoriei
-
-- `tools/lint.py` impune coerenta dintre front matter, coperta, citare, Anexa E, notele finale si changelog.
-- Fisierele PDF numerotate nu sunt suprascrise. Incercarea de a republica alte octeti sub acelasi numar de editie la un eveniment `push` produce eroare.
-- Changelogurile vechi sunt pastrate; cele noi sunt adaugate incremental.
-- Mesajele de commit pot fi insuficient de detaliate. Pentru o versiune majora, descrierea istoricului trebuie revizuita editorial in PR inainte de merge.
-- PDF-ul din radacina repo ramane snapshot istoric; `docs/` este arhiva oficiala.
-- GitHub Pages si `docs/` folosesc aceeasi copie verificata a PDF-ului.
-
-## Publicare locala (optionala)
-
-```bash
-python -m pip install -r requirements.txt -r tools/requirements.txt
-python -m playwright install --with-deps chromium
-bash tools/ci-build.sh
-```
-
-Pentru editare obisnuita sunt suficiente PR-ul si verificarea artefactului PDF din Actions.
-
-## Plan editorial separat
-
-Migrarea optionala la surse modulare `content/` si `book.yml` ramane o lucrare diferita. Feedbackul cititorilor este deja disponibil prin formularul Tally integrat in wiki.
+`workflow_dispatch` regenereaza aceeasi editie fara incrementare.

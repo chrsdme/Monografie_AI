@@ -429,7 +429,7 @@ def internalize_wiki_links_for_pdf(html_text, site_url):
         html_text, flags=re.S
     ):
         pandoc_id = match.group(1)
-        heading_title = html.unescape(re.sub(r"<[^>]+>", "", match.group(2)))
+        heading_title = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", match.group(2)))).strip()
         aliases[gh_anchor(heading_title)] = pandoc_id
 
     def rep(match):

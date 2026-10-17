@@ -235,7 +235,7 @@ PENTRU cel_mult_N_iteratii:
 
 Titlurile, descrierile si data publicarii sunt **metadate**, nu transcrieri. Nu putem afirma ca agentul a analizat integral un videoclip pentru care nu are acces la continut. Nici trei videoclipuri asemanatoare nu confirma singure un trend.
 
-Exemplu de propunere: „De ce nu orice workflow AI este automat agent AI?”, cu trei titluri candidate, o schita de clip de 60–90 secunde si sursele documentate.
+Exemplu de propunere: "De ce nu orice workflow AI este automat agent AI?", cu trei titluri candidate, o schita de clip de 60-90 secunde si sursele documentate.
 
 ### F3. Contractul de predare catre Production
 
@@ -302,9 +302,9 @@ production:
 | Workflow AI | Trasee definite in avans | Interpretare si decizii delimitate | Scheme, conditii, aprobari |
 | Agent AI | Obiectiv si limite fixe; pasi dinamici | Modelul propune urmatoarea actiune | Dispatcher, verificari, buget si oprire |
 | Doi agenti | Contract de predare si responsabilitati distincte | Alegeri in aria fiecarui agent | Validarea handoff-ului si a livrabilelor |
-| „AI Employee” | Responsabilitate recurenta | Optional, daca include agenti | Monitorizare, escalare si responsabil uman |
+| "AI Employee" | Responsabilitate recurenta | Optional, daca include agenti | Monitorizare, escalare si responsabil uman |
 
-„AI Employee” este o **eticheta operationala sau comerciala**, nu o categorie tehnica standard si nici o garantie de memorie persistenta ori autonomie nelimitata. Un scheduler, o baza de date si un agent pot colabora fara sa transforme fiecare componenta intr-un agent.
+"AI Employee" este o **eticheta operationala sau comerciala**, nu o categorie tehnica standard si nici o garantie de memorie persistenta ori autonomie nelimitata. Un scheduler, o baza de date si un agent pot colabora fara sa transforme fiecare componenta intr-un agent.
 
 **Regula practica:** alegem cel mai simplu sistem care rezolva verificabil problema. Daca deciziile sunt previzibile, folosim reguli; daca doar anumite etape cer interpretare, folosim workflow AI; daca ordinea actiunilor trebuie adaptata dinamic, evaluam un agent; daca apar responsabilitati distincte, evaluam orchestrarea. Alegerea trebuie sustinuta de rezultate, nu de numarul agentilor.
 

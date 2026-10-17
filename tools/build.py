@@ -417,16 +417,28 @@ def check_wiki(wiki, written, body):
 
 
 def internalize_wiki_links_for_pdf(html_text, site_url):
-    """Convert same-site wiki links to internal PDF links if the heading exists."""
+    """Resolve MkDocs heading anchors to Pandoc heading IDs inside the PDF HTML."""
     prefix = site_url.rstrip("/") + "/"
-    ids = set(re.findall(r'\bid="([^"]+)"', html_text))
+    existing = set(re.findall(r'\bid="([^"]+)"', html_text))
+    aliases = {}
+
+    # Pandoc strips leading numerals when assigning identifiers; MkDocs keeps
+    # them (for example "21.7." -> "217-..."). Match by visible heading text.
+    for match in re.finditer(
+        r'<h[1-6]\b[^>]*\bid="([^"]+)"[^>]*>(.*?)</h[1-6]>',
+        html_text, flags=re.S
+    ):
+        pandoc_id = match.group(1)
+        heading_title = html.unescape(re.sub(r"<[^>]+>", "", match.group(2)))
+        aliases[gh_anchor(heading_title)] = pandoc_id
 
     def rep(match):
         link = html.unescape(match.group(1))
         if link.startswith(prefix) and "#" in link:
-            anchor = link.split("#", 1)[1]
-            if anchor in ids:
-                return f'href="#{anchor}"'
+            fragment = link.split("#", 1)[1]
+            target = fragment if fragment in existing else aliases.get(fragment)
+            if target:
+                return f'href="#{target}"'
         return match.group(0)
 
     return re.sub(r'href="(https?://[^"]+)"', rep, html_text)
@@ -526,11 +538,8 @@ def build_pdf(repo, md_path, out_pdf):
     internal_refs = [u for u in source_refs if u.startswith(wiki_prefix) and "#" in u]
     page = internalize_wiki_links_for_pdf(page, fm.get("wiki", ""))
     unresolved = [u for u in internal_refs if 'href="' + u + '"' in page]
-    missing_from_html = [u for u in internal_refs
-                         if 'href="' + u + '"' not in page
-                         and 'href="#' + u.split("#", 1)[1] + '"' not in page]
-    if unresolved or missing_from_html:
-        raise RuntimeError(f"Linkuri PDF interne nerezolvate: {unresolved + missing_from_html}")
+    if unresolved:
+        raise RuntimeError(f"Linkuri PDF interne nerezolvate: {unresolved}")
     print(f"PDF: {len(internal_refs)} trimiteri interne catre subcapitole verificate")
 
     # structura TOC: <a href="#id" id="toc-id">Titlu</a>; adauga spatiu pentru numere de pagina

@@ -322,14 +322,29 @@ IDX_START, IDX_END = "<!-- MONOGRAFIE:START -->", "<!-- MONOGRAFIE:END -->"
 
 
 def index_block(fm):
-    previous = fm.get("previous_edition", "")
-    anchor = fm.get("changelog_anchor", "")
-    return (f"{IDX_START}\n## Editia curenta\n\n"
-            f"Editia {fm.get('edition', '')}, {fm.get('date', '')}. Autor: {fm.get('author', '')}. Licenta: {fm.get('license', '')}. "
-            f"[Ce s-a schimbat fata de editia {previous}](anexe/metoda-surse.md#{anchor}). "
-            f"[Descarca PDF-ul curent](downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf). "
-            f"[Arhiva editiilor PDF]({fm.get('source', '')}/tree/main/docs). "
-            f"[Sursa pe GitHub]({fm.get('source', '')}).\n{IDX_END}")
+    """Blocheaza derivarea editiei curente din sursa Markdown pentru homepage."""
+    esc = html.escape
+    edition = esc(fm.get("edition", ""))
+    date = esc(fm.get("date", ""))
+    author = esc(fm.get("author", ""))
+    license_name = esc(fm.get("license", ""))
+    previous = esc(fm.get("previous_edition", ""))
+    anchor = esc(fm.get("changelog_anchor", ""), quote=True)
+    source = esc(fm.get("source", ""), quote=True)
+    return (f"{IDX_START}\\n"
+            '<section class="tech-edition" aria-label="Editia curenta">'
+            '<div class="tech-edition-copy">'
+            '<span class="tech-edition-label">BUILD / EDITIA CURENTA</span>'
+            f'<strong>Editia {edition}, {date}</strong>'
+            f'<span>Autor: {author} · Licenta: {license_name}</span>'
+            '</div>'
+            '<div class="tech-edition-links">'
+            f'<a href="anexe/metoda-surse.md#{anchor}">Ce s-a schimbat fata de editia {previous} ↗</a>'
+            '<a href="downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf">Descarca PDF-ul curent ↓</a>'
+            f'<a href="{source}/tree/main/docs">Arhiva editiilor PDF ↗</a>'
+            f'<a href="{source}">Sursa pe GitHub ↗</a>'
+            '</div></section>'
+            f"\\n{IDX_END}")
 
 
 def merge_index(wiki, fm):

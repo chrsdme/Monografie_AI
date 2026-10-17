@@ -17,11 +17,11 @@ O varianta aplicata la securitate porneste de la un buletin oficial, trece print
 
 - **Titlu:** De la conversatia cu AI la sisteme agentice verificabile.
 - **Autor:** chrsdme.
-- **Editia curenta:** 1.2, 17 octombrie 2026 (editia 1.1: 15 octombrie 2026; editia 1.0: 13 octombrie 2026).
+- **Editia curenta:** 1.2.1, 17 octombrie 2026 (editia precedenta: 1.2).
 - **Licenta:** MIT. Reutilizarea trebuie sa respecte conditiile licentei din depozit.
 - **Versiunea web:** https://chrsdme.github.io/Monografie_AI/
 - **Sursa editabila:** https://github.com/chrsdme/Monografie_AI
-- **Citare recomandata:** chrsdme (2026), *De la conversatia cu AI la sisteme agentice verificabile*, editia 1.2, 17 octombrie 2026, https://chrsdme.github.io/Monografie_AI/.
+- **Citare recomandata:** chrsdme (2026), *De la conversatia cu AI la sisteme agentice verificabile*, editia 1.2.1, 17 octombrie 2026, https://chrsdme.github.io/Monografie_AI/.
 
 Fisierul Markdown este sursa unica. Pagina web si PDF-ul se genereaza din aceeasi revizie, ca sa afiseze aceeasi editie si aceeasi data.
 
@@ -78,3 +78,11 @@ Aceasta sectiune descrie modificarile introduse dupa editia 1.1. E.2 pastreaza s
 - Platforma: feedback public prin Tally si generarea automata a wiki-ului si PDF-ului din sursa Markdown, dupa integrarea modificarilor in `main`.
 
 **Limite:** exemplele nu sunt integrari de productie; nu atribuim Intent Engineering castiguri de performanta care nu au fost demonstrate.
+
+
+## E.5. Modificari de la editia 1.2 la 1.2.1
+
+- **Origine:** commitul \`2025f07ee0ce\`; mesaj: Fix B - Tech logo and complete light/dark MkDocs styling.
+- Documentatia web: pagini sau legaturi actualizate.
+- Publicare si verificari: modificari ale instrumentelor si pipeline-ului.
+- **Nota:** aceasta lista este generata din fisierele modificate; detaliile editoriale se verifica in diff-ul commitului indicat.

@@ -55,10 +55,20 @@ class ReleaseTests(unittest.TestCase):
             wiki = repo / "wiki"
             wiki.mkdir()
             index = wiki / "index.md"
-            index.write_text("# Acasa\\n\\n<!-- MONOGRAFIE:START -->\\nVechi\\n"
-                             "<!-- MONOGRAFIE:END -->\\n", encoding="utf-8")
+            index.write_text("# Acasa\n\n<!-- MONOGRAFIE:START -->\nVechi\n"
+                             "<!-- MONOGRAFIE:END -->\n", encoding="utf-8")
             builder.merge_index(wiki, fm)
             self.assertIn(block, index.read_text(encoding="utf-8"))
+
+    def test_explicit_edition_gets_actual_publication_date(self):
+        raw = (ROOT / archiver.STEM).with_suffix(".md").read_text(encoding="utf-8")
+        edition = release.field(raw, "edition")
+        updated = release.refresh_current_date(raw, edition, "18 octombrie 2026")
+        self.assertIn('date: "18 octombrie 2026"', updated)
+        self.assertIn("**Editia curenta:** " + edition + ", 18 octombrie 2026", updated)
+        self.assertIn("editia " + edition + ", 18 octombrie 2026,", updated)
+        self.assertIn("*Editia " + edition + " | 18 octombrie 2026 |", updated)
+        self.assertIn("## E.2. Changelog 1.0 la 1.1", updated)
 
     def test_archive_idempotence_and_immutability(self):
         with tempfile.TemporaryDirectory() as tmp:

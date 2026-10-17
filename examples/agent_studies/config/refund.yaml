@@ -1,0 +1,17 @@
+version: 1
+name: refund_assistant_demo
+model:
+  provider: mock
+  name: qwen2.5:14b
+  base_url: http://127.0.0.1:11434
+policy:
+  currency: RON
+  auto_refund_max: 100.00
+  require_verified_customer: true
+  require_proof_for_damage: true
+  allow_production_refunds: false
+  max_steps: 12
+  allowed_tools: [lookup_order, verify_eligibility, check_duplicate, request_evidence, prepare_refund, verify_refund, send_confirmation, escalate, finish]
+safety:
+  backend: sandbox
+  idempotency: request_id

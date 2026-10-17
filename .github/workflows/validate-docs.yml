@@ -8,6 +8,7 @@ on:
       - "wiki/**"
       - "docs/**"
       - "tools/**"
+      - "tests/**"
       - "examples/**"
       - "mkdocs.yml"
       - "requirements.txt"

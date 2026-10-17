@@ -3,15 +3,6 @@ name: Publish monograph and documentation
 on:
   push:
     branches: [main]
-    paths:
-      - "Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md"
-      - "Monografie_AI_figuri/**"
-      - "wiki/**"
-      - "docs/**"
-      - "tools/**"
-      - "mkdocs.yml"
-      - "requirements.txt"
-      - ".github/workflows/**"
   workflow_dispatch:
 
 permissions:
@@ -70,7 +61,7 @@ jobs:
           version=$(python -c 'import pathlib,re; s=pathlib.Path("Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md").read_text(); print(re.search(r"^edition: \"([^\"]+)\"",s,re.M).group(1))')
           name="Monografie_AI_De_la_Chat_la_Sisteme_Agentice"
           git add -- "${name}.md" "docs/README.md" "docs/${name}.pdf" "docs/${name}_${version}.pdf"
-          git add -- 'wiki/*.md' 'wiki/**/*.md'
+          git add -- ':(glob)wiki/*.md' ':(glob)wiki/**/*.md'
           if git diff --cached --quiet; then
             echo "No publication commit needed"
           else

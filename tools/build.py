@@ -519,7 +519,19 @@ def build_pdf(repo, md_path, out_pdf):
     ]
     subprocess.run(cmd, check=True)
     page = html_out.read_text(encoding="utf-8")
+    wiki_prefix = fm.get("wiki", "").rstrip("/") + "/"
+    # Toate trimiterile Markdown catre capitolele acestei carti trebuie sa
+    # ajunga in PDF la ancore interne, nu sa forteze iesirea spre browser.
+    source_refs = re.findall(r"\\]\\((https?://[^)]+)\\)", body)
+    internal_refs = [u for u in source_refs if u.startswith(wiki_prefix) and "#" in u]
     page = internalize_wiki_links_for_pdf(page, fm.get("wiki", ""))
+    unresolved = [u for u in internal_refs if 'href="' + u + '"' in page]
+    missing_from_html = [u for u in internal_refs
+                         if 'href="' + u + '"' not in page
+                         and 'href="#' + u.split("#", 1)[1] + '"' not in page]
+    if unresolved or missing_from_html:
+        raise RuntimeError(f"Linkuri PDF interne nerezolvate: {unresolved + missing_from_html}")
+    print(f"PDF: {len(internal_refs)} trimiteri interne catre subcapitole verificate")
 
     # structura TOC: <a href="#id" id="toc-id">Titlu</a>; adauga spatiu pentru numere de pagina
     entries = re.findall(r'<a href="#([^"]+)" id="toc-[^"]+"[^>]*>(.*?)</a>', page, flags=re.S)

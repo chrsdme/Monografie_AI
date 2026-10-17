@@ -119,6 +119,7 @@ Pentru o analiza, definitia poate fi alta: exista surse, datele sunt actuale, ca
 
 Daca lipsesc datele sau metoda de verificare, nu forta introducerea unui agent. Simplifica sarcina sau lucreaza intai la infrastructura informationala. Din ghidurile de automatizare pentru companii retinem analiza procesului si definirea obiectivelor, nu obligatia de a cumpara o anumita platforma [S19](../anexe/bibliografie.md#s19), [S23](../anexe/bibliografie.md#s23).
 
+
 ## B.8. Specificatie de intentie: de la obiectiv la verificare
 
 Un *Intent Spec* este un artefact de documentare, nu o functie standard a unui model. Exemplul de mai jos completeaza [studiul 21.7 despre rambursari](https://chrsdme.github.io/Monografie_AI/partea-5/21-studii-de-caz/#217-studiul-de-caz-e-acelasi-retur-prin-trei-arhitecturi); aceleasi intrebari sunt utile pentru [cei doi agenti YouTube din 21.8](https://chrsdme.github.io/Monografie_AI/partea-5/21-studii-de-caz/#218-studiul-de-caz-f-cercetare-youtube-si-productie-editoriala-cu-doi-agenti). Explicatia conceptului este in [sectiunea 6.7](https://chrsdme.github.io/Monografie_AI/partea-2/06-prompturi-instructiuni-briefuri/#67-intent-engineering-de-la-cerere-la-obiectiv-verificabil).

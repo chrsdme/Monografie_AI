@@ -90,9 +90,25 @@ class TechThemeTests(unittest.TestCase):
         conf = yaml.safe_load((ROOT / "mkdocs.yml").read_text(encoding="utf-8"))
         self.assertEqual(conf["theme"]["name"], "material")
         self.assertEqual(conf["theme"]["palette"][0]["scheme"], "slate")
+        self.assertEqual([p["scheme"] for p in conf["theme"]["palette"]], ["slate", "default"])
+        self.assertEqual(conf["theme"]["icon"]["logo"], "material/book-open-variant")
+        self.assertNotIn("logo", conf["theme"], "A bundled icon must use theme.icon.logo, not theme.logo")
         self.assertIn("stylesheets/tech.css", conf["extra_css"])
         self.assertTrue(any("search" in p for p in conf["plugins"]))
         self.assertIn("tools/feedback_hook.py", conf["hooks"])
+
+    def test_dark_and_light_shell_readability(self):
+        # The Tech styles must theme Material navigation and reading surfaces,
+        # including the optional light mode and headings outside dark cards.
+        for rule in (
+            '[data-md-color-scheme="slate"] .md-sidebar--primary',
+            '[data-md-color-scheme="default"] .md-sidebar--primary',
+            '[data-md-color-scheme="default"] .md-typeset .tech-section-heading h2',
+            '[data-md-color-scheme="default"] .tech-overline',
+            '--md-default-bg-color: #0b1020;',
+            '--md-default-bg-color: #eaf1fa;',
+        ):
+            self.assertIn(rule, self.css)
 
     def test_mobile_and_motion_accessibility(self):
         self.assertIn("@media (max-width: 760px)", self.css)

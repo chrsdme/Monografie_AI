@@ -9,7 +9,8 @@ site_dir: site
 theme:
   name: material
   language: ro
-  logo: material/book-open-variant
+  icon:
+    logo: material/book-open-variant
   features:
     - navigation.sections
     - navigation.indexes

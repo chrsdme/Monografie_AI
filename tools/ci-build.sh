@@ -61,3 +61,49 @@ assert (site / "anexe/evaluare/index.html").exists(), "Lipseste Anexa C"
 assert (site / "downloads" / pdf).read_bytes() == Path(pdf).read_bytes(), "PDF-ul publicat difera de sursa"
 print("PASS: MkDocs strict, anexe, homepage si PDF descarcabil")
 PY
+
+# Test real rendering in both palette modes. Previous text-only checks missed
+# a broken Material logo and almost invisible headings in the light palette.
+python - <<'PY'
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+
+with sync_playwright() as playwright:
+    browser = playwright.chromium.launch(headless=True)
+    try:
+        page = browser.new_page(viewport={"width": 1440, "height": 900})
+        page.goto((Path("site") / "index.html").resolve().as_uri(), wait_until="domcontentloaded")
+        assert page.locator(".md-header__button.md-logo svg").count() == 1, (
+            "Logo-ul trebuie sa fie pictograma SVG Material, nu o imagine lipsa"
+        )
+        assert page.locator(".md-header__button.md-logo img").count() == 0, (
+            "Logo-ul nu trebuie incarcat dintr-o cale de imagine inexistenta"
+        )
+        for scheme, background in (
+            ("slate", "rgb(11, 16, 32)"),
+            ("default", "rgb(234, 241, 250)"),
+        ):
+            page.evaluate(
+                "(scheme) => document.body.setAttribute('data-md-color-scheme', scheme)",
+                scheme,
+            )
+            actual = page.evaluate("getComputedStyle(document.body).backgroundColor")
+            assert actual == background, (
+                f"Fundalul MkDocs Tech pentru {scheme}: {actual} != {background}"
+            )
+            assert page.locator(".md-sidebar--primary").evaluate(
+                "(el) => getComputedStyle(el).backgroundImage"
+            ) != "none", f"Navigatia laterala nu este stilizata in modul {scheme}"
+        page.evaluate(
+            "() => document.body.setAttribute('data-md-color-scheme', 'default')"
+        )
+        heading_color = page.locator(".tech-section-heading h2").first.evaluate(
+            "(el) => getComputedStyle(el).color"
+        )
+        assert heading_color == "rgb(20, 40, 66)", (
+            f"Contrast insuficient pentru titlurile Tech in light mode: {heading_color}"
+        )
+        print("PASS: browser render - logo SVG, dark/light shell si contrast")
+    finally:
+        browser.close()
+PY

@@ -14,21 +14,50 @@
   --tech-purple: #ad98ff;
 }
 
+/* Complete Material palette tokens, not just the dark homepage cards. */
 [data-md-color-scheme="slate"] {
   --md-default-bg-color: #0b1020;
   --md-default-fg-color: #e6edfc;
+  --md-default-fg-color--light: #b8c9e2;
+  --md-default-fg-color--lighter: #8fa6c4;
   --md-primary-fg-color: #10182b;
   --md-primary-bg-color: #eef6ff;
   --md-accent-fg-color: #65f2df;
   --md-typeset-a-color: #83e9f0;
   --md-code-bg-color: #13223a;
   --md-code-fg-color: #d8e9ff;
+  --md-footer-bg-color: #111b2e;
+  --md-footer-bg-color--dark: #090f1c;
 }
 
+/* The optional light palette is a deliberate Tech daytime variant,
+   not Material's unstyled white shell around a dark homepage. */
 [data-md-color-scheme="default"] {
+  --md-default-bg-color: #eaf1fa;
+  --md-default-fg-color: #1a2d47;
+  --md-default-fg-color--light: #425c79;
+  --md-default-fg-color--lighter: #66819e;
   --md-primary-fg-color: #14213d;
   --md-primary-bg-color: #f8fbff;
-  --md-accent-fg-color: #3d67c5;
+  --md-accent-fg-color: #087888;
+  --md-typeset-a-color: #096f81;
+  --md-code-bg-color: #dce7f5;
+  --md-code-fg-color: #213c5a;
+  --md-footer-bg-color: #172945;
+  --md-footer-bg-color--dark: #101d32;
+}
+
+/* Match navigation to the active palette on every page. */
+[data-md-color-scheme="slate"] .md-sidebar--primary {
+  background: linear-gradient(180deg, #101a2d, #0b1020);
+  border-right: 1px solid #263c56;
+}
+[data-md-color-scheme="default"] .md-sidebar--primary {
+  background: linear-gradient(180deg, #e3edf8, #eaf1fa);
+  border-right: 1px solid #c8d8ea;
+}
+[data-md-color-scheme="default"] .md-sidebar--secondary {
+  background: #eaf1fa;
 }
 
 .md-grid { max-width: 88rem; }
@@ -362,6 +391,14 @@
   text-decoration: none;
 }
 .md-typeset .tech-edition a:hover { color: #fff; text-decoration: underline; }
+
+/* Light-mode text outside dark Tech cards needs explicit contrast.
+   Homepage hero, edition panel and cards remain dark in both modes. */
+[data-md-color-scheme="default"] .tech-overline { color: #365973; }
+[data-md-color-scheme="default"] .md-typeset .tech-section-heading h2 { color: #142842; }
+[data-md-color-scheme="default"] .tech-section-heading p:not(.tech-eyebrow) { color: #445f7d; }
+[data-md-color-scheme="default"] .tech-section .tech-eyebrow { color: #096e7d; }
+[data-md-color-scheme="default"] .md-typeset .tech-inline-link { color: #087589; }
 
 .tech-home-follow { padding-bottom: 2rem; }
 .tech-section { padding: .55rem 0 1.7rem; }

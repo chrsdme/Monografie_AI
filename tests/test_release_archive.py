@@ -1,6 +1,7 @@
 """Regresii ale schemei automate de editii si arhiva PDF."""
 import importlib.util
 import pathlib
+import re
 import tempfile
 import unittest
 
@@ -28,15 +29,20 @@ class ReleaseTests(unittest.TestCase):
         raw = (ROOT / archiver.STEM).with_suffix(".md").read_text(encoding="utf-8")
         old = release.field(raw, "edition")
         version = release.next_patch(old)
+        previous_headings = re.findall(r"^## E\.\d+\..+$", raw, re.M)
+        section_number = max((int(n) for n in re.findall(r"^## E\.(\d+)\.", raw, re.M)), default=0) + 1
+        heading = f"## E.{section_number}. Modificari de la editia {old} la {version}"
         output = release.update_text(
             raw, old, version, "18 octombrie 2026",
             [archiver.STEM + ".md", "wiki/despre.md"], "Explica actualizari", "abc123456789")
         self.assertIn('edition: "' + version + '"', output)
-        self.assertIn("## E.5. Modificari de la editia " + old + " la " + version, output)
+        self.assertIn(heading, output)
         self.assertIn("**Editia curenta:** " + version, output)
         self.assertIn("Sfarsitul editiei " + version, output)
         self.assertIn("## E.2. Changelog 1.0 la 1.1", output)
-        self.assertEqual(output.count("## E.5."), 1)
+        for old_heading in previous_headings:
+            self.assertIn(old_heading, output)
+        self.assertEqual(output.count(heading), 1)
 
     def test_homepage_block_follows_current_edition(self):
         raw = (ROOT / archiver.STEM).with_suffix(".md").read_text(encoding="utf-8")

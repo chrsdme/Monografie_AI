@@ -5,6 +5,7 @@ Pe langa monografia propriu-zisa, proiectul are trei zone care pot creste indepe
 | Sectiune | Rol |
 | --- | --- |
 | [Resurse si tool-uri](resurse.md) | Linkuri, documentatie, framework-uri, tool-uri si materiale utile. |
+| [Orchestrare multi-agent](orchestrare-multi-agent.md) | Ghid practic si configuratii pentru workeri, verificatori si checkpointuri. |
 | [Experimente](experimente.md) | Teste, configurari, rezultate si materiale reproductibile. |
 | [Material Facebook - AI Romania](fb-ai-romania.md) | Idei, discutii si materiale dezvoltate pornind din comunitatea AI Romania. |
 

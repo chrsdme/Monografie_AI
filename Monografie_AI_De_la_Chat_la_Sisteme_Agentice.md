@@ -2,9 +2,9 @@
 title: "De la conversatia cu AI la sisteme agentice verificabile"
 subtitle: "O introducere graduala in modele, context, instrumente, memorie, harness, agenti, orchestrare si evaluare"
 author: "chrsdme"
-edition: "1.2.2"
-previous_edition: "1.2.1"
-changelog_anchor: "e6-modificari-de-la-editia-121-la-122"
+edition: "1.2.3"
+previous_edition: "1.2.2"
+changelog_anchor: "e7-modificari-de-la-editia-122-la-123"
 date: "22 octombrie 2026"
 lang: ro
 license: "MIT"
@@ -16,7 +16,7 @@ source: "https://github.com/chrsdme/Monografie_AI"
 
 **O introducere graduala in modele, context, instrumente, memorie, harness, agenti, orchestrare si evaluare**
 
-*Editia 1.2.2 | 22 octombrie 2026 | Autor: chrsdme | Licenta: MIT*
+*Editia 1.2.3 | 22 octombrie 2026 | Autor: chrsdme | Licenta: MIT*
 
 *Versiunea web: https://chrsdme.github.io/Monografie_AI/ | Sursa: https://github.com/chrsdme/Monografie_AI*
 
@@ -40,7 +40,7 @@ Poti sari la un capitol, dar ordinea e gandita pentru invatare. Nu are rost sa t
 
 **Conventii.** Cand spunem *model*, ne referim la componenta care produce predictii sau genereaza continut. *Aplicatia* este produsul care il pune la dispozitie. *Agentul* este o configuratie executabila care urmareste un obiectiv prin actiuni si feedback. Un *sistem agentic* include si infrastructura din jurul agentului. Figurile sunt numerotate in ordinea in care apar (Figura 1 pana la Figura 8), iar fiecare are o legenda sub ea.
 
-**Ce este nou fata de editia 1.2.1.** Modificarile sunt descrise in Anexa E.6; vezi istoricul E.6 pentru provenienta commitului si domeniile afectate.
+**Ce este nou fata de editia 1.2.2.** Modificarile sunt descrise in Anexa E.7; vezi istoricul E.7 pentru provenienta commitului si domeniile afectate.
 
 
 ## Cuprins
@@ -2008,11 +2008,11 @@ O varianta aplicata la securitate porneste de la un buletin oficial, trece print
 
 - **Titlu:** De la conversatia cu AI la sisteme agentice verificabile.
 - **Autor:** chrsdme.
-- **Editia curenta:** 1.2.2, 22 octombrie 2026 (editia precedenta: 1.2.1).
+- **Editia curenta:** 1.2.3, 22 octombrie 2026 (editia precedenta: 1.2.2).
 - **Licenta:** MIT. Reutilizarea trebuie sa respecte conditiile licentei din depozit.
 - **Versiunea web:** https://chrsdme.github.io/Monografie_AI/
 - **Sursa editabila:** https://github.com/chrsdme/Monografie_AI
-- **Citare recomandata:** chrsdme (2026), *De la conversatia cu AI la sisteme agentice verificabile*, editia 1.2.2, 22 octombrie 2026, https://chrsdme.github.io/Monografie_AI/.
+- **Citare recomandata:** chrsdme (2026), *De la conversatia cu AI la sisteme agentice verificabile*, editia 1.2.3, 22 octombrie 2026, https://chrsdme.github.io/Monografie_AI/.
 
 Fisierul Markdown este sursa unica. Pagina web si PDF-ul se genereaza din aceeasi revizie, ca sa afiseze aceeasi editie si aceeasi data.
 
@@ -2082,6 +2082,14 @@ Aceasta sectiune descrie modificarile introduse dupa editia 1.1. E.2 pastreaza s
 
 - **Origine:** commitul \`5a98ea9d964d\`; mesaj: example file for facebook posting.
 - Actualizare a materialelor proiectului.
+- **Nota:** aceasta lista este generata din fisierele modificate; detaliile editoriale se verifica in diff-ul commitului indicat.
+
+
+## E.7. Modificari de la editia 1.2.2 la 1.2.3
+
+- **Origine:** commitul \`ea408da27853\`; mesaj: Document practical multi-agent orchestration in Chapter 14 and wiki.
+- Continutul monografiei: modificari ale sursei Markdown canonice.
+- Documentatia web: pagini sau legaturi actualizate.
 - **Nota:** aceasta lista este generata din fisierele modificate; detaliile editoriale se verifica in diff-ul commitului indicat.
 
 # Bibliografie si resurse de aprofundare
@@ -2182,4 +2190,4 @@ Pe langa materialele documentate si citate mai sus, in aceasta lucrare intra si 
 
 ---
 
-*Sfarsitul editiei 1.2.2. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*
+*Sfarsitul editiei 1.2.3. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*

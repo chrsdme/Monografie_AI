@@ -17,11 +17,11 @@ O varianta aplicata la securitate porneste de la un buletin oficial, trece print
 
 - **Titlu:** De la conversatia cu AI la sisteme agentice verificabile.
 - **Autor:** chrsdme.
-- **Editia curenta:** 1.2.2, 22 octombrie 2026 (editia precedenta: 1.2.1).
+- **Editia curenta:** 1.2.3, 22 octombrie 2026 (editia precedenta: 1.2.2).
 - **Licenta:** MIT. Reutilizarea trebuie sa respecte conditiile licentei din depozit.
 - **Versiunea web:** https://chrsdme.github.io/Monografie_AI/
 - **Sursa editabila:** https://github.com/chrsdme/Monografie_AI
-- **Citare recomandata:** chrsdme (2026), *De la conversatia cu AI la sisteme agentice verificabile*, editia 1.2.2, 22 octombrie 2026, https://chrsdme.github.io/Monografie_AI/.
+- **Citare recomandata:** chrsdme (2026), *De la conversatia cu AI la sisteme agentice verificabile*, editia 1.2.3, 22 octombrie 2026, https://chrsdme.github.io/Monografie_AI/.
 
 Fisierul Markdown este sursa unica. Pagina web si PDF-ul se genereaza din aceeasi revizie, ca sa afiseze aceeasi editie si aceeasi data.
 
@@ -91,4 +91,12 @@ Aceasta sectiune descrie modificarile introduse dupa editia 1.1. E.2 pastreaza s
 
 - **Origine:** commitul \`5a98ea9d964d\`; mesaj: example file for facebook posting.
 - Actualizare a materialelor proiectului.
+- **Nota:** aceasta lista este generata din fisierele modificate; detaliile editoriale se verifica in diff-ul commitului indicat.
+
+
+## E.7. Modificari de la editia 1.2.2 la 1.2.3
+
+- **Origine:** commitul \`ea408da27853\`; mesaj: Document practical multi-agent orchestration in Chapter 14 and wiki.
+- Continutul monografiei: modificari ale sursei Markdown canonice.
+- Documentatia web: pagini sau legaturi actualizate.
 - **Nota:** aceasta lista este generata din fisierele modificate; detaliile editoriale se verifica in diff-ul commitului indicat.

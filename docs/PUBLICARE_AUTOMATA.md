@@ -16,6 +16,18 @@ Pentru ca botul **nu are voie sa faca push direct in main**, jobul `archive_pr` 
 
 Cand PR-ul de arhivare este integrat, workflow-ul detecteaza modificarea manifestului, **nu incrementeaza editia din nou**, iar fisierul PDF istoric este reutilizat fara suprascriere.
 
+## Protectie pentru publicari suprapuse
+
+Chiar daca joburile sunt serializate, un PR editorial nou poate fi integrat in timp ce altul genereaza sau arhiveaza PDF-ul. Inainte de a deschide un PR de arhivare, `tools/open_archive_pr.sh` actualizeaza referinta `origin/main` si ruleaza `tools/archive_pr_guard.py`:
+
+- Daca aceeasi editie este deja arhivata cu PDF identic, nu se creeaza un PR duplicat.
+- Daca aceeasi editie exista dar PDF-ul difera, jobul esueaza explicit. Nu suprascrie editia imuabila.
+- Daca `main` este deja la o editie mai noua, un artefact nepublicat mai vechi este refuzat.
+- O editie noua, care nu exista in arhiva, poate continua in procesul obisnuit cu aprobare.
+
+Un conflict necesita o noua publicare cu numar de editie nou. Acest control impiedica un PR de arhivare invechit, **dar nu sincronizeaza automat merge-uri editoriale concurente** si nu poate recupera retroactiv variante PDF care nu au fost arhivate.
+
+
 ## Permisiuni necesare
 
 Jobul `build` are numai `contents: read`; jobul `archive_pr` are drepturi `contents: write` si `pull-requests: write`, doar pentru ramura de arhivare si crearea PR-ului. In `Settings > Actions > General > Workflow permissions` poate fi necesara activarea optiunii **Allow GitHub Actions to create and approve pull requests**. Botul nu face merge. Daca optiunea este blocata, jobul raporteaza eroare si lasa ramura `auto/archive-...` disponibila pentru PR manual.

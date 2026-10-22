@@ -2,9 +2,11 @@
 """Reject stale and conflicting PDF archive submissions before creating a PR.
 
 Exit codes: 0 = safe to propose, 10 = identical edition already archived,
-20 = same edition with different PDF (collision), 21 = superseded release.
+20 = same edition with different PDF (collision), 21 = superseded release,
+23 = competing archive PR already open.
 """
 import argparse
+import json
 import pathlib
 import re
 import subprocess
@@ -31,6 +33,48 @@ def classify(candidate_version, main_version, archived_pdf, candidate_pdf):
         return 10 if archived_pdf == candidate_pdf else 20
     if version_key(main_version) > version_key(candidate_version):
         return 21
+    return 0
+
+
+def open_archive_pr_numbers(prs, candidate_version):
+    """Find open archive PRs for exactly this edition (not similar labels)."""
+    title = f"Archive edition {candidate_version} PDF and metadata"
+    return sorted(
+        pr["number"] for pr in prs
+        if isinstance(pr, dict)
+        and pr.get("title") == title
+        and isinstance(pr.get("number"), int)
+    )
+
+
+def check_open_archive_prs(repo, candidate_version):
+    """Fail closed when GitHub can't confirm an unclaimed edition."""
+    result = subprocess.run(
+        ["gh", "pr", "list", "--base", "main", "--state", "open",
+         "--limit", "200", "--json", "number,title"],
+        cwd=repo, capture_output=True, text=True, check=False,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(
+            "Cannot inspect open archive PRs: " + result.stderr.strip()
+        )
+    try:
+        prs = json.loads(result.stdout)
+    except json.JSONDecodeError as exc:
+        raise ValueError("GitHub returned invalid PR JSON") from exc
+    if not isinstance(prs, list):
+        raise ValueError("GitHub returned an invalid open-PR list")
+    existing = open_archive_pr_numbers(prs, candidate_version)
+    if existing:
+        labels = ", ".join(f"#{number}" for number in existing)
+        print(
+            f"::error::Archive edition {candidate_version} already has an OPEN PR "
+            f"({labels}). Do not create another. Review/merge the existing PR "
+            "or publish new content under a later edition.",
+            file=sys.stderr,
+        )
+        return 23
+    print(f"ARCHIVE_GUARD: no competing open PR for edition {candidate_version}")
     return 0
 
 
@@ -85,9 +129,15 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo", default=".")
     parser.add_argument("--main-ref", default="refs/remotes/origin/main")
+    parser.add_argument("--check-open-prs", action="store_true")
     args = parser.parse_args()
     try:
-        return check(pathlib.Path(args.repo).resolve(), args.main_ref)
+        repo = pathlib.Path(args.repo).resolve()
+        decision = check(repo, args.main_ref)
+        if decision == 0 and args.check_open_prs:
+            candidate = edition((repo / f"{STEM}.md").read_text(encoding="utf-8"))
+            return check_open_archive_prs(repo, candidate)
+        return decision
     except (OSError, ValueError, RuntimeError) as exc:
         print(f"::error::Archive preflight failed: {exc}", file=sys.stderr)
         return 22

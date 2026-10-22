@@ -95,6 +95,16 @@ with sync_playwright() as playwright:
             assert page.locator(".md-sidebar--primary").evaluate(
                 "(el) => getComputedStyle(el).backgroundImage"
             ) != "none", f"Navigatia laterala nu este stilizata in modul {scheme}"
+            expected_nav_title = {
+                "slate": "rgb(16, 26, 45)",
+                "default": "rgb(227, 237, 248)",
+            }[scheme]
+            nav_title_bg = page.locator(
+                ".md-sidebar--primary .md-nav--primary > .md-nav__title"
+            ).evaluate("(el) => getComputedStyle(el).backgroundColor")
+            assert nav_title_bg == expected_nav_title, (
+                f"Sticky sidebar title must be opaque in {scheme}: {nav_title_bg}"
+            )
         page.evaluate(
             "() => document.body.setAttribute('data-md-color-scheme', 'default')"
         )

@@ -3,6 +3,19 @@
 set -euo pipefail
 name="Monografie_AI_De_la_Chat_la_Sisteme_Agentice"
 version=$(python -c 'import pathlib,re; s=pathlib.Path("Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md").read_text(); print(re.search(r"^edition: \"([^\"]+)\"",s,re.M).group(1))')
+# Re-read main: another archive PR may have merged since this job started.
+# A duplicate is harmless, but a same-version/different-PDF race is not.
+git fetch --quiet --no-tags origin main
+if python tools/archive_pr_guard.py --repo .; then
+  :
+else
+  guard_status=$?
+  if [ "$guard_status" -eq 10 ]; then
+    echo "ARCHIVE: identical edition already persisted on main; no PR needed"
+    exit 0
+  fi
+  exit "$guard_status"
+fi
 id=$(git rev-parse --short=10 HEAD)
 branch="auto/archive-${version}-${id}"
 git config user.name "github-actions[bot]"

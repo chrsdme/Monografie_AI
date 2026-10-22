@@ -1,0 +1,11 @@
+# Exemplu de termen; legaturile sunt explicite, nu autolink global.
+id: G-YYYY-NNN
+term: ""
+language: ro
+aliases: []
+definition: ""
+usage_example: ""
+bibliography_ids: []    # referinte verificabile Sxx
+related_terms: []       # G-YYYY-NNN
+published_anchor: null  # ancorele vechi trebuie pastrate
+status: proposed

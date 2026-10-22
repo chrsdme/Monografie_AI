@@ -53,6 +53,8 @@ class ReleaseTests(unittest.TestCase):
         self.assertIn("Editia " + fm["edition"] + ", " + fm["date"], block)
         self.assertIn("fata de editia " + fm["previous_edition"], block)
         self.assertIn("#" + fm["changelog_anchor"], block)
+        self.assertIn("anexe/metoda-surse/#" + fm["changelog_anchor"], block)
+        self.assertNotIn("anexe/metoda-surse.md#", block)
         self.assertIn("Descarca PDF-ul curent", block)
         self.assertIn("Arhiva editiilor PDF", block)
         self.assertNotIn("#e2-changelog-10-la-11", block)

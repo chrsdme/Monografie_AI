@@ -2,9 +2,9 @@
 title: "De la conversatia cu AI la sisteme agentice verificabile"
 subtitle: "O introducere graduala in modele, context, instrumente, memorie, harness, agenti, orchestrare si evaluare"
 author: "chrsdme"
-edition: "1.2.4"
-previous_edition: "1.2.3"
-changelog_anchor: "e8-modificari-de-la-editia-123-la-124"
+edition: "1.2.5"
+previous_edition: "1.2.4"
+changelog_anchor: "e9-modificari-de-la-editia-124-la-125"
 date: "22 octombrie 2026"
 lang: ro
 license: "MIT"
@@ -16,7 +16,7 @@ source: "https://github.com/chrsdme/Monografie_AI"
 
 **O introducere graduala in modele, context, instrumente, memorie, harness, agenti, orchestrare si evaluare**
 
-*Editia 1.2.4 | 22 octombrie 2026 | Autor: chrsdme | Licenta: MIT*
+*Editia 1.2.5 | 22 octombrie 2026 | Autor: chrsdme | Licenta: MIT*
 
 *Versiunea web: https://chrsdme.github.io/Monografie_AI/ | Sursa: https://github.com/chrsdme/Monografie_AI*
 
@@ -40,7 +40,7 @@ Poti sari la un capitol, dar ordinea e gandita pentru invatare. Nu are rost sa t
 
 **Conventii.** Cand spunem *model*, ne referim la componenta care produce predictii sau genereaza continut. *Aplicatia* este produsul care il pune la dispozitie. *Agentul* este o configuratie executabila care urmareste un obiectiv prin actiuni si feedback. Un *sistem agentic* include si infrastructura din jurul agentului. Figurile sunt numerotate in ordinea in care apar (Figura 1 pana la Figura 8), iar fiecare are o legenda sub ea.
 
-**Ce este nou fata de editia 1.2.3.** Modificarile sunt descrise in Anexa E.8; vezi istoricul E.8 pentru provenienta commitului si domeniile afectate.
+**Ce este nou fata de editia 1.2.4.** Modificarile sunt descrise in Anexa E.9; vezi istoricul E.9 pentru provenienta commitului si domeniile afectate.
 
 
 ## Cuprins
@@ -2008,11 +2008,11 @@ O varianta aplicata la securitate porneste de la un buletin oficial, trece print
 
 - **Titlu:** De la conversatia cu AI la sisteme agentice verificabile.
 - **Autor:** chrsdme.
-- **Editia curenta:** 1.2.4, 22 octombrie 2026 (editia precedenta: 1.2.3).
+- **Editia curenta:** 1.2.5, 22 octombrie 2026 (editia precedenta: 1.2.4).
 - **Licenta:** MIT. Reutilizarea trebuie sa respecte conditiile licentei din depozit.
 - **Versiunea web:** https://chrsdme.github.io/Monografie_AI/
 - **Sursa editabila:** https://github.com/chrsdme/Monografie_AI
-- **Citare recomandata:** chrsdme (2026), *De la conversatia cu AI la sisteme agentice verificabile*, editia 1.2.4, 22 octombrie 2026, https://chrsdme.github.io/Monografie_AI/.
+- **Citare recomandata:** chrsdme (2026), *De la conversatia cu AI la sisteme agentice verificabile*, editia 1.2.5, 22 octombrie 2026, https://chrsdme.github.io/Monografie_AI/.
 
 Fisierul Markdown este sursa unica. Pagina web si PDF-ul se genereaza din aceeasi revizie, ca sa afiseze aceeasi editie si aceeasi data.
 
@@ -2096,6 +2096,16 @@ Aceasta sectiune descrie modificarile introduse dupa editia 1.1. E.2 pastreaza s
 ## E.8. Modificari de la editia 1.2.3 la 1.2.4
 
 - **Origine:** commitul \`9e2e0265ffef\`; mesaj: Prevent duplicate archive PRs while edition is awaiting review.
+- Publicare si verificari: modificari ale instrumentelor si pipeline-ului.
+- Materiale suplimentare: actualizari in directorul docs.
+- **Nota:** aceasta lista este generata din fisierele modificate; detaliile editoriale se verifica in diff-ul commitului indicat.
+
+
+## E.9. Modificari de la editia 1.2.4 la 1.2.5
+
+- **Origine:** commitul `3f5c0ea7fabb`; mesaj: Fix homepage changelog link and audit all generated site navigation.
+- Continutul monografiei: modificari ale sursei Markdown canonice.
+- Documentatia web: pagini sau legaturi actualizate.
 - Publicare si verificari: modificari ale instrumentelor si pipeline-ului.
 - Materiale suplimentare: actualizari in directorul docs.
 - **Nota:** aceasta lista este generata din fisierele modificate; detaliile editoriale se verifica in diff-ul commitului indicat.
@@ -2198,4 +2208,4 @@ Pe langa materialele documentate si citate mai sus, in aceasta lucrare intra si 
 
 ---
 
-*Sfarsitul editiei 1.2.4. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*
+*Sfarsitul editiei 1.2.5. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*

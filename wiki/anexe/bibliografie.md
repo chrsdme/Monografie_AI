@@ -184,4 +184,4 @@ Pe langa materialele documentate si citate mai sus, in aceasta lucrare intra si 
 
 ---
 
-*Sfarsitul editiei 1.2.2. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*
+*Sfarsitul editiei 1.2.3. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*

@@ -864,7 +864,7 @@ Un mecanism de **failsafe** poate bloca accesul, poate pune o sarcina in astepta
 
 Un orchestrator care depinde numai de o conversatie foarte lunga poate pierde starea. Unul care ia decizii fara jurnal devine greu de auditat. Unul care isi declara singur succesul nu ofera control real. Solutia practica: tranzitiile importante intr-un registru, contracte de intrare si iesire, limite impuse si verificari separate pentru actiunile cu risc.
 
-## 14.12. Studiu practic: orchestrator, worker temporar si verificator separat
+### 14.12. Studiu practic: orchestrator, worker temporar si verificator separat
 
 Sa presupunem ca vrem sa corectam autentificarea unei aplicatii. In loc sa incarcam toata investigatia intr-o singura conversatie, putem separa deciziile de executie:
 

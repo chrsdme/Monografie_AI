@@ -165,7 +165,7 @@
   text-align: center;
   overflow-wrap: anywhere;
   box-shadow: 0 .15rem .55rem #02091618;
-  transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
+  transition: border-color .15s ease, box-shadow .15s ease;
 }
 .md-typeset a.md-button:hover,
 .md-typeset a.md-button:visited:hover {

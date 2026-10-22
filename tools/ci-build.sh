@@ -5,6 +5,7 @@ cd "$(dirname "$0")/.."
 
 python -m unittest discover -s tests -p "test_feedback_hook.py"
 python -m unittest discover -s tests -p "test_tech_theme.py" -v
+python -m unittest discover -s tests -p "test_site_links.py" -v
 python -m unittest discover -s tests -p "test_intent_crossrefs.py" -v
 python -m unittest discover -s tests -p "test_release_archive.py" -v
 python -m unittest discover -s tests -p "test_archive_pr_guard.py" -v
@@ -46,6 +47,9 @@ print(f"PDF verificat: {pages} pagini, {source.stat().st_size} octeti")
 PY
 
 mkdocs build --strict
+
+# Validate raw HTML URLs too; MkDocs strict does not rewrite/validate them.
+python tools/check_site_links.py --site site
 
 python - <<'PY'
 from pathlib import Path

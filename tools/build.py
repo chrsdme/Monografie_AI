@@ -339,7 +339,7 @@ def index_block(fm):
             f'<span>Autor: {author} · Licenta: {license_name}</span>'
             '</div>'
             '<div class="tech-edition-links">'
-            f'<a href="anexe/metoda-surse.md#{anchor}">Ce s-a schimbat fata de editia {previous} ↗</a>'
+            f'<a href="anexe/metoda-surse/#{anchor}">Ce s-a schimbat fata de editia {previous} ↗</a>'
             '<a href="downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf">Descarca PDF-ul curent ↓</a>'
             f'<a href="{source}/tree/main/docs">Arhiva editiilor PDF ↗</a>'
             f'<a href="{source}">Sursa pe GitHub ↗</a>'

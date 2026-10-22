@@ -208,6 +208,11 @@
   outline: 3px solid var(--md-typeset-a-color);
   outline-offset: 3px;
 }
+/* Switch inline-link foreground immediately when the palette changes.
+   Transitional colors can be unreadable against the destination theme. */
+.md-typeset :is(p, li, td) a:not(.md-button) {
+  transition: none;
+}
 /* Ordinary inline links should also read as links without relying on color. */
 .md-typeset :is(p, li, td) a:not([class]):not(:has(img)) {
   text-decoration: underline;

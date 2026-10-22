@@ -80,7 +80,7 @@ class TechThemeTests(unittest.TestCase):
                   "source": "https://github.com/example/test"}
         block = builder.index_block(sample)
         for text in ("Editia 9.5.1", "1 decembrie 2030", "fata de editia 9.5",
-                     "anexe/metoda-surse.md#test-editie", "Descarca PDF-ul curent",
+                     "anexe/metoda-surse/#test-editie", "Descarca PDF-ul curent",
                      "Arhiva editiilor PDF"):
             self.assertIn(text, block)
         self.assertIn("\n<section", block)

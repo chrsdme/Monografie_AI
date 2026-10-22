@@ -2073,21 +2073,21 @@ Aceasta sectiune descrie modificarile introduse dupa editia 1.1. E.2 pastreaza s
 
 ## E.5. Modificari de la editia 1.2 la 1.2.1
 
-- **Origine:** commitul \`4c5601a8c6cb\`; mesaj: Fix release archive test after automatic changelog increment.
+- **Origine:** commitul `4c5601a8c6cb`; mesaj: Fix release archive test after automatic changelog increment.
 - Publicare si verificari: modificari ale instrumentelor si pipeline-ului.
 - **Nota:** aceasta lista este generata din fisierele modificate; detaliile editoriale se verifica in diff-ul commitului indicat.
 
 
 ## E.6. Modificari de la editia 1.2.1 la 1.2.2
 
-- **Origine:** commitul \`5a98ea9d964d\`; mesaj: example file for facebook posting.
+- **Origine:** commitul `5a98ea9d964d`; mesaj: example file for facebook posting.
 - Actualizare a materialelor proiectului.
 - **Nota:** aceasta lista este generata din fisierele modificate; detaliile editoriale se verifica in diff-ul commitului indicat.
 
 
 ## E.7. Modificari de la editia 1.2.2 la 1.2.3
 
-- **Origine:** commitul \`f30a95f6baf2\`; mesaj: Fix duplicate/stale PDF archive PRs after concurrent merges.
+- **Origine:** commitul `f30a95f6baf2`; mesaj: Fix duplicate/stale PDF archive PRs after concurrent merges.
 - Publicare si verificari: modificari ale instrumentelor si pipeline-ului.
 - Materiale suplimentare: actualizari in directorul docs.
 - **Nota:** aceasta lista este generata din fisierele modificate; detaliile editoriale se verifica in diff-ul commitului indicat.

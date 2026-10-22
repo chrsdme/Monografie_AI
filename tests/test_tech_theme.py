@@ -110,6 +110,27 @@ class TechThemeTests(unittest.TestCase):
         ):
             self.assertIn(rule, self.css)
 
+    def test_collection_actions_are_human_readable(self):
+        pages = (
+            "resurse.md", "orchestrare-multi-agent.md",
+            "experimente.md", "fb-ai-romania.md",
+        )
+        for name in pages:
+            with self.subTest(page=name):
+                raw = (ROOT / "wiki/colectii" / name).read_text(encoding="utf-8")
+                self.assertNotRegex(raw, r":material-[a-z-]+:")
+                self.assertIn(".md-button", raw)
+                self.assertRegex(raw, r"\[[^\]]+\]\(https?://[^)]+\)|\[[^\]]+\]\([^)]+\.md(?:#[^)]+)?\)")
+
+    def test_buttons_have_separate_color_tokens_for_both_palettes(self):
+        for token in ("tech-action-bg", "tech-action-fg", "tech-action-border",
+                      "tech-action-primary-bg", "tech-action-primary-fg",
+                      "tech-action-primary-hover"):
+            self.assertGreaterEqual(self.css.count("--" + token + ":"), 2, token)
+        self.assertIn(".md-typeset a.md-button--primary", self.css)
+        self.assertIn(".md-typeset a.md-button:visited", self.css)
+        self.assertIn("text-decoration-thickness: 1px;", self.css)
+
     def test_mobile_and_motion_accessibility(self):
         self.assertIn("@media (max-width: 760px)", self.css)
         self.assertIn("@media (max-width: 430px)", self.css)

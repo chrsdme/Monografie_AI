@@ -95,6 +95,16 @@ with sync_playwright() as playwright:
             assert page.locator(".md-sidebar--primary").evaluate(
                 "(el) => getComputedStyle(el).backgroundImage"
             ) != "none", f"Navigatia laterala nu este stilizata in modul {scheme}"
+            expected_nav_title = {
+                "slate": "rgb(16, 26, 45)",
+                "default": "rgb(227, 237, 248)",
+            }[scheme]
+            nav_title_bg = page.locator(
+                ".md-sidebar--primary .md-nav--primary > .md-nav__title"
+            ).evaluate("(el) => getComputedStyle(el).backgroundColor")
+            assert nav_title_bg == expected_nav_title, (
+                f"Sticky sidebar title must be opaque in {scheme}: {nav_title_bg}"
+            )
         page.evaluate(
             "() => document.body.setAttribute('data-md-color-scheme', 'default')"
         )
@@ -104,6 +114,87 @@ with sync_playwright() as playwright:
         assert heading_color == "rgb(20, 40, 66)", (
             f"Contrast insuficient pentru titlurile Tech in light mode: {heading_color}"
         )
+
+        # Render actual collection pages, not only the homepage. These checks
+        # prevent invisible secondary buttons and literal :material-...: labels.
+        import re
+
+        def luminance(css_color):
+            match = re.search(r"rgba?\((\d+),\s*(\d+),\s*(\d+)", css_color)
+            assert match, f"Expected RGB color, got {css_color}"
+            channels = [int(match.group(i)) / 255 for i in (1, 2, 3)]
+            linear = [x / 12.92 if x <= 0.04045
+                      else ((x + 0.055) / 1.055) ** 2.4 for x in channels]
+            return sum(weight * value for weight, value in zip(
+                (0.2126, 0.7152, 0.0722), linear))
+
+        def contrast(first, second):
+            low, high = sorted((luminance(first), luminance(second)))
+            return (high + 0.05) / (low + 0.05)
+
+        for relative in (
+            "colectii/resurse/index.html",
+            "colectii/orchestrare-multi-agent/index.html",
+            "colectii/experimente/index.html",
+            "colectii/fb-ai-romania/index.html",
+        ):
+            page.goto((Path("site") / relative).resolve().as_uri(),
+                      wait_until="domcontentloaded")
+            buttons = page.locator(".md-typeset a.md-button")
+            assert buttons.count() >= 1, f"No rendered actions on {relative}"
+            assert ":material-" not in page.locator(".md-content").inner_text(), (
+                f"Unrendered icon markup on {relative}")
+            for scheme in ("slate", "default"):
+                page.evaluate(
+                    "scheme => document.body.setAttribute('data-md-color-scheme', scheme)",
+                    scheme,
+                )
+                for index in range(buttons.count()):
+                    button = buttons.nth(index)
+                    label = button.inner_text().strip()
+                    assert label and ":material" not in label, (
+                        f"Invalid action label: {label!r}")
+                    colors = button.evaluate(
+                        "el => { const c = getComputedStyle(el); "
+                        "return [c.color, c.backgroundColor] }")
+                    assert contrast(*colors) >= 4.5, (
+                        f"Unreadable button on {relative} / {scheme}: {label!r}, "
+                        f"foreground {colors[0]}, background {colors[1]}, "
+                        f"contrast {contrast(*colors):.2f}")
+                    button.hover()
+                    colors = button.evaluate(
+                        "el => { const c = getComputedStyle(el); "
+                        "return [c.color, c.backgroundColor] }")
+                    assert contrast(*colors) >= 4.5, (
+                        f"Unreadable hover state on {relative} / {scheme}: {label!r}")
+                background = page.evaluate(
+                    "getComputedStyle(document.body).backgroundColor")
+                text_links = page.locator(
+                    ".md-typeset p a:not(.md-button):not(.headerlink)")
+                for index in range(text_links.count()):
+                    link = text_links.nth(index)
+                    foreground = link.evaluate(
+                        "el => getComputedStyle(el).color")
+                    assert contrast(foreground, background) >= 4.5, (
+                        f"Unreadable link on {relative} / {scheme}: "
+                        f"{link.inner_text().strip()!r}")
+                if relative in (
+                    "colectii/resurse/index.html",
+                    "colectii/orchestrare-multi-agent/index.html",
+                ):
+                    out = Path("ui-preview")
+                    out.mkdir(exist_ok=True)
+                    name = relative.split("/")[1]
+                    page.screenshot(
+                        path=str(out / f"{name}-{scheme}.png"), full_page=True)
+            page.set_viewport_size({"width": 390, "height": 844})
+            for index in range(buttons.count()):
+                bounds = buttons.nth(index).bounding_box()
+                assert bounds and 0 < bounds["width"] <= 390, (
+                    f"Mobile button overflow on {relative}: {bounds}")
+            page.set_viewport_size({"width": 1440, "height": 900})
+        print("PASS: collection links and actions in light/dark, hover and mobile")
+
         print("PASS: browser render - logo SVG, dark/light shell si contrast")
     finally:
         browser.close()

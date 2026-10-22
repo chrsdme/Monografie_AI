@@ -60,6 +60,17 @@
   background: #eaf1fa;
 }
 
+/* An opaque navigation title prevents scrolled menu items from bleeding through
+   the sticky title, which was visible in both user screenshots. */
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav--primary > .md-nav__title {
+  background-color: #101a2d;
+  border-bottom: 1px solid #263c56;
+}
+[data-md-color-scheme="default"] .md-sidebar--primary .md-nav--primary > .md-nav__title {
+  background-color: #e3edf8;
+  border-bottom: 1px solid #c8d8ea;
+}
+
 .md-grid { max-width: 88rem; }
 .md-header {
   background: #10192b;
@@ -121,6 +132,91 @@
 [data-md-color-scheme="slate"] .md-typeset details {
   border-radius: .5rem;
   background: #101d32;
+}
+
+/* Shared content actions: independent from the dark site-header palette.
+   MkDocs Material normally colors .md-button using --md-primary-fg-color,
+   which is the NAVY header color here and becomes invisible on dark pages. */
+[data-md-color-scheme="slate"] {
+  --tech-action-bg: #192d46;
+  --tech-action-fg: #eaf3ff;
+  --tech-action-border: #6686a5;
+  --tech-action-hover: #27435e;
+  --tech-action-primary-bg: #5ce5d9;
+  --tech-action-primary-fg: #0b1020;
+  --tech-action-primary-hover: #8af4ea;
+}
+[data-md-color-scheme="default"] {
+  --tech-action-bg: #f5f9ff;
+  --tech-action-fg: #213c56;
+  --tech-action-border: #56758c;
+  --tech-action-hover: #e0edfc;
+  --tech-action-primary-bg: #0e6375;
+  --tech-action-primary-fg: #ffffff;
+  --tech-action-primary-hover: #095263;
+}
+.md-typeset a.md-button,
+.md-typeset a.md-button:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  max-width: 100%;
+  min-height: 2.55rem;
+  padding: .56rem .95rem;
+  margin: .12rem .42rem .38rem 0;
+  border: 1px solid var(--tech-action-border);
+  border-radius: .53rem;
+  background: var(--tech-action-bg);
+  color: var(--tech-action-fg);
+  font-size: .72rem;
+  font-weight: 750;
+  line-height: 1.45;
+  text-decoration: none;
+  text-align: center;
+  overflow-wrap: anywhere;
+  box-shadow: 0 .15rem .55rem #02091618;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.md-typeset a.md-button:hover,
+.md-typeset a.md-button:visited:hover {
+  background: var(--tech-action-hover);
+  color: var(--tech-action-fg);
+  border-color: var(--md-typeset-a-color);
+  box-shadow: 0 .28rem .8rem #02091624;
+}
+.md-typeset a.md-button--primary,
+.md-typeset a.md-button--primary:visited {
+  background: var(--tech-action-primary-bg);
+  border-color: var(--tech-action-primary-bg);
+  color: var(--tech-action-primary-fg);
+}
+.md-typeset a.md-button--primary:hover,
+.md-typeset a.md-button--primary:visited:hover {
+  background: var(--tech-action-primary-hover);
+  border-color: var(--tech-action-primary-hover);
+  color: var(--tech-action-primary-fg);
+}
+.md-typeset a.md-button code,
+.md-typeset a.md-button:visited code {
+  background: transparent;
+  color: inherit;
+  border: 0;
+  padding: 0;
+}
+.md-typeset a.md-button:focus-visible {
+  outline: 3px solid var(--md-typeset-a-color);
+  outline-offset: 3px;
+}
+/* Ordinary inline links should also read as links without relying on color. */
+.md-typeset :is(p, li, td) a:not([class]):not(:has(img)) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: currentColor;
+  text-underline-offset: .19em;
+}
+.md-typeset :is(p, li, td) a:not([class]):hover {
+  text-decoration-thickness: 2px;
 }
 
 /* Homepage: the dark dashboard is intentional in both palette modes. */

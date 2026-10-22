@@ -2,8 +2,8 @@
 
 Dintr-o cerere larga nu trebuie sa rezulte o singura sesiune care citeste tot, modifica tot si isi valideaza singura munca. Exemplul de aici separa coordonarea, executia si verificarea, pastrand dovezile intre instante.
 
-[:material-download: Descarca exemplele de agenti (ZIP)](https://github.com/chrsdme/Monografie_AI/raw/main/resurse/agent_orchestration_generic_examples.zip){ .md-button .md-button--primary }
-[:material-book-open-variant: Citeste explicatia din Capitolul 14](../partea-3/14-orchestrare.md#1412-studiu-practic-orchestrator-worker-temporar-si-verificator-separat){ .md-button }
+[Descarca exemplele de agenti (ZIP)](https://github.com/chrsdme/Monografie_AI/raw/main/resurse/agent_orchestration_generic_examples.zip){ .md-button .md-button--primary }
+[Citeste explicatia din Capitolul 14](../partea-3/14-orchestrare.md#1412-studiu-practic-orchestrator-worker-temporar-si-verificator-separat){ .md-button }
 
 ## Fluxul propus
 

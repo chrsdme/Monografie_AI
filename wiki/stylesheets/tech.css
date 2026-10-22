@@ -60,6 +60,17 @@
   background: #eaf1fa;
 }
 
+/* An opaque navigation title prevents scrolled menu items from bleeding through
+   the sticky title, which was visible in both user screenshots. */
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav--primary > .md-nav__title {
+  background-color: #101a2d;
+  border-bottom: 1px solid #263c56;
+}
+[data-md-color-scheme="default"] .md-sidebar--primary .md-nav--primary > .md-nav__title {
+  background-color: #e3edf8;
+  border-bottom: 1px solid #c8d8ea;
+}
+
 .md-grid { max-width: 88rem; }
 .md-header {
   background: #10192b;

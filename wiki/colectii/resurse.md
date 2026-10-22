@@ -10,6 +10,12 @@ Colectia poate include documentatie oficiala, articole tehnice, framework-uri, t
 
 Continutul brut si fisierele sunt pastrate in repository, in folderul `resurse/`. Pe aceasta pagina mentinem un index de resurse externe, fara a copia continutul lor.
 
+## Exemplu practic: orchestrarea agentilor AI
+
+**[Ghid de orchestrare multi-agent](orchestrare-multi-agent.md)** - configuratii generice Claude Code, Codex si SDK-uri Python, separarea worker/verifier, checkpointuri si criterii de acceptare.
+
+[:material-download: Descarca arhiva cu exemple](https://github.com/chrsdme/Monografie_AI/raw/main/resurse/agent_orchestration_generic_examples.zip){ .md-button }
+
 ## Contribuie
 
 Daca vrei sa recomanzi o resursa, foloseste formularul Tally. Nu ai nevoie de cont GitHub.

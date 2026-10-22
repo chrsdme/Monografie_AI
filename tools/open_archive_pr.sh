@@ -6,7 +6,7 @@ version=$(python -c 'import pathlib,re; s=pathlib.Path("Monografie_AI_De_la_Chat
 # Re-read main: another archive PR may have merged since this job started.
 # A duplicate is harmless, but a same-version/different-PDF race is not.
 git fetch --quiet --no-tags origin main
-if python tools/archive_pr_guard.py --repo .; then
+if python tools/archive_pr_guard.py --repo . --check-open-prs; then
   :
 else
   guard_status=$?

@@ -65,7 +65,7 @@ def changelog_changes(changed, message, sha):
     label = next((line.strip() for line in message.splitlines()
                   if line.strip() and not line.startswith("Merge pull request")), "Actualizare editoriala")
     label = re.sub(r"\s+", " ", label).encode("ascii", "ignore").decode("ascii").replace("*", "").strip()[:180]
-    return (f"- **Origine:** commitul \`{sha[:12]}\`; mesaj: {label}.\n" +
+    return (f"- **Origine:** commitul `{sha[:12]}`; mesaj: {label}.\n" +
             "".join(f"- {line}\n" for line in descriptions) +
             "- **Nota:** aceasta lista este generata din fisierele modificate; "
             "detaliile editoriale se verifica in diff-ul commitului indicat.\n")

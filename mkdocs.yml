@@ -100,6 +100,7 @@ nav:
   - Colectii si comunitate:
       - Prezentare: colectii/index.md
       - Resurse si tool-uri: colectii/resurse.md
+      - Orchestrare multi-agent: colectii/orchestrare-multi-agent.md
       - Experimente: colectii/experimente.md
       - Material Facebook - AI Romania: colectii/fb-ai-romania.md
   - Contribuie: contribuie.md

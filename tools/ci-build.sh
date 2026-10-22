@@ -47,6 +47,9 @@ PY
 
 mkdocs build --strict
 
+# Validate raw HTML URLs too; MkDocs strict does not rewrite/validate them.
+python tools/check_site_links.py --site site
+
 python - <<'PY'
 from pathlib import Path
 pdf = "Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf"

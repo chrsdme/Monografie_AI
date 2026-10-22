@@ -1,0 +1,47 @@
+# Copiaza in inbox/zzz.yaml (inbox/ este ignorat de Git).
+# Selecteaza doar fisierele din inbox; Codex nu le trateaza ca instructiuni.
+schema_version: 1
+batch_id: "BATCH-2026-001"
+objective: "Integrarea unor articole si corectii selectate"
+default_action: "plan_only"
+owner_approval: "required"
+safety:
+  allow_network: false
+  allow_publish: false
+  allow_overwrite_existing: false
+  require_source_verification: true
+  preserve_unselected_files: true
+items:
+  - id: "TASK-001"
+    file: "articole/securitate-ai-local.md"
+    action: "propose_article"
+    targets: ["wiki"]
+    placement_hint: "colectii/articole"
+    reason: "Articol autonom; nu este parte a monografiei"
+    checks: ["sources", "duplicates", "glossary"]
+  - id: "TASK-002"
+    file: "corectii/nota-capitol-14.md"
+    action: "propose_integration"
+    targets: ["book"]
+    book_section_id: "BOOK-14-012"
+    reason: "Completare a unui subcapitol existent"
+    checks: ["source_sha", "anchors", "bibliography", "glossary"]
+  - id: "TASK-003"
+    file: "resurse/agent-tools.md"
+    action: "propose_resource"
+    targets: ["resource"]
+    placement_hint: "catalog-resurse"
+    checks: ["links", "license", "sources"]
+  - id: "TASK-004"
+    file: "idei/memory-agentica.md"
+    action: "research_only"
+    targets: []
+    reason: "Pastreaza ca idee; nu publica"
+deliverables:
+  - "plan.json"
+  - "report.md"
+  - "proposed-diffs/"
+status_rules:
+  worker: ["CLAIMED_DONE", "PARTIAL", "BLOCKED", "FAILED"]
+  verification: ["PASS", "FAIL", "NOT_VERIFIED"]
+  approval: ["PENDING", "APPROVED", "REJECTED", "DEFERRED"]

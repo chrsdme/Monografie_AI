@@ -2,9 +2,9 @@
 
 Aceasta sectiune grupeaza materialele si ideile care pornesc din discutiile comunitatii Facebook **AI Romania** si care merita pastrate intr-o forma mai usor de consultat.
 
-[:material-facebook: Deschide grupul AI Romania](https://www.facebook.com/groups/1541205557658991){ .md-button .md-button--primary }
+[Deschide grupul AI Romania](https://www.facebook.com/groups/1541205557658991){ .md-button .md-button--primary }
 
-[:material-folder-open: Deschide folderul `fb_ai_romania/` pe GitHub](https://github.com/chrsdme/Monografie_AI/tree/main/fb_ai_romania){ .md-button }
+[Exploreaza materialele pe GitHub](https://github.com/chrsdme/Monografie_AI/tree/main/fb_ai_romania){ .md-button }
 
 ## Ce poate ajunge aici
 

@@ -2,7 +2,7 @@
 
 Aceasta sectiune centralizeaza experimentele practice, configuratiile si rezultatele care pot sustine sau contesta ideile discutate in documentatie.
 
-[:material-flask: Deschide folderul `experimente/` pe GitHub](https://github.com/chrsdme/Monografie_AI/tree/main/experimente){ .md-button .md-button--primary }
+[Exploreaza experimentele pe GitHub](https://github.com/chrsdme/Monografie_AI/tree/main/experimente){ .md-button .md-button--primary }
 
 ## Principiul de baza
 
@@ -12,6 +12,4 @@ Pe masura ce apar experimente noi, aceasta pagina poate deveni un index pe categ
 
 ## Contribuie
 
-Experimentele reproductibile, inclusiv rezultatele negative, sunt binevenite.
-
-[Vezi cum poti contribui](../contribuie.md)
+Experimentele reproductibile, inclusiv rezultatele negative, sunt binevenite. [Vezi cum poti contribui](../contribuie.md).

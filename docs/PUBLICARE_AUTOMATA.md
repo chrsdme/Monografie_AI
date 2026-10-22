@@ -21,6 +21,7 @@ Cand PR-ul de arhivare este integrat, workflow-ul detecteaza modificarea manifes
 Chiar daca joburile sunt serializate, un PR editorial nou poate fi integrat in timp ce altul genereaza sau arhiveaza PDF-ul. Inainte de a deschide un PR de arhivare, `tools/open_archive_pr.sh` actualizeaza referinta `origin/main` si ruleaza `tools/archive_pr_guard.py`:
 
 - Daca aceeasi editie este deja arhivata cu PDF identic, nu se creeaza un PR duplicat.
+- Daca exista deja un **PR deschis pentru aceeasi editie**, generarea unui al doilea PR se opreste explicit. Revizuim si integram mai intai PR-ul existent, apoi publicam eventualele modificari noi sub o editie noua.
 - Daca aceeasi editie exista dar PDF-ul difera, jobul esueaza explicit. Nu suprascrie editia imuabila.
 - Daca `main` este deja la o editie mai noua, un artefact nepublicat mai vechi este refuzat.
 - O editie noua, care nu exista in arhiva, poate continua in procesul obisnuit cu aprobare.

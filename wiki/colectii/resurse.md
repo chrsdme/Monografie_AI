@@ -1,27 +1,27 @@
 # Resurse si tool-uri
 
-Aceasta sectiune este punctul de intrare catre colectia de resurse a proiectului.
+Aici gasesti materialele practice care completeaza monografia: configuratii pentru agenti, exemple reproductibile si trimiteri catre documentatia relevanta.
 
-[:material-folder-open: Deschide folderul `resurse/` pe GitHub](https://github.com/chrsdme/Monografie_AI/tree/main/resurse){ .md-button .md-button--primary }
+## Ghiduri si configuratii
 
-## Ce gasesti aici
+### Orchestrare multi-agent
 
-Colectia poate include documentatie oficiala, articole tehnice, framework-uri, tool-uri, benchmark-uri, proiecte open-source si materiale educationale.
+Un exemplu complet de organizare a muncii intre MAIN, workeri temporari si verificatori independenti. Include contracte de task, checkpointuri, limite de executie si configuratii generice pentru Claude Code, Codex si SDK-uri Python.
 
-Continutul brut si fisierele sunt pastrate in repository, in folderul `resurse/`. Pe aceasta pagina mentinem un index de resurse externe, fara a copia continutul lor.
+[Citeste ghidul practic](orchestrare-multi-agent.md){ .md-button .md-button--primary }
 
-## Exemplu practic: orchestrarea agentilor AI
+[Descarca exemplele (ZIP)](https://github.com/chrsdme/Monografie_AI/raw/main/resurse/agent_orchestration_generic_examples.zip){ .md-button }
 
-**[Ghid de orchestrare multi-agent](orchestrare-multi-agent.md)** - configuratii generice Claude Code, Codex si SDK-uri Python, separarea worker/verifier, checkpointuri si criterii de acceptare.
+## Colectia de resurse
 
-[:material-download: Descarca arhiva cu exemple](https://github.com/chrsdme/Monografie_AI/raw/main/resurse/agent_orchestration_generic_examples.zip){ .md-button }
+Fisierele sunt pastrate in repository, in folderul `resurse/`. Poti explora si celelalte [experimente](experimente.md) sau [materiale din comunitate](fb-ai-romania.md).
 
-## Contribuie
-
-Daca vrei sa recomanzi o resursa, foloseste formularul Tally. Nu ai nevoie de cont GitHub.
-
-[Vezi cum poti contribui](../contribuie.md)
+[Exploreaza folderul resurse pe GitHub](https://github.com/chrsdme/Monografie_AI/tree/main/resurse){ .md-button }
 
 ## Lexicoane si dictionare
 
 **[Lexiconul agentilor AI - Ovidiu Boticiu](https://ovidiuboticiu.github.io/lexiconul-agentilor-ai/index.html)** - 361 de intrari bilingve EN-RO, cu explicatii practice, cautare si legaturi interne. Resursa externa independenta; continut CC BY-NC 4.0, cod fara licenta de reutilizare. Nu reproducem definitiile sau codul si nu consideram toate intrarile validate independent.
+
+## Contribuie
+
+Ai gasit o resursa utila sau o configuratie care merita verificata? [Trimite o propunere prin formularul public](../contribuie.md). Nu este nevoie de cont GitHub.

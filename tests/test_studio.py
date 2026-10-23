@@ -11,6 +11,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location("studio_tool", ROOT / "tools/studio.py")
 studio = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(studio)
+BUILD_SPEC = importlib.util.spec_from_file_location("build_tool", ROOT / "tools/build.py")
+build_tool = importlib.util.module_from_spec(BUILD_SPEC)
+BUILD_SPEC.loader.exec_module(build_tool)
 
 
 class StudioTests(unittest.TestCase):
@@ -103,6 +106,89 @@ class StudioTests(unittest.TestCase):
             root = self.repo(tmp, branch="main")
             with self.assertRaisesRegex(ValueError, "main"):
                 studio.migrate(root)
+
+    def test_toc_build_updates_fragment_master_and_wiki_deterministically(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.repo(tmp)
+            raw = (b'---\nedition: "1.2.6"\ndate: "23 octombrie 2026"\n'
+                   b'title: "Test"\nauthor: "Test"\nlicense: "CC"\nsource: "https://example.test"\n---\n'
+                   b'# Test\n\n## Cuprins\n\n<!-- TOC:START -->\nstale\n<!-- TOC:END -->\n\n'
+                   b'# Partea I. Start\n\n## 1. Primul capitol\nText editorial actualizat.\n'
+                   b'# Anexa A. Glosar\n\n## A.1. Termeni\n\n# Anexa B. Sabloane\n\n'
+                   b'# Anexa C. Evaluare\n\n# Anexa D. Metoda\n\n# Anexa E. Istoric\n\n'
+                   b'# Bibliografie si resurse de aprofundare\n\n')
+            (root / studio.MASTER).write_bytes(raw)
+            studio.migrate(root)
+            before_ids = [e["id"] for e in studio.load_manifest(root)["fragments"]]
+            count = build_tool.update_toc(root / studio.MASTER)
+            self.assertGreater(count, 0)
+            manifest = studio.load_manifest(root)
+            assembled = studio.combine(root / studio.BOOK, manifest)
+            self.assertEqual((root / studio.MASTER).read_bytes(), assembled)
+            self.assertEqual(manifest["last_generated_sha256"], studio.sha(assembled))
+            self.assertIn(b'edition: "1.2.6"', assembled)
+            self.assertIn(b"Text editorial actualizat.", assembled)
+            self.assertEqual(before_ids, [e["id"] for e in manifest["fragments"]])
+            self.assertEqual(build_tool.update_toc(root / studio.MASTER), 0)
+            index = root / "wiki/index.md"
+            index.parent.mkdir(parents=True, exist_ok=True)
+            index.write_bytes(b"# Manual\r\n\r\nText manual\r\n\r\n"
+                              b"<!-- MONOGRAFIE:START -->old<!-- MONOGRAFIE:END -->\r\n")
+            build_tool.build_wiki(root, root / studio.MASTER, {})
+            chapter = root / "wiki/partea-1/01-ce-este-ai.md"
+            first_build = {p.relative_to(root): p.read_bytes()
+                           for p in (root / "wiki").rglob("*.md")}
+            self.assertIn(b"Text editorial actualizat.", chapter.read_bytes())
+            for path, content in first_build.items():
+                self.assertNotIn(b"\r\n", content, path)
+            self.assertEqual(index.read_bytes().count(b"Text manual"), 1)
+            self.assertIn(b"Descarca PDF-ul curent", index.read_bytes())
+            self.assertNotIn(b"\r\n", index.read_bytes())
+            second_build = {p.relative_to(root): p.read_bytes()
+                            for p in (root / "wiki").rglob("*.md")}
+            self.assertEqual(first_build.keys(), second_build.keys())
+            for path in first_build:
+                self.assertEqual(first_build[path], second_build[path], path)
+            self.assertTrue((root / ".studio-local/wiki_index_block.md").is_file())
+            self.assertFalse((root / "wiki_index_block.md").exists())
+
+    def test_wiki_build_creates_missing_wiki_directory_and_homepage(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            master = root / "source.md"
+            master.write_text(
+                '---\ntitle: "Test"\nsource: "https://example.test"\nlicense: "CC"\n---\n'
+                '# Test\n\n# Partea I. Start\n\n## 1. Primul capitol\nText.\n'
+                '# Anexa A. Glosar\n\n# Anexa B. Sabloane\n\n'
+                '# Anexa C. Evaluare\n\n# Anexa D. Metoda\n\n'
+                '# Anexa E. Istoric\n\n# Bibliografie si resurse de aprofundare\n',
+                encoding="utf-8")
+            self.assertFalse((root / "wiki").exists())
+
+            build_tool.build_wiki(root, master, {})
+
+            self.assertTrue((root / "wiki/index.md").is_file())
+            self.assertTrue((root / "wiki/partea-1/01-ce-este-ai.md").is_file())
+
+    def test_generated_pdf_download_matches_source_bytes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            generated = root / "Monografie.pdf"
+            generated.write_bytes(b"generated pdf bytes" * 10)
+            destination = build_tool.publish_download_pdf(root, generated)
+            self.assertEqual(destination.read_bytes(), generated.read_bytes())
+
+    def test_toc_validation_failure_leaves_canonical_files_unchanged(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.repo(tmp)
+            raw = b"# Test\n\n## 1. Fara marcaje\nText\n"
+            (root / studio.MASTER).write_bytes(raw)
+            studio.migrate(root)
+            manifest_before = (root / studio.BOOK / "manifest.json").read_bytes()
+            with self.assertRaises(SystemExit):
+                build_tool.update_toc(root / studio.MASTER)
+            self.assertEqual((root / studio.MASTER).read_bytes(), raw)
+            self.assertEqual((root / studio.BOOK / "manifest.json").read_bytes(), manifest_before)
 
 
 if __name__ == "__main__":

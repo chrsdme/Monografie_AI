@@ -1,0 +1,1702 @@
+{
+  "schema_version": 1,
+  "source": "Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md",
+  "original_sha256": "1e12008817bd34dcf161b4aa4f59cae94689fba04dd68c632ba2b5ae253b70ed",
+  "last_generated_sha256": "1e12008817bd34dcf161b4aa4f59cae94689fba04dd68c632ba2b5ae253b70ed",
+  "fragments": [
+    {
+      "id": "BOOK-0001",
+      "path": "fragments/BOOK-0001-prolog.md",
+      "heading_level": 0,
+      "title_at_migration": "prolog",
+      "baseline_sha256": "e0a44b6f05507672ab7c25c2eb4248fd2c7e196e12766b31cc898ae476c08319"
+    },
+    {
+      "id": "BOOK-0002",
+      "path": "fragments/BOOK-0002-de-la-conversatia-cu-ai-la-sisteme-agent.md",
+      "heading_level": 1,
+      "title_at_migration": "De la conversatia cu AI la sisteme agentice verificabile",
+      "baseline_sha256": "8994c7e7fbc974f936da89c6c4c004f617814fb39d42bc1a3efd69617450447c"
+    },
+    {
+      "id": "BOOK-0003",
+      "path": "fragments/BOOK-0003-nota-editoriala.md",
+      "heading_level": 2,
+      "title_at_migration": "Nota editoriala",
+      "baseline_sha256": "6287bd8175b8d8a4ed37390e2484cc13554cb57203bdfb1bd426e89d5ca6f787"
+    },
+    {
+      "id": "BOOK-0004",
+      "path": "fragments/BOOK-0004-cum-se-citeste-aceasta-carte.md",
+      "heading_level": 2,
+      "title_at_migration": "Cum se citeste aceasta carte",
+      "baseline_sha256": "9b1e0dedd99dde159bc26aa0a5461f19bc164353aac22001fed72f1bb0787f0e"
+    },
+    {
+      "id": "BOOK-0005",
+      "path": "fragments/BOOK-0005-cuprins.md",
+      "heading_level": 2,
+      "title_at_migration": "Cuprins",
+      "baseline_sha256": "7b5c095254da2f68c3a0c68ecf6afde7d903558e7d7c60e7ced3030d31780f4f"
+    },
+    {
+      "id": "BOOK-0006",
+      "path": "fragments/BOOK-0006-partea-i-de-unde-pornim-modelul-conversa.md",
+      "heading_level": 1,
+      "title_at_migration": "Partea I. De unde pornim: modelul, conversatia si contextul",
+      "baseline_sha256": "519a49e20b5d39bd4d2667d753410a4bbedcbf379a67404df75d21d457352724"
+    },
+    {
+      "id": "BOOK-0007",
+      "path": "fragments/BOOK-0007-1-ce-este-inteligenta-artificiala-si-ce-.md",
+      "heading_level": 2,
+      "title_at_migration": "1. Ce este inteligenta artificiala si ce este un model?",
+      "baseline_sha256": "c6b9e0383331c792d274c3b8131e5c18721133dd4ab3090a359c0c2bab75c3d4"
+    },
+    {
+      "id": "BOOK-0008",
+      "path": "fragments/BOOK-0008-1-1-ai-nu-este-un-singur-obiect.md",
+      "heading_level": 3,
+      "title_at_migration": "1.1. AI nu este un singur obiect",
+      "baseline_sha256": "2915a365ce0f7efa8037e706bfa2a755ecaf066574e0183d6d238cf8c3d13cbc"
+    },
+    {
+      "id": "BOOK-0009",
+      "path": "fragments/BOOK-0009-1-2-ai-machine-learning-deep-learning-ai.md",
+      "heading_level": 3,
+      "title_at_migration": "1.2. AI, machine learning, deep learning, AI generativ",
+      "baseline_sha256": "682b222673642a6587b0f6564ff162b695d126713f20cd1be804f6f509c5a986"
+    },
+    {
+      "id": "BOOK-0010",
+      "path": "fragments/BOOK-0010-1-3-modelul-aplicatia-si-sistemul.md",
+      "heading_level": 3,
+      "title_at_migration": "1.3. Modelul, aplicatia si sistemul",
+      "baseline_sha256": "fc9b3d399c021f7929f81e23e126876866582d77ccda2e73ccbceac3edd240cb"
+    },
+    {
+      "id": "BOOK-0011",
+      "path": "fragments/BOOK-0011-1-4-un-exemplu-concret.md",
+      "heading_level": 3,
+      "title_at_migration": "1.4. Un exemplu concret",
+      "baseline_sha256": "954a551811184ecfac8d016b6a8b6bc3a5d2486d254371d42ad9c0b32deb2bfb"
+    },
+    {
+      "id": "BOOK-0012",
+      "path": "fragments/BOOK-0012-2-cum-produce-un-llm-un-raspuns.md",
+      "heading_level": 2,
+      "title_at_migration": "2. Cum produce un LLM un raspuns",
+      "baseline_sha256": "7f19701bc8702998cd6e218192318f519534fc298b0617ce828f82bd6d639db5"
+    },
+    {
+      "id": "BOOK-0013",
+      "path": "fragments/BOOK-0013-2-1-de-la-text-la-tokeni.md",
+      "heading_level": 3,
+      "title_at_migration": "2.1. De la text la tokeni",
+      "baseline_sha256": "2dc03c993961dedb59dfc1cb1f1ab25b7dcc189dbbfff40d415924a554ddd367"
+    },
+    {
+      "id": "BOOK-0014",
+      "path": "fragments/BOOK-0014-2-2-antrenare-inferenta-si-ajustare.md",
+      "heading_level": 3,
+      "title_at_migration": "2.2. Antrenare, inferenta si ajustare",
+      "baseline_sha256": "fca5d4a5e9478417b4d1806337bea3fdd0115e3fefeedd9050804ab73b2e33b0"
+    },
+    {
+      "id": "BOOK-0015",
+      "path": "fragments/BOOK-0015-2-3-de-unde-vine-impresia-de-rationament.md",
+      "heading_level": 3,
+      "title_at_migration": "2.3. De unde vine impresia de rationament?",
+      "baseline_sha256": "458344303b64b8c321c448cb451393742b55244ddeea6dced1437f35b0e7669a"
+    },
+    {
+      "id": "BOOK-0016",
+      "path": "fragments/BOOK-0016-2-4-ce-inseamna-comportament-probabilist.md",
+      "heading_level": 3,
+      "title_at_migration": "2.4. Ce inseamna comportament probabilistic",
+      "baseline_sha256": "dc5493a19894c0ac41e8d2e7edc09b7ba17a75fd160ac13dbc7804a388cec3a3"
+    },
+    {
+      "id": "BOOK-0017",
+      "path": "fragments/BOOK-0017-2-5-o-mica-perspectiva-istorica.md",
+      "heading_level": 3,
+      "title_at_migration": "2.5. O mica perspectiva istorica",
+      "baseline_sha256": "7dead9714db963b1e9f020efd937aa8bf3f15510bf70bfbbf394ea7047e714de"
+    },
+    {
+      "id": "BOOK-0018",
+      "path": "fragments/BOOK-0018-3-unde-folosim-un-model-browser-aplicati.md",
+      "heading_level": 2,
+      "title_at_migration": "3. Unde folosim un model: browser, aplicatie, CLI, API si infrastructura locala",
+      "baseline_sha256": "b2c8d431a5188ffcec075c5842ea09f99d036b7b7b97e9873775fa07ddf9be6c"
+    },
+    {
+      "id": "BOOK-0019",
+      "path": "fragments/BOOK-0019-3-1-browserul-poarta-de-intrare-obisnuit.md",
+      "heading_level": 3,
+      "title_at_migration": "3.1. Browserul: poarta de intrare obisnuita",
+      "baseline_sha256": "cd76d5fac3d8d98d02f97f56b2b430dcb687f314d7861eb2819a93f5c6707742"
+    },
+    {
+      "id": "BOOK-0020",
+      "path": "fragments/BOOK-0020-3-2-aplicatia-instalata-si-cli-ul.md",
+      "heading_level": 3,
+      "title_at_migration": "3.2. Aplicatia instalata si CLI-ul",
+      "baseline_sha256": "02812ed171b7d48373f7a8a677ab1851d38efc86268f100114267be701119615"
+    },
+    {
+      "id": "BOOK-0021",
+      "path": "fragments/BOOK-0021-3-3-api-ul-modelul-devine-o-piesa-dintr-.md",
+      "heading_level": 3,
+      "title_at_migration": "3.3. API-ul: modelul devine o piesa dintr-un alt program",
+      "baseline_sha256": "5fbfc6c7ae41e59abf1d424714d509949a41679a7d6e9c84403e8eff800d5019"
+    },
+    {
+      "id": "BOOK-0022",
+      "path": "fragments/BOOK-0022-3-4-rularea-locala-pe-scurt.md",
+      "heading_level": 3,
+      "title_at_migration": "3.4. Rularea locala, pe scurt",
+      "baseline_sha256": "032261287ff9e4e8c4d5e570a1394ea37f2b63502d985b683f2993b970a79612"
+    },
+    {
+      "id": "BOOK-0023",
+      "path": "fragments/BOOK-0023-3-5-trei-intrebari-practice.md",
+      "heading_level": 3,
+      "title_at_migration": "3.5. Trei intrebari practice",
+      "baseline_sha256": "791dd52128cee4fda6c762406a0ec9e804ba5bba03e88141af32eb3ebaa66509"
+    },
+    {
+      "id": "BOOK-0024",
+      "path": "fragments/BOOK-0024-4-contextul-ce-vede-modelul-in-momentul-.md",
+      "heading_level": 2,
+      "title_at_migration": "4. Contextul: ce vede modelul in momentul raspunsului",
+      "baseline_sha256": "773b98161ef56c17f75a22914581ba7d5f7db30f19c0efdd6ff7cfb1b4a0df24"
+    },
+    {
+      "id": "BOOK-0025",
+      "path": "fragments/BOOK-0025-4-1-o-conversatie-nu-e-memorie-omeneasca.md",
+      "heading_level": 3,
+      "title_at_migration": "4.1. O conversatie nu e memorie omeneasca",
+      "baseline_sha256": "1b5095c6e33b96fd7b0a88bace5dea5dbea6f48fd67313f78b30a0f92785e0c1"
+    },
+    {
+      "id": "BOOK-0026",
+      "path": "fragments/BOOK-0026-4-2-patru-lucruri-care-se-confunda-des.md",
+      "heading_level": 3,
+      "title_at_migration": "4.2. Patru lucruri care se confunda des",
+      "baseline_sha256": "5974d285bcd613f20972b0825b0c0412bdc6ed00a673d564570cfe7fdac71b9d"
+    },
+    {
+      "id": "BOOK-0027",
+      "path": "fragments/BOOK-0027-4-3-context-mare-nu-inseamna-context-bun.md",
+      "heading_level": 3,
+      "title_at_migration": "4.3. Context mare nu inseamna context bun",
+      "baseline_sha256": "eb24975720d6ae7ae2835918d14569cef0a287158402406b53b55bf13a0ee7ff"
+    },
+    {
+      "id": "BOOK-0028",
+      "path": "fragments/BOOK-0028-4-4-cloud-contra-local-diferenta-reala.md",
+      "heading_level": 3,
+      "title_at_migration": "4.4. Cloud contra local: diferenta reala",
+      "baseline_sha256": "fdb270a36ed291478085c0e03c0af727e0b66ca91f6bc93997507ea12fb3cb91"
+    },
+    {
+      "id": "BOOK-0029",
+      "path": "fragments/BOOK-0029-4-5-cum-reducem-contextul-fara-sa-pierde.md",
+      "heading_level": 3,
+      "title_at_migration": "4.5. Cum reducem contextul fara sa pierdem deciziile importante",
+      "baseline_sha256": "8c3650a836b92231823f9723b451ee931ba79c9b3947e9c0550a1a7d1d5b2a63"
+    },
+    {
+      "id": "BOOK-0030",
+      "path": "fragments/BOOK-0030-4-6-exemplu-un-agent-care-prelucreaza-fa.md",
+      "heading_level": 3,
+      "title_at_migration": "4.6. Exemplu: un agent care prelucreaza facturi",
+      "baseline_sha256": "1c3b4e171940f69507614a261cf5a213e10562551676e7fbbedda9f57ab1b9e8"
+    },
+    {
+      "id": "BOOK-0031",
+      "path": "fragments/BOOK-0031-5-ce-putem-face-cu-ai-si-cum-creste-difi.md",
+      "heading_level": 2,
+      "title_at_migration": "5. Ce putem face cu AI si cum creste dificultatea",
+      "baseline_sha256": "f2c636b5539334768821136941b786b64e09615f1f65fe683195ddddb9be4b9e"
+    },
+    {
+      "id": "BOOK-0032",
+      "path": "fragments/BOOK-0032-5-1-nivelul-unu-explicatii-si-continut.md",
+      "heading_level": 3,
+      "title_at_migration": "5.1. Nivelul unu: explicatii si continut",
+      "baseline_sha256": "941bd29c7c70ed2fc3c4df5483bb0e4ee809a395cd2927a5ddeb39a27c7e2ff5"
+    },
+    {
+      "id": "BOOK-0033",
+      "path": "fragments/BOOK-0033-5-2-nivelul-doi-lucrul-cu-materiale-conc.md",
+      "heading_level": 3,
+      "title_at_migration": "5.2. Nivelul doi: lucrul cu materiale concrete",
+      "baseline_sha256": "1f8b1e8f1c1465b2ca47a4856a7fe7c1958d043c4f39ba6bb3b00ea55bd4b0f5"
+    },
+    {
+      "id": "BOOK-0034",
+      "path": "fragments/BOOK-0034-5-3-nivelul-trei-unelte-si-rezultate-ver.md",
+      "heading_level": 3,
+      "title_at_migration": "5.3. Nivelul trei: unelte si rezultate verificabile",
+      "baseline_sha256": "1a6c4a546c7fdf4cb28739a8f994db6308c2ba8df0dd144f5768b5d71928c190"
+    },
+    {
+      "id": "BOOK-0035",
+      "path": "fragments/BOOK-0035-5-4-nivelul-patru-procese-care-se-repeta.md",
+      "heading_level": 3,
+      "title_at_migration": "5.4. Nivelul patru: procese care se repeta",
+      "baseline_sha256": "3511d86ef4eab1415c48f232e1c376f07c24d1112a759aaa638e62de2f0560d7"
+    },
+    {
+      "id": "BOOK-0036",
+      "path": "fragments/BOOK-0036-5-5-nivelul-cinci-sisteme-de-lucru.md",
+      "heading_level": 3,
+      "title_at_migration": "5.5. Nivelul cinci: sisteme de lucru",
+      "baseline_sha256": "b2925e763ac7d6ad6179042ada34fae6b61b894b0040f9a1d7fed64103f98092"
+    },
+    {
+      "id": "BOOK-0037",
+      "path": "fragments/BOOK-0037-partea-ii-de-la-o-intrebare-la-o-actiune.md",
+      "heading_level": 1,
+      "title_at_migration": "Partea II. De la o intrebare la o actiune",
+      "baseline_sha256": "a8bc608e57ff330635fe905e79635a1ead100e3e00d7ece8478f444556b4b8a2"
+    },
+    {
+      "id": "BOOK-0038",
+      "path": "fragments/BOOK-0038-6-prompturi-instructiuni-si-briefuri-cum.md",
+      "heading_level": 2,
+      "title_at_migration": "6. Prompturi, instructiuni si briefuri: cum definim treaba",
+      "baseline_sha256": "38d7f3509d9f47dc0b4202dda4d28d017c777e6edab494088a86ea3ac382af71"
+    },
+    {
+      "id": "BOOK-0039",
+      "path": "fragments/BOOK-0039-6-1-promptul-nu-este-o-formula-magica.md",
+      "heading_level": 3,
+      "title_at_migration": "6.1. Promptul nu este o formula magica",
+      "baseline_sha256": "0a8b0acdf2acfdd2eed455fd8f57cce402a636f9e530b342d9ec6b2529f614af"
+    },
+    {
+      "id": "BOOK-0040",
+      "path": "fragments/BOOK-0040-6-2-din-comanda-vaga-in-brief-verificabi.md",
+      "heading_level": 3,
+      "title_at_migration": "6.2. Din comanda vaga in brief verificabil",
+      "baseline_sha256": "3570948504228eb374a234417f5ebce3120925b4916f661f63ed2895b358dce2"
+    },
+    {
+      "id": "BOOK-0041",
+      "path": "fragments/BOOK-0041-6-3-instructiuni-permanente-si-cerinte-d.md",
+      "heading_level": 3,
+      "title_at_migration": "6.3. Instructiuni permanente si cerinte de moment",
+      "baseline_sha256": "a398b41252c6156a30efb6333f25e23b34f63b2fa5ab6c10113b68154595fd8b"
+    },
+    {
+      "id": "BOOK-0042",
+      "path": "fragments/BOOK-0042-6-4-exemplele-pot-clarifica-dar-pot-si-d.md",
+      "heading_level": 3,
+      "title_at_migration": "6.4. Exemplele pot clarifica, dar pot si deforma",
+      "baseline_sha256": "a046310f01d609fcab75a31367edaeef47b2b9927732f2bea5178f6212694a85"
+    },
+    {
+      "id": "BOOK-0043",
+      "path": "fragments/BOOK-0043-6-5-cand-e-un-prompt-prea-lung.md",
+      "heading_level": 3,
+      "title_at_migration": "6.5. Cand e un prompt prea lung?",
+      "baseline_sha256": "18fb5e10ae7234dc6a56f12ffd1b055cb478e3db36d6e66b4e29c593a7693013"
+    },
+    {
+      "id": "BOOK-0044",
+      "path": "fragments/BOOK-0044-6-6-exercitiu-practic-fara-programare.md",
+      "heading_level": 3,
+      "title_at_migration": "6.6. Exercitiu practic, fara programare",
+      "baseline_sha256": "2d2ba11cf232d54bb8ce38baba30cd693016ebfba7b781a0d958b26e01a2409f"
+    },
+    {
+      "id": "BOOK-0045",
+      "path": "fragments/BOOK-0045-6-7-intent-engineering-de-la-cerere-la-o.md",
+      "heading_level": 3,
+      "title_at_migration": "6.7. Intent Engineering: de la cerere la obiectiv verificabil",
+      "baseline_sha256": "64bc5ceea2323a0f98f3e0c111b85d0bc9921b225a99e6f1d6cfeb6b3f23364d"
+    },
+    {
+      "id": "BOOK-0046",
+      "path": "fragments/BOOK-0046-6-7-1-de-la-cerere-la-problema-reala.md",
+      "heading_level": 4,
+      "title_at_migration": "6.7.1. De la cerere la problema reala",
+      "baseline_sha256": "e32439e24991f52b6f2b8f08855e0838b81feab55f598508e3b76f138df330cf"
+    },
+    {
+      "id": "BOOK-0047",
+      "path": "fragments/BOOK-0047-6-7-2-cand-succesul-inseamna-sa-te-opres.md",
+      "heading_level": 4,
+      "title_at_migration": "6.7.2. Cand succesul inseamna sa te opresti",
+      "baseline_sha256": "2275fc6e61c079413c12bf2b92743d11914646552720d42cdbafd69714762531"
+    },
+    {
+      "id": "BOOK-0048",
+      "path": "fragments/BOOK-0048-6-7-3-verificare-si-actualizare.md",
+      "heading_level": 4,
+      "title_at_migration": "6.7.3. Verificare si actualizare",
+      "baseline_sha256": "51af1eb4befe6bcdd3934497926d300901dd87335905db0287e43300dc5003cf"
+    },
+    {
+      "id": "BOOK-0049",
+      "path": "fragments/BOOK-0049-7-cum-ajunge-ai-ul-sa-foloseasca-instrum.md",
+      "heading_level": 2,
+      "title_at_migration": "7. Cum ajunge AI-ul sa foloseasca instrumente",
+      "baseline_sha256": "dc6ca42a48e337d3f74a88f9d6c5f8b3d444a4b633797f16394f560a6cad187b"
+    },
+    {
+      "id": "BOOK-0050",
+      "path": "fragments/BOOK-0050-7-1-de-la-raspuns-text-la-un-apel-concre.md",
+      "heading_level": 3,
+      "title_at_migration": "7.1. De la raspuns text la un apel concret",
+      "baseline_sha256": "044b4e02c0123b66a5c5f54acc4cae0b9987c09542636452877cb754404537b4"
+    },
+    {
+      "id": "BOOK-0051",
+      "path": "fragments/BOOK-0051-7-2-urmarirea-completa-a-unei-operatii-m.md",
+      "heading_level": 3,
+      "title_at_migration": "7.2. Urmarirea completa a unei operatii meteo",
+      "baseline_sha256": "98ba1fed81cce5674ac56ff783a150845f4cc44b3decc2702c5ed11d51478419"
+    },
+    {
+      "id": "BOOK-0052",
+      "path": "fragments/BOOK-0052-7-3-api-si-conector-nu-sunt-acelasi-lucr.md",
+      "heading_level": 3,
+      "title_at_migration": "7.3. API si conector nu sunt acelasi lucru",
+      "baseline_sha256": "ade8a25b76a4d9ea4add85427019e03be1d19a48278cc57de4b417cdc01a7afb"
+    },
+    {
+      "id": "BOOK-0053",
+      "path": "fragments/BOOK-0053-7-4-ce-este-mcp-si-de-ce-a-aparut.md",
+      "heading_level": 3,
+      "title_at_migration": "7.4. Ce este MCP si de ce a aparut",
+      "baseline_sha256": "f8a0d51b71014a2609c62302e8d855b4770893b63964b926b6b2c152d6641eaf"
+    },
+    {
+      "id": "BOOK-0054",
+      "path": "fragments/BOOK-0054-7-5-unelte-care-doar-citesc-si-unelte-ca.md",
+      "heading_level": 3,
+      "title_at_migration": "7.5. Unelte care doar citesc si unelte care schimba lumea",
+      "baseline_sha256": "8a2524ae8abc195389c0e2954157a30ae6fedb7cb572c13d148410d6fbf3d75b"
+    },
+    {
+      "id": "BOOK-0055",
+      "path": "fragments/BOOK-0055-7-6-tool-choice-cine-hotaraste-daca-se-f.md",
+      "heading_level": 3,
+      "title_at_migration": "7.6. Tool choice: cine hotaraste daca se foloseste unealta?",
+      "baseline_sha256": "3acf180d0a19c38cdf404dc380300497e6b255fed44f1e0db648674d3c296406"
+    },
+    {
+      "id": "BOOK-0056",
+      "path": "fragments/BOOK-0056-8-cunostinte-externe-memorie-si-rag.md",
+      "heading_level": 2,
+      "title_at_migration": "8. Cunostinte externe, memorie si RAG",
+      "baseline_sha256": "672d4eaef631c32ae9a539093ca7e6771d100f4b063d7e3d849a8fa3c1b0dd5f"
+    },
+    {
+      "id": "BOOK-0057",
+      "path": "fragments/BOOK-0057-8-1-de-ce-avem-nevoie-de-informatii-din-.md",
+      "heading_level": 3,
+      "title_at_migration": "8.1. De ce avem nevoie de informatii din afara modelului",
+      "baseline_sha256": "4e9d25f53f734fd17ce19aa6e6ddfca43e9f839ef5a5930f9bd2fd0e4ab35647"
+    },
+    {
+      "id": "BOOK-0058",
+      "path": "fragments/BOOK-0058-8-2-rag-in-cinci-pasi.md",
+      "heading_level": 3,
+      "title_at_migration": "8.2. RAG in cinci pasi",
+      "baseline_sha256": "312db1b6ebeff7c0e4c6a709bffbf453aa773de3180d56cd9b01a14ace3b55aa"
+    },
+    {
+      "id": "BOOK-0059",
+      "path": "fragments/BOOK-0059-8-3-ce-poate-merge-prost-intr-un-rag.md",
+      "heading_level": 3,
+      "title_at_migration": "8.3. Ce poate merge prost intr-un RAG",
+      "baseline_sha256": "6ac514ddce37b53e490d847449fb339e7ab28cf7d93faf8d57bc6ca0065dad54"
+    },
+    {
+      "id": "BOOK-0060",
+      "path": "fragments/BOOK-0060-8-4-ce-inseamna-memoria-unui-agent.md",
+      "heading_level": 3,
+      "title_at_migration": "8.4. Ce inseamna memoria unui agent",
+      "baseline_sha256": "d44172e9af5cfff9dbdd898a3971e85e38b02e9b9a70e50f6862df027abaaf18"
+    },
+    {
+      "id": "BOOK-0061",
+      "path": "fragments/BOOK-0061-8-5-cine-actualizeaza-memoria-si-cand.md",
+      "heading_level": 3,
+      "title_at_migration": "8.5. Cine actualizeaza memoria si cand?",
+      "baseline_sha256": "89bce166902989b78a0990a137bb9367d12da02718398ea801500d6318b337cc"
+    },
+    {
+      "id": "BOOK-0062",
+      "path": "fragments/BOOK-0062-8-6-rag-si-memoria-nu-sunt-acelasi-lucru.md",
+      "heading_level": 3,
+      "title_at_migration": "8.6. RAG si memoria nu sunt acelasi lucru",
+      "baseline_sha256": "cbe44054a2339f688542db6bdbed655afed7420e5026b127bc62786e249e65d8"
+    },
+    {
+      "id": "BOOK-0063",
+      "path": "fragments/BOOK-0063-8-7-cum-masori-un-sistem-rag.md",
+      "heading_level": 3,
+      "title_at_migration": "8.7. Cum masori un sistem RAG",
+      "baseline_sha256": "7daa55e6d20218ea648699a0a9abc073eb1e81de07319354006668b3135b7522"
+    },
+    {
+      "id": "BOOK-0064",
+      "path": "fragments/BOOK-0064-8-8-cand-rag-ul-simplu-nu-ajunge.md",
+      "heading_level": 3,
+      "title_at_migration": "8.8. Cand RAG-ul simplu nu ajunge",
+      "baseline_sha256": "71d3e95e22fde95e88bd24e0f5011abf91b81e20da120559d2847b50aa3735e2"
+    },
+    {
+      "id": "BOOK-0065",
+      "path": "fragments/BOOK-0065-8-9-provenienta-versiunea-si-expirarea-c.md",
+      "heading_level": 3,
+      "title_at_migration": "8.9. Provenienta, versiunea si expirarea cunostintelor",
+      "baseline_sha256": "b07d159dce4c54855c7ca9763d37b81a31a5d150703d866671a0206493906363"
+    },
+    {
+      "id": "BOOK-0066",
+      "path": "fragments/BOOK-0066-8-10-un-flux-de-cunoastere-cu-aprobare.md",
+      "heading_level": 3,
+      "title_at_migration": "8.10. Un flux de cunoastere cu aprobare",
+      "baseline_sha256": "3751a691034e0bf5ea7ba097f4a6ffd6bbff4292c70788131be762983885596c"
+    },
+    {
+      "id": "BOOK-0067",
+      "path": "fragments/BOOK-0067-9-automatizare-workflow-si-agent-de-ce-d.md",
+      "heading_level": 2,
+      "title_at_migration": "9. Automatizare, workflow si agent: de ce diferenta conteaza",
+      "baseline_sha256": "d9d4a8597e8f88105065f81517b3cf8835004a1c51ac08524ca3e38ec69489ed"
+    },
+    {
+      "id": "BOOK-0068",
+      "path": "fragments/BOOK-0068-9-1-automatizarea-clasica-nu-a-disparut.md",
+      "heading_level": 3,
+      "title_at_migration": "9.1. Automatizarea clasica nu a disparut",
+      "baseline_sha256": "24e7e552a3d1d191e76eb562bbdc895ccec81b246f243bc79135eb6113bc0c19"
+    },
+    {
+      "id": "BOOK-0069",
+      "path": "fragments/BOOK-0069-9-2-ce-adauga-un-agent.md",
+      "heading_level": 3,
+      "title_at_migration": "9.2. Ce adauga un agent",
+      "baseline_sha256": "5274fa2be32420d0537e378b6592c909bff47ee8ae72ea8e99351d827cab4420"
+    },
+    {
+      "id": "BOOK-0070",
+      "path": "fragments/BOOK-0070-9-3-o-distinctie-folosita-des-in-inginer.md",
+      "heading_level": 3,
+      "title_at_migration": "9.3. O distinctie folosita des in inginerie",
+      "baseline_sha256": "435fcd8bcde30805e164834bd803a56ca774da872cc14b60978f9e5f86ed2020"
+    },
+    {
+      "id": "BOOK-0071",
+      "path": "fragments/BOOK-0071-9-4-aceeasi-sarcina-cinci-abordari.md",
+      "heading_level": 3,
+      "title_at_migration": "9.4. Aceeasi sarcina, cinci abordari",
+      "baseline_sha256": "b3b3f9e37491b47dd15057413fb394359e396bd724085898c6b141d43e11bc81"
+    },
+    {
+      "id": "BOOK-0072",
+      "path": "fragments/BOOK-0072-9-5-cata-autonomie-are-agentul.md",
+      "heading_level": 3,
+      "title_at_migration": "9.5. Cata autonomie are agentul?",
+      "baseline_sha256": "d778e9fcc1eea5da2665dc45d7d4cdf00ec77c6d76e2aa0bd6f7f7c09d90eaa5"
+    },
+    {
+      "id": "BOOK-0073",
+      "path": "fragments/BOOK-0073-9-6-intrebarea-de-proiectare.md",
+      "heading_level": 3,
+      "title_at_migration": "9.6. Intrebarea de proiectare",
+      "baseline_sha256": "208853eaa94751866c77a757aeb04c6c40d9f2701111e0d8e254fba4484a5479"
+    },
+    {
+      "id": "BOOK-0074",
+      "path": "fragments/BOOK-0074-9-7-cinci-tipare-de-workflow-de-incercat.md",
+      "heading_level": 3,
+      "title_at_migration": "9.7. Cinci tipare de workflow de incercat inainte de un agent",
+      "baseline_sha256": "ffc3a1c184719a2f6078c9b327cc670bde9a80847d43ac39b959e9e46978b1e5"
+    },
+    {
+      "id": "BOOK-0075",
+      "path": "fragments/BOOK-0075-9-8-cartografierea-procesului-inainte-sa.md",
+      "heading_level": 3,
+      "title_at_migration": "9.8. Cartografierea procesului inainte sa alegem tehnologia",
+      "baseline_sha256": "bfdace46ff9330fdc1b5180bfcd0e8da8f1b2de1cc047e618c5f788a66b7ab3f"
+    },
+    {
+      "id": "BOOK-0076",
+      "path": "fragments/BOOK-0076-9-9-masurarea-situatiei-initiale-fara-ea.md",
+      "heading_level": 3,
+      "title_at_migration": "9.9. Masurarea situatiei initiale: fara ea nu stim daca am progresat",
+      "baseline_sha256": "5ff0a266e27cb238148a89ad52a73f7e42b923ca30c54fe2930324f45080c28a"
+    },
+    {
+      "id": "BOOK-0077",
+      "path": "fragments/BOOK-0077-9-10-alegerea-locului-unde-introducem-ai.md",
+      "heading_level": 3,
+      "title_at_migration": "9.10. Alegerea locului unde introducem AI-ul",
+      "baseline_sha256": "cb2a5019bc96ecf062d0157df0226a55ef786070009b31375c6407c5cc539669"
+    },
+    {
+      "id": "BOOK-0078",
+      "path": "fragments/BOOK-0078-partea-iii-din-componente-separate-const.md",
+      "heading_level": 1,
+      "title_at_migration": "Partea III. Din componente separate construim un sistem",
+      "baseline_sha256": "ed3788acc531d91505bbbabdc86ba15f57f04acccd97fce9291c6682292a4419"
+    },
+    {
+      "id": "BOOK-0079",
+      "path": "fragments/BOOK-0079-10-harness-ul-mediul-care-transforma-mod.md",
+      "heading_level": 2,
+      "title_at_migration": "10. Harness-ul: mediul care transforma modelul intr-un executant",
+      "baseline_sha256": "9fe0990a664678f1b26f71e3f9d5277fcddb6cf7d28f8f77e8bd8afb43b314c6"
+    },
+    {
+      "id": "BOOK-0080",
+      "path": "fragments/BOOK-0080-10-1-ce-problema-rezolva.md",
+      "heading_level": 3,
+      "title_at_migration": "10.1. Ce problema rezolva",
+      "baseline_sha256": "eb73d97dc9727f5ef6019f8b9584732cfdaf94d0de4114278c42a5101bf87f6a"
+    },
+    {
+      "id": "BOOK-0081",
+      "path": "fragments/BOOK-0081-10-2-componentele-practice-ale-unui-harn.md",
+      "heading_level": 3,
+      "title_at_migration": "10.2. Componentele practice ale unui harness",
+      "baseline_sha256": "61ea00873a4c8259af97117f688b79ea923c32bc10a6aacabedbee61606c8385"
+    },
+    {
+      "id": "BOOK-0082",
+      "path": "fragments/BOOK-0082-10-3-harness-si-motor-de-inferenta.md",
+      "heading_level": 3,
+      "title_at_migration": "10.3. Harness si motor de inferenta",
+      "baseline_sha256": "9b900cf5c28183448238aa403c7830953c8f73d0bb941db294a48b058231da60"
+    },
+    {
+      "id": "BOOK-0083",
+      "path": "fragments/BOOK-0083-10-4-ce-este-bucla-agentului.md",
+      "heading_level": 3,
+      "title_at_migration": "10.4. Ce este bucla agentului",
+      "baseline_sha256": "84575efa6c98409597ed5e33bb18f2fd057d8e7ad1eb2c3e7d9ec75c17a37655"
+    },
+    {
+      "id": "BOOK-0084",
+      "path": "fragments/BOOK-0084-10-5-cum-recunoastem-un-harness-bun.md",
+      "heading_level": 3,
+      "title_at_migration": "10.5. Cum recunoastem un harness bun",
+      "baseline_sha256": "56478d24f2d8c994e65cd1304a64bc4ae5360443e3b9024793b5ed594c5219d3"
+    },
+    {
+      "id": "BOOK-0085",
+      "path": "fragments/BOOK-0085-10-6-cum-lucreaza-un-harness-cu-mai-mult.md",
+      "heading_level": 3,
+      "title_at_migration": "10.6. Cum lucreaza un harness cu mai multe modele",
+      "baseline_sha256": "83588282a474a728f8cdc0f73ede2d149da729c47775f7531e8d717909b105d2"
+    },
+    {
+      "id": "BOOK-0086",
+      "path": "fragments/BOOK-0086-10-7-ce-nu-rezolva-harness-ul-singur.md",
+      "heading_level": 3,
+      "title_at_migration": "10.7. Ce nu rezolva harness-ul singur",
+      "baseline_sha256": "3b8453f93c971a380f0ce9140a22a29bbd0151a3abbab9dc37b5ea5d88ecc25f"
+    },
+    {
+      "id": "BOOK-0087",
+      "path": "fragments/BOOK-0087-11-arhitectura-de-referinta-straturile-u.md",
+      "heading_level": 2,
+      "title_at_migration": "11. Arhitectura de referinta: straturile unui workflow AI",
+      "baseline_sha256": "123869af8f43dd33e04a11f0d9f886c1e083641a8c6a236cfba2a9986bc39a4c"
+    },
+    {
+      "id": "BOOK-0088",
+      "path": "fragments/BOOK-0088-11-1-de-ce-vorbim-despre-straturi.md",
+      "heading_level": 3,
+      "title_at_migration": "11.1. De ce vorbim despre straturi",
+      "baseline_sha256": "2c0c2f3165bb2c51b6c2dbdcbf91d5481ad01011bbc2c4c500be48f95cba5493"
+    },
+    {
+      "id": "BOOK-0089",
+      "path": "fragments/BOOK-0089-11-2-stratul-de-intrare.md",
+      "heading_level": 3,
+      "title_at_migration": "11.2. Stratul de intrare",
+      "baseline_sha256": "2e8e875a9ee266036708e122e71bee0f7a58fc6c02067f753c0c54baecb6479e"
+    },
+    {
+      "id": "BOOK-0090",
+      "path": "fragments/BOOK-0090-11-3-stratul-de-interpretare-si-pregatir.md",
+      "heading_level": 3,
+      "title_at_migration": "11.3. Stratul de interpretare si pregatire",
+      "baseline_sha256": "6365da70f123d8caf710540b36562a65e59d8c26c07ecf6f83f8a65eb36c1069"
+    },
+    {
+      "id": "BOOK-0091",
+      "path": "fragments/BOOK-0091-11-4-stratul-de-orchestrare-si-stare.md",
+      "heading_level": 3,
+      "title_at_migration": "11.4. Stratul de orchestrare si stare",
+      "baseline_sha256": "bd956a6a0dcfb0f2afa1276fbb08e2bf854232f6b6af33ec04a700cb9228b7d1"
+    },
+    {
+      "id": "BOOK-0092",
+      "path": "fragments/BOOK-0092-11-5-stratul-modelelor-si-agentilor.md",
+      "heading_level": 3,
+      "title_at_migration": "11.5. Stratul modelelor si agentilor",
+      "baseline_sha256": "4122f0108541b7444872f11f671188818003258171e7bc7dadc308d4c7bf2339"
+    },
+    {
+      "id": "BOOK-0093",
+      "path": "fragments/BOOK-0093-11-6-stratul-de-actiune-si-integrare.md",
+      "heading_level": 3,
+      "title_at_migration": "11.6. Stratul de actiune si integrare",
+      "baseline_sha256": "e6462f9d6794921766c3a87d45931d272118d51491ee3981d1809a5dac42eab2"
+    },
+    {
+      "id": "BOOK-0094",
+      "path": "fragments/BOOK-0094-11-7-stratul-de-cunostinte-si-memorie.md",
+      "heading_level": 3,
+      "title_at_migration": "11.7. Stratul de cunostinte si memorie",
+      "baseline_sha256": "20fb3d35d090b0d3a7d00fce3c2c024b7566fe6f35fc66b620ca8094fff0b200"
+    },
+    {
+      "id": "BOOK-0095",
+      "path": "fragments/BOOK-0095-11-8-stratul-de-verificare-si-control.md",
+      "heading_level": 3,
+      "title_at_migration": "11.8. Stratul de verificare si control",
+      "baseline_sha256": "034945b0ec3d60d384f2328dbc0f9be4ae7f85937a6d346655eaec7cbb434c78"
+    },
+    {
+      "id": "BOOK-0096",
+      "path": "fragments/BOOK-0096-11-9-stratul-de-observabilitate-si-imbun.md",
+      "heading_level": 3,
+      "title_at_migration": "11.9. Stratul de observabilitate si imbunatatire",
+      "baseline_sha256": "e270c660f90f8b16fcdf2e46fe70d77c07fcd5a38446e3e7f18adba150b8649f"
+    },
+    {
+      "id": "BOOK-0097",
+      "path": "fragments/BOOK-0097-11-10-responsabilitati-transversale.md",
+      "heading_level": 3,
+      "title_at_migration": "11.10. Responsabilitati transversale",
+      "baseline_sha256": "f60f86bb073f48890d6d5163e9d2c5d01c629fe2bad56c03472ec67387a335d6"
+    },
+    {
+      "id": "BOOK-0098",
+      "path": "fragments/BOOK-0098-12-anatomia-unui-agent-rol-model-instrum.md",
+      "heading_level": 2,
+      "title_at_migration": "12. Anatomia unui agent: rol, model, instrumente, stare si limite",
+      "baseline_sha256": "f29b500d40a0b486290941454fb7fd9bc59af62ed87dd4576107d210b35c39b3"
+    },
+    {
+      "id": "BOOK-0099",
+      "path": "fragments/BOOK-0099-12-1-agentul-nu-este-doar-un-system-prom.md",
+      "heading_level": 3,
+      "title_at_migration": "12.1. Agentul nu este doar un system prompt",
+      "baseline_sha256": "e5b5ce1300f6210e95ce8563eacd7cba2efba96f9ecedd0322800248bfcdbb61"
+    },
+    {
+      "id": "BOOK-0100",
+      "path": "fragments/BOOK-0100-12-2-un-contract-de-agent.md",
+      "heading_level": 3,
+      "title_at_migration": "12.2. Un contract de agent",
+      "baseline_sha256": "9c0455cfb1894254e27553f76ef1c83565a18b202023e65051a7bb9197fba23f"
+    },
+    {
+      "id": "BOOK-0101",
+      "path": "fragments/BOOK-0101-12-3-starea-si-sesiunile.md",
+      "heading_level": 3,
+      "title_at_migration": "12.3. Starea si sesiunile",
+      "baseline_sha256": "7e1b8292034df507ee072be443a15e6b2994944dbf0ef43d514fd17e35497cce"
+    },
+    {
+      "id": "BOOK-0102",
+      "path": "fragments/BOOK-0102-12-4-cand-se-opreste-agentul.md",
+      "heading_level": 3,
+      "title_at_migration": "12.4. Cand se opreste agentul?",
+      "baseline_sha256": "26c0c3166acd3a7b7c7b3ae3ab832cdf1709a51257dcf9d068954f4003aad1ac"
+    },
+    {
+      "id": "BOOK-0103",
+      "path": "fragments/BOOK-0103-12-5-autoevaluarea-si-limitele-ei.md",
+      "heading_level": 3,
+      "title_at_migration": "12.5. Autoevaluarea si limitele ei",
+      "baseline_sha256": "7771e30a51e090adee2c5909de54576df4233affca0f3182fe31b09e7eccb9de"
+    },
+    {
+      "id": "BOOK-0104",
+      "path": "fragments/BOOK-0104-12-6-cand-nu-avem-nevoie-de-un-agent.md",
+      "heading_level": 3,
+      "title_at_migration": "12.6. Cand nu avem nevoie de un agent",
+      "baseline_sha256": "c935957f83bc4e1236610c46e7b60ba1009cde465c3fe48a2f04b9f6dcdc38dd"
+    },
+    {
+      "id": "BOOK-0105",
+      "path": "fragments/BOOK-0105-13-specializare-clase-si-instante-impart.md",
+      "heading_level": 2,
+      "title_at_migration": "13. Specializare, clase si instante: impartim munca fara sa o fragmentam",
+      "baseline_sha256": "e01530355e2ed1744a199f7209647022c45e2f2c8eca8a0399e4f9092bd1d6d3"
+    },
+    {
+      "id": "BOOK-0106",
+      "path": "fragments/BOOK-0106-13-1-mai-intai-ce-inseamna-clasa.md",
+      "heading_level": 3,
+      "title_at_migration": "13.1. Mai intai, ce inseamna \"clasa\"",
+      "baseline_sha256": "077b7739f24dcf0dc77e579f420f96b6aabfcab08191f42b36546f7d22acb4ab"
+    },
+    {
+      "id": "BOOK-0107",
+      "path": "fragments/BOOK-0107-13-2-de-ce-nu-facem-un-singur-agent-pent.md",
+      "heading_level": 3,
+      "title_at_migration": "13.2. De ce nu facem un singur agent pentru orice",
+      "baseline_sha256": "782f67ada20ed958d8baf9499049c9506d0597bc886d8955a8c0a8204dfc72f4"
+    },
+    {
+      "id": "BOOK-0108",
+      "path": "fragments/BOOK-0108-13-3-studiul-unei-functii-simple.md",
+      "heading_level": 3,
+      "title_at_migration": "13.3. Studiul unei functii simple",
+      "baseline_sha256": "c04af1aaa011e97a208773596a6788525d10bebde75fbc0f845c799059901580"
+    },
+    {
+      "id": "BOOK-0109",
+      "path": "fragments/BOOK-0109-13-4-ce-inseamna-independenta-verificari.md",
+      "heading_level": 3,
+      "title_at_migration": "13.4. Ce inseamna independenta verificarii",
+      "baseline_sha256": "6ab79507e7b49c97d41ebe7ca03f832b00fa85163b3c8a037f9dc14eb4819b06"
+    },
+    {
+      "id": "BOOK-0110",
+      "path": "fragments/BOOK-0110-13-5-specializare-utila-sau-fragmentare-.md",
+      "heading_level": 3,
+      "title_at_migration": "13.5. Specializare utila sau fragmentare excesiva?",
+      "baseline_sha256": "76982e9026758f7b7cca72e72d2ad0b0c6406f6cd87482b683424598a37ae74d"
+    },
+    {
+      "id": "BOOK-0111",
+      "path": "fragments/BOOK-0111-13-6-clasificarile-populare-de-agenti.md",
+      "heading_level": 3,
+      "title_at_migration": "13.6. Clasificarile populare de agenti",
+      "baseline_sha256": "6e0e87e0535b09edec7b8a30d73fdcb149d55932f78e8c3b53e5f90f0db8be0c"
+    },
+    {
+      "id": "BOOK-0112",
+      "path": "fragments/BOOK-0112-13-7-exemplu-cu-trei-clase-si-mai-multe-.md",
+      "heading_level": 3,
+      "title_at_migration": "13.7. Exemplu cu trei clase si mai multe instante",
+      "baseline_sha256": "526c59fc515106750730c7fb25bdad758ed22cc04adb23f34cefc0268a51f400"
+    },
+    {
+      "id": "BOOK-0113",
+      "path": "fragments/BOOK-0113-14-orchestrarea-cine-decide-cine-executa.md",
+      "heading_level": 2,
+      "title_at_migration": "14. Orchestrarea: cine decide, cine executa si cine verifica",
+      "baseline_sha256": "30ab335921b327002bf0db854dd9db5fcbad6189ed3b3292462d3d72a743d892"
+    },
+    {
+      "id": "BOOK-0114",
+      "path": "fragments/BOOK-0114-14-1-ce-este-de-fapt-orchestratorul.md",
+      "heading_level": 3,
+      "title_at_migration": "14.1. Ce este, de fapt, orchestratorul?",
+      "baseline_sha256": "c3420625f3256c56402557cfba1ca04fc5a724e479e2f708e8a320c98d4d8a8e"
+    },
+    {
+      "id": "BOOK-0115",
+      "path": "fragments/BOOK-0115-14-2-o-cerere-care-devine-proiect.md",
+      "heading_level": 3,
+      "title_at_migration": "14.2. O cerere care devine proiect",
+      "baseline_sha256": "6ef2d363e98eeabca9d8b36d141fef58e9987cd9dcb220561fff1e75aef4948d"
+    },
+    {
+      "id": "BOOK-0116",
+      "path": "fragments/BOOK-0116-14-3-alocarea-sarcinilor-si-rutarea.md",
+      "heading_level": 3,
+      "title_at_migration": "14.3. Alocarea sarcinilor si rutarea",
+      "baseline_sha256": "7766751a83f214c06c982f00c3bfd781edd536eb9955286881f285cc43b82356"
+    },
+    {
+      "id": "BOOK-0117",
+      "path": "fragments/BOOK-0117-14-4-dependente-grafuri-si-stari.md",
+      "heading_level": 3,
+      "title_at_migration": "14.4. Dependente, grafuri si stari",
+      "baseline_sha256": "61ccf18905161e4cc480a0150accd6e1ebc06f9373ac74e41be816f8d3c29005"
+    },
+    {
+      "id": "BOOK-0118",
+      "path": "fragments/BOOK-0118-14-5-modele-de-coordonare.md",
+      "heading_level": 3,
+      "title_at_migration": "14.5. Modele de coordonare",
+      "baseline_sha256": "528764a3ef3c729695042e52dfaa55d8e66d681241f981cb754c1b47230d53ad"
+    },
+    {
+      "id": "BOOK-0119",
+      "path": "fragments/BOOK-0119-14-6-acelasi-model-mai-multi-agenti.md",
+      "heading_level": 3,
+      "title_at_migration": "14.6. Acelasi model, mai multi agenti",
+      "baseline_sha256": "4902a38a5749784a49e5066b8377ce8fff9e0da00d4d5f5ebbe473e6658f02b9"
+    },
+    {
+      "id": "BOOK-0120",
+      "path": "fragments/BOOK-0120-14-7-concurenta-paralelismul-si-izolarea.md",
+      "heading_level": 3,
+      "title_at_migration": "14.7. Concurenta, paralelismul si izolarea",
+      "baseline_sha256": "968bf9a5d299a51f384b51b19148b857bfce31fe119a1560ee1f5d955a08d734"
+    },
+    {
+      "id": "BOOK-0121",
+      "path": "fragments/BOOK-0121-14-8-de-ce-20-de-agenti-pot-fi-mai-slabi.md",
+      "heading_level": 3,
+      "title_at_migration": "14.8. De ce 20 de agenti pot fi mai slabi decat trei clase bine gandite",
+      "baseline_sha256": "90c6b7a897d75334e1839ab840bad41ab098bd774385aa57fc0730ee1e84979f"
+    },
+    {
+      "id": "BOOK-0122",
+      "path": "fragments/BOOK-0122-14-9-unde-intra-memoria-in-orchestrare.md",
+      "heading_level": 3,
+      "title_at_migration": "14.9. Unde intra memoria in orchestrare",
+      "baseline_sha256": "a502be21d5daada8ba378a9a6547a946c32a647b54173b7b28cedc65926626b1"
+    },
+    {
+      "id": "BOOK-0123",
+      "path": "fragments/BOOK-0123-14-10-ce-se-intampla-cand-un-agent-esuea.md",
+      "heading_level": 3,
+      "title_at_migration": "14.10. Ce se intampla cand un agent esueaza?",
+      "baseline_sha256": "859c939c6c5ef0ca67b20ee62923ccda51bc4ea8812312e27f12103be5f9771c"
+    },
+    {
+      "id": "BOOK-0124",
+      "path": "fragments/BOOK-0124-14-11-cum-evitam-ca-orchestratorul-sa-de.md",
+      "heading_level": 3,
+      "title_at_migration": "14.11. Cum evitam ca orchestratorul sa devina el insusi problema",
+      "baseline_sha256": "8ce6d7b52f9c4a3b2c13e662a10893701a1d0a87dc3b4986088e4df576ad0101"
+    },
+    {
+      "id": "BOOK-0125",
+      "path": "fragments/BOOK-0125-14-12-studiu-practic-orchestrator-worker.md",
+      "heading_level": 3,
+      "title_at_migration": "14.12. Studiu practic: orchestrator, worker temporar si verificator separat",
+      "baseline_sha256": "9515215a40b7ac01caf2c57a9c6c7a22184deed5a282c1b0b0cd8044ad4f5147"
+    },
+    {
+      "id": "BOOK-0126",
+      "path": "fragments/BOOK-0126-15-cele-patru-discipline-de-inginerie-pr.md",
+      "heading_level": 2,
+      "title_at_migration": "15. Cele patru discipline de inginerie: prompt, context, harness si loop",
+      "baseline_sha256": "45f02632ce734a0e353a6dbef5794fce3553b4b18d441dbc51aaa92e4c247747"
+    },
+    {
+      "id": "BOOK-0127",
+      "path": "fragments/BOOK-0127-15-1-de-ce-au-aparut-denumiri-diferite.md",
+      "heading_level": 3,
+      "title_at_migration": "15.1. De ce au aparut denumiri diferite",
+      "baseline_sha256": "3b9575fb2fbce4a1055f9b651880fc6998f28a9237305285c0aff169fb19bd03"
+    },
+    {
+      "id": "BOOK-0128",
+      "path": "fragments/BOOK-0128-15-2-prompt-engineering.md",
+      "heading_level": 3,
+      "title_at_migration": "15.2. Prompt engineering",
+      "baseline_sha256": "2d1f5e6df8e317d569b9890da08906dcdb6fd1a9584dadcc9aeb9146820bfe6f"
+    },
+    {
+      "id": "BOOK-0129",
+      "path": "fragments/BOOK-0129-15-3-context-engineering.md",
+      "heading_level": 3,
+      "title_at_migration": "15.3. Context engineering",
+      "baseline_sha256": "f777e0c436e0d5f0fbec138302664ddef907602b3b09a331a8b429b16d07a4b6"
+    },
+    {
+      "id": "BOOK-0130",
+      "path": "fragments/BOOK-0130-15-4-harness-engineering.md",
+      "heading_level": 3,
+      "title_at_migration": "15.4. Harness engineering",
+      "baseline_sha256": "948e7945304da0afe64bebe54adc2984ec2740b83dbfc6dc3699bd48e7198f65"
+    },
+    {
+      "id": "BOOK-0131",
+      "path": "fragments/BOOK-0131-15-5-loop-engineering.md",
+      "heading_level": 3,
+      "title_at_migration": "15.5. Loop engineering",
+      "baseline_sha256": "5fd57a6b0229dfbbec0d72c1142a1548a6248a6e15a8a63b2cda358f10ae36a7"
+    },
+    {
+      "id": "BOOK-0132",
+      "path": "fragments/BOOK-0132-15-6-cum-lucreaza-impreuna.md",
+      "heading_level": 3,
+      "title_at_migration": "15.6. Cum lucreaza impreuna",
+      "baseline_sha256": "f04d5edacd592ebc697714513b826a06ff3d6e2c646f67df8dbaa9dfc2bff94d"
+    },
+    {
+      "id": "BOOK-0133",
+      "path": "fragments/BOOK-0133-15-7-legatura-cu-ingineria-software-obis.md",
+      "heading_level": 3,
+      "title_at_migration": "15.7. Legatura cu ingineria software obisnuita",
+      "baseline_sha256": "cb9e254a1d39158111ac0336da12607de1c538f6068ee0fe77c87090475b22e9"
+    },
+    {
+      "id": "BOOK-0134",
+      "path": "fragments/BOOK-0134-partea-iv-cum-construim-incredere-fara-s.md",
+      "heading_level": 1,
+      "title_at_migration": "Partea IV. Cum construim incredere fara sa confundam promisiunile cu dovezile",
+      "baseline_sha256": "787caac48fcc1f3b8a129c518f045ec6e3045ef1fed67a6eee5ed65656405ff5"
+    },
+    {
+      "id": "BOOK-0135",
+      "path": "fragments/BOOK-0135-16-observabilitatea-vedem-ce-a-facut-efe.md",
+      "heading_level": 2,
+      "title_at_migration": "16. Observabilitatea: vedem ce a facut efectiv sistemul",
+      "baseline_sha256": "602bb2553d82ba648f5c1a7dc9e621bb943e6be68adbd728c6063f4c50bc59c8"
+    },
+    {
+      "id": "BOOK-0136",
+      "path": "fragments/BOOK-0136-16-1-de-ce-raspunsul-final-nu-ajunge.md",
+      "heading_level": 3,
+      "title_at_migration": "16.1. De ce raspunsul final nu ajunge",
+      "baseline_sha256": "7619d10d1872102a8b46fe02f8b00e3666b9d0306ff5dae5422785aea1e08097"
+    },
+    {
+      "id": "BOOK-0137",
+      "path": "fragments/BOOK-0137-16-2-patru-elemente-minime-pentru-un-age.md",
+      "heading_level": 3,
+      "title_at_migration": "16.2. Patru elemente minime pentru un agent care foloseste unelte",
+      "baseline_sha256": "e480567ff82d72038460b1f3476bbef241e0e6e38cbecfcf4541ec5e37b23b12"
+    },
+    {
+      "id": "BOOK-0138",
+      "path": "fragments/BOOK-0138-16-3-un-trace-de-la-intrare-la-verdict.md",
+      "heading_level": 3,
+      "title_at_migration": "16.3. Un trace de la intrare la verdict",
+      "baseline_sha256": "ead9067edd442be14eebf867ee3f29b3006a6bf8d0e0b2284756198ddafc80ad"
+    },
+    {
+      "id": "BOOK-0139",
+      "path": "fragments/BOOK-0139-16-4-cum-evitam-logurile-care-nu-mai-pot.md",
+      "heading_level": 3,
+      "title_at_migration": "16.4. Cum evitam logurile care nu mai pot fi folosite",
+      "baseline_sha256": "5dc4f232935fba9332740d0f883ea343fc1eef594be825027aca03e099c8ab38"
+    },
+    {
+      "id": "BOOK-0140",
+      "path": "fragments/BOOK-0140-16-5-efectiv-versus-declarat.md",
+      "heading_level": 3,
+      "title_at_migration": "16.5. Efectiv versus declarat",
+      "baseline_sha256": "21a01ce5489549d186c811e23db5cced9ec23ec84d74cc3c4c21177d40864371"
+    },
+    {
+      "id": "BOOK-0141",
+      "path": "fragments/BOOK-0141-17-evaluarea-si-trust-score-incredere-ac.md",
+      "heading_level": 2,
+      "title_at_migration": "17. Evaluarea si Trust Score: incredere acordata treptat",
+      "baseline_sha256": "a14ee83202a863a755f7dd30b7c078106762fcc5b29c8efd09a1c2518ffb64a8"
+    },
+    {
+      "id": "BOOK-0142",
+      "path": "fragments/BOOK-0142-17-1-intrebarea-pe-care-trebuie-s-o-form.md",
+      "heading_level": 3,
+      "title_at_migration": "17.1. Intrebarea pe care trebuie s-o formulam corect",
+      "baseline_sha256": "2bdba2e34b5a4ac19d9b8563a5785d144e5ab4f4bf8711f2b37dcf8a7463d64d"
+    },
+    {
+      "id": "BOOK-0143",
+      "path": "fragments/BOOK-0143-17-2-construirea-unui-mediu-controlat.md",
+      "heading_level": 3,
+      "title_at_migration": "17.2. Construirea unui mediu controlat",
+      "baseline_sha256": "2f02b35a74eaa367178c11c3dfb3b84dae051a4b09384aac28c1d0e368873dd7"
+    },
+    {
+      "id": "BOOK-0144",
+      "path": "fragments/BOOK-0144-17-3-evaluarea-progresiva.md",
+      "heading_level": 3,
+      "title_at_migration": "17.3. Evaluarea progresiva",
+      "baseline_sha256": "d4243e65776f6f145bd0bdbdb3487b4af40a3b66d6f4fd57787307184cf64abe"
+    },
+    {
+      "id": "BOOK-0145",
+      "path": "fragments/BOOK-0145-17-4-ce-verificam-concret.md",
+      "heading_level": 3,
+      "title_at_migration": "17.4. Ce verificam, concret",
+      "baseline_sha256": "92b64b70e6eae855cfaa0a212cd5c96aa934a003e9a49de02fbfaac27d31646c"
+    },
+    {
+      "id": "BOOK-0146",
+      "path": "fragments/BOOK-0146-17-5-problema-celor-90.md",
+      "heading_level": 3,
+      "title_at_migration": "17.5. Problema celor 90%",
+      "baseline_sha256": "63508eb0b4d6118afd53bd6fde91f2b792c1e6559c01d08affc5e05be1a6ab6c"
+    },
+    {
+      "id": "BOOK-0147",
+      "path": "fragments/BOOK-0147-17-6-un-scor-compozit-doar-ca-instrument.md",
+      "heading_level": 3,
+      "title_at_migration": "17.6. Un scor compozit, doar ca instrument intern",
+      "baseline_sha256": "60b34529a776cbb4ea5f23fdf551489f6f63c8044afc5fa3e6276c89edbb7309"
+    },
+    {
+      "id": "BOOK-0148",
+      "path": "fragments/BOOK-0148-17-7-trei-niveluri-de-evaluare.md",
+      "heading_level": 3,
+      "title_at_migration": "17.7. Trei niveluri de evaluare",
+      "baseline_sha256": "4d6b0c4c9ece9acb20046102aa874e97a596fddd4aedc670c18629597bd19fc3"
+    },
+    {
+      "id": "BOOK-0149",
+      "path": "fragments/BOOK-0149-17-8-teste-ascunse-perturbari-aleatorii-.md",
+      "heading_level": 3,
+      "title_at_migration": "17.8. Teste ascunse, perturbari aleatorii si reevaluare",
+      "baseline_sha256": "57b63d251e0611f4593a7fcc6ae193e0ad55f0afc76cc3bc244a460f519eb818"
+    },
+    {
+      "id": "BOOK-0150",
+      "path": "fragments/BOOK-0150-17-9-ce-inseamna-human-in-the-loop-in-pr.md",
+      "heading_level": 3,
+      "title_at_migration": "17.9. Ce inseamna \"human-in-the-loop\" in practica",
+      "baseline_sha256": "51c2beb741d84ab84646ad7f658b09821c6be552a7c65ca6f9b1d224a28864b2"
+    },
+    {
+      "id": "BOOK-0151",
+      "path": "fragments/BOOK-0151-17-10-legatura-cu-gestionarea-riscului.md",
+      "heading_level": 3,
+      "title_at_migration": "17.10. Legatura cu gestionarea riscului",
+      "baseline_sha256": "f1945b8446e3b283392ff2df61aab014e0bef4abf4ac46166cabaca140f89b7e"
+    },
+    {
+      "id": "BOOK-0152",
+      "path": "fragments/BOOK-0152-18-securitate-de-ce-permisiunile-trebuie.md",
+      "heading_level": 2,
+      "title_at_migration": "18. Securitate: de ce permisiunile trebuie sa existe in cod, nu doar in prompt",
+      "baseline_sha256": "2d04e4ce00d264136167d12625b59e99220a2a6038963b69fa4d719f21a851c9"
+    },
+    {
+      "id": "BOOK-0153",
+      "path": "fragments/BOOK-0153-18-1-o-instructiune-nu-e-un-lacat.md",
+      "heading_level": 3,
+      "title_at_migration": "18.1. O instructiune nu e un lacat",
+      "baseline_sha256": "82b990050e7edf32f46eaada1294bce284b88df81be860c403396b75935f52bb"
+    },
+    {
+      "id": "BOOK-0154",
+      "path": "fragments/BOOK-0154-18-2-prompt-injection-cand-datele-incear.md",
+      "heading_level": 3,
+      "title_at_migration": "18.2. Prompt injection: cand datele incearca sa devina instructiuni",
+      "baseline_sha256": "5d0ef179c28266d2782157534d052eb0e21946b6720495e7c32b8950ecee95b2"
+    },
+    {
+      "id": "BOOK-0155",
+      "path": "fragments/BOOK-0155-18-3-atacuri-asupra-uneltelor-si-context.md",
+      "heading_level": 3,
+      "title_at_migration": "18.3. Atacuri asupra uneltelor si contextului",
+      "baseline_sha256": "1a4d1db33146fb4f7e80b54dec1f722ee16fa1e363f4c4071bd32dc4d34407b9"
+    },
+    {
+      "id": "BOOK-0156",
+      "path": "fragments/BOOK-0156-18-4-sandbox-credentiale-si-retea.md",
+      "heading_level": 3,
+      "title_at_migration": "18.4. Sandbox, credentiale si retea",
+      "baseline_sha256": "cf324f8661c57c5023046d99f24de2571a926cccba40b764bfcc9fa3b01cf027"
+    },
+    {
+      "id": "BOOK-0157",
+      "path": "fragments/BOOK-0157-18-5-guardrails-ce-sunt-si-ce-nu-sunt.md",
+      "heading_level": 3,
+      "title_at_migration": "18.5. Guardrails: ce sunt si ce nu sunt",
+      "baseline_sha256": "fb376e492f46971e4e59efc48e3ba3f2366271b15d0c7261bd9090a086baf437"
+    },
+    {
+      "id": "BOOK-0158",
+      "path": "fragments/BOOK-0158-18-6-autonomie-proportionala-cu-riscul.md",
+      "heading_level": 3,
+      "title_at_migration": "18.6. Autonomie proportionala cu riscul",
+      "baseline_sha256": "f5ed50a0da3e23473870f8e350e850a8be35f48c316821c7ff48bcfb7e2546ba"
+    },
+    {
+      "id": "BOOK-0159",
+      "path": "fragments/BOOK-0159-18-7-cadrul-legal-european-pe-scurt.md",
+      "heading_level": 3,
+      "title_at_migration": "18.7. Cadrul legal european, pe scurt",
+      "baseline_sha256": "01f3a71de107128553da88339eaed48ff3134fe6dda0a6ea04d4219561bda7ba"
+    },
+    {
+      "id": "BOOK-0160",
+      "path": "fragments/BOOK-0160-19-fiabilitate-si-recuperare-un-sistem-b.md",
+      "heading_level": 2,
+      "title_at_migration": "19. Fiabilitate si recuperare: un sistem bun trebuie sa stie si sa esueze",
+      "baseline_sha256": "9da3ba50739f0b42b855ff4cb25f5a75efd833a80db4143914db0752cd696d26"
+    },
+    {
+      "id": "BOOK-0161",
+      "path": "fragments/BOOK-0161-19-1-succesul-nu-e-singura-stare-posibil.md",
+      "heading_level": 3,
+      "title_at_migration": "19.1. Succesul nu e singura stare posibila",
+      "baseline_sha256": "c9f1644c7b269f84330977328c7ee0e35c9e74f87beea002680b086bb7bb3421"
+    },
+    {
+      "id": "BOOK-0162",
+      "path": "fragments/BOOK-0162-19-2-idempotenta-de-ce-conteaza-enorm.md",
+      "heading_level": 3,
+      "title_at_migration": "19.2. Idempotenta: de ce conteaza enorm",
+      "baseline_sha256": "a18855ce0bdd63ae5821362c1b15eb76ade1dc93df54ae472bfb8b9c745ea972"
+    },
+    {
+      "id": "BOOK-0163",
+      "path": "fragments/BOOK-0163-19-3-checkpoint-si-reluare.md",
+      "heading_level": 3,
+      "title_at_migration": "19.3. Checkpoint si reluare",
+      "baseline_sha256": "c2cc890ef77d942d7cb1e264d15a4e7e49b6a6dbafab17ec6e87d6543f982bcb"
+    },
+    {
+      "id": "BOOK-0164",
+      "path": "fragments/BOOK-0164-19-4-rollback-si-actiuni-compensatorii.md",
+      "heading_level": 3,
+      "title_at_migration": "19.4. Rollback si actiuni compensatorii",
+      "baseline_sha256": "c73a55900f53dfb5f5f9d21fc890d2117936ef9777d3e9cd2c78e1c8aaabf317"
+    },
+    {
+      "id": "BOOK-0165",
+      "path": "fragments/BOOK-0165-19-5-detectarea-buclelor-fara-progres.md",
+      "heading_level": 3,
+      "title_at_migration": "19.5. Detectarea buclelor fara progres",
+      "baseline_sha256": "66f27221efc436ccc89d5418a59387e70f3541cba74ab24a1708fbb422011e46"
+    },
+    {
+      "id": "BOOK-0166",
+      "path": "fragments/BOOK-0166-19-6-schimbari-de-model-prompt-si-unealt.md",
+      "heading_level": 3,
+      "title_at_migration": "19.6. Schimbari de model, prompt si unealta",
+      "baseline_sha256": "3bcae1dab8daea810964f6e9ca50bdf0cafda399ed81961fb1de8c1f0c4ce9ea"
+    },
+    {
+      "id": "BOOK-0167",
+      "path": "fragments/BOOK-0167-20-cost-viteza-calitate-si-alegerea-unei.md",
+      "heading_level": 2,
+      "title_at_migration": "20. Cost, viteza, calitate si alegerea unei complexitati justificate",
+      "baseline_sha256": "30c212996224be777daf7f9b77e08b86b9d824dfae795ef47ec1e7de9eee5c1d"
+    },
+    {
+      "id": "BOOK-0168",
+      "path": "fragments/BOOK-0168-20-1-costul-real-depaseste-factura-de-to.md",
+      "heading_level": 3,
+      "title_at_migration": "20.1. Costul real depaseste factura de tokeni",
+      "baseline_sha256": "f032fcba1b09cf08c0466eec89713f5c7174104a630e826b8154a746e9a49f38"
+    },
+    {
+      "id": "BOOK-0169",
+      "path": "fragments/BOOK-0169-20-2-de-ce-mai-multi-agenti-pot-incetini.md",
+      "heading_level": 3,
+      "title_at_migration": "20.2. De ce mai multi agenti pot incetini sistemul",
+      "baseline_sha256": "0d52e4fd56601355bef9d8f404bf0f2ff5be438063ae97ff04d5f64ef12ad31e"
+    },
+    {
+      "id": "BOOK-0170",
+      "path": "fragments/BOOK-0170-20-3-metrici-care-merita-urmarite.md",
+      "heading_level": 3,
+      "title_at_migration": "20.3. Metrici care merita urmarite",
+      "baseline_sha256": "63aae43c875e046ed6544efac2a2324f4f6e8f530d734b22f1074ea908104f6d"
+    },
+    {
+      "id": "BOOK-0171",
+      "path": "fragments/BOOK-0171-20-4-o-matrice-simpla-de-decizie.md",
+      "heading_level": 3,
+      "title_at_migration": "20.4. O matrice simpla de decizie",
+      "baseline_sha256": "3f26084cdef454e40c3a6c93b0d5c07e4deaf8cdb07f5887ff276bbd31148f40"
+    },
+    {
+      "id": "BOOK-0172",
+      "path": "fragments/BOOK-0172-20-5-doua-parghii-concrete-de-cost.md",
+      "heading_level": 3,
+      "title_at_migration": "20.5. Doua parghii concrete de cost",
+      "baseline_sha256": "a903acdf907b4491c34e5b36c4f94b3ba64d520d0f704c22dc4965f125ebad99"
+    },
+    {
+      "id": "BOOK-0173",
+      "path": "fragments/BOOK-0173-partea-v-doua-proiecte-de-la-prima-intre.md",
+      "heading_level": 1,
+      "title_at_migration": "Partea V. Doua proiecte, de la prima intrebare la un sistem complet",
+      "baseline_sha256": "f13808772907627cd8ac83e39dd31a2f0da27a22265540f821fe49c2a65f084c"
+    },
+    {
+      "id": "BOOK-0174",
+      "path": "fragments/BOOK-0174-21-studii-de-caz-factura-si-aplicatia-we.md",
+      "heading_level": 2,
+      "title_at_migration": "21. Studii de caz: factura si aplicatia web",
+      "baseline_sha256": "26d19c7fd2a0aacbad6ee2375deec573944be0857e36a564ce95b7d4e50578df"
+    },
+    {
+      "id": "BOOK-0175",
+      "path": "fragments/BOOK-0175-21-1-cazul-a-procesarea-facturilor-unei-.md",
+      "heading_level": 3,
+      "title_at_migration": "21.1. Cazul A: procesarea facturilor unei firme mici",
+      "baseline_sha256": "72ab5abb003add9f2bd48bfd9a647af1d4f9e3b16dfc373b4e1928bcb5878482"
+    },
+    {
+      "id": "BOOK-0176",
+      "path": "fragments/BOOK-0176-ce-ar-trebui-sa-contina-un-run-verificab.md",
+      "heading_level": 4,
+      "title_at_migration": "Ce ar trebui sa contina un run verificabil",
+      "baseline_sha256": "99052bb9ca760c37b6339470b5135c56f2ba29e39e6d8ea6e62b654e4ea751e3"
+    },
+    {
+      "id": "BOOK-0177",
+      "path": "fragments/BOOK-0177-un-exemplu-de-eroare-si-cum-o-tratam.md",
+      "heading_level": 4,
+      "title_at_migration": "Un exemplu de eroare si cum o tratam",
+      "baseline_sha256": "482472b9bc87f8c602999dbea14fb20c7b88eb69d41547f14b5daeba733938c3"
+    },
+    {
+      "id": "BOOK-0178",
+      "path": "fragments/BOOK-0178-de-ce-un-al-doilea-agent-nu-e-prima-solu.md",
+      "heading_level": 4,
+      "title_at_migration": "De ce un al doilea agent nu e prima solutie",
+      "baseline_sha256": "599ff6d2434a18c85a57470e1f0dcbb705a046779364daa094e04b412081a12a"
+    },
+    {
+      "id": "BOOK-0179",
+      "path": "fragments/BOOK-0179-21-2-cazul-b-dezvoltarea-unei-aplicatii-.md",
+      "heading_level": 3,
+      "title_at_migration": "21.2. Cazul B: dezvoltarea unei aplicatii web",
+      "baseline_sha256": "35498695d9e9202001382e36ce73f91fe236e91c07ed5e191f8db961d36dc829"
+    },
+    {
+      "id": "BOOK-0180",
+      "path": "fragments/BOOK-0180-de-ce-avem-nevoie-de-spatii-de-lucru-izo.md",
+      "heading_level": 4,
+      "title_at_migration": "De ce avem nevoie de spatii de lucru izolate",
+      "baseline_sha256": "ad6c049483e901d5f78d56e2a41b24e2e65e1725cfe3c5f8afccf5af2e60ca7d"
+    },
+    {
+      "id": "BOOK-0181",
+      "path": "fragments/BOOK-0181-un-exemplu-de-defect-introdus-fara-inten.md",
+      "heading_level": 4,
+      "title_at_migration": "Un exemplu de defect introdus fara intentie",
+      "baseline_sha256": "9cd09055df91c39cb0db7f68b68c3f26f3fd151c4fefe9503eb981370b9b3e50"
+    },
+    {
+      "id": "BOOK-0182",
+      "path": "fragments/BOOK-0182-ce-ar-trebui-sa-blocheze-publicarea.md",
+      "heading_level": 4,
+      "title_at_migration": "Ce ar trebui sa blocheze publicarea",
+      "baseline_sha256": "4886107238b233cce9362fa214555a8a851c12f4029dfbf5e55a566e32d274a3"
+    },
+    {
+      "id": "BOOK-0183",
+      "path": "fragments/BOOK-0183-21-3-ce-invatam-din-comparatie.md",
+      "heading_level": 3,
+      "title_at_migration": "21.3. Ce invatam din comparatie",
+      "baseline_sha256": "7b2a4324a4da790ec59cc24f9336ebe0ce8745bfb12c51decee0eeb3ddba6264"
+    },
+    {
+      "id": "BOOK-0184",
+      "path": "fragments/BOOK-0184-21-4-studiul-de-caz-c-triajul-solicitari.md",
+      "heading_level": 3,
+      "title_at_migration": "21.4. Studiul de caz C: triajul solicitarilor de suport",
+      "baseline_sha256": "61a437eeb02fad5dd7589d7d6f468317dabe38012b4433396e75d6477e1e4571"
+    },
+    {
+      "id": "BOOK-0185",
+      "path": "fragments/BOOK-0185-21-5-studiul-de-caz-d-dintr-un-pdf-scana.md",
+      "heading_level": 3,
+      "title_at_migration": "21.5. Studiul de caz D: dintr-un PDF scanat intr-o inregistrare verificata",
+      "baseline_sha256": "af2b3fa64f7888cad905849b1ef6d6e463ed0dcde68a4793c61667909669a6a2"
+    },
+    {
+      "id": "BOOK-0186",
+      "path": "fragments/BOOK-0186-21-6-cum-citim-un-caz-cu-cifre-raleigh-s.md",
+      "heading_level": 3,
+      "title_at_migration": "21.6. Cum citim un caz cu cifre: Raleigh si Cordoba",
+      "baseline_sha256": "5c93ae5b10cc409da09f11500e0908f7500768f07980f2abda059072b3a8035d"
+    },
+    {
+      "id": "BOOK-0187",
+      "path": "fragments/BOOK-0187-21-7-studiul-de-caz-e-acelasi-retur-prin.md",
+      "heading_level": 3,
+      "title_at_migration": "21.7. Studiul de caz E: acelasi retur prin trei arhitecturi",
+      "baseline_sha256": "67d1c7bd52f05e7a4e4252dc61e109be740c0c672cb11b581da2893d2ea4b0c5"
+    },
+    {
+      "id": "BOOK-0188",
+      "path": "fragments/BOOK-0188-e1-automatizare-clasica-codul-decide.md",
+      "heading_level": 4,
+      "title_at_migration": "E1. Automatizare clasica: codul decide",
+      "baseline_sha256": "7ad13370ea4880c12c18bdb0a0df1030dc79535f5b32e793a4378c3850df0a4c"
+    },
+    {
+      "id": "BOOK-0189",
+      "path": "fragments/BOOK-0189-e2-workflow-ai-modelul-ajuta-in-etape-de.md",
+      "heading_level": 4,
+      "title_at_migration": "E2. Workflow AI: modelul ajuta in etape delimitate",
+      "baseline_sha256": "d401f7654d63ddc7822bf5c748fb58c767b7d53e305528719317df09d10bab6f"
+    },
+    {
+      "id": "BOOK-0190",
+      "path": "fragments/BOOK-0190-e3-agent-ai-modelul-propune-urmatoarea-a.md",
+      "heading_level": 4,
+      "title_at_migration": "E3. Agent AI: modelul propune urmatoarea actiune",
+      "baseline_sha256": "7fb690b71a37943e736aa99409fa6af3ab25dfef46d6ec36cde619d5efe76681"
+    },
+    {
+      "id": "BOOK-0191",
+      "path": "fragments/BOOK-0191-e4-configuratie-de-demonstratie.md",
+      "heading_level": 4,
+      "title_at_migration": "E4. Configuratie de demonstratie",
+      "baseline_sha256": "d649b0b33b7e0b7bfca9476e5fbf28f4260cc6bc727d8ee1ccb45b1c23567559"
+    },
+    {
+      "id": "BOOK-0192",
+      "path": "fragments/BOOK-0192-21-8-studiul-de-caz-f-cercetare-youtube-.md",
+      "heading_level": 3,
+      "title_at_migration": "21.8. Studiul de caz F: cercetare YouTube si productie editoriala cu doi agenti",
+      "baseline_sha256": "0415df96ae70891ccc0c4f15c85720d53501306bdb673527c291c5f26840ea04"
+    },
+    {
+      "id": "BOOK-0193",
+      "path": "fragments/BOOK-0193-f1-inaintea-agentilor-automatizare-si-wo.md",
+      "heading_level": 4,
+      "title_at_migration": "F1. Inaintea agentilor: automatizare si workflow",
+      "baseline_sha256": "db9b15baa8787dd541c8efa33a46b93e0ae270cbb0f4bfc0d5532573861b5b24"
+    },
+    {
+      "id": "BOOK-0194",
+      "path": "fragments/BOOK-0194-f2-agentul-research-documentare-si-propu.md",
+      "heading_level": 4,
+      "title_at_migration": "F2. Agentul Research: documentare si propuneri",
+      "baseline_sha256": "04b4221a3a5e08f5dd5d189f49ee86dfd8b2745800daeace37da03b769b4929d"
+    },
+    {
+      "id": "BOOK-0195",
+      "path": "fragments/BOOK-0195-f3-contractul-de-predare-catre-productio.md",
+      "heading_level": 4,
+      "title_at_migration": "F3. Contractul de predare catre Production",
+      "baseline_sha256": "53e0f0df5299ff29a12e841853cd24c0e71d4b443e62d22b776b3b9d03224066"
+    },
+    {
+      "id": "BOOK-0196",
+      "path": "fragments/BOOK-0196-f4-agentul-production-trei-variante-si-a.md",
+      "heading_level": 4,
+      "title_at_migration": "F4. Agentul Production: trei variante si aprobare",
+      "baseline_sha256": "e9eea51f701faad0c8313d58288834225ca170395da80059d197127b356a59f0"
+    },
+    {
+      "id": "BOOK-0197",
+      "path": "fragments/BOOK-0197-21-9-comparatie-cine-decide-pasul-urmato.md",
+      "heading_level": 3,
+      "title_at_migration": "21.9. Comparatie: cine decide pasul urmator?",
+      "baseline_sha256": "41dd2de5398e1cc302968f8fdb9422abee832a45fdbe9b4d86898bcbd47c6b0f"
+    },
+    {
+      "id": "BOOK-0198",
+      "path": "fragments/BOOK-0198-22-cum-incepi-propriul-sistem-fara-sa-sa.md",
+      "heading_level": 2,
+      "title_at_migration": "22. Cum incepi propriul sistem, fara sa sari etapele",
+      "baseline_sha256": "0650ba538396fd5b52eb2e6fb70e17c64ee655bb286235e50687f9240b01be0f"
+    },
+    {
+      "id": "BOOK-0199",
+      "path": "fragments/BOOK-0199-22-1-alegerea-sarcinii.md",
+      "heading_level": 3,
+      "title_at_migration": "22.1. Alegerea sarcinii",
+      "baseline_sha256": "6ed1c1247f7848ce31480548211a6cbb1dd93e86e87d2697b9e83fe04b7cafe0"
+    },
+    {
+      "id": "BOOK-0200",
+      "path": "fragments/BOOK-0200-22-2-scrie-contractul-nu-doar-promptul.md",
+      "heading_level": 3,
+      "title_at_migration": "22.2. Scrie contractul, nu doar promptul",
+      "baseline_sha256": "78de787839a7f69d1d57bb54021357966d837bbd4472c1d6b55afdc800bd5d9b"
+    },
+    {
+      "id": "BOOK-0201",
+      "path": "fragments/BOOK-0201-22-3-construieste-cea-mai-simpla-variant.md",
+      "heading_level": 3,
+      "title_at_migration": "22.3. Construieste cea mai simpla varianta",
+      "baseline_sha256": "eed45db34340abffce8e99425e267b9158ef98a9071536d1087e13043e14637f"
+    },
+    {
+      "id": "BOOK-0202",
+      "path": "fragments/BOOK-0202-22-4-stabileste-verificarile-inainte-de-.md",
+      "heading_level": 3,
+      "title_at_migration": "22.4. Stabileste verificarile inainte de autonomie",
+      "baseline_sha256": "c2847cb47329f280059e0663a2341baadadbf707ed3654ebc488e92d1ce332c3"
+    },
+    {
+      "id": "BOOK-0203",
+      "path": "fragments/BOOK-0203-22-5-pregateste-un-traseu-de-escalare.md",
+      "heading_level": 3,
+      "title_at_migration": "22.5. Pregateste un traseu de escalare",
+      "baseline_sha256": "17dd3e61fd63d6c915a71a02905c81ac92488f87578e752a783500b5f4c616ee"
+    },
+    {
+      "id": "BOOK-0204",
+      "path": "fragments/BOOK-0204-22-6-extinde-doar-pe-baza-rezultatelor.md",
+      "heading_level": 3,
+      "title_at_migration": "22.6. Extinde doar pe baza rezultatelor",
+      "baseline_sha256": "fc7963a60ceece44f182f2ac57bff034da8ca4cea169e4a588a1be0b5b1a773a"
+    },
+    {
+      "id": "BOOK-0205",
+      "path": "fragments/BOOK-0205-22-7-un-plan-de-invatare-aplicabila.md",
+      "heading_level": 3,
+      "title_at_migration": "22.7. Un plan de invatare aplicabila",
+      "baseline_sha256": "8f4a22bdec9c62d7ae680fd4feb3105cf0396064d1e4a7e11a254186869ba518"
+    },
+    {
+      "id": "BOOK-0206",
+      "path": "fragments/BOOK-0206-22-8-ce-ramane-valabil-chiar-daca-toate-.md",
+      "heading_level": 3,
+      "title_at_migration": "22.8. Ce ramane valabil chiar daca toate produsele se schimba",
+      "baseline_sha256": "4070eaa9e335c52b704584c8ff0c66f9f9c68154774059559c4036202f24cc1f"
+    },
+    {
+      "id": "BOOK-0207",
+      "path": "fragments/BOOK-0207-22-9-o-metoda-de-alegere-a-proiectului-p.md",
+      "heading_level": 3,
+      "title_at_migration": "22.9. O metoda de alegere a proiectului pilot",
+      "baseline_sha256": "c325fe8598aa387f61e7e77bbd8eccebc85b56cbdb1b6188921b27665e77f394"
+    },
+    {
+      "id": "BOOK-0208",
+      "path": "fragments/BOOK-0208-22-10-exercitiu-de-consolidare-procesul-.md",
+      "heading_level": 3,
+      "title_at_migration": "22.10. Exercitiu de consolidare: procesul inaintea produsului",
+      "baseline_sha256": "209cb91c75ecb772bd29d7d318c077d9b1557b490457f393016e584cd05eb4ff"
+    },
+    {
+      "id": "BOOK-0209",
+      "path": "fragments/BOOK-0209-anexa-a-dictionar-de-termeni-de-la-vocab.md",
+      "heading_level": 1,
+      "title_at_migration": "Anexa A. Dictionar de termeni: de la vocabularul de baza la arhitecturi agentice",
+      "baseline_sha256": "f2d048e7186f75981372b6067a4c8f07c1e846e7c96e22825db97fbbdbad4fd1"
+    },
+    {
+      "id": "BOOK-0210",
+      "path": "fragments/BOOK-0210-anexa-b-sabloane-neutre-cum-documentam-s.md",
+      "heading_level": 1,
+      "title_at_migration": "Anexa B. Sabloane neutre: cum documentam sarcina, agentul si verificarile",
+      "baseline_sha256": "9c6eb9ae40e8064c6704a7224a999f109744dd0fad3d632ae2f82b352bf66335"
+    },
+    {
+      "id": "BOOK-0211",
+      "path": "fragments/BOOK-0211-b-1-brief-pentru-o-sarcina-asistata-de-a.md",
+      "heading_level": 2,
+      "title_at_migration": "B.1. Brief pentru o sarcina asistata de AI",
+      "baseline_sha256": "641f471c136c555ed9899118de39bde8d7654923f5789316059af7b858886126"
+    },
+    {
+      "id": "BOOK-0212",
+      "path": "fragments/BOOK-0212-b-2-fisa-unei-clase-de-agenti.md",
+      "heading_level": 2,
+      "title_at_migration": "B.2. Fisa unei clase de agenti",
+      "baseline_sha256": "935b3f36538362cbfbce44088e1128b41998021c7277d872a348e19c301aa39c"
+    },
+    {
+      "id": "BOOK-0213",
+      "path": "fragments/BOOK-0213-b-3-contract-pentru-transferul-dintre-do.md",
+      "heading_level": 2,
+      "title_at_migration": "B.3. Contract pentru transferul dintre doua etape",
+      "baseline_sha256": "50fd917f20042b46a45f1a706722bad17e286a43fee0de5a72ac3c87a0452388"
+    },
+    {
+      "id": "BOOK-0214",
+      "path": "fragments/BOOK-0214-b-4-contract-minimal-pentru-o-unealta.md",
+      "heading_level": 2,
+      "title_at_migration": "B.4. Contract minimal pentru o unealta",
+      "baseline_sha256": "e4b40f149b8f32b7a7fdb36d16d8c2c2657c8ccc24029c0430b527e37398bba5"
+    },
+    {
+      "id": "BOOK-0215",
+      "path": "fragments/BOOK-0215-b-5-o-inregistrare-de-executie-pe-care-o.md",
+      "heading_level": 2,
+      "title_at_migration": "B.5. O inregistrare de executie pe care o putem audita",
+      "baseline_sha256": "24a8d98fe7747d74ae819bcbe5dbb41a64222f3f93e6b442ed3272d39efc0108"
+    },
+    {
+      "id": "BOOK-0216",
+      "path": "fragments/BOOK-0216-b-6-definitia-de-finalizare-ce-inseamna-.md",
+      "heading_level": 2,
+      "title_at_migration": "B.6. Definitia de finalizare: ce inseamna \"gata\"",
+      "baseline_sha256": "a75502d3c9614af77f0ade65230e991955e7770da1e1cd7165970fb778d5b00f"
+    },
+    {
+      "id": "BOOK-0217",
+      "path": "fragments/BOOK-0217-b-7-o-fisa-scurta-pentru-alegerea-primul.md",
+      "heading_level": 2,
+      "title_at_migration": "B.7. O fisa scurta pentru alegerea primului workflow",
+      "baseline_sha256": "c790466526649c16fceaa9ad929d22d3bd55bf90bf7549870e38cd209166d672"
+    },
+    {
+      "id": "BOOK-0218",
+      "path": "fragments/BOOK-0218-b-8-specificatie-de-intentie-de-la-obiec.md",
+      "heading_level": 2,
+      "title_at_migration": "B.8. Specificatie de intentie: de la obiectiv la verificare",
+      "baseline_sha256": "31e7dcfcdcd18aab61312ec66e1126147a3e267fec588cbcc16fe89def706699"
+    },
+    {
+      "id": "BOOK-0219",
+      "path": "fragments/BOOK-0219-anexa-c-un-protocol-de-evaluare-progresi.md",
+      "heading_level": 1,
+      "title_at_migration": "Anexa C. Un protocol de evaluare progresiva si acordare a autonomiei",
+      "baseline_sha256": "cbb71a30aa55e562a43799f7e44a9b078f75e1d24d1285638f51e0ddef07766f"
+    },
+    {
+      "id": "BOOK-0220",
+      "path": "fragments/BOOK-0220-c-1-unitatea-de-evaluare-nu-este-doar-mo.md",
+      "heading_level": 2,
+      "title_at_migration": "C.1. Unitatea de evaluare nu este doar modelul",
+      "baseline_sha256": "956d946ff0fd9531ba08565aab2214e7f66c3b4faaaa9b49c301dda3281d2f70"
+    },
+    {
+      "id": "BOOK-0221",
+      "path": "fragments/BOOK-0221-c-2-construieste-setul-de-cazuri-inainte.md",
+      "heading_level": 2,
+      "title_at_migration": "C.2. Construieste setul de cazuri inainte de a modifica agentul",
+      "baseline_sha256": "cd96d99a62c5ac53d73d7558fcbf768a1aefc3bd5248b920b797c17b9259fea6"
+    },
+    {
+      "id": "BOOK-0222",
+      "path": "fragments/BOOK-0222-c-3-ce-masuram-si-cum-evitam-cifrele-ins.md",
+      "heading_level": 2,
+      "title_at_migration": "C.3. Ce masuram si cum evitam cifrele inselatoare",
+      "baseline_sha256": "35f5caf2a225c9f149d16402300a9bf081c491a5c965fee04910882ea1dee03d"
+    },
+    {
+      "id": "BOOK-0223",
+      "path": "fragments/BOOK-0223-c-4-teste-normale-teste-cu-defecte-si-te.md",
+      "heading_level": 2,
+      "title_at_migration": "C.4. Teste normale, teste cu defecte si teste de recuperare",
+      "baseline_sha256": "5fab94ca350797d9ac6447545d9549ad25dd4fc6daac7a14fb6bd03694dfade0"
+    },
+    {
+      "id": "BOOK-0224",
+      "path": "fragments/BOOK-0224-c-5-niveluri-de-autonomie-propuse.md",
+      "heading_level": 2,
+      "title_at_migration": "C.5. Niveluri de autonomie propuse",
+      "baseline_sha256": "c35c16972df3e5c6d581f3b04f42ee379c853fd73f8087caf0d0ae3dc22c7e9d"
+    },
+    {
+      "id": "BOOK-0225",
+      "path": "fragments/BOOK-0225-c-6-cum-tratam-un-trust-score.md",
+      "heading_level": 2,
+      "title_at_migration": "C.6. Cum tratam un Trust Score",
+      "baseline_sha256": "ea408639c8d9a73b808e339243f4c8f2d28dd538bef5be92ac7976b7d042ea06"
+    },
+    {
+      "id": "BOOK-0226",
+      "path": "fragments/BOOK-0226-c-7-cine-verifica-verificatorul.md",
+      "heading_level": 2,
+      "title_at_migration": "C.7. Cine verifica verificatorul?",
+      "baseline_sha256": "f2351cc111b510e6fa87949441f81cd66eb46cbf970c4494a29dc90ed0a2ac05"
+    },
+    {
+      "id": "BOOK-0227",
+      "path": "fragments/BOOK-0227-c-8-cand-repetam-evaluarea.md",
+      "heading_level": 2,
+      "title_at_migration": "C.8. Cand repetam evaluarea?",
+      "baseline_sha256": "9fe1a4ea03ebc3fa5276dec76d49b7d929e8518f8ae5703813b9ff089071722f"
+    },
+    {
+      "id": "BOOK-0228",
+      "path": "fragments/BOOK-0228-c-9-raportul-final-de-evaluare.md",
+      "heading_level": 2,
+      "title_at_migration": "C.9. Raportul final de evaluare",
+      "baseline_sha256": "8213703665addef67f5bfc726c8a2127ba0fdc2875505ff17b93ad008d307c1b"
+    },
+    {
+      "id": "BOOK-0229",
+      "path": "fragments/BOOK-0229-exemplu-de-raport-complet-fictiv.md",
+      "heading_level": 3,
+      "title_at_migration": "Exemplu de raport, complet fictiv",
+      "baseline_sha256": "e80b69e4adfde3789bafa4bf9e1cad5777f133c5f748ea1538c18c777410d4e0"
+    },
+    {
+      "id": "BOOK-0230",
+      "path": "fragments/BOOK-0230-anexa-d-metoda-de-studiu-si-utilizarea-r.md",
+      "heading_level": 1,
+      "title_at_migration": "Anexa D. Metoda de studiu si utilizarea responsabila a surselor",
+      "baseline_sha256": "116bf9f90cd17499fd32a2ae4eaf967329a2aca2a522f312e892eebdb72bd0a5"
+    },
+    {
+      "id": "BOOK-0231",
+      "path": "fragments/BOOK-0231-anexa-e-istoricul-editiilor.md",
+      "heading_level": 1,
+      "title_at_migration": "Anexa E. Istoricul editiilor",
+      "baseline_sha256": "da581449b746ceba31cd9b13ab2dcf5dc8b2e13d5d9878acc6387fb71929ef9a"
+    },
+    {
+      "id": "BOOK-0232",
+      "path": "fragments/BOOK-0232-e-1-informatii-despre-lucrare.md",
+      "heading_level": 2,
+      "title_at_migration": "E.1. Informatii despre lucrare",
+      "baseline_sha256": "a796e28c1b4add8f8a46b129777b2818ea2eb5a3672b2a75ecca544b614f1b26"
+    },
+    {
+      "id": "BOOK-0233",
+      "path": "fragments/BOOK-0233-e-2-changelog-1-0-la-1-1.md",
+      "heading_level": 2,
+      "title_at_migration": "E.2. Changelog 1.0 la 1.1",
+      "baseline_sha256": "dd2c69d0240a1631220c5cd72496a64fea8f494a9d7a315ea05d3fac72fb0e5f"
+    },
+    {
+      "id": "BOOK-0234",
+      "path": "fragments/BOOK-0234-e-3-notita-despre-editia-1-0.md",
+      "heading_level": 2,
+      "title_at_migration": "E.3. Notita despre editia 1.0",
+      "baseline_sha256": "6fe9fd84e248b04acc83824cf3811201ab1f82928d8d99335643ab32a9bf61f1"
+    },
+    {
+      "id": "BOOK-0235",
+      "path": "fragments/BOOK-0235-e-4-modificari-de-la-editia-1-1-la-1-2.md",
+      "heading_level": 2,
+      "title_at_migration": "E.4. Modificari de la editia 1.1 la 1.2",
+      "baseline_sha256": "b43322d6085a7f1939579e74885984b94d9708ee6f1e03b7450773a38e4ff228"
+    },
+    {
+      "id": "BOOK-0236",
+      "path": "fragments/BOOK-0236-e-5-modificari-de-la-editia-1-2-la-1-2-1.md",
+      "heading_level": 2,
+      "title_at_migration": "E.5. Modificari de la editia 1.2 la 1.2.1",
+      "baseline_sha256": "972f17052112b364f68e979e937ab22a50bcaba9cade09e1b194675ec8e24d84"
+    },
+    {
+      "id": "BOOK-0237",
+      "path": "fragments/BOOK-0237-e-6-modificari-de-la-editia-1-2-1-la-1-2.md",
+      "heading_level": 2,
+      "title_at_migration": "E.6. Modificari de la editia 1.2.1 la 1.2.2",
+      "baseline_sha256": "f4d70547532aca4d83cb2eb3f0dadca607aa5fd9c3e3aa2aecffa85d1260978e"
+    },
+    {
+      "id": "BOOK-0238",
+      "path": "fragments/BOOK-0238-e-7-modificari-de-la-editia-1-2-2-la-1-2.md",
+      "heading_level": 2,
+      "title_at_migration": "E.7. Modificari de la editia 1.2.2 la 1.2.3",
+      "baseline_sha256": "0d1950ff75ff259c1f54afdd47f05e1f85246bf0f38baa65410e82a42be8b103"
+    },
+    {
+      "id": "BOOK-0239",
+      "path": "fragments/BOOK-0239-e-8-modificari-de-la-editia-1-2-3-la-1-2.md",
+      "heading_level": 2,
+      "title_at_migration": "E.8. Modificari de la editia 1.2.3 la 1.2.4",
+      "baseline_sha256": "e82f6f4396d61434f139dc74464adae3f84fbb1491eb9eaddfddae86a8d1ac97"
+    },
+    {
+      "id": "BOOK-0240",
+      "path": "fragments/BOOK-0240-e-9-modificari-de-la-editia-1-2-4-la-1-2.md",
+      "heading_level": 2,
+      "title_at_migration": "E.9. Modificari de la editia 1.2.4 la 1.2.5",
+      "baseline_sha256": "2689eab2c756677143143fd7977261ad55e8624313179284ba3da35d4e703c77"
+    },
+    {
+      "id": "BOOK-0241",
+      "path": "fragments/BOOK-0241-bibliografie-si-resurse-de-aprofundare.md",
+      "heading_level": 1,
+      "title_at_migration": "Bibliografie si resurse de aprofundare",
+      "baseline_sha256": "b600bdefeb514488671e922c09dd258add2e22909dcfd3617dbf9924e229445f"
+    },
+    {
+      "id": "BOOK-0242",
+      "path": "fragments/BOOK-0242-nota-privind-materialele-folosite.md",
+      "heading_level": 2,
+      "title_at_migration": "Nota privind materialele folosite",
+      "baseline_sha256": "335ea4859116f875cf936bdc998e06615fab5a1a3fb2bef74814126b4c0fc9b1"
+    }
+  ]
+}

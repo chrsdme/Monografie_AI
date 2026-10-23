@@ -17,6 +17,7 @@ Cerinte: python 3.10+, pandoc, playwright + chromium (pentru PDF), pypdf (pentru
 import argparse
 import html
 import json
+import os
 import pathlib
 import re
 import shutil
@@ -62,6 +63,12 @@ ANNEX_FILES = {
     "E": "anexe/metoda-surse.md",
 }
 BIB_FILE = "anexe/bibliografie.md"
+
+
+def write_utf8_lf(path, content):
+    """Write generated text with stable LF endings on every platform."""
+    with open(path, "w", encoding="utf-8", newline="\n") as stream:
+        stream.write(content)
 
 
 # ----------------------------------------------------------------- utilitare
@@ -185,15 +192,27 @@ def build_toc_md(body):
     return "\n".join(lines)
 
 
-def update_toc(path):
-    text = path.read_text(encoding="utf-8")
+def toc_updated_text(text):
     toc = build_toc_md(text)
     new, n = re.subn(r"<!-- TOC:START -->.*?<!-- TOC:END -->", lambda m: "<!-- TOC:START -->\n" + toc + "\n<!-- TOC:END -->", text, flags=re.S)
     if n != 1:
         sys.exit("Nu gasesc marcajele TOC:START / TOC:END (exact o pereche).")
+    return new
+
+
+def update_toc(path):
+    text = path.read_text(encoding="utf-8")
+    new = toc_updated_text(text)
+    root = path.parent
+    studio_active = os.environ.get("STUDIO_RELEASE_ACTIVE", "true").lower() == "true"
+    if (studio_active and path.name == DEFAULT_MD and
+            (root / "content/book/manifest.json").is_file()):
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+        import studio as studio_tool
+        return studio_tool.sync_toc(root)
     if new != text:
         path.write_text(new, encoding="utf-8")
-    return len(toc.split("\n"))
+    return len(build_toc_md(new).split("\n"))
 
 
 # ---------------------------------------------------------------------- wiki
@@ -216,7 +235,7 @@ def build_wiki(repo, md_path, fm):
         up = "../" * depth
         content = link_citations(content, up + "anexe/bibliografie.md")
         content = fix_images(content, up + WIKI_FIG_DIR + "/")
-        p.write_text(content.rstrip("\n") + "\n", encoding="utf-8")
+        write_utf8_lf(p, content.rstrip("\n") + "\n")
         written.append(rel)
 
     # --- pagina principala si introducere
@@ -351,19 +370,31 @@ def merge_index(wiki, fm):
     """Pagina principala contine continut comunitar: nu o suprascriem. Actualizam doar blocul marcat."""
     p = wiki / "index.md"
     block = index_block(fm)
-    (wiki.parent / "wiki_index_block.md").write_text(block + "\n", encoding="utf-8")
+    local_artifacts = wiki.parent / ".studio-local"
+    local_artifacts.mkdir(exist_ok=True)
+    write_utf8_lf(local_artifacts / "wiki_index_block.md", block + "\n")
     if not p.exists():
-        p.write_text("# " + fm.get("title", "") + "\n\n" + block + "\n", encoding="utf-8")
+        write_utf8_lf(p, "# " + fm.get("title", "") + "\n\n" + block + "\n")
         print("index.md nu exista: am creat o pagina minima.")
         return
     t = p.read_text(encoding="utf-8")
     if IDX_START in t and IDX_END in t:
         t = re.sub(re.escape(IDX_START) + ".*?" + re.escape(IDX_END), lambda m: block, t, flags=re.S)
-        p.write_text(t, encoding="utf-8")
+        write_utf8_lf(p, t)
         print("index.md: blocul 'Editia curenta' actualizat; restul paginii a ramas neatins.")
     else:
         print("ATENTIE: index.md nu are marcajele MONOGRAFIE. Nu l-am modificat. "
-              "Lipeste manual continutul din wiki_index_block.md unde vrei sa apara.")
+              "Lipeste manual continutul din .studio-local/wiki_index_block.md unde vrei sa apara.")
+
+
+def publish_download_pdf(repo, generated_pdf):
+    """Publish and verify the locally generated PDF at MkDocs' download path."""
+    destination = repo / "wiki" / "downloads" / generated_pdf.name
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(generated_pdf, destination)
+    if destination.read_bytes() != generated_pdf.read_bytes():
+        raise RuntimeError("PDF-ul descarcabil difera de PDF-ul generat")
+    return destination
 
 
 def _norm_section(t):
@@ -699,12 +730,14 @@ def main(argv=None):
             sys.exit("Verificarile au esuat. Corecteaza erorile si reia.")
     if a.toc:
         n = update_toc(md)
-        print(f"Cuprins actualizat ({n} intrari).")
+        print(f"Cuprins sincronizat ({n} modificari)." if n == 0
+              else f"Cuprins actualizat ({n} intrari).")
     if a.wiki:
         files = build_wiki(repo, md, {})
         print(f"Wiki: {len(files)} pagini scrise in {repo / 'wiki'}")
     if a.pdf:
         res = build_pdf(repo, md, md.with_suffix(".pdf"))
+        publish_download_pdf(repo, md.with_suffix(".pdf"))
         print("PDF:", json.dumps(res, ensure_ascii=True))
         if res["fara_pagina"] or not res["numere_stabile"]:
             sys.exit("PDF generat, dar numerele din cuprins nu sunt complete sau stabile.")

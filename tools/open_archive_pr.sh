@@ -23,7 +23,11 @@ git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 git checkout -b "$branch"
 git add -- "${name}.md" docs/README.md docs/.publication.json \
   "docs/${name}.pdf" "docs/${name}_${version}.pdf"
-git add -- ':(glob)wiki/*.md' ':(glob)wiki/**/*.md'
+git add -- wiki/index.md wiki/introducere.md
+git add -- ':(glob)wiki/partea-*/*.md' ':(glob)wiki/anexe/*.md'
+if [ -f content/book/manifest.json ]; then
+  git add -- content/book/manifest.json ':(glob)content/book/fragments/*.md'
+fi
 if git diff --cached --quiet; then
   echo "ARCHIVE: no files to persist"
   exit 0
@@ -38,7 +42,7 @@ if ! gh pr create \
     --base main \
     --head "$branch" \
     --title "Archive edition ${version} PDF and metadata" \
-    --body "This PR adds the generated immutable PDF, current PDF copy and metadata for edition ${version}. It requires owner review under Wiki_Rules; no direct push to main was performed."; then
+    --body "This PR adds the generated manuscript and canonical Studio fragments/manifest (when present), the immutable PDF, current PDF copy and publication metadata for edition ${version}. It requires owner review under Wiki_Rules; no direct push to main was performed."; then
   echo "::error::Enable GitHub Actions permission to create pull requests or open a PR manually from branch ${branch}."
   exit 1
 fi

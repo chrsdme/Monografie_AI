@@ -1,0 +1,2 @@
+content/book/fragments/*.md -text whitespace=-blank-at-eof
+content/book/manifest.json text eol=lf

@@ -93,8 +93,10 @@ class ReleaseTests(unittest.TestCase):
             pdf.write_bytes(b"b" * 52000)
             with self.assertRaises(ValueError):
                 archiver.archive(repo)
-            archiver.archive(repo, reuse_existing=True)
+            with self.assertRaises(ValueError):
+                archiver.archive(repo, reuse_existing=True)
             self.assertEqual(pdf.read_bytes(), b"b" * 52000)
+            self.assertEqual(archived.read_bytes(), b"a" * 52000)
             self.assertEqual((repo / "site/downloads" / (archiver.STEM + ".pdf")).read_bytes(),
                              b"a" * 52000)
 

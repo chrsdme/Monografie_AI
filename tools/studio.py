@@ -167,6 +167,88 @@ def assemble(root: Path, write: bool):
     print(f"PASS ASSEMBLY: {sha(body)}")
 
 
+def sync_toc(root: Path) -> int:
+    """Update TOC in its owning fragment and master as one validated transaction."""
+    manifest = load_manifest(root)
+    book = root / BOOK
+    current = combine(book, manifest)
+    master = root / MASTER
+    master_bytes = master.read_bytes()
+    if sha(master_bytes) != manifest.get("last_generated_sha256"):
+        stop("Baseline manifest-master conflictual; sincronizarea TOC este refuzata.")
+    if master_bytes != current:
+        stop("Master divergent fata de fragmente; ruleaza assemble --write si reia build-ul.")
+    spec = __import__("importlib.util", fromlist=["spec_from_file_location"])
+    build_spec = spec.spec_from_file_location("studio_build_tool", Path(__file__).resolve().with_name("build.py"))
+    build_tool = spec.module_from_spec(build_spec)
+    build_spec.loader.exec_module(build_tool)
+    text = current.decode("utf-8")
+    replacement = build_tool.toc_updated_text(text)
+    if replacement == text:
+        return 0
+    new_raw = replacement.encode("utf-8")
+    old_toc = re.search(rb"<!-- TOC:START -->.*?<!-- TOC:END -->", current, re.S)
+    new_toc = re.search(rb"<!-- TOC:START -->.*?<!-- TOC:END -->", new_raw, re.S)
+    if not old_toc or not new_toc:
+        stop("Marcaje TOC invalide; nicio sursa nu a fost schimbata.")
+    start, old_end = old_toc.span()
+    offset = 0
+    owner = None
+    for n, entry in enumerate(manifest["fragments"]):
+        blob = (book / entry["path"]).read_bytes()
+        end = offset + len(blob)
+        if offset <= start < end and old_end <= end:
+            owner = (n, entry, blob, offset)
+            break
+        offset = end
+    if owner is None:
+        stop("TOC traverseaza fragmente sau nu are un proprietar unic; nicio sursa nu a fost schimbata.")
+    _, entry, old_blob, offset = owner
+    local_start = start - offset
+    local_end = old_end - offset
+    new_blob = old_blob[:local_start] + new_toc.group(0) + old_blob[local_end:]
+    staged = combine(book, manifest)
+    expected = staged[:start] + new_toc.group(0) + staged[old_end:]
+    if expected != new_raw:
+        stop("Validarea TOC byte-cu-byte a esuat; nicio sursa nu a fost schimbata.")
+    manifest["last_generated_sha256"] = sha(new_raw)
+    changes = {book / entry["path"]: new_blob,
+               book / "manifest.json": (json.dumps(manifest, indent=2, ensure_ascii=False) + "\n").encode("utf-8"),
+               master: new_raw}
+    _replace_validated(changes, root)
+    return len(build_tool.build_toc_md(replacement).splitlines())
+
+
+def _replace_validated(changes: dict[Path, bytes], root: Path):
+    """Stage all files first and roll back any partial replacement failure."""
+    writable(root)
+    staged, originals, written = {}, {}, []
+    try:
+        for path, raw in changes.items():
+            originals[path] = path.read_bytes() if path.exists() else None
+            fd, name = tempfile.mkstemp(dir=path.parent, prefix=".studio-stage-")
+            with os.fdopen(fd, "wb") as stream:
+                stream.write(raw)
+            staged[path] = Path(name)
+        for path, temp in staged.items():
+            os.replace(temp, path)
+            written.append(path)
+    except Exception:
+        for path in reversed(written):
+            old = originals[path]
+            if old is None:
+                path.unlink(missing_ok=True)
+            else:
+                fd, name = tempfile.mkstemp(dir=path.parent, prefix=".studio-rollback-")
+                with os.fdopen(fd, "wb") as stream:
+                    stream.write(old)
+                os.replace(name, path)
+        raise
+    finally:
+        for temp in staged.values():
+            temp.unlink(missing_ok=True)
+
+
 def new(root: Path, kind: str, title: str):
     writable(root)
     prefix, directory = KINDS[kind]
@@ -241,8 +323,18 @@ def build(root: Path, pdf: bool):
         command.append("--pdf")
     run(root, command)
     run(root, [sys.executable, "-m", "mkdocs", "build", "--strict"])
-    run(root, [sys.executable, "tools/check_site_links.py", "--site", "site"])
-    print("PASS local build, fara publicare")
+    download_pdf = root / "wiki/downloads" / (Path(MASTER).stem + ".pdf")
+    if pdf:
+        generated_pdf = root / (Path(MASTER).stem + ".pdf")
+        if not generated_pdf.is_file() or download_pdf.read_bytes() != generated_pdf.read_bytes():
+            stop("PDF-ul descarcabil nu corespunde PDF-ului generat.")
+        run(root, [sys.executable, "tools/check_site_links.py", "--site", "site"])
+        print("PASS local build PDF si verificarea tuturor linkurilor, fara publicare")
+    elif not download_pdf.is_file():
+        print("PDF indisponibil in modul HTML-only; verificarea linkurilor descarcabile a fost omisa.")
+    else:
+        print("PDF existent ignorat in modul HTML-only; versiunea nu a fost verificata.")
+        print("Verificarea linkurilor descarcabile a fost omisa.")
 
 
 def main() -> int:

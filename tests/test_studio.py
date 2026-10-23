@@ -120,7 +120,8 @@ class StudioTests(unittest.TestCase):
             (root / studio.MASTER).write_bytes(raw)
             studio.migrate(root)
             before_ids = [e["id"] for e in studio.load_manifest(root)["fragments"]]
-            count = build_tool.update_toc(root / studio.MASTER)
+            with patch.dict("os.environ", {"STUDIO_RELEASE_ACTIVE": "false"}):
+                count = build_tool.update_toc(root / studio.MASTER)
             self.assertGreater(count, 0)
             manifest = studio.load_manifest(root)
             assembled = studio.combine(root / studio.BOOK, manifest)
@@ -129,7 +130,10 @@ class StudioTests(unittest.TestCase):
             self.assertIn(b'edition: "1.2.6"', assembled)
             self.assertIn(b"Text editorial actualizat.", assembled)
             self.assertEqual(before_ids, [e["id"] for e in manifest["fragments"]])
-            self.assertEqual(build_tool.update_toc(root / studio.MASTER), 0)
+            with patch.dict("os.environ", {"STUDIO_RELEASE_ACTIVE": "false"}):
+                first_build = (root / studio.MASTER).read_bytes()
+                self.assertEqual(build_tool.update_toc(root / studio.MASTER), 0)
+                self.assertEqual((root / studio.MASTER).read_bytes(), first_build)
             index = root / "wiki/index.md"
             index.parent.mkdir(parents=True, exist_ok=True)
             index.write_bytes(b"# Manual\r\n\r\nText manual\r\n\r\n"
@@ -151,6 +155,47 @@ class StudioTests(unittest.TestCase):
                 self.assertEqual(first_build[path], second_build[path], path)
             self.assertTrue((root / ".studio-local/wiki_index_block.md").is_file())
             self.assertFalse((root / "wiki_index_block.md").exists())
+
+    def test_toc_with_manifest_refuses_divergent_master_without_changes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.repo(tmp)
+            raw = (b"# Test\n\n## Cuprins\n\n<!-- TOC:START -->\nstale\n<!-- TOC:END -->\n\n"
+                   b"# Partea I. Start\n\n## 1. Primul capitol\nText.\n")
+            (root / studio.MASTER).write_bytes(raw)
+            studio.migrate(root)
+            (root / studio.MASTER).write_bytes(raw + b"external edit\n")
+            master_before = (root / studio.MASTER).read_bytes()
+            manifest_before = (root / studio.BOOK / "manifest.json").read_bytes()
+            fragments_before = {
+                entry["path"]: (root / studio.BOOK / entry["path"]).read_bytes()
+                for entry in studio.load_manifest(root)["fragments"]
+            }
+
+            with patch.dict("os.environ", {"STUDIO_RELEASE_ACTIVE": "false"}):
+                with self.assertRaisesRegex(ValueError, "refuzata"):
+                    build_tool.update_toc(root / studio.MASTER)
+
+            self.assertEqual((root / studio.MASTER).read_bytes(), master_before)
+            self.assertEqual((root / studio.BOOK / "manifest.json").read_bytes(), manifest_before)
+            for relative, content in fragments_before.items():
+                self.assertEqual((root / studio.BOOK / relative).read_bytes(), content)
+
+    def test_toc_without_manifest_uses_legacy_master_update(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.repo(tmp)
+            master = root / studio.MASTER
+            master.write_text(
+                "# Test\n\n## Cuprins\n\n<!-- TOC:START -->\nstale<!-- TOC:END -->\n\n"
+                "# Partea I. Start\n\n## 1. Primul capitol\nText.\n",
+                encoding="utf-8")
+            original = master.read_bytes()
+
+            with patch.dict("os.environ", {"STUDIO_RELEASE_ACTIVE": "false"}):
+                count = build_tool.update_toc(master)
+
+            self.assertGreater(count, 0)
+            self.assertNotEqual(master.read_bytes(), original)
+            self.assertIn(b"[1. Primul capitol](#1-primul-capitol)", master.read_bytes())
 
     def test_wiki_build_creates_missing_wiki_directory_and_homepage(self):
         with tempfile.TemporaryDirectory() as tmp:

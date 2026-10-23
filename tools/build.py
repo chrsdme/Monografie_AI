@@ -204,8 +204,7 @@ def update_toc(path):
     text = path.read_text(encoding="utf-8")
     new = toc_updated_text(text)
     root = path.parent
-    studio_active = os.environ.get("STUDIO_RELEASE_ACTIVE", "true").lower() == "true"
-    if (studio_active and path.name == DEFAULT_MD and
+    if (path.name == DEFAULT_MD and
             (root / "content/book/manifest.json").is_file()):
         sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
         import studio as studio_tool

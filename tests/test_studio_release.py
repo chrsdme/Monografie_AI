@@ -460,22 +460,25 @@ class StudioReleaseTests(unittest.TestCase):
             git('commit', '-m', 'initial canonical book')
             base = git('rev-parse', 'HEAD').stdout.decode().strip()
 
+            git('switch', '-c', 'wiki-pr')
             wiki.write_text('Index actualizat.\n', encoding='utf-8')
             git('add', '.')
             git('commit', '-m', 'wiki content change')
+            git('switch', 'studio-test')
+            git('merge', '--no-ff', 'wiki-pr', '-m', 'Merge wiki PR')
             source_sha = git('rev-parse', 'HEAD').stdout.decode().strip()
             source_paths = subprocess.run(
                 ['git', 'diff', '--name-only', 'HEAD^', 'HEAD'], cwd=root,
                 check=True, stdout=subprocess.PIPE, text=True).stdout.splitlines()
             sr.compatibility_apply(root, event='push', date='22 octombrie 2026',
-                changed=source_paths, message='wiki content change', sha_value=source_sha)
+                changed=source_paths, message='Merge wiki PR', sha_value=source_sha)
             git('add', '.')
             git('commit', '-m', 'generated release')
             release_expected = master.read_bytes()
             generated_expected = sr.release.update_text(
                 git('show', f'{base}:{studio.MASTER}').stdout.decode('utf-8'),
                 '1.2.4', '1.2.5', '22 octombrie 2026',
-                source_paths, 'wiki content change', source_sha)
+                source_paths, 'Merge wiki PR', source_sha)
             self.assertEqual(release_expected, generated_expected.encode('utf-8'))
 
             archive = root / 'docs' / f'{sr.release.MASTER[:-3]}_1.2.5.pdf'

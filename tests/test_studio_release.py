@@ -275,7 +275,9 @@ class StudioReleaseTests(unittest.TestCase):
             book = self.fixture(root, raw)
             args = dict(event='push', date='22 octombrie 2026', changed=['wiki/index.md'],
                         message='Actualizare', sha_value='abcdef0123456789')
-            with patch.dict(os.environ, github):
+            # Model docs.yml's former production environment: authorization
+            # starts inherited by the test process and every child process.
+            with patch.dict(os.environ, {**github, 'STUDIO_CI_MAIN_TOC_SYNC': 'true'}):
                 sr.apply(root, **args, ci_main_release=True)
 
             fragment = book / 'fragments/BOOK-0001.md'
@@ -294,9 +296,10 @@ class StudioReleaseTests(unittest.TestCase):
                 'publication_build_tool', ROOT / 'tools/build.py')
             build_tool = importlib.util.module_from_spec(build_spec)
             build_spec.loader.exec_module(build_tool)
-            with patch.dict(os.environ, github):
-                with self.assertRaisesRegex(ValueError, 'Nu modifica main cu Studio'):
-                    build_tool.update_toc(master)
+            with patch.dict(os.environ, {**github, 'STUDIO_CI_MAIN_TOC_SYNC': 'true'}):
+                with patch.dict(os.environ, {'STUDIO_CI_MAIN_TOC_SYNC': 'false'}):
+                    with self.assertRaisesRegex(ValueError, 'Nu modifica main cu Studio'):
+                        build_tool.update_toc(master)
                 with patch.dict(os.environ, {'STUDIO_CI_MAIN_TOC_SYNC': 'true'}):
                     count = build_tool.update_toc(master)
             self.assertGreater(count, 0)

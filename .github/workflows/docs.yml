@@ -78,7 +78,6 @@ jobs:
         env:
           STUDIO_RELEASE_ENABLED: ${{ vars.STUDIO_RELEASE_ENABLED }}
           STUDIO_RELEASE_ACTIVE: ${{ vars.STUDIO_RELEASE_ENABLED }}
-          STUDIO_CI_MAIN_TOC_SYNC: "true"
         run: bash tools/ci-build.sh
       - name: Archive PDF edition for publication
         id: archive

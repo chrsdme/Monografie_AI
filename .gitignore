@@ -1,0 +1,17 @@
+# Local editorial workspace, never published by accident
+/inbox/
+/.studio-local/
+/.studio-cache/
+/.studio-reports/
+/.venv/
+/venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+
+# Generated local preview only
+/site/
+/ui-preview/
+
+# Do not ignore content/, studio/, wiki/, docs/ or tracked source files.

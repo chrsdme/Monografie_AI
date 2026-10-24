@@ -6,10 +6,17 @@ cd "$(dirname "$0")/.."
 python -m unittest discover -s tests -p "test_feedback_hook.py"
 python -m unittest discover -s tests -p "test_tech_theme.py" -v
 python -m unittest discover -s tests -p "test_site_links.py" -v
+python -m unittest discover -s tests -p "test_studio.py" -v
 python -m unittest discover -s tests -p "test_intent_crossrefs.py" -v
 python -m unittest discover -s tests -p "test_release_archive.py" -v
 python -m unittest discover -s tests -p "test_archive_pr_guard.py" -v
+python -m unittest discover -s tests -p "test_studio_release.py" -v
 python -m unittest discover -s examples/agent_studies/tests -v
+
+# Repositories without a Studio manifest retain the legacy source workflow.
+if [ "${STUDIO_RELEASE_ENABLED:-false}" = "true" ] && [ -f content/book/manifest.json ]; then
+  python tools/studio.py --repo . assemble
+fi
 
 python tools/build.py --repo . --toc --wiki --pdf
 

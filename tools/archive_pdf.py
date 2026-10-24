@@ -31,7 +31,7 @@ def archive(repo, reuse_existing=False):
         raise ValueError("PDF generat lipsa sau invalid")
     archived = docs / f"{STEM}_{version}.pdf"
     if archived.exists():
-        if archived.read_bytes() != rendered.read_bytes() and not reuse_existing:
+        if archived.read_bytes() != rendered.read_bytes():
             raise ValueError(f"Editia {version} exista deja si difera! Nu suprascriem arhiva.")
         print(f"ARCHIVE: editia {version} exista; fisierul istoric ramane imuabil")
     else:

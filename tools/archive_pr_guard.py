@@ -6,6 +6,8 @@ Exit codes: 0 = safe to propose, 10 = identical edition already archived,
 23 = competing archive PR already open.
 """
 import argparse
+import hashlib
+import importlib.util
 import json
 import pathlib
 import re
@@ -16,7 +18,7 @@ STEM = "Monografie_AI_De_la_Chat_la_Sisteme_Agentice"
 
 
 def edition(source):
-    match = re.search(r'^edition: "([0-9]+(?:\.[0-9]+){1,2})"$',
+    match = re.search(r'^edition: "([0-9]+(?:\.[0-9]+){1,2})"\r?$',
                       source, re.MULTILINE)
     if not match:
         raise ValueError("Missing or invalid edition in monograph front matter")
@@ -25,6 +27,148 @@ def edition(source):
 
 def version_key(version):
     return tuple(int(part) for part in version.split("."))
+
+
+def _editorial_core(source):
+    """Mask only technical YAML release fields; all Markdown stays auditable."""
+    match = re.match(r'\A(\ufeff?---\r?\n)(.*?)(\r?\n---(?:\r?\n|\Z))',
+                     source, re.DOTALL)
+    if not match:
+        return source
+    fields = re.sub(
+        r'(?m)^((?:edition|previous_edition|changelog_anchor|date):\s*)"[^"\r\n]*"(?=\r?$)',
+        r'\1"<release-metadata>"', match.group(2))
+    return match.group(1) + fields + match.group(3) + source[match.end():]
+
+
+def _matches_generated_release(repo, before_master, after_master, changed_paths):
+    """Prove a manuscript transition by replaying release.py from Git history."""
+    if repo is None:
+        return False
+    root = pathlib.Path(repo)
+    master_path = f"{STEM}.md"
+    try:
+        before = before_master.encode("utf-8")
+        after = after_master.encode("utf-8")
+        old_edition = edition(before_master)
+        new_edition = edition(after_master)
+        release_spec = importlib.util.spec_from_file_location(
+            "archive_release_for_guard", pathlib.Path(__file__).with_name("release.py"))
+        release = importlib.util.module_from_spec(release_spec)
+        release_spec.loader.exec_module(release)
+        if release.next_patch(old_edition) != new_edition:
+            return False
+        date = release.field(after_master, "date")
+        commits = subprocess.check_output(
+            ["git", "log", "--format=%H", "HEAD", "--", master_path],
+            cwd=root, text=True).splitlines()
+        matches = 0
+        for release_commit in commits:
+            release_parents = subprocess.check_output(
+                ["git", "rev-list", "--parents", "-n", "1", release_commit],
+                cwd=root, text=True).split()
+            if len(release_parents) != 2:
+                continue
+            parent = release_parents[1]
+            if git_show(root, release_commit, master_path) != after:
+                continue
+            if git_show(root, parent, master_path) != before:
+                continue
+
+            # release.py runs after the editorial commit. That commit's parent
+            # must still contain the exact manuscript baseline.
+            source_commit = parent
+            source_parents = subprocess.check_output(
+                ["git", "rev-list", "--parents", "-n", "1", source_commit],
+                cwd=root, text=True).split()
+            if len(source_parents) != 2:
+                continue
+            source_parent = source_parents[1]
+            if (git_show(root, source_commit, master_path) != before or
+                    git_show(root, source_parent, master_path) != before):
+                continue
+            source_paths = subprocess.check_output(
+                ["git", "diff", "--name-only", source_parent, source_commit],
+                cwd=root, text=True).splitlines()
+            if not source_paths or not set(source_paths).issubset(set(changed_paths)):
+                continue
+            message = subprocess.check_output(
+                ["git", "log", "-1", "--format=%B", source_commit],
+                cwd=root, text=True)
+            path_variants = [source_paths]
+            if any(path == "content/book" or path.startswith("content/book/")
+                   for path in source_paths) and master_path not in source_paths:
+                # Studio release also records the assembled manuscript as an
+                # input when a fragment or manifest triggered the release.
+                path_variants.append(source_paths + [master_path])
+            for release_paths in path_variants:
+                if not set(release_paths).issubset(set(changed_paths)):
+                    continue
+                expected = release.update_text(
+                    before_master, old_edition, new_edition, date, release_paths,
+                    message, source_commit)
+                if expected.encode("utf-8") == after:
+                    matches += 1
+        return matches == 1
+    except (OSError, ValueError, RuntimeError, subprocess.CalledProcessError,
+            UnicodeError, AttributeError, TypeError):
+        return False
+
+
+def is_archive_only(changed_paths, before_master, after_master, repo=None):
+    """Accept only a release persistence diff whose editorial body is unchanged."""
+    allowed_exact = {f"{STEM}.md", "docs/README.md", "docs/.publication.json",
+                     "wiki/index.md", f"wiki/downloads/{STEM}.pdf",
+                     f"docs/{STEM}.pdf"}
+    allowed_prefix = ("content/book/fragments/",)
+    for path in changed_paths:
+        if path in allowed_exact or path.startswith(allowed_prefix):
+            continue
+        if path.startswith(("wiki/partea-", "wiki/anexe/")) and path.endswith(".md"):
+            continue
+        if re.fullmatch(rf"docs/{re.escape(STEM)}_[0-9]+(?:\.[0-9]+){{1,2}}\.pdf", path):
+            continue
+        if path == "content/book/manifest.json":
+            continue
+        return False
+    if not changed_paths:
+        return False
+    current_edition = edition(after_master)
+    if ("docs/.publication.json" not in changed_paths or
+            f"docs/{STEM}_{current_edition}.pdf" not in changed_paths):
+        return False
+    if repo is not None:
+        root = pathlib.Path(repo)
+        metadata_path = root / "docs/.publication.json"
+        archive_path = root / f"docs/{STEM}_{current_edition}.pdf"
+        try:
+            metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+            archive_bytes = archive_path.read_bytes()
+        except (OSError, json.JSONDecodeError):
+            return False
+        if (metadata.get("edition") != current_edition or
+                metadata.get("archived_pdf") != archive_path.name or
+                metadata.get("pdf_sha256") != hashlib.sha256(archive_bytes).hexdigest()):
+            return False
+    if repo is not None:
+        book = pathlib.Path(repo) / "content/book"
+        manifest_path = book / "manifest.json"
+        if not manifest_path.exists():
+            if any(path.startswith("content/book/") for path in changed_paths):
+                return False
+        else:
+            spec = importlib.util.spec_from_file_location("archive_studio", pathlib.Path(__file__).with_name("studio.py"))
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            try:
+                manifest = module.load_manifest(pathlib.Path(repo))
+                if module.combine(book, manifest) != after_master.encode("utf-8"):
+                    return False
+            except (OSError, ValueError, KeyError, TypeError):
+                return False
+    if _editorial_core(before_master) == _editorial_core(after_master):
+        return True
+    return _matches_generated_release(repo, before_master, after_master, changed_paths)
 
 
 def classify(candidate_version, main_version, archived_pdf, candidate_pdf):
@@ -130,9 +274,19 @@ def main():
     parser.add_argument("--repo", default=".")
     parser.add_argument("--main-ref", default="refs/remotes/origin/main")
     parser.add_argument("--check-open-prs", action="store_true")
+    parser.add_argument("--classify-archive-only", action="store_true")
     args = parser.parse_args()
     try:
         repo = pathlib.Path(args.repo).resolve()
+        if args.classify_archive_only:
+            changed = subprocess.check_output(
+                ["git", "diff", "--name-only", f"{args.main_ref}...HEAD"],
+                cwd=repo, text=True).splitlines()
+            before = git_show(repo, args.main_ref, f"{STEM}.md").decode("utf-8")
+            after = (repo / f"{STEM}.md").read_text(encoding="utf-8")
+            result = is_archive_only(changed, before, after, repo=repo)
+            print("true" if result else "false")
+            return 0
         decision = check(repo, args.main_ref)
         if decision == 0 and args.check_open_prs:
             candidate = edition((repo / f"{STEM}.md").read_text(encoding="utf-8"))

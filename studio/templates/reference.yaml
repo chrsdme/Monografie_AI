@@ -1,0 +1,16 @@
+# Exemplu de intrare propusa, NU registru canonic nou pana la migrare.
+id: S45
+status: proposed        # proposed | verified | rejected
+author: ""
+year: null
+title: ""
+source_type: "primary"   # primary | secondary | official_docs | paper | standard
+publisher: ""
+url: ""
+accessed: null          # DD month YYYY (Arden Harvard-style cand este cerut)
+license: unknown
+verified_claims: []
+related_book_ids: []
+notes: ""
+# Aloca ID-ul numai dupa ce verifici ca nu exista in bibliografia curenta;
+# nu renumerota niciodata sursele istorice S01-S44.

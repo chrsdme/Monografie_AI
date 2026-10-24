@@ -2,9 +2,9 @@
 title: "De la conversatia cu AI la sisteme agentice verificabile"
 subtitle: "O introducere graduala in modele, context, instrumente, memorie, harness, agenti, orchestrare si evaluare"
 author: "chrsdme"
-edition: "1.2.7"
-previous_edition: "1.2.6"
-changelog_anchor: "e11-modificari-de-la-editia-126-la-127"
+edition: "1.2.8"
+previous_edition: "1.2.7"
+changelog_anchor: "e12-modificari-de-la-editia-127-la-128"
 date: "24 octombrie 2026"
 lang: ro
 license: "MIT"
@@ -16,7 +16,7 @@ source: "https://github.com/chrsdme/Monografie_AI"
 
 **O introducere graduala in modele, context, instrumente, memorie, harness, agenti, orchestrare si evaluare**
 
-*Editia 1.2.7 | 24 octombrie 2026 | Autor: chrsdme | Licenta: MIT*
+*Editia 1.2.8 | 24 octombrie 2026 | Autor: chrsdme | Licenta: MIT*
 
 *Versiunea web: https://chrsdme.github.io/Monografie_AI/ | Sursa: https://github.com/chrsdme/Monografie_AI*
 
@@ -40,7 +40,7 @@ Poti sari la un capitol, dar ordinea e gandita pentru invatare. Nu are rost sa t
 
 **Conventii.** Cand spunem *model*, ne referim la componenta care produce predictii sau genereaza continut. *Aplicatia* este produsul care il pune la dispozitie. *Agentul* este o configuratie executabila care urmareste un obiectiv prin actiuni si feedback. Un *sistem agentic* include si infrastructura din jurul agentului. Figurile sunt numerotate in ordinea in care apar (Figura 1 pana la Figura 8), iar fiecare are o legenda sub ea.
 
-**Ce este nou fata de editia 1.2.6.** Modificarile sunt descrise in Anexa E.11; vezi istoricul E.11 pentru provenienta commitului si domeniile afectate.
+**Ce este nou fata de editia 1.2.7.** Modificarile sunt descrise in Anexa E.12; vezi istoricul E.12 pentru provenienta commitului si domeniile afectate.
 
 
 ## Cuprins
@@ -2008,11 +2008,11 @@ O varianta aplicata la securitate porneste de la un buletin oficial, trece print
 
 - **Titlu:** De la conversatia cu AI la sisteme agentice verificabile.
 - **Autor:** chrsdme.
-- **Editia curenta:** 1.2.7, 24 octombrie 2026 (editia precedenta: 1.2.6).
+- **Editia curenta:** 1.2.8, 24 octombrie 2026 (editia precedenta: 1.2.7).
 - **Licenta:** MIT. Reutilizarea trebuie sa respecte conditiile licentei din depozit.
 - **Versiunea web:** https://chrsdme.github.io/Monografie_AI/
 - **Sursa editabila:** https://github.com/chrsdme/Monografie_AI
-- **Citare recomandata:** chrsdme (2026), *De la conversatia cu AI la sisteme agentice verificabile*, editia 1.2.7, 24 octombrie 2026, https://chrsdme.github.io/Monografie_AI/.
+- **Citare recomandata:** chrsdme (2026), *De la conversatia cu AI la sisteme agentice verificabile*, editia 1.2.8, 24 octombrie 2026, https://chrsdme.github.io/Monografie_AI/.
 
 Fisierul Markdown este sursa unica. Pagina web si PDF-ul se genereaza din aceeasi revizie, ca sa afiseze aceeasi editie si aceeasi data.
 
@@ -2124,6 +2124,13 @@ Aceasta sectiune descrie modificarile introduse dupa editia 1.1. E.2 pastreaza s
 - Publicare si verificari: modificari ale instrumentelor si pipeline-ului.
 - **Nota:** aceasta lista este generata din fisierele modificate; detaliile editoriale se verifica in diff-ul commitului indicat.
 
+
+## E.12. Modificari de la editia 1.2.7 la 1.2.8
+
+- **Origine:** commitul `c7412aa23f88`; mesaj: Fix archive-only classification for real merge history.
+- Publicare si verificari: modificari ale instrumentelor si pipeline-ului.
+- **Nota:** aceasta lista este generata din fisierele modificate; detaliile editoriale se verifica in diff-ul commitului indicat.
+
 # Bibliografie si resurse de aprofundare
 
 *Selectie comentata de surse pentru concepte, exemple si metodologie. Sursele editiei 1.1 au fost verificate la 15 octombrie 2026; pentru completarea din 17 octombrie 2026 au fost adaugate intrarile S41-S44. Consultarea unui link nu garanteaza validarea tuturor afirmatiilor sale. Un link care functioneaza nu garanteaza ca fiecare afirmatie din pagina respectiva este adevarata: pentru paginile comerciale, citarea indica un exemplu sau un mod de clasificare, nu validarea cifrelor promotionale. Continutul online se poate schimba dupa aceasta data. Sursele Cyber AI Romania provin de la un contributor independent din comunitatea AI Romania; autorul acestei lucrari nu este afiliat cu acel site.*
@@ -2222,4 +2229,4 @@ Pe langa materialele documentate si citate mai sus, in aceasta lucrare intra si 
 
 ---
 
-*Sfarsitul editiei 1.2.7. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*
+*Sfarsitul editiei 1.2.8. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*

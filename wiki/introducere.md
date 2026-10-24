@@ -18,4 +18,4 @@ Poti sari la un capitol, dar ordinea e gandita pentru invatare. Nu are rost sa t
 
 **Conventii.** Cand spunem *model*, ne referim la componenta care produce predictii sau genereaza continut. *Aplicatia* este produsul care il pune la dispozitie. *Agentul* este o configuratie executabila care urmareste un obiectiv prin actiuni si feedback. Un *sistem agentic* include si infrastructura din jurul agentului. Figurile sunt numerotate in ordinea in care apar (Figura 1 pana la Figura 8), iar fiecare are o legenda sub ea.
 
-**Ce este nou fata de editia 1.2.6.** Modificarile sunt descrise in Anexa E.11; vezi istoricul E.11 pentru provenienta commitului si domeniile afectate.
+**Ce este nou fata de editia 1.2.7.** Modificarile sunt descrise in Anexa E.12; vezi istoricul E.12 pentru provenienta commitului si domeniile afectate.

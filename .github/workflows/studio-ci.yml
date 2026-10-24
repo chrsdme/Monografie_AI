@@ -18,6 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           persist-credentials: false
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -45,3 +46,5 @@ jobs:
           STUDIO_RELEASE_ENABLED: "true"
           STUDIO_RELEASE_ACTIVE: "false"
         run: bash tools/ci-build.sh
+      - name: Verify completed build reuses immutable archived PDF
+        run: python tools/archive_pdf.py --repo . --reuse-existing

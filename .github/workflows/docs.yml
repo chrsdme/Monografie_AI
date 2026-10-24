@@ -47,7 +47,8 @@ jobs:
           if [ -f content/book/manifest.json ]; then
             date=$(python -c 'import datetime; from zoneinfo import ZoneInfo; from tools.release import MONTHS; d=datetime.datetime.now(ZoneInfo("Europe/London")).date(); print(f"{d.day} {MONTHS[d.month-1]} {d.year}")')
             args=(--repo . --event "$EVENT" --date "$date")
-            if [ "$ARCHIVE_ONLY" = "true" ]; then args=(--repo . --event workflow_dispatch --date "$date"); fi
+            args+=(--ci-main-release)
+            if [ "$ARCHIVE_ONLY" = "true" ]; then args=(--repo . --event workflow_dispatch --date "$date" --ci-main-release); fi
             if [ "$EVENT" = "push" ] && [ "$ARCHIVE_ONLY" != "true" ]; then
               args+=(--previous-edition "$(git show HEAD^:Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md | sed -n 's/^edition: "\([^"]*\)"$/\1/p')")
               args+=(--sha "$(git rev-parse HEAD)" --message "$(git log -1 --format=%B)")

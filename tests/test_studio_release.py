@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import os
 from pathlib import Path
 import tempfile
 import unittest
@@ -241,6 +242,79 @@ class StudioReleaseTests(unittest.TestCase):
             self.assertEqual(studio.combine(book, updated), r['expected'])
             self.assertEqual((root / studio.MASTER).read_bytes(), r['expected'])
             self.assertTrue((book / 'fragments/BOOK-0003-release-changelog.md').is_file())
+
+    def test_authorized_ci_main_apply_in_both_modes_and_local_apply_is_denied(self):
+        github = {'GITHUB_ACTIONS': 'true', 'GITHUB_REF': 'refs/heads/main',
+                  'GITHUB_WORKFLOW': 'Publish monograph and documentation',
+                  'GITHUB_REPOSITORY': 'chrsdme/Monografie_AI', 'GITHUB_RUN_ID': '12345'}
+        for operation in (sr.apply, sr.compatibility_apply):
+            with self.subTest(operation=operation.__name__), tempfile.TemporaryDirectory() as d:
+                root = Path(d); self.fixture(root)
+                args = dict(event='push', date='22 octombrie 2026', changed=['wiki/index.md'],
+                            message='Actualizare', sha_value='abcdef0123456789')
+                with patch.object(studio, 'branch', return_value='main'):
+                    with self.assertRaisesRegex(ValueError, 'workflow-ul de publicare autorizat'):
+                        operation(root, **args)
+                    with patch.dict(os.environ, github, clear=True):
+                        result = operation(root, **args, ci_main_release=True)
+                self.assertEqual(result['proposed_edition'], '1.2.5')
+
+    def test_interactive_studio_writable_still_rejects_main(self):
+        with patch.object(studio, 'branch', return_value='main'):
+            with self.assertRaisesRegex(ValueError, 'Nu modifica main cu Studio'):
+                studio.writable(Path('.'))
+
+    def test_real_main_merge_release_ticks_once_and_preserves_historic_pdf(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+
+            def git(*args):
+                return subprocess.run(['git', *args], cwd=root, check=True,
+                                      stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+            git('init', '-b', 'main')
+            git('config', 'user.email', 'studio@example.invalid')
+            git('config', 'user.name', 'Studio Test')
+            book = self.fixture(root)
+            docs = root / 'docs'; docs.mkdir()
+            historic = docs / f'{sr.release.MASTER[:-3]}_1.2.4.pdf'
+            historic_bytes = b'original historical PDF bytes'
+            historic.write_bytes(historic_bytes)
+            git('add', '.')
+            git('commit', '-m', 'canonical edition 1.2.4')
+            git('switch', '-c', 'editorial-change')
+            fragment = book / 'fragments/BOOK-0001.md'
+            fragment.write_bytes(fragment.read_bytes().replace(b'# Cartea', b'# Cartea din PR'))
+            git('add', 'content/book/fragments/BOOK-0001.md')
+            git('commit', '-m', 'editorial change')
+            git('switch', 'main')
+            git('merge', '--no-ff', 'editorial-change', '-m', 'Merge editorial PR')
+            self.assertEqual(git('branch', '--show-current').stdout.decode().strip(), 'main')
+
+            previous = git('show', 'HEAD^:' + studio.MASTER).stdout.decode('utf-8')
+            previous_edition = sr.release.field(previous, 'edition')
+            changed = git('diff', '--name-only', 'HEAD^', 'HEAD').stdout.decode().splitlines()
+            args = dict(event='push', date='22 octombrie 2026', changed=changed,
+                        message='Merge editorial PR', sha_value=git('rev-parse', 'HEAD').stdout.decode().strip(),
+                        previous_edition=previous_edition)
+            github = {'GITHUB_ACTIONS': 'true', 'GITHUB_REF': 'refs/heads/main',
+                      'GITHUB_WORKFLOW': 'Publish monograph and documentation',
+                      'GITHUB_REPOSITORY': 'chrsdme/Monografie_AI', 'GITHUB_RUN_ID': '12345'}
+            with patch.dict(os.environ, github, clear=True), \
+                    patch.object(studio, 'branch', return_value='main'):
+                released = sr.apply(root, **args, ci_main_release=True)
+            self.assertEqual(released['mode'], 'incremented')
+            self.assertEqual(released['proposed_edition'], '1.2.5')
+            self.assertEqual(sr.release.field((root / studio.MASTER).read_text(), 'edition'), '1.2.5')
+            self.assertEqual(historic.read_bytes(), historic_bytes)
+
+            rendered = root / f'{sr.release.MASTER[:-3]}.pdf'
+            rendered.write_bytes(b'N' * 50_001)
+            archive_spec = importlib.util.spec_from_file_location('archive_pdf', ROOT / 'tools/archive_pdf.py')
+            archive_pdf = importlib.util.module_from_spec(archive_spec); archive_spec.loader.exec_module(archive_pdf)
+            archive_pdf.archive(root)
+            self.assertEqual(historic.read_bytes(), historic_bytes)
+            self.assertEqual((docs / f'{sr.release.MASTER[:-3]}_1.2.5.pdf').read_bytes(), rendered.read_bytes())
 
     def test_git_history_legacy_compatibility_archive_then_studio_release(self):
         with tempfile.TemporaryDirectory() as d:

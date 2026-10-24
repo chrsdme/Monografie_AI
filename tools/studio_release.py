@@ -262,7 +262,7 @@ def dry_run(root: Path, **kwargs) -> dict:
     return result
 
 
-def apply(root: Path, **kwargs) -> dict:
+def apply(root: Path, *, ci_main_release: bool = False, **kwargs) -> dict:
     """Validate in a sibling staging directory, then replace files with rollback."""
     result = plan(root, **kwargs)
     book = root / studio.BOOK
@@ -280,7 +280,7 @@ def apply(root: Path, **kwargs) -> dict:
         staged = studio.load_manifest(stage)
         if studio.combine(staged_book, staged) != result["expected"]:
             raise ValueError("Validarea staging-ului a esuat; sursa canonica nu a fost schimbata")
-        studio.writable(root)
+        _authorize_apply_target(root, ci_main_release)
         files = [(book / e["path"], (staged_book / e["path"]).read_bytes()) for e in entries]
         manifest_path = book / "manifest.json"
         files.append((manifest_path, (staged_book / "manifest.json").read_bytes()))
@@ -311,11 +311,29 @@ def apply(root: Path, **kwargs) -> dict:
     return result
 
 
-def compatibility_apply(root: Path, **kwargs) -> dict:
+def _authorize_apply_target(root: Path, ci_main_release: bool) -> None:
+    """Keep main read-only except for this repository's publication workflow."""
+    if studio.branch(root) != "main":
+        studio.writable(root)
+        return
+    github = os.environ
+    authorized = (
+        ci_main_release
+        and github.get("GITHUB_ACTIONS") == "true"
+        and github.get("GITHUB_REF") == "refs/heads/main"
+        and github.get("GITHUB_WORKFLOW") == "Publish monograph and documentation"
+        and github.get("GITHUB_REPOSITORY", "").lower() == "chrsdme/monografie_ai"
+        and github.get("GITHUB_RUN_ID", "").isdigit()
+    )
+    if not authorized:
+        raise ValueError("Release pe main permis doar in workflow-ul de publicare autorizat")
+
+
+def compatibility_apply(root: Path, *, ci_main_release: bool = False, **kwargs) -> dict:
     """Legacy release policy with verified projection into an existing Studio book."""
     # plan() delegates edition/date/changelog policy to release.py. This adapter
     # only reconciles its known output against the manifest baseline.
-    return apply(root, **kwargs)
+    return apply(root, ci_main_release=ci_main_release, **kwargs)
 
 
 def main(argv=None):
@@ -328,13 +346,18 @@ def main(argv=None):
     ap.add_argument("--sha", default="0" * 40)
     ap.add_argument("--previous-edition", help="Editia dinaintea commitului publicat")
     ap.add_argument("--apply", action="store_true", help="Aplica atomic fragmente, manifest si manuscris")
+    ap.add_argument("--ci-main-release", action="store_true",
+                    help="Autorizeaza apply pe main doar in workflow-ul GitHub de publicare")
     ap.add_argument("--legacy-compatible", action="store_true",
                     help="Pastreaza politica release.py si reconciliaza manifestul existent")
     a = ap.parse_args(argv)
     try:
         operation = (compatibility_apply if a.legacy_compatible else apply) if a.apply else dry_run
-        r = operation(Path(a.repo), event=a.event, date=a.date, changed=a.changed,
+        kwargs = dict(event=a.event, date=a.date, changed=a.changed,
                       message=a.message, sha_value=a.sha, previous_edition=a.previous_edition)
+        if a.apply:
+            kwargs["ci_main_release"] = a.ci_main_release
+        r = operation(Path(a.repo), **kwargs)
         print(json.dumps({k: v for k, v in r.items() if k not in ("expected", "projected", "manifest", "original")},
                          ensure_ascii=False, indent=2))
         return 0

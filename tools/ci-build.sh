@@ -18,7 +18,7 @@ if [ "${STUDIO_RELEASE_ENABLED:-false}" = "true" ] && [ -f content/book/manifest
   python tools/studio.py --repo . assemble
 fi
 
-python tools/build.py --repo . --toc --wiki --pdf
+STUDIO_CI_MAIN_TOC_SYNC=true python tools/build.py --repo . --toc --wiki --pdf
 
 pdf="Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf"
 published_pdf="wiki/downloads/$pdf"

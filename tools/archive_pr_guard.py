@@ -62,51 +62,60 @@ def _matches_generated_release(repo, before_master, after_master, changed_paths)
         commits = subprocess.check_output(
             ["git", "log", "--format=%H", "HEAD", "--", master_path],
             cwd=root, text=True).splitlines()
-        matches = 0
+        matches = set()
         for release_commit in commits:
             release_parents = subprocess.check_output(
                 ["git", "rev-list", "--parents", "-n", "1", release_commit],
-                cwd=root, text=True).split()
-            if len(release_parents) != 2:
-                continue
-            parent = release_parents[1]
+                cwd=root, text=True).split()[1:]
             if git_show(root, release_commit, master_path) != after:
                 continue
-            if git_show(root, parent, master_path) != before:
-                continue
+            source_options = []
+            for parent in release_parents:
+                if git_show(root, parent, master_path) != before:
+                    continue
+                parent_line = subprocess.check_output(
+                    ["git", "rev-list", "--parents", "-n", "1", parent],
+                    cwd=root, text=True).split()
+                if len(parent_line) == 3:
+                    # GitHub's archive PR commit is a child of the source
+                    # merge. The source merge's first parent is the baseline.
+                    source_options.append((parent, parent_line[1]))
 
-            # The release input is the source commit's exact tree. Its first
-            # parent may differ because that commit can contain editorial work.
-            source_commit = parent
-            source_parents = subprocess.check_output(
-                ["git", "rev-list", "--parents", "-n", "1", source_commit],
-                cwd=root, text=True).split()
-            if len(source_parents) < 2:
-                continue
-            source_parent = source_parents[1]
-            if git_show(root, source_commit, master_path) != before:
-                continue
-            source_paths = subprocess.check_output(
-                ["git", "diff", "--name-only", source_parent, source_commit],
-                cwd=root, text=True).splitlines()
-            if not source_paths:
-                continue
-            message = subprocess.check_output(
-                ["git", "log", "-1", "--format=%B", source_commit],
-                cwd=root, text=True)
-            path_variants = [source_paths]
-            if any(path == "content/book" or path.startswith("content/book/")
-                   for path in source_paths) and master_path not in source_paths:
-                # Studio release also records the assembled manuscript as an
-                # input when a fragment or manifest triggered the release.
-                path_variants.append(source_paths + [master_path])
-            for release_paths in path_variants:
-                expected = release.update_text(
-                    before_master, old_edition, new_edition, date, release_paths,
-                    message, source_commit)
-                if expected.encode("utf-8") == after:
-                    matches += 1
-        return matches == 1
+            # Retain compatibility with merge-shaped release commits.
+            if len(release_parents) == 2:
+                source_options.append((release_parents[1], None))
+
+            for source_commit, source_parent in source_options:
+                if source_parent is None:
+                    source_line = subprocess.check_output(
+                        ["git", "rev-list", "--parents", "-n", "1", source_commit],
+                        cwd=root, text=True).split()
+                    if len(source_line) < 3:
+                        continue
+                    source_parent = source_line[2]
+                if git_show(root, source_commit, master_path) != before:
+                    continue
+                source_paths = subprocess.check_output(
+                    ["git", "diff", "--name-only", source_parent, source_commit],
+                    cwd=root, text=True).splitlines()
+                if not source_paths:
+                    continue
+                message = subprocess.check_output(
+                    ["git", "log", "-1", "--format=%B", source_commit],
+                    cwd=root, text=True)
+                path_variants = [source_paths]
+                if any(path == "content/book" or path.startswith("content/book/")
+                       for path in source_paths) and master_path not in source_paths:
+                    # Studio release also records the assembled manuscript as an
+                    # input when a fragment or manifest triggered the release.
+                    path_variants.append(source_paths + [master_path])
+                for release_paths in path_variants:
+                    expected = release.update_text(
+                        before_master, old_edition, new_edition, date, release_paths,
+                        message, source_commit)
+                    if expected.encode("utf-8") == after:
+                        matches.add((source_commit, tuple(release_paths)))
+        return len(matches) == 1
     except (OSError, ValueError, RuntimeError, subprocess.CalledProcessError,
             UnicodeError, AttributeError, TypeError):
         return False

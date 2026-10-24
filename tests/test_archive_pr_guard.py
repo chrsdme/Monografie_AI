@@ -4,6 +4,7 @@ import hashlib
 import json
 import pathlib
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -132,15 +133,15 @@ class ArchiveGuardTests(unittest.TestCase):
             git("init", "-b", "main")
             git("config", "user.email", "archive-e2e@example.invalid")
             git("config", "user.name", "Archive E2E")
-            raw = (b'---\nedition: "1.2.4"\nprevious_edition: "1.2.3"\n'
+            raw = (b'---\nedition: "1.2.5"\nprevious_edition: "1.2.4"\n'
                    b'changelog_anchor: "old"\ndate: "1 ianuarie 2025"\n'
                    b'author: "Autor"\nlicense: "CC"\ntitle: "Titlu"\n'
                    b'wiki: "https://example.test"\n---\n# Cartea\n'
-                   b'*Editia 1.2.4 | 1 ianuarie 2025 | Autor: Autor | Licenta: CC*\n'
-                   b'**Ce este nou fata de editia 1.2.3.** text\n'
-                   b'- **Editia curenta:** 1.2.4, 1 ianuarie 2025 (editia precedenta: 1.2.3).\n'
-                   b'- **Citare recomandata:** Autor (2025), *Titlu*, editia 1.2.4, 1 ianuarie 2025, https://example.test.\n'
-                   b'*Sfarsitul editiei 1.2.4.*\n# Bibliografie si resurse de aprofundare\n')
+                   b'*Editia 1.2.5 | 1 ianuarie 2025 | Autor: Autor | Licenta: CC*\n'
+                   b'**Ce este nou fata de editia 1.2.4.** text\n'
+                   b'- **Editia curenta:** 1.2.5, 1 ianuarie 2025 (editia precedenta: 1.2.4).\n'
+                   b'- **Citare recomandata:** Autor (2025), *Titlu*, editia 1.2.5, 1 ianuarie 2025, https://example.test.\n'
+                   b'*Sfarsitul editiei 1.2.5.*\n# Bibliografie si resurse de aprofundare\n')
             master_path = root / (guard.STEM + ".md")
             master_path.write_bytes(raw)
             fragments = root / "content/book/fragments"
@@ -167,6 +168,8 @@ class ArchiveGuardTests(unittest.TestCase):
             git("commit", "-m", "editorial content update")
             git("switch", "main")
             git("merge", "--no-ff", "editorial-change", "-m", "Merge editorial PR")
+            source_merge = git("rev-parse", "HEAD").stdout.decode().strip()
+            git("switch", "-c", "archive-pr")
 
             before = master_path.read_bytes().decode("utf-8")
             prior_edition = guard.edition(before)
@@ -174,9 +177,9 @@ class ArchiveGuardTests(unittest.TestCase):
             source_sha = git("rev-parse", "HEAD").stdout.decode().strip()
             source_message = git("log", "-1", "--format=%B").stdout.decode()
             published = release.update_text(
-                before, prior_edition, "1.2.5", "22 octombrie 2026",
+                before, prior_edition, "1.2.6", "22 octombrie 2026",
                 source_paths, source_message, source_sha).encode("utf-8")
-            self.assertEqual(guard.edition(published.decode()), "1.2.5")
+            self.assertEqual(guard.edition(published.decode()), "1.2.6")
             master_path.write_bytes(published)
             fragment.write_bytes(published)
             manifest["last_generated_sha256"] = hashlib.sha256(published).hexdigest()
@@ -185,24 +188,49 @@ class ArchiveGuardTests(unittest.TestCase):
             (root / (guard.STEM + ".pdf")).write_bytes(b"A" * 52_000)
             archiver.archive(root)
             git("add", guard.STEM + ".md", "docs/README.md", "docs/.publication.json",
-                "docs/" + guard.STEM + ".pdf", "docs/" + guard.STEM + "_1.2.5.pdf",
+                "docs/" + guard.STEM + ".pdf", "docs/" + guard.STEM + "_1.2.6.pdf",
                 "wiki/downloads/" + guard.STEM + ".pdf", "content/book/manifest.json",
                 "content/book/fragments/BOOK-0001.md")
-            git("commit", "-m", "archive edition 1.2.5")
-            changed = git("diff", "--name-only", "HEAD^", "HEAD").stdout.decode().splitlines()
+            git("commit", "-m", "archive edition 1.2.6")
+            archive_commit = git("rev-parse", "HEAD").stdout.decode().strip()
+            git("switch", "main")
+            git("merge", "--no-ff", "archive-pr", "-m", "Merge archive PR")
+            changed = git("diff", "--name-only", "HEAD^...HEAD").stdout.decode().splitlines()
             after = master_path.read_bytes().decode("utf-8")
+            self.assertEqual(git("rev-parse", "HEAD^1").stdout.decode().strip(), source_merge)
+            self.assertEqual(git("rev-parse", "HEAD^2").stdout.decode().strip(), archive_commit)
             self.assertTrue(guard.is_archive_only(changed, before, after, repo=root),
                             "changed=%r generated=%r" % (changed, guard._matches_generated_release(
                                 root, before, after, changed)))
-            archive_relative = "docs/" + guard.STEM + "_1.2.5.pdf"
+            classification = subprocess.run(
+                [sys.executable, str(ROOT / "tools/archive_pr_guard.py"),
+                 "--repo", str(root), "--main-ref", "HEAD^1",
+                 "--classify-archive-only"], check=True, text=True,
+                stdout=subprocess.PIPE).stdout.strip()
+            self.assertEqual(classification, "true")
+            shallow = pathlib.Path(tmp) / "shallow"
+            git("clone", "--depth=2", "--no-local", str(root), str(shallow))
+            shallow_before = guard.git_show(
+                shallow, "HEAD^1", guard.STEM + ".md").decode("utf-8")
+            shallow_after = (shallow / (guard.STEM + ".md")).read_text(encoding="utf-8")
+            self.assertFalse(guard.is_archive_only(
+                changed, shallow_before, shallow_after, repo=shallow),
+                "a shallow checkout must not establish release provenance")
+            shallow_classification = subprocess.run(
+                [sys.executable, str(ROOT / "tools/archive_pr_guard.py"),
+                 "--repo", str(shallow), "--main-ref", "HEAD^1",
+                 "--classify-archive-only"], check=True, text=True,
+                stdout=subprocess.PIPE).stdout.strip()
+            self.assertEqual(shallow_classification, "false")
+            archive_relative = "docs/" + guard.STEM + "_1.2.6.pdf"
             self.assertIn(archive_relative, changed)
             self.assertIn(archive_relative, git("ls-files").stdout.decode().splitlines())
-            self.assertEqual(guard.edition(after), "1.2.5")
+            self.assertEqual(guard.edition(after), "1.2.6")
 
             # The archive merge triggers workflow_dispatch semantics, so no second edition tick.
             self.assertEqual(release.prepare(root, "workflow_dispatch"), "unchanged")
-            self.assertEqual(guard.edition(master_path.read_text(encoding="utf-8")), "1.2.5")
-            archived = root / "docs" / f"{guard.STEM}_1.2.5.pdf"
+            self.assertEqual(guard.edition(master_path.read_text(encoding="utf-8")), "1.2.6")
+            archived = root / "docs" / f"{guard.STEM}_1.2.6.pdf"
             immutable = archived.read_bytes()
             (root / (guard.STEM + ".pdf")).write_bytes(b"B" * 52_000)
             archiver.archive(root, reuse_existing=True)

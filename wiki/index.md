@@ -35,7 +35,7 @@
 </div>
 
 <!-- MONOGRAFIE:START -->
-<section class="tech-edition" aria-label="Editia curenta"><div class="tech-edition-copy"><span class="tech-edition-label">BUILD / EDITIA CURENTA</span><strong>Editia 1.2.6, 24 octombrie 2026</strong><span>Autor: chrsdme · Licenta: MIT</span></div><div class="tech-edition-links"><a href="anexe/metoda-surse/#e10-modificari-de-la-editia-125-la-126">Ce s-a schimbat fata de editia 1.2.5 ↗</a><a href="downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf">Descarca PDF-ul curent ↓</a><a href="https://github.com/chrsdme/Monografie_AI/tree/main/docs">Arhiva editiilor PDF ↗</a><a href="https://github.com/chrsdme/Monografie_AI">Sursa pe GitHub ↗</a></div></section>
+<section class="tech-edition" aria-label="Editia curenta"><div class="tech-edition-copy"><span class="tech-edition-label">BUILD / EDITIA CURENTA</span><strong>Editia 1.2.7, 24 octombrie 2026</strong><span>Autor: chrsdme · Licenta: MIT</span></div><div class="tech-edition-links"><a href="anexe/metoda-surse/#e11-modificari-de-la-editia-126-la-127">Ce s-a schimbat fata de editia 1.2.6 ↗</a><a href="downloads/Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf">Descarca PDF-ul curent ↓</a><a href="https://github.com/chrsdme/Monografie_AI/tree/main/docs">Arhiva editiilor PDF ↗</a><a href="https://github.com/chrsdme/Monografie_AI">Sursa pe GitHub ↗</a></div></section>
 <!-- MONOGRAFIE:END -->
 
 <div class="tech-home tech-home-follow">

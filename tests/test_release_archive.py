@@ -1,7 +1,10 @@
 """Regresii ale schemei automate de editii si arhiva PDF."""
 import importlib.util
+import hashlib
+import json
 import pathlib
 import re
+import subprocess
 import tempfile
 import unittest
 
@@ -99,6 +102,75 @@ class ReleaseTests(unittest.TestCase):
             self.assertEqual(archived.read_bytes(), b"a" * 52000)
             self.assertEqual((repo / "site/downloads" / (archiver.STEM + ".pdf")).read_bytes(),
                              b"a" * 52000)
+
+    def test_verified_archive_reuse_and_fail_closed_provenance(self):
+        def make_repo(path):
+            repo = pathlib.Path(path)
+            subprocess.run(["git", "init", "-b", "main"], cwd=repo, check=True,
+                           capture_output=True)
+            subprocess.run(["git", "config", "user.email", "archive@example.invalid"],
+                           cwd=repo, check=True, capture_output=True)
+            subprocess.run(["git", "config", "user.name", "Archive Test"],
+                           cwd=repo, check=True, capture_output=True)
+            raw = b'---\nedition: "1.2.6"\n---\n# Book\n\nText.\n'
+            (repo / (archiver.STEM + ".md")).write_bytes(raw)
+            fragments = repo / "content/book/fragments"
+            fragments.mkdir(parents=True)
+            (fragments / "BOOK-0001.md").write_bytes(raw)
+            manifest = {"schema_version": 1, "source": archiver.STEM + ".md",
+                        "last_generated_sha256": hashlib.sha256(raw).hexdigest(),
+                        "fragments": [{"id": "BOOK-0001", "path": "fragments/BOOK-0001.md"}]}
+            (repo / "content/book/manifest.json").write_text(
+                json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+            (repo / (archiver.STEM + ".pdf")).write_bytes(b"A" * 52_000)
+            archiver.archive(repo)
+            subprocess.run(["git", "add", "."], cwd=repo, check=True, capture_output=True)
+            subprocess.run(["git", "commit", "-m", "archive edition 1.2.6"],
+                           cwd=repo, check=True, capture_output=True)
+            return repo
+
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = make_repo(tmp)
+            archived = repo / "docs" / f"{archiver.STEM}_1.2.6.pdf"
+            immutable = archived.read_bytes()
+            (repo / (archiver.STEM + ".pdf")).write_bytes(b"B" * 52_000)
+            archiver.archive(repo, reuse_existing=True)
+            self.assertEqual(archived.read_bytes(), immutable)
+            for copy in (repo / "docs" / (archiver.STEM + ".pdf"),
+                         repo / "wiki/downloads" / (archiver.STEM + ".pdf"),
+                         repo / "site/downloads" / (archiver.STEM + ".pdf")):
+                self.assertEqual(copy.read_bytes(), immutable)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = make_repo(tmp)
+            raw = (repo / (archiver.STEM + ".md")).read_bytes().replace(b"Text.", b"New editorial text.")
+            (repo / (archiver.STEM + ".md")).write_bytes(raw)
+            (repo / "content/book/fragments/BOOK-0001.md").write_bytes(raw)
+            manifest_path = repo / "content/book/manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["last_generated_sha256"] = hashlib.sha256(raw).hexdigest()
+            manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+            (repo / (archiver.STEM + ".pdf")).write_bytes(b"B" * 52_000)
+            with self.assertRaisesRegex(ValueError, "neversionate"):
+                archiver.archive(repo, reuse_existing=True)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = make_repo(tmp)
+            metadata_path = repo / "docs/.publication.json"
+            metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+            metadata["pdf_sha256"] = "0" * 64
+            metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
+            (repo / (archiver.STEM + ".pdf")).write_bytes(b"B" * 52_000)
+            with self.assertRaisesRegex(ValueError, "hash-ul arhivei"):
+                archiver.archive(repo, reuse_existing=True)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = make_repo(tmp)
+            archived = repo / "docs" / f"{archiver.STEM}_1.2.6.pdf"
+            archived.write_bytes(b"corrupt" * 8_000)
+            (repo / (archiver.STEM + ".pdf")).write_bytes(b"B" * 52_000)
+            with self.assertRaisesRegex(ValueError, "hash-ul arhivei"):
+                archiver.archive(repo, reuse_existing=True)
 
 if __name__ == "__main__":
     unittest.main()

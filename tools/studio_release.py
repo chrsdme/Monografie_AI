@@ -316,15 +316,7 @@ def _authorize_apply_target(root: Path, ci_main_release: bool) -> None:
     if studio.branch(root) != "main":
         studio.writable(root)
         return
-    github = os.environ
-    authorized = (
-        ci_main_release
-        and github.get("GITHUB_ACTIONS") == "true"
-        and github.get("GITHUB_REF") == "refs/heads/main"
-        and github.get("GITHUB_WORKFLOW") == "Publish monograph and documentation"
-        and github.get("GITHUB_REPOSITORY", "").lower() == "chrsdme/monografie_ai"
-        and github.get("GITHUB_RUN_ID", "").isdigit()
-    )
+    authorized = studio.authorized_ci_main(root, ci_main_release)
     if not authorized:
         raise ValueError("Release pe main permis doar in workflow-ul de publicare autorizat")
 

@@ -10,10 +10,11 @@ Acest director pastreaza si documentele suplimentare, si copiile PDF ale editiil
 <!-- ARCHIVE:START -->
 ## Arhiva editiilor PDF
 
-[Descarca PDF-ul curent](Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf) (editia 1.2.5).
+[Descarca PDF-ul curent](Monografie_AI_De_la_Chat_la_Sisteme_Agentice.pdf) (editia 1.2.6).
 
 Fisierele cu numar de editie sunt arhive stabile: nu sunt suprascrise.
 
+- [Editia 1.2.6](Monografie_AI_De_la_Chat_la_Sisteme_Agentice_1.2.6.pdf)
 - [Editia 1.2.5](Monografie_AI_De_la_Chat_la_Sisteme_Agentice_1.2.5.pdf)
 - [Editia 1.2.4](Monografie_AI_De_la_Chat_la_Sisteme_Agentice_1.2.4.pdf)
 - [Editia 1.2.3](Monografie_AI_De_la_Chat_la_Sisteme_Agentice_1.2.3.pdf)

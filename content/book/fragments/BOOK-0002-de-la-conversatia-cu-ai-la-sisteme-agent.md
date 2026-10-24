@@ -2,7 +2,7 @@
 
 **O introducere graduala in modele, context, instrumente, memorie, harness, agenti, orchestrare si evaluare**
 
-*Editia 1.2.5 | 22 octombrie 2026 | Autor: chrsdme | Licenta: MIT*
+*Editia 1.2.6 | 24 octombrie 2026 | Autor: chrsdme | Licenta: MIT*
 
 *Versiunea web: https://chrsdme.github.io/Monografie_AI/ | Sursa: https://github.com/chrsdme/Monografie_AI*
 

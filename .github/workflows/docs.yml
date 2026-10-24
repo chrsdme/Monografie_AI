@@ -78,10 +78,13 @@ jobs:
         env:
           STUDIO_RELEASE_ENABLED: ${{ vars.STUDIO_RELEASE_ENABLED }}
           STUDIO_RELEASE_ACTIVE: ${{ vars.STUDIO_RELEASE_ENABLED }}
+          STUDIO_CI_MAIN_TOC_SYNC: "true"
         run: bash tools/ci-build.sh
       - name: Archive PDF edition for publication
         id: archive
         shell: bash
+        env:
+          ARCHIVE_ONLY: ${{ steps.publication.outputs.archive_only }}
         run: |
           set -euo pipefail
           version=$(python -c 'import pathlib,re; s=pathlib.Path("Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md").read_text(); print(re.search(r"^edition: \"([^\"]+)\"",s,re.M).group(1))')
@@ -91,7 +94,9 @@ jobs:
           else
             echo "needed=true" >> "$GITHUB_OUTPUT"
           fi
-          python tools/archive_pdf.py --repo .
+          archive_args=(--repo .)
+          if [ "$ARCHIVE_ONLY" = "true" ]; then archive_args+=(--reuse-existing); fi
+          python tools/archive_pdf.py "${archive_args[@]}"
       - name: Stage verified release files as artifact
         if: steps.archive.outputs.needed == 'true' && github.event_name == 'push'
         uses: actions/upload-artifact@v4

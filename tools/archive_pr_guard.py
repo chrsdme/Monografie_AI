@@ -75,22 +75,21 @@ def _matches_generated_release(repo, before_master, after_master, changed_paths)
             if git_show(root, parent, master_path) != before:
                 continue
 
-            # release.py runs after the editorial commit. That commit's parent
-            # must still contain the exact manuscript baseline.
+            # The release input is the source commit's exact tree. Its first
+            # parent may differ because that commit can contain editorial work.
             source_commit = parent
             source_parents = subprocess.check_output(
                 ["git", "rev-list", "--parents", "-n", "1", source_commit],
                 cwd=root, text=True).split()
-            if len(source_parents) != 2:
+            if len(source_parents) < 2:
                 continue
             source_parent = source_parents[1]
-            if (git_show(root, source_commit, master_path) != before or
-                    git_show(root, source_parent, master_path) != before):
+            if git_show(root, source_commit, master_path) != before:
                 continue
             source_paths = subprocess.check_output(
                 ["git", "diff", "--name-only", source_parent, source_commit],
                 cwd=root, text=True).splitlines()
-            if not source_paths or not set(source_paths).issubset(set(changed_paths)):
+            if not source_paths:
                 continue
             message = subprocess.check_output(
                 ["git", "log", "-1", "--format=%B", source_commit],
@@ -102,8 +101,6 @@ def _matches_generated_release(repo, before_master, after_master, changed_paths)
                 # input when a fragment or manifest triggered the release.
                 path_variants.append(source_paths + [master_path])
             for release_paths in path_variants:
-                if not set(release_paths).issubset(set(changed_paths)):
-                    continue
                 expected = release.update_text(
                     before_master, old_edition, new_edition, date, release_paths,
                     message, source_commit)
@@ -146,10 +143,14 @@ def is_archive_only(changed_paths, before_master, after_master, repo=None):
             archive_bytes = archive_path.read_bytes()
         except (OSError, json.JSONDecodeError):
             return False
-        if (metadata.get("edition") != current_edition or
+        if (not isinstance(metadata, dict) or metadata.get("edition") != current_edition or
                 metadata.get("archived_pdf") != archive_path.name or
                 metadata.get("pdf_sha256") != hashlib.sha256(archive_bytes).hexdigest()):
             return False
+        for copy_path in (root / "docs" / f"{STEM}.pdf",
+                          root / "wiki/downloads" / f"{STEM}.pdf"):
+            if copy_path.exists() and copy_path.read_bytes() != archive_bytes:
+                return False
     if repo is not None:
         book = pathlib.Path(repo) / "content/book"
         manifest_path = book / "manifest.json"
@@ -162,7 +163,15 @@ def is_archive_only(changed_paths, before_master, after_master, repo=None):
             spec.loader.exec_module(module)
             try:
                 manifest = module.load_manifest(pathlib.Path(repo))
-                if module.combine(book, manifest) != after_master.encode("utf-8"):
+                master_bytes = after_master.encode("utf-8")
+                if (module.combine(book, manifest) != master_bytes or
+                        manifest.get("last_generated_sha256") != module.sha(master_bytes)):
+                    return False
+                tracked = subprocess.check_output(
+                    ["git", "ls-files", "--", "content/book/fragments"],
+                    cwd=pathlib.Path(repo), text=True).splitlines()
+                declared = {"content/book/" + item["path"] for item in manifest["fragments"]}
+                if set(tracked) != declared:
                     return False
             except (OSError, ValueError, KeyError, TypeError):
                 return False

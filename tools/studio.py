@@ -36,8 +36,20 @@ def branch(root: Path) -> str:
     return p.stdout.strip() if p.returncode == 0 else "unknown"
 
 
-def writable(root: Path):
-    if branch(root) == "main":
+def authorized_ci_main(root: Path, requested: bool) -> bool:
+    github = os.environ
+    return bool(
+        requested
+        and github.get("GITHUB_ACTIONS") == "true"
+        and github.get("GITHUB_REF") == "refs/heads/main"
+        and github.get("GITHUB_WORKFLOW") == "Publish monograph and documentation"
+        and github.get("GITHUB_REPOSITORY", "").lower() == "chrsdme/monografie_ai"
+        and github.get("GITHUB_RUN_ID", "").isdigit()
+    )
+
+
+def writable(root: Path, *, ci_main_toc_sync: bool = False):
+    if branch(root) == "main" and not authorized_ci_main(root, ci_main_toc_sync):
         stop("Nu modifica main cu Studio. Foloseste ramura studio-test.")
 
 
@@ -215,13 +227,14 @@ def sync_toc(root: Path) -> int:
     changes = {book / entry["path"]: new_blob,
                book / "manifest.json": (json.dumps(manifest, indent=2, ensure_ascii=False) + "\n").encode("utf-8"),
                master: new_raw}
-    _replace_validated(changes, root)
+    ci_main_toc_sync = os.environ.get("STUDIO_CI_MAIN_TOC_SYNC") == "true"
+    _replace_validated(changes, root, ci_main_toc_sync=ci_main_toc_sync)
     return len(build_tool.build_toc_md(replacement).splitlines())
 
 
-def _replace_validated(changes: dict[Path, bytes], root: Path):
+def _replace_validated(changes: dict[Path, bytes], root: Path, *, ci_main_toc_sync: bool = False):
     """Stage all files first and roll back any partial replacement failure."""
-    writable(root)
+    writable(root, ci_main_toc_sync=ci_main_toc_sync)
     staged, originals, written = {}, {}, []
     try:
         for path, raw in changes.items():

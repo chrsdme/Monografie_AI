@@ -255,9 +255,60 @@ class StudioReleaseTests(unittest.TestCase):
                 with patch.object(studio, 'branch', return_value='main'):
                     with self.assertRaisesRegex(ValueError, 'workflow-ul de publicare autorizat'):
                         operation(root, **args)
-                    with patch.dict(os.environ, github, clear=True):
+                    with patch.dict(os.environ, github):
                         result = operation(root, **args, ci_main_release=True)
                 self.assertEqual(result['proposed_edition'], '1.2.5')
+
+    def test_authorized_main_toc_sync_preserves_child_process_environment(self):
+        github = {'GITHUB_ACTIONS': 'true', 'GITHUB_REF': 'refs/heads/main',
+                  'GITHUB_WORKFLOW': 'Publish monograph and documentation',
+                  'GITHUB_REPOSITORY': 'chrsdme/Monografie_AI', 'GITHUB_RUN_ID': '12345'}
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            subprocess.run(['git', 'init', '-b', 'main'], cwd=root, check=True,
+                           capture_output=True)
+            raw = manuscript().replace(
+                b'# Bibliografie si resurse de aprofundare',
+                b'## Cuprins\n\n<!-- TOC:START -->\nstale\n<!-- TOC:END -->\n\n'
+                b'# Partea I. Start\n\n## 1. Primul capitol\nText.\n\n'
+                b'# Bibliografie si resurse de aprofundare')
+            book = self.fixture(root, raw)
+            args = dict(event='push', date='22 octombrie 2026', changed=['wiki/index.md'],
+                        message='Actualizare', sha_value='abcdef0123456789')
+            with patch.dict(os.environ, github):
+                sr.apply(root, **args, ci_main_release=True)
+
+            fragment = book / 'fragments/BOOK-0001.md'
+            fragment.write_bytes(fragment.read_bytes().replace(
+                b'## 1. Primul capitol', b'## 1. Capitol redenumit'))
+            master = root / studio.MASTER
+            master.write_bytes(master.read_bytes().replace(
+                b'## 1. Primul capitol', b'## 1. Capitol redenumit'))
+            manifest_path = book / 'manifest.json'
+            manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+            manifest['last_generated_sha256'] = sr.sha(master.read_bytes())
+            manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n',
+                                     encoding='utf-8')
+
+            build_spec = importlib.util.spec_from_file_location(
+                'publication_build_tool', ROOT / 'tools/build.py')
+            build_tool = importlib.util.module_from_spec(build_spec)
+            build_spec.loader.exec_module(build_tool)
+            with patch.dict(os.environ, github):
+                with self.assertRaisesRegex(ValueError, 'Nu modifica main cu Studio'):
+                    build_tool.update_toc(master)
+                with patch.dict(os.environ, {'STUDIO_CI_MAIN_TOC_SYNC': 'true'}):
+                    count = build_tool.update_toc(master)
+            self.assertGreater(count, 0)
+            self.assertIn(b'[1. Capitol redenumit](#1-capitol-redenumit)', master.read_bytes())
+            manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+            self.assertEqual(studio.combine(book, manifest), master.read_bytes())
+            self.assertEqual(manifest['last_generated_sha256'], sr.sha(master.read_bytes()))
+
+            with patch.object(studio, 'branch', return_value='main'):
+                with patch.dict(os.environ, {**github, 'STUDIO_CI_MAIN_TOC_SYNC': 'false'}):
+                    with self.assertRaisesRegex(ValueError, 'Nu modifica main cu Studio'):
+                        studio.writable(root)
 
     def test_interactive_studio_writable_still_rejects_main(self):
         with patch.object(studio, 'branch', return_value='main'):
@@ -300,7 +351,7 @@ class StudioReleaseTests(unittest.TestCase):
             github = {'GITHUB_ACTIONS': 'true', 'GITHUB_REF': 'refs/heads/main',
                       'GITHUB_WORKFLOW': 'Publish monograph and documentation',
                       'GITHUB_REPOSITORY': 'chrsdme/Monografie_AI', 'GITHUB_RUN_ID': '12345'}
-            with patch.dict(os.environ, github, clear=True), \
+            with patch.dict(os.environ, github), \
                     patch.object(studio, 'branch', return_value='main'):
                 released = sr.apply(root, **args, ci_main_release=True)
             self.assertEqual(released['mode'], 'incremented')

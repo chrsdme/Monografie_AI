@@ -11,6 +11,12 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("archive_pr_guard", ROOT / "tools" / "archive_pr_guard.py")
 guard = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(guard)
+release_spec = importlib.util.spec_from_file_location("archive_release", ROOT / "tools" / "release.py")
+release = importlib.util.module_from_spec(release_spec)
+release_spec.loader.exec_module(release)
+archive_spec = importlib.util.spec_from_file_location("archive_pdf", ROOT / "tools" / "archive_pdf.py")
+archiver = importlib.util.module_from_spec(archive_spec)
+archive_spec.loader.exec_module(archiver)
 
 
 class ArchiveGuardTests(unittest.TestCase):
@@ -116,6 +122,93 @@ class ArchiveGuardTests(unittest.TestCase):
         self.assertNotEqual(guard._editorial_core(before),
                             guard._editorial_core(after))
         self.assertFalse(guard.is_archive_only(paths, before, after))
+
+    def test_editorial_merge_archive_merge_and_verified_second_publication(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            def git(*args):
+                return subprocess.run(["git", *args], cwd=root, check=True,
+                                      stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            git("init", "-b", "main")
+            git("config", "user.email", "archive-e2e@example.invalid")
+            git("config", "user.name", "Archive E2E")
+            raw = (b'---\nedition: "1.2.4"\nprevious_edition: "1.2.3"\n'
+                   b'changelog_anchor: "old"\ndate: "1 ianuarie 2025"\n'
+                   b'author: "Autor"\nlicense: "CC"\ntitle: "Titlu"\n'
+                   b'wiki: "https://example.test"\n---\n# Cartea\n'
+                   b'*Editia 1.2.4 | 1 ianuarie 2025 | Autor: Autor | Licenta: CC*\n'
+                   b'**Ce este nou fata de editia 1.2.3.** text\n'
+                   b'- **Editia curenta:** 1.2.4, 1 ianuarie 2025 (editia precedenta: 1.2.3).\n'
+                   b'- **Citare recomandata:** Autor (2025), *Titlu*, editia 1.2.4, 1 ianuarie 2025, https://example.test.\n'
+                   b'*Sfarsitul editiei 1.2.4.*\n# Bibliografie si resurse de aprofundare\n')
+            master_path = root / (guard.STEM + ".md")
+            master_path.write_bytes(raw)
+            fragments = root / "content/book/fragments"
+            fragments.mkdir(parents=True)
+            fragment = fragments / "BOOK-0001.md"
+            fragment.write_bytes(raw)
+            manifest_path = root / "content/book/manifest.json"
+            manifest_path.write_text(json.dumps({
+                "schema_version": 1, "source": guard.STEM + ".md",
+                "last_generated_sha256": hashlib.sha256(raw).hexdigest(),
+                "fragments": [{"id": "BOOK-0001", "path": "fragments/BOOK-0001.md"}]},
+                indent=2) + "\n", encoding="utf-8")
+            git("add", ".")
+            git("commit", "-m", "canonical edition 1.2.4")
+            git("switch", "-c", "editorial-change")
+
+            editorial = raw.replace(b"**Ce este nou", b"Continut editorial nou.\n**Ce este nou")
+            master_path.write_bytes(editorial)
+            fragment.write_bytes(editorial)
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["last_generated_sha256"] = hashlib.sha256(editorial).hexdigest()
+            manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+            git("add", ".")
+            git("commit", "-m", "editorial content update")
+            git("switch", "main")
+            git("merge", "--no-ff", "editorial-change", "-m", "Merge editorial PR")
+
+            before = master_path.read_bytes().decode("utf-8")
+            prior_edition = guard.edition(before)
+            source_paths = git("diff", "--name-only", "HEAD^", "HEAD").stdout.decode().splitlines()
+            source_sha = git("rev-parse", "HEAD").stdout.decode().strip()
+            source_message = git("log", "-1", "--format=%B").stdout.decode()
+            published = release.update_text(
+                before, prior_edition, "1.2.5", "22 octombrie 2026",
+                source_paths, source_message, source_sha).encode("utf-8")
+            self.assertEqual(guard.edition(published.decode()), "1.2.5")
+            master_path.write_bytes(published)
+            fragment.write_bytes(published)
+            manifest["last_generated_sha256"] = hashlib.sha256(published).hexdigest()
+            manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+            (root / (guard.STEM + ".pdf")).write_bytes(b"A" * 52_000)
+            archiver.archive(root)
+            git("add", guard.STEM + ".md", "docs/README.md", "docs/.publication.json",
+                "docs/" + guard.STEM + ".pdf", "docs/" + guard.STEM + "_1.2.5.pdf",
+                "wiki/downloads/" + guard.STEM + ".pdf", "content/book/manifest.json",
+                "content/book/fragments/BOOK-0001.md")
+            git("commit", "-m", "archive edition 1.2.5")
+            changed = git("diff", "--name-only", "HEAD^", "HEAD").stdout.decode().splitlines()
+            after = master_path.read_bytes().decode("utf-8")
+            self.assertTrue(guard.is_archive_only(changed, before, after, repo=root),
+                            "changed=%r generated=%r" % (changed, guard._matches_generated_release(
+                                root, before, after, changed)))
+            archive_relative = "docs/" + guard.STEM + "_1.2.5.pdf"
+            self.assertIn(archive_relative, changed)
+            self.assertIn(archive_relative, git("ls-files").stdout.decode().splitlines())
+            self.assertEqual(guard.edition(after), "1.2.5")
+
+            # The archive merge triggers workflow_dispatch semantics, so no second edition tick.
+            self.assertEqual(release.prepare(root, "workflow_dispatch"), "unchanged")
+            self.assertEqual(guard.edition(master_path.read_text(encoding="utf-8")), "1.2.5")
+            archived = root / "docs" / f"{guard.STEM}_1.2.5.pdf"
+            immutable = archived.read_bytes()
+            (root / (guard.STEM + ".pdf")).write_bytes(b"B" * 52_000)
+            archiver.archive(root, reuse_existing=True)
+            self.assertEqual(archived.read_bytes(), immutable)
+            self.assertEqual((root / (guard.STEM + ".pdf")).read_bytes(), immutable)
+            self.assertEqual((root / "docs" / (guard.STEM + ".pdf")).read_bytes(), immutable)
 
     def test_open_pr_lookup_matches_exact_edition(self):
         rows = [

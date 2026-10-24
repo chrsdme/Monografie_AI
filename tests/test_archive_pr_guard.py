@@ -57,8 +57,12 @@ class ArchiveGuardTests(unittest.TestCase):
         self.assertFalse(guard.is_archive_only(["docs/.publication.json"], base, base))
         with tempfile.TemporaryDirectory() as tmp:
             root = pathlib.Path(tmp); docs = root / "docs"; docs.mkdir()
-            pdf = b"verified archive bytes"
+            pdf = b"A" * 52_000
             (docs / f"{guard.STEM}_1.2.4.pdf").write_bytes(pdf)
+            (docs / f"{guard.STEM}.pdf").write_bytes(pdf)
+            wiki_downloads = root / "wiki/downloads"
+            wiki_downloads.mkdir(parents=True)
+            (wiki_downloads / f"{guard.STEM}.pdf").write_bytes(pdf)
             (docs / ".publication.json").write_text(json.dumps({
                 "edition": "1.2.4", "archived_pdf": f"{guard.STEM}_1.2.4.pdf",
                 "pdf_sha256": hashlib.sha256(pdf).hexdigest()}), encoding="utf-8")
@@ -67,6 +71,83 @@ class ArchiveGuardTests(unittest.TestCase):
             self.assertTrue(guard.is_archive_only(legacy_allowed, base, released, repo=root))
             (docs / ".publication.json").write_text("{}", encoding="utf-8")
             self.assertFalse(guard.is_archive_only(legacy_allowed, base, released, repo=root))
+
+    def test_real_pr35_merge_classifies_archive_only_with_explanation(self):
+        real_merge = "f7025a6f90aa47bdf203871086cddc3426835962"
+        source_merge = "9810b2e408bba6937eb57f2254d2c51e9edfbaf7"
+        with tempfile.TemporaryDirectory() as tmp:
+            snapshot = pathlib.Path(tmp) / "pr35"
+            subprocess.run(["git", "clone", "--shared", "--no-checkout",
+                            str(ROOT), str(snapshot)], check=True,
+                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            subprocess.run(["git", "checkout", "--detach", real_merge], cwd=snapshot,
+                           check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            result = subprocess.run(
+                [sys.executable, str(ROOT / "tools/archive_pr_guard.py"),
+                 "--repo", str(snapshot), "--main-ref", source_merge,
+                 "--classify-archive-only", "--explain"],
+                check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            report = json.loads(result.stdout)
+            self.assertTrue(report["archive_only"], report["rejection_reasons"])
+            self.assertEqual(report["editions"], {"previous": "1.2.6", "current": "1.2.7"})
+            self.assertEqual(report["topology"]["head"]["parents"],
+                             [source_merge, "e70b68dbd36b1e92b84d9137b7d55c25422ed2f1"])
+            self.assertEqual(report["release_reconstruction"]["validated_candidates"], 1)
+            for check in ("manifest_fragments_manuscript", "metadata_and_pdf_hash",
+                          "pdf_copies", "wiki_rendering"):
+                self.assertTrue(report["checks"][check]["passed"], report["checks"][check])
+            self.assertIn("wiki/introducere.md", report["changed_paths"])
+
+    def test_real_pr35_rejects_independent_editorial_change(self):
+        real_merge = "f7025a6f90aa47bdf203871086cddc3426835962"
+        source_merge = "9810b2e408bba6937eb57f2254d2c51e9edfbaf7"
+        with tempfile.TemporaryDirectory() as tmp:
+            snapshot = pathlib.Path(tmp) / "pr35"
+            subprocess.run(["git", "clone", "--shared", "--no-checkout",
+                            str(ROOT), str(snapshot)], check=True,
+                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            subprocess.run(["git", "checkout", "--detach", real_merge], cwd=snapshot,
+                           check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            before = guard.git_show(snapshot, source_merge, guard.STEM + ".md").decode()
+            after = (snapshot / (guard.STEM + ".md")).read_text(encoding="utf-8")
+            changed = subprocess.check_output(
+                ["git", "diff", "--name-only", source_merge, "HEAD"],
+                cwd=snapshot, text=True).splitlines()
+            edited = after.replace("Conventii.", "Conventii editoriale.", 1)
+            self.assertFalse(guard.is_archive_only(
+                changed, before, edited, repo=snapshot, source_ref=source_merge))
+            intro_path = snapshot / "wiki/introducere.md"
+            intro = intro_path.read_text(encoding="utf-8")
+            intro_path.write_text(intro + "\nText editorial independent.\n", encoding="utf-8")
+            self.assertFalse(guard.is_archive_only(
+                changed + ["wiki/introducere.md"], before, after,
+                repo=snapshot, source_ref=source_merge))
+
+    def test_real_pr35_shallow_history_fails_closed(self):
+        real_merge = "f7025a6f90aa47bdf203871086cddc3426835962"
+        source_merge = "9810b2e408bba6937eb57f2254d2c51e9edfbaf7"
+        with tempfile.TemporaryDirectory() as tmp:
+            snapshot = pathlib.Path(tmp) / "pr35"
+            shallow = pathlib.Path(tmp) / "shallow"
+            subprocess.run(["git", "clone", "--shared", "--no-checkout",
+                            str(ROOT), str(snapshot)], check=True,
+                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            subprocess.run(["git", "checkout", "--detach", real_merge], cwd=snapshot,
+                           check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            subprocess.run(["git", "init", str(shallow)], check=True,
+                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            subprocess.run(["git", "-C", str(shallow), "fetch", "--depth=1",
+                            str(snapshot), real_merge], check=True,
+                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            subprocess.run(["git", "-C", str(shallow), "checkout", "--detach", "FETCH_HEAD"],
+                           check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            before = guard.git_show(snapshot, source_merge, guard.STEM + ".md").decode()
+            after = (snapshot / (guard.STEM + ".md")).read_text(encoding="utf-8")
+            changed = subprocess.check_output(
+                ["git", "diff", "--name-only", source_merge, real_merge],
+                cwd=snapshot, text=True).splitlines()
+            self.assertFalse(guard.is_archive_only(
+                changed, before, after, repo=shallow, source_ref=source_merge))
 
     def test_archive_only_preserves_changelog_and_editorial_changes(self):
         before = ('---\nedition: "1.2.3"\n---\n# Cartea\nText editorial.\n'
@@ -237,6 +318,9 @@ class ArchiveGuardTests(unittest.TestCase):
             self.assertEqual(archived.read_bytes(), immutable)
             self.assertEqual((root / (guard.STEM + ".pdf")).read_bytes(), immutable)
             self.assertEqual((root / "docs" / (guard.STEM + ".pdf")).read_bytes(), immutable)
+            archived.write_bytes(b"C" * 52_000)
+            with self.assertRaisesRegex(ValueError, "Metadatele sau hash-ul arhivei istorice sunt invalide"):
+                archiver.archive(root, reuse_existing=True)
 
     def test_open_pr_lookup_matches_exact_edition(self):
         rows = [

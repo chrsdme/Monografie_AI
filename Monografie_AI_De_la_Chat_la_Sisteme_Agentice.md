@@ -1556,6 +1556,42 @@ Daca varianta fara agenti iese cea mai buna, exercitiul a reusit. Scopul nu e sa
 
 Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile complete se gasesc in capitolele corespunzatoare. Definitii generale pot fi consultate si in glosarul Stanford HAI [S18]. Cand un termen are sensuri diferite in produse diferite, am ales intelesul operational folosit in aceasta carte.
 
+**Audit adversarial (antagonistic review).** Revizuire care cauta activ greseli, ambiguitati, dependente ascunse si cazuri limita, in loc sa urmareasca aprobarea automata a planului.
+
+**Bootstrap (cartografiere initiala).** Etapa de inventariere a structurii si regulilor unui proiect existent, pentru ca un agent sa poata lucra pe baza unor informatii explicite.
+
+**Cautare vectoriala.** Recuperarea continutului prin compararea reprezentarilor numerice (embeddinguri). Ajuta la gasirea textelor similare semantic, nu garanteaza corectitudinea lor.
+
+**Codebase (baza de cod).** Ansamblul codului sursa, configuratiilor si componentelor unui proiect software.
+
+**Comprehension Check.** Verificare in care un evaluator fara istoricul discutiilor explica o specificatie pentru a descoperi parti ambigue sau neintelese.
+
+**Concept brief.** Document scurt care fixeaza scopul, cerintele, constrangerile, intrebarile deschise si directia propusa inaintea specificatiei detaliate.
+
+**Design draft.** Prima versiune structurata a proiectarii tehnice, supusa completarii, revizuirii si aprobarii inainte de implementare.
+
+**Drift Report.** Raport care compara documentatia aprobata cu implementarea actuala pentru a identifica abateri posibile. Diferentele necesita analiza, nu sunt automat defecte.
+
+**Elephant-Goldfish Model (EGM).** Metoda deschisa de proiectare software asistata de AI in care un agent cu context redacteaza specificatii, iar evaluatori izolati conversational le critica inaintea implementarii. [S45, S46, S47].
+
+**Elephant (rol EGM).** Agentul de proiectare cu context amplu despre proiect; clarifica intentia, alternativele si specificatia, fara sa implementeze cod in faza de design.
+
+**Goldfish Protocol.** Secventa de verificare EGM care testeaza intelegerea specificatiei, cauta activ defecte si evalueaza pregatirea pentru implementare.
+
+**Goldfish (rol EGM).** Evaluator AI lansat intr-o sesiune izolata de istoricul proiectarii. Primeste specificatia si dovezile autorizate, nu explicatiile nescrise din conversatia cu Elephant.
+
+**Graf de cunostinte (knowledge graph).** Structura de date cu entitati si relatii explicite intre ele; relatiile pot avea surse, proprietati si intervale de valabilitate. [S48, S49].
+
+**Implementation Readiness Check.** Verificare daca specificatia contine suficiente detalii pentru implementare si testare, inclusiv interfete, structuri de date, comportamente la eroare si criterii de acceptare.
+
+**Izolare de context.** Separarea controlata a istoricului si instructiunilor dintre sesiuni ori agenti, pentru a reduce influenta informatiilor care nu trebuie folosite intr-o evaluare.
+
+**Memorie episodica.** Memorie care pastreaza evenimente si interactiuni datate, de exemplu ce a fost decis intr-o anumita sesiune.
+
+**Memorie procedurala.** Memorie care descrie reguli si moduri de lucru: proceduri, pasi, politici si abilitati reutilizabile.
+
+**Memorie semantica.** Memorie structurata despre concepte, fapte si relatii, distincta de istoricul brut al interactiunilor.
+
 **Resursa externa complementara:** [Lexiconul agentilor AI - Ovidiu Boticiu](https://ovidiuboticiu.github.io/lexiconul-agentilor-ai/index.html), cu 361 de intrari EN-RO. Este un proiect independent (text CC BY-NC 4.0; cod fara licenta de reutilizare). Definitiile din aceasta carte sunt formulate independent, nu copiate din lexicon; aceasta recomandare nu certifica toate cele 361 de intrari.
 
 **A2A (Agent2Agent).** Protocol deschis pentru comunicarea dintre agenti de la furnizori diferiti, dezvoltat initial de Google si gazduit acum de Linux Foundation.
@@ -1704,6 +1740,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Retry.** Reluarea unei operatii dupa un esec. Se aplica in functie de efectele operatiei: nu orice esec se repara prin repetare.
 
+**Review independent.** Evaluare facuta separat de autorul planului, pe baza unei specificatii si a unor dovezi delimitate; izolarea conversatiei nu elimina automat erorile comune ale modelelor.
+
 **Rollback.** Revenirea la o stare anterioara. Pentru unele efecte (un email trimis) revenirea completa nu este posibila.
 
 **RPA (Robotic Process Automation).** Automatizare care reproduce sau orchestreaza operatii repetitive din interfete si aplicatii. Poate functiona si fara LLM.
@@ -1722,6 +1760,16 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Sistem agentic.** Agentul impreuna cu infrastructura din jurul lui: harness, unelte, memorie, verificari, observabilitate si, uneori, orchestrare.
 
+**Spec-Driven Development (SDD).** Dezvoltare pornind de la specificatii explicite, versionate si verificabile, care ghideaza implementarea si testarea.
+
+**Specificatie tehnica.** Document care descrie comportamentele, interfetele, constrangerile, scenariile si criteriile de acceptare ale unei functionalitati.
+
+**Stateful (cu stare).** Sistem care pastreaza si reutilizeaza informatii despre interactiuni sau executii intre operatii, prin mecanisme explicite de gestionare a starii.
+
+**Stateless (fara stare).** Sistem sau operatie care nu retine implicit datele unei interactiuni anterioare; contextul necesar trebuie furnizat explicit.
+
+**Subagent.** Instanta de agent care primeste o sarcina delimitata de la un agent coordonator; poate avea propriul context, propriile unelte si propriile limite.
+
 **Sursa de adevar (source of truth).** Inregistrarea sau sistemul autoritativ din care se verifica o informatie operationala, cum ar fi suma comenzii in baza magazinului.
 
 **Temperatura.** Parametru de decodare care influenteaza variatia raspunsurilor. O valoare mai mica reduce variatia, dar nu garanteaza exactitate.
@@ -1735,6 +1783,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 **Trade-off (compromis intre obiective).** Alegerea unei prioritati cand cerintele intra in conflict, de exemplu intre corectitudine, cost, viteza si siguranta.
 
 **Trust Score (scor de incredere).** Indicator propus pentru evaluarea unui agent intr-un domeniu concret. Nu este o proprietate universala a modelului si nu inlocuieste analiza riscului.
+
+**Validitate temporala.** Perioada in care o informatie sau o relatie a fost adevarata; nu trebuie confundata cu data la care sistemul a aflat informatia.
 
 **Workflow.** Succesiune de etape si decizii care transforma intrari in rezultate. Poate contine reguli fixe, oameni, modele si agenti.
 
@@ -2222,6 +2272,27 @@ Aceasta sectiune descrie modificarile introduse dupa editia 1.1. E.2 pastreaza s
 **[S43] Pathmode (f.d.).** *What Is Intent Engineering? Definition, Examples, and FAQ.* https://pathmode.io/glossary/intent-engineering . Perspectiva comerciala asupra problemelor, dovezilor si specificatiilor; nu un benchmark independent.
 
 **[S44] roboco-io (2026).** *Intent Engineering: Why / What / Not.* https://github.com/roboco-io/intent-engineering . Exemplu de specificatie versionata, nu schema universala.
+
+<a id="s45"></a>
+
+**[S45] Suchy, B., Quinn, J., Ewing, E., Newth, O. si Rensin, D. (2026).** *Introducing the Elephant-Goldfish Model plugin: scaling design-driven AI software development.* Google Open Source Blog, 22 octombrie. <https://opensource.googleblog.com/2026/10/introducing-elephant-goldfish-model-plugin.html> . Anuntul primar despre obiective, roluri, etape si utilizarea interna declarata de Google. Consultat la 26 octombrie 2026.
+
+<a id="s46"></a>
+
+**[S46] Google (2026).** *Elephant-Goldfish Model (EGM): repository oficial.* <https://github.com/google/elephant-goldfish-model> . Comenzi, licenta Apache 2.0, descrierea rolurilor si precizarea ca proiectul nu este un produs Google cu suport oficial. Consultat la 26 octombrie 2026.
+
+<a id="s47"></a>
+
+**[S47] Google (2026).** *EGM Setup & Workflow Guide.* <https://github.com/google/elephant-goldfish-model/blob/main/docs/getting_started.md> . Flux de lucru si limitele aplicarii proportional cu sarcina. Consultat la 26 octombrie 2026.
+
+<a id="s48"></a>
+
+**[S48] Rasmussen, P., Paliychuk, P., Beauvais, T., Ryan, J. si Chalef, D. (2025).** *Zep: A Temporal Knowledge Graph Architecture for Agent Memory.* arXiv:2501.13956. <https://arxiv.org/abs/2501.13956> . Lucrare despre reprezentarea temporala a memoriei agentilor; rezultatele experimentale sunt raportate de autori, nu validate aici independent.
+
+<a id="s49"></a>
+
+**[S49] Bechberger, D. (2026).** *From Goldfish to Elephant: Using Graphs for Long-Term Memory.* Prezentare GraphCon. <https://www.youtube.com/watch?v=GLVjk7musWw> . Sursa complementara despre memorie episodica, semantica, procedurala, relatii si temporalitate; nu descrie metoda EGM.
+
 
 ## Nota privind materialele folosite
 

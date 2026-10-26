@@ -178,10 +178,41 @@
 
 **[S44] roboco-io (2026).** *Intent Engineering: Why / What / Not.* <https://github.com/roboco-io/intent-engineering> . Exemplu de specificatie versionata, nu schema universala.
 
+<a id="s45"></a>
+
+<a id="s45"></a>
+
+**[S45] Suchy, B., Quinn, J., Ewing, E., Newth, O. si Rensin, D. (2026).** *Introducing the Elephant-Goldfish Model plugin: scaling design-driven AI software development.* Google Open Source Blog, 22 octombrie. <https://opensource.googleblog.com/2026/10/introducing-elephant-goldfish-model-plugin.html> . Anuntul primar despre obiective, roluri, etape si utilizarea interna declarata de Google. Consultat la 26 octombrie 2026.
+
+<a id="s46"></a>
+
+<a id="s46"></a>
+
+**[S46] Google (2026).** *Elephant-Goldfish Model (EGM): repository oficial.* <https://github.com/google/elephant-goldfish-model> . Comenzi, licenta Apache 2.0, descrierea rolurilor si precizarea ca proiectul nu este un produs Google cu suport oficial. Consultat la 26 octombrie 2026.
+
+<a id="s47"></a>
+
+<a id="s47"></a>
+
+**[S47] Google (2026).** *EGM Setup & Workflow Guide.* <https://github.com/google/elephant-goldfish-model/blob/main/docs/getting_started.md> . Flux de lucru si limitele aplicarii proportional cu sarcina. Consultat la 26 octombrie 2026.
+
+<a id="s48"></a>
+
+<a id="s48"></a>
+
+**[S48] Rasmussen, P., Paliychuk, P., Beauvais, T., Ryan, J. si Chalef, D. (2025).** *Zep: A Temporal Knowledge Graph Architecture for Agent Memory.* arXiv:2501.13956. <https://arxiv.org/abs/2501.13956> . Lucrare despre reprezentarea temporala a memoriei agentilor; rezultatele experimentale sunt raportate de autori, nu validate aici independent.
+
+<a id="s49"></a>
+
+<a id="s49"></a>
+
+**[S49] Bechberger, D. (2026).** *From Goldfish to Elephant: Using Graphs for Long-Term Memory.* Prezentare GraphCon. <https://www.youtube.com/watch?v=GLVjk7musWw> . Sursa complementara despre memorie episodica, semantica, procedurala, relatii si temporalitate; nu descrie metoda EGM.
+
+
 ## Nota privind materialele folosite
 
 Pe langa materialele documentate si citate mai sus, in aceasta lucrare intra si materiale personale, nepublicate, folosite ca parte a contextului. Pentru ele nu oferim nume si surse exacte. Exemplele si instructiunile legate de produse au fost generalizate, iar recomandarile comerciale, preturile promotionale si promisiunile de productivitate nu au fost preluate.
 
 ---
 
-*Sfarsitul editiei 1.2.8. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*
+*Sfarsitul editiei 1.2.9. Acest fisier Markdown este sursa editabila a lucrarii; versiunea web si PDF-ul se regenereaza din aceeasi revizie.*

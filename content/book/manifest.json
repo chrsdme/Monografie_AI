@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source": "Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md",
   "original_sha256": "1e12008817bd34dcf161b4aa4f59cae94689fba04dd68c632ba2b5ae253b70ed",
-  "last_generated_sha256": "54a59a4de3943b377286cb4393c5234ad572b9a65ee7805bf23556744f5a427e",
+  "last_generated_sha256": "6ad467f5793b20c677e5b76bbd78c5969b573533cfb7d45628564ccc4a3cfa4c",
   "fragments": [
     {
       "id": "BOOK-0001",
@@ -1699,6 +1699,12 @@
     {
       "id": "BOOK-0245",
       "path": "fragments/BOOK-0245-release-changelog.md",
+      "heading_level": 2,
+      "title_at_migration": "Release changelog"
+    },
+    {
+      "id": "BOOK-0246",
+      "path": "fragments/BOOK-0246-release-changelog.md",
       "heading_level": 2,
       "title_at_migration": "Release changelog"
     },

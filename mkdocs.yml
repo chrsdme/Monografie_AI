@@ -91,6 +91,8 @@ nav:
       - Prezentare: partea-5/index.md
       - 21. Studii de caz: partea-5/21-studii-de-caz.md
       - 22. Cum incepi propriul sistem: partea-5/22-cum-incepi.md
+  - Articole:
+      - Elephant-Goldfish Model: articole/elephant-goldfish-model.md
   - Anexe:
       - Dictionar de termeni: anexe/glosar.md
       - Sabloane neutre: anexe/sabloane.md

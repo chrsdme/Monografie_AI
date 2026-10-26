@@ -18,7 +18,7 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Drift Report.** Raport care compara documentatia aprobata cu implementarea actuala pentru a identifica abateri posibile. Diferentele necesita analiza, nu sunt automat defecte.
 
-**Elephant-Goldfish Model (EGM).** Metoda deschisa de proiectare software asistata de AI in care un agent cu context redacteaza specificatii, iar evaluatori izolati conversational le critica inaintea implementarii.
+**Elephant-Goldfish Model (EGM).** Metoda deschisa de proiectare software asistata de AI in care un agent cu context redacteaza specificatii, iar evaluatori izolati conversational le critica inaintea implementarii. [S45, S46, S47].
 
 **Elephant (rol EGM).** Agentul de proiectare cu context amplu despre proiect; clarifica intentia, alternativele si specificatia, fara sa implementeze cod in faza de design.
 
@@ -26,7 +26,7 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Goldfish (rol EGM).** Evaluator AI lansat intr-o sesiune izolata de istoricul proiectarii. Primeste specificatia si dovezile autorizate, nu explicatiile nescrise din conversatia cu Elephant.
 
-**Graf de cunostinte (knowledge graph).** Structura de date cu entitati si relatii explicite intre ele; relatiile pot avea surse, proprietati si intervale de valabilitate.
+**Graf de cunostinte (knowledge graph).** Structura de date cu entitati si relatii explicite intre ele; relatiile pot avea surse, proprietati si intervale de valabilitate. [S48, S49].
 
 **Implementation Readiness Check.** Verificare daca specificatia contine suficiente detalii pentru implementare si testare, inclusiv interfete, structuri de date, comportamente la eroare si criterii de acceptare.
 

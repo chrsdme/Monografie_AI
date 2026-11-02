@@ -71,3 +71,59 @@ Acelasi principiu se aplica documentatiei software, preturilor, procedurilor int
 Intr-un sistem robust, agentul poate propune o noua nota de memorie, dar o regula sau un responsabil verifica daca nota e un fapt, o preferinta, o ipoteza sau doar un rezultat temporar. O concluzie neverificata nu devine regula generala pentru toate rularile viitoare. Nici datele sensibile nu se pastreaza "pentru orice eventualitate".
 
 Un ciclu simplu: *sursa identificata, extras verificabil, interpretare marcata, validare, stocare cu versiune, reevaluare la expirare*. Este acelasi reflex pe care il ai la un jurnal tehnic bine tinut, aplicat memoriei unui sistem AI.
+
+## 8.11. Cautarea hibrida: de ce merita sa combinam cuvintele si sensul
+
+Intr-o colectie de documente, unele intrebari depind de sens, iar altele de o potrivire exacta. Sa presupunem ca un client intreaba „Care este scadenta facturii FCT-2026-017?”. O cautare semantica poate gasi documente despre scadente, dar poate omite factura cu identificatorul exact. O cautare lexicala poate gasi acel cod, dar poate rata o intrebare formulata prin sinonime.
+
+**Cautarea lexicala** foloseste cuvintele din interogare si din documente. O metoda des intalnita este **BM25**, care estimeaza relevanta textuala in functie de potrivirile termenilor si de caracteristicile documentelor. **Cautarea vectoriala** compara reprezentari numerice pentru a aproxima apropierea semantica. Niciuna nu castiga in toate situatiile.
+
+**Cautarea hibrida** combina rezultatele celor doua metode. O tehnica pentru reunirea listelor se numeste **Reciprocal Rank Fusion (RRF)**: in loc sa adune scoruri foarte diferite, metoda foloseste pozitiile documentelor in clasamentele separate [S51](../anexe/bibliografie.md#s51). Un document poate urca in lista daca este relevant atat lexical, cat si semantic.
+
+Dupa recuperare, un **reranker** poate reordona un grup mic de candidati folosind o evaluare mai detaliata a relatiei dintre intrebare si pasaj. Un reranker nu repara faptul ca documentul corect lipseste complet din lista de candidati. Din acest motiv, cautarea si reordonarea trebuie masurate separat.
+
+Un traseu simplificat, complet ilustrativ:
+
+```text
+Intrebare: "Cand trebuie achitata FCT-2026-017?"
+      |
+      v
+verificare identitate + autorizare; stabilire domeniu permis
+      |
+      +--> cautare lexicala DOAR in documentele autorizate
+      +--> cautare vectoriala DOAR in documentele autorizate
+      |
+      v
+combinare rezultate autorizate (de exemplu RRF)
+      |
+      v
+optional: reranking doar pe candidatii autorizati
+      |
+      v
+raspuns + identificatorul documentului + verificarea valorii
+```
+
+**Atentie:** controlul accesului se aplica inaintea cautarii, pe domeniul de documente permis utilizatorului, si ramane obligatoriu la recuperare, reranking si afisare. Nu trimitem pasaje neautorizate nici catre motorul de reordonare, nici catre model. Filtrarea afisajului abia la final nu inlocuieste izolarea surselor.
+
+## 8.12. Cum aflam daca recuperarea a gasit documentul potrivit
+
+Un sistem RAG poate da un raspuns gresit din doua motive: nu a gasit dovada sau nu a folosit corect dovada gasita. Pentru primul caz, o masura practica este **Recall@k**: proportia documentelor sau pasajelor relevante cunoscute care apar in primele `k` rezultate. Metoda presupune ca am definit anterior ce rezultate sunt relevante. `Recall@5` nu spune singur daca modelul a raspuns corect.
+
+Exemplu ilustrativ: pregatim zece intrebari, fiecare cu un document de referinta. Pentru opt dintre ele, documentul cautat apare intre primele cinci rezultate. Avem o rata de gasire de **8 din 10 cazuri** pe aceasta suita simplificata. Nu este o concluzie statistica despre toate intrebarile posibile si nici o masura de fidelitate a raspunsului. Daca exista mai multe documente relevante pentru aceeasi intrebare, calculam metricile pe seturile de referinta corespunzatoare.
+
+**Fidelitatea fata de surse** (*faithfulness*) pune alta intrebare: fiecare afirmatie importanta din raspuns este sustinuta de fragmentele disponibile? O referinta citata care nu contine informatia pretinsa nu este o dovada valida. Metricile de evaluare RAG pot ajuta la separarea regasirii de generare, dar evaluarile automate necesita verificari pe exemple cunoscute [S27](../anexe/bibliografie.md#s27).
+
+Pentru o prima evaluare: salvam intrebarile, raspunsurile de referinta, documentele asteptate, versiunea colectiei si configuratia cautarii. Dupa fiecare schimbare de chunking, embedding, cautare lexicala sau reranking, repetam aceleasi teste si apoi verificam cateva cazuri noi. Astfel vedem daca schimbarea a imbunatatit recuperarea sau a mutat erorile in alta parte.
+
+## 8.13. Patru modalitati diferite de a imbunatati un raspuns
+
+Cand rezultatul este slab, nu avem automat nevoie de antrenarea unui model. Intai stabilim ce lipseste:
+
+| Problema observata | Prima directie de investigat |
+|---|---|
+| Cerinta este neclara ori formatul variaza | Prompt, exemple si contract de iesire |
+| Informatiile lipsesc sau sunt vechi | Recuperare si actualizare a surselor prin RAG |
+| Sunt necesare date curente ori actiuni externe | Unealta sau API cu verificarea rezultatului |
+| Modelul trebuie adaptat repetat la un comportament specializat | Evaluare a oportunitatii de fine-tuning, dupa o comparatie cu solutiile mai simple |
+
+Finetuning-ul schimba parametri ai modelului. RAG schimba informatia adusa la momentul raspunsului. Uneltele aduc observatii sau executa actiuni. Promptul clarifica sarcina. Aceste mecanisme se pot combina, dar nu sunt interschimbabile.

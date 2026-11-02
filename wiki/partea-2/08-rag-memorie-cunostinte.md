@@ -74,7 +74,7 @@ Un ciclu simplu: *sursa identificata, extras verificabil, interpretare marcata, 
 
 ## 8.11. Cautarea hibrida: de ce merita sa combinam cuvintele si sensul
 
-Intr-o colectie de documente, unele intrebari depind de sens, iar altele de o potrivire exacta. Sa presupunem ca un client intreaba „Care este scadenta facturii FCT-2026-017?”. O cautare semantica poate gasi documente despre scadente, dar poate omite factura cu identificatorul exact. O cautare lexicala poate gasi acel cod, dar poate rata o intrebare formulata prin sinonime.
+Intr-o colectie de documente, unele intrebari depind de sens, iar altele de o potrivire exacta. Sa presupunem ca un client intreaba "Care este scadenta facturii FCT-2026-017?". O cautare semantica poate gasi documente despre scadente, dar poate omite factura cu identificatorul exact. O cautare lexicala poate gasi acel cod, dar poate rata o intrebare formulata prin sinonime.
 
 **Cautarea lexicala** foloseste cuvintele din interogare si din documente. O metoda des intalnita este **BM25**, care estimeaza relevanta textuala in functie de potrivirile termenilor si de caracteristicile documentelor. **Cautarea vectoriala** compara reprezentari numerice pentru a aproxima apropierea semantica. Niciuna nu castiga in toate situatiile.
 

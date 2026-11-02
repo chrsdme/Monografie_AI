@@ -74,7 +74,7 @@ Cand apar dovezi noi, putem modifica obiectivul, pastrand motivul schimbarii si 
 
 ## 6.8. Cand un raspuns trebuie sa poata fi citit de un program
 
-Pana acum am vorbit despre prompturi care cer explicatii. Dar ce se intampla cand rezultatul trebuie folosit de un alt program? Sa presupunem ca vrem sa transformam mesajele clientilor in tichete. Un raspuns precum „Pare o problema urgenta cu plata” este usor de citit de om, dar dificil de prelucrat automat fara reguli fragile.
+Pana acum am vorbit despre prompturi care cer explicatii. Dar ce se intampla cand rezultatul trebuie folosit de un alt program? Sa presupunem ca vrem sa transformam mesajele clientilor in tichete. Un raspuns precum "Pare o problema urgenta cu plata" este usor de citit de om, dar dificil de prelucrat automat fara reguli fragile.
 
 Putem cere o **iesire structurata**, de exemplu un obiect JSON cu `category`, `urgency` si `summary`. Formatul stabileste cum arata datele. Nu stabileste singur daca ele sunt corecte. O valoare `urgency: 99` este un numar valid, dar poate incalca regula procesului care admite doar nivelurile 1, 2 si 3.
 

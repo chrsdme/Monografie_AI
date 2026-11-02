@@ -10,5 +10,5 @@ Un **studiu de ablatie** inseamna sa eliminam sau sa modificam controlat o compo
 
 **Exemplu de fals pozitiv:** un test cauta cuvantul `shipped` intr-un raspuns si il marcheaza ca reusita. Dar si propozitia `The order is not shipped` contine cuvantul respectiv. Pentru un status de comanda, comparam valoarea structurata cu sistemul de evidenta, nu simpla prezenta a unui sir de caractere.
 
-**De retinut:** un scor bun trebuie sa reziste la intrebarea „Ce anume a fost testat, pe ce date, prin ce criteriu si ce explicatii alternative au ramas?”.
+**De retinut:** un scor bun trebuie sa reziste la intrebarea "Ce anume a fost testat, pe ce date, prin ce criteriu si ce explicatii alternative au ramas?".
 

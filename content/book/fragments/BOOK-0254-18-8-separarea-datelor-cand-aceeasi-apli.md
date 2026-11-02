@@ -6,5 +6,5 @@ Sa presupunem ca o unealta poate cauta facturi dupa identificator. Verificarea n
 
 In unele baze de date, o protectie suplimentara poate fi **Row-Level Security (RLS)**, care restrictioneaza randurile vizibile sau modificabile pentru un rol. O asemenea politica trebuie configurata si testata: anumite roluri privilegiate si proprietarii tabelelor pot ocoli implicit regulile, conform documentatiei PostgreSQL [S58].
 
-Regula se aplica atat cautarii RAG, cat si logurilor, fisierelor exportate, memoriei persistente si cache-urilor. Un test minim foloseste doua organizatii distincte: o identitate din prima trebuie sa nu poata vedea datele celei de-a doua, inclusiv prin rezultate de cautare, titluri sau rezumate.
+Regula se aplica atat cautarii RAG, cat si logurilor, fisierelor exportate, memoriei persistente si cache-urilor. Un test minim foloseste doua organizatii distincte: o identitate din prima trebuie sa nu poata vedea datele celei de-a doua, inclusiv prin rezultate de cautare, titluri sau rezumate. Pentru riscurile specifice AI generative, profilul NIST AI 600-1 completeaza cadrul general de management al riscului prezentat anterior [S56].
 

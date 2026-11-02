@@ -32,7 +32,7 @@ O actualizare aparent minora poate schimba felul in care agentul apeleaza o func
 
 ## 19.7. Cand avem voie sa reincercam o operatie
 
-Un retry pare simplu: „daca nu merge, incearca din nou”. In realitate, trebuie sa intelegem **de ce** a esuat si **daca operatia a produs deja un efect**.
+Un retry pare simplu: "daca nu merge, incearca din nou". In realitate, trebuie sa intelegem **de ce** a esuat si **daca operatia a produs deja un efect**.
 
 Daca serviciul spune ca datele sunt invalide, repetarea aceleiasi cereri nu le corecteaza. Daca autentificarea a expirat, este nevoie de o decizie despre credentale, nu de o bucla rapida. Pentru erori temporare de retea, limitari de rata ori indisponibilitate a serviciului poate fi potrivita o noua incercare, cu timeout si o pauza crescatoare, eventual respectand timpul de asteptare cerut de furnizor.
 

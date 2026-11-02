@@ -38,9 +38,11 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Memorie semantica.** Memorie structurata despre concepte, fapte si relatii, distincta de istoricul brut al interactiunilor.
 
-**Resursa externa complementara:** [Lexiconul agentilor AI - Ovidiu Boticiu](https://ovidiuboticiu.github.io/lexiconul-agentilor-ai/index.html), cu 361 de intrari EN-RO. Este un proiect independent (text CC BY-NC 4.0; cod fara licenta de reutilizare). Definitiile din aceasta carte sunt formulate independent, nu copiate din lexicon; aceasta recomandare nu certifica toate cele 361 de intrari.
+**Resursa externa complementara:** [Lexiconul agentilor AI, editia a doua - Ovidiu Boticiu](https://ovidiuboticiu.github.io/lexicon-ai/), dictionar educational bilingv EN-RO cu 409 termeni, cinci trasee de invatare si 21 de scenarii, la data consultarii (2 noiembrie 2026) [S50]. Este un proiect independent, util pentru compararea terminologiei si pentru aprofundare. Definitii si exemple din aceasta carte sunt formulate independent; recomandarea linkului nu reprezinta validarea automata a tuturor intrarilor.
 
 **A2A (Agent2Agent).** Protocol deschis pentru comunicarea dintre agenti de la furnizori diferiti, dezvoltat initial de Google si gazduit acum de Linux Foundation.
+
+**Ablatie (ablation study).** Experiment in care modificam sau eliminam controlat o componenta a sistemului pentru a observa influenta ei, pastrand pe cat posibil celelalte conditii comparabile.
 
 **Agent AI.** Componenta software care urmareste un obiectiv si poate decide, in limite definite, ce actiune sa execute si cum sa foloseasca rezultatul. Nu orice chatbot este automat un agent.
 
@@ -64,7 +66,13 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Benchmark.** Test standardizat pentru compararea unor modele sau sisteme. Un benchmark bun precizeaza setul de sarcini, metoda de evaluare si limitarile.
 
+**BM25.** Metoda de clasare a documentelor pe baza potrivirii termenilor cautati, folosita frecvent in recuperarea lexicala. Este utila la nume, coduri si expresii exacte, dar nu intelege singura toate sinonimele.
+
 **Bucla agentica.** Secventa repetata *observa, decide, actioneaza, verifica*. O bucla corecta are conditii de oprire si limita de resurse.
+
+**Calibrarea evaluatorului.** Compararea notelor unui evaluator automat cu exemple revizuite de oameni, pentru a identifica erori, indulgenta, severitate sau instabilitate a judecatii.
+
+**Cautare hibrida (hybrid search).** Combinarea cautarii lexicale si a cautarii semantice pentru recuperarea documentelor. Metoda de combinare trebuie testata pe colectia concreta.
 
 **Checkpoint.** Punct de salvare a starii, din care executia poate fi reluata dupa o intrerupere, fara a repeta tot procesul.
 
@@ -74,6 +82,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Conector.** Integrare care face un serviciu extern accesibil unei aplicatii. Poate gestiona autentificarea, operatiile, conversia datelor si erorile.
 
+**Contaminarea evaluarii (data contamination).** Situatie in care datele sau raspunsurile unui test presupus independent influenteaza dezvoltarea sau evaluarea, astfel incat scorul nu mai reprezinta o verificare separata.
+
 **Context.** Informatiile furnizate modelului intr-o cerere sau sesiune, inclusiv instructiuni, mesaje, documente si rezultate ale uneltelor.
 
 **Context engineering.** Selectarea, ordonarea si actualizarea informatiei accesibile modelului pentru o anumita sarcina.
@@ -82,11 +92,15 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **DAG (directed acyclic graph).** Graf orientat fara cicluri, folosit pentru a reprezenta dependentele dintre sarcini: B porneste doar dupa A, C si D pot rula in paralel.
 
+**Efect extern (side effect).** Schimbare produsa intr-un sistem din afara raspunsului textual, de exemplu trimiterea unui email, modificarea unei facturi sau publicarea unui fisier. Poate fi greu ori imposibil de inversat.
+
 **Embedding.** Reprezentare numerica a unui continut, utila pentru cautarea fragmentelor apropiate semantic. Asemanarea numerica nu garanteaza adevarul informatiei.
 
 **Escalare.** Trimiterea unei situatii catre alt agent, un serviciu specializat sau un operator uman, atunci cand lipsesc datele ori sunt depasite limitele autorizate.
 
 **Evaluare (eval).** Procedura prin care comportamentul modelului sau al sistemului este comparat cu criterii stabilite dinainte. Poate combina reguli, teste si judecata umana.
+
+**Evaluare cu set rezervat (held-out evaluation).** Testare pe exemple care nu au fost folosite pentru ajustarea curenta a promptului, modelului sau sistemului, pentru a reduce supraestimarea performantelor.
 
 **Evaluare de regresie.** Evaluare repetata dupa o modificare, ca sa verifice ca sistemul nu a pierdut ce stia deja sa faca.
 
@@ -140,6 +154,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **LLM (Large Language Model).** Model de limbaj antrenat la scara mare, capabil sa produca text si, in functie de arhitectura, alte tipuri de iesiri.
 
+**LLM-as-a-Judge.** Folosirea unui model de limbaj pentru a evalua raspunsul altui model sau al aceluiasi sistem, dupa o rubrica. Nu elimina nevoia de verificare mecanica si de calibrare umana.
+
 **Loop engineering.** Proiectarea buclelor de executie, observatie, evaluare si corectare, cu limite si conditii de oprire.
 
 **MCP (Model Context Protocol).** Protocol care standardizeaza integrarea dintre aplicatiile AI si sursele de date sau uneltele externe.
@@ -154,6 +170,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Motor de inferenta.** Program care incarca si executa modelul, de exemplu intr-un serviciu local. Nu este automat un harness agentic.
 
+**Multi-tenancy (arhitectura cu mai multi clienti).** Arhitectura in care aceeasi aplicatie sau infrastructura deserveste organizatii distincte, cu separarea obligatorie a datelor, identitatilor si permisiunilor.
+
 **OAuth.** Protocol pentru autorizare delegata: o aplicatie poate primi acces limitat la resurse fara sa primeasca parola utilizatorului.
 
 **Observabilitate.** Capacitatea de a intelege starea si comportamentul sistemului prin jurnale, metrici si trasee de executie.
@@ -165,6 +183,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 **Outcome (rezultat efectiv).** Starea reala verificata dupa executie, distincta de afirmatia agentului ca a finalizat sarcina.
 
 **Permisiuni.** Drepturi tehnice acordate unei componente pentru citire, scriere sau actiuni. Se aplica in mediul de executie, nu doar in instructiuni.
+
+**Polling.** Interogarea repetata a unui serviciu pentru a afla daca au aparut date ori evenimente noi. Este diferita de notificarea initiata de serviciu printr-un webhook.
 
 **Principiul privilegiului minim.** Regula potrivit careia fiecare componenta primeste doar accesul necesar sarcinii sale.
 
@@ -182,7 +202,11 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Rata de succes.** Proportia executiilor care indeplinesc criteriile stabilite. Fara distributia cazurilor si gravitatea erorilor, poate induce in eroare.
 
+**Recall@k (recuperare in primele k rezultate).** Masura a proportiei elementelor relevante cunoscute care se gasesc intre primele `k` rezultate ale cautarii. Nu evalueaza singura calitatea raspunsului generat.
+
 **Reconciliere.** Compararea rezultatului asteptat cu starea reala, mai ales dupa erori sau timeouts, inainte de a repeta operatii cu efect extern.
+
+**Reranking.** Reordonarea unor rezultate recuperate initial, folosind un criteriu suplimentar de relevanta. Nu poate recupera un document care nu a intrat in lista de candidati.
 
 **Retry.** Reluarea unei operatii dupa un esec. Se aplica in functie de efectele operatiei: nu orice esec se repara prin repetare.
 
@@ -190,7 +214,11 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Rollback.** Revenirea la o stare anterioara. Pentru unele efecte (un email trimis) revenirea completa nu este posibila.
 
+**Row-Level Security (RLS).** Control aplicat la nivelul bazei de date care poate limita randurile pe care un rol le citeste sau modifica. Politicile si exceptiile trebuie configurate si testate explicit.
+
 **RPA (Robotic Process Automation).** Automatizare care reproduce sau orchestreaza operatii repetitive din interfete si aplicatii. Poate functiona si fara LLM.
+
+**RRF (Reciprocal Rank Fusion).** Metoda de reunire a unor liste de cautare folosind pozitiile documentelor in clasamente, nu adunarea directa a unor scoruri de naturi diferite.
 
 **Run.** O executie delimitata a unei sarcini, identificata printr-un cod si descrisa prin intrari, actiuni si rezultate.
 
@@ -209,6 +237,8 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 **Spec-Driven Development (SDD).** Dezvoltare pornind de la specificatii explicite, versionate si verificabile, care ghideaza implementarea si testarea.
 
 **Specificatie tehnica.** Document care descrie comportamentele, interfetele, constrangerile, scenariile si criteriile de acceptare ale unei functionalitati.
+
+**Stare finala verificabila (verifiable final state).** Dovada observabila ca operatia ceruta s-a incheiat in sistemul real, distincta de mesajul unui agent care spune ca a terminat.
 
 **Stateful (cu stare).** Sistem care pastreaza si reutilizeaza informatii despre interactiuni sau executii intre operatii, prin mecanisme explicite de gestionare a starii.
 
@@ -230,7 +260,15 @@ Glosarul este in ordine alfabetica, nu in ordinea aparitiei. Explicatiile comple
 
 **Trust Score (scor de incredere).** Indicator propus pentru evaluarea unui agent intr-un domeniu concret. Nu este o proprietate universala a modelului si nu inlocuieste analiza riscului.
 
+**Validare semantica.** Verificarea faptului ca valoarea returnata are sens si respecta datele reale si regulile domeniului, dincolo de faptul ca formatul JSON sau tipurile sunt corecte.
+
+**Validator de actiuni (action validator).** Componenta care verifica, inainte de executie, daca o actiune propusa de model se incadreaza in schema, permisiunile si regulile procesului.
+
 **Validitate temporala.** Perioada in care o informatie sau o relatie a fost adevarata; nu trebuie confundata cu data la care sistemul a aflat informatia.
+
+**Verificare independenta (independent verification).** Compararea unei afirmatii ori a unui rezultat cu dovezi obtinute separat de autorul sau modelul care l-a produs. Repetarea aceleiasi intrebari la acelasi model nu este suficienta.
+
+**Webhook.** Mesaj HTTP trimis de un serviciu catre o aplicatie pentru a anunta un eveniment. Primirea lui necesita verificarea originii si tratarea livrarilor duplicate sau esuate.
 
 **Workflow.** Succesiune de etape si decizii care transforma intrari in rezultate. Poate contine reguli fixe, oameni, modele si agenti.
 

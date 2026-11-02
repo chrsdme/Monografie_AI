@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source": "Monografie_AI_De_la_Chat_la_Sisteme_Agentice.md",
   "original_sha256": "1e12008817bd34dcf161b4aa4f59cae94689fba04dd68c632ba2b5ae253b70ed",
-  "last_generated_sha256": "6ad467f5793b20c677e5b76bbd78c5969b573533cfb7d45628564ccc4a3cfa4c",
+  "last_generated_sha256": "d3849c8ee915535d94fb4c3f15ce6b8758ea2fb1ce15c95aa9b36fcff0e543ee",
   "fragments": [
     {
       "id": "BOOK-0001",
@@ -341,6 +341,13 @@
       "baseline_sha256": "51af1eb4befe6bcdd3934497926d300901dd87335905db0287e43300dc5003cf"
     },
     {
+      "id": "BOOK-0247",
+      "path": "fragments/BOOK-0247-6-8-cand-un-raspuns-trebuie-sa-poata-fi-.md",
+      "heading_level": 3,
+      "title_at_migration": "6.8. Cand un raspuns trebuie sa poata fi citit de un program",
+      "baseline_sha256": "cef4f9138b82642df200ad836fe5c8dd24c388cff4f298835780c228fa46bbd0"
+    },
+    {
       "id": "BOOK-0049",
       "path": "fragments/BOOK-0049-7-cum-ajunge-ai-ul-sa-foloseasca-instrum.md",
       "heading_level": 2,
@@ -388,6 +395,13 @@
       "heading_level": 3,
       "title_at_migration": "7.6. Tool choice: cine hotaraste daca se foloseste unealta?",
       "baseline_sha256": "3acf180d0a19c38cdf404dc380300497e6b255fed44f1e0db648674d3c296406"
+    },
+    {
+      "id": "BOOK-0248",
+      "path": "fragments/BOOK-0248-7-7-ce-schimba-o-versiune-de-protocol-si.md",
+      "heading_level": 3,
+      "title_at_migration": "7.7. Ce schimba o versiune de protocol si ce nu schimba",
+      "baseline_sha256": "22af7e89677e166a10f5c33c02a26cb178dc113cef4fc30c8840681f0cefb2c7"
     },
     {
       "id": "BOOK-0056",
@@ -467,6 +481,27 @@
       "baseline_sha256": "3751a691034e0bf5ea7ba097f4a6ffd6bbff4292c70788131be762983885596c"
     },
     {
+      "id": "BOOK-0249",
+      "path": "fragments/BOOK-0249-8-11-cautarea-hibrida-de-ce-merita-sa-co.md",
+      "heading_level": 3,
+      "title_at_migration": "8.11. Cautarea hibrida: de ce merita sa combinam cuvintele si sensul",
+      "baseline_sha256": "bb5bb0c32d10a2ba1aea77952fbd3de9573fa93a3cfca8b137ba53c9d2267b0d"
+    },
+    {
+      "id": "BOOK-0250",
+      "path": "fragments/BOOK-0250-8-12-cum-aflam-daca-recuperarea-a-gasit-.md",
+      "heading_level": 3,
+      "title_at_migration": "8.12. Cum aflam daca recuperarea a gasit documentul potrivit",
+      "baseline_sha256": "20c85f142f58d70595c8f3cfa205317e3b41e86fd76bcdabb887d059c13f4cb7"
+    },
+    {
+      "id": "BOOK-0251",
+      "path": "fragments/BOOK-0251-8-13-patru-modalitati-diferite-de-a-imbu.md",
+      "heading_level": 3,
+      "title_at_migration": "8.13. Patru modalitati diferite de a imbunatati un raspuns",
+      "baseline_sha256": "f41119835fe2cf79c87acb073929d23c1775676928c2ad408a369289acd1fcc7"
+    },
+    {
       "id": "BOOK-0067",
       "path": "fragments/BOOK-0067-9-automatizare-workflow-si-agent-de-ce-d.md",
       "heading_level": 2,
@@ -542,6 +577,13 @@
       "heading_level": 3,
       "title_at_migration": "9.10. Alegerea locului unde introducem AI-ul",
       "baseline_sha256": "cb2a5019bc96ecf062d0157df0226a55ef786070009b31375c6407c5cc539669"
+    },
+    {
+      "id": "BOOK-0252",
+      "path": "fragments/BOOK-0252-9-11-webhook-sau-polling-doua-moduri-de-.md",
+      "heading_level": 3,
+      "title_at_migration": "9.11. Webhook sau polling: doua moduri de a incepe acelasi proces",
+      "baseline_sha256": "9a1ff7cd03b38cecc2db1cee7d9ed5a70fe908bef892095bf2bda952dcded5c6"
     },
     {
       "id": "BOOK-0078",
@@ -1062,6 +1104,13 @@
       "baseline_sha256": "f1945b8446e3b283392ff2df61aab014e0bef4abf4ac46166cabaca140f89b7e"
     },
     {
+      "id": "BOOK-0253",
+      "path": "fragments/BOOK-0253-17-11-cand-o-evaluare-ne-pacaleste-scurg.md",
+      "heading_level": 3,
+      "title_at_migration": "17.11. Cand o evaluare ne pacaleste: scurgeri, calibrare si experimente",
+      "baseline_sha256": "da628e5643328fb076142b71451b2d35508243ce1f58029dbf0f9547abef65d7"
+    },
+    {
       "id": "BOOK-0152",
       "path": "fragments/BOOK-0152-18-securitate-de-ce-permisiunile-trebuie.md",
       "heading_level": 2,
@@ -1118,6 +1167,13 @@
       "baseline_sha256": "01f3a71de107128553da88339eaed48ff3134fe6dda0a6ea04d4219561bda7ba"
     },
     {
+      "id": "BOOK-0254",
+      "path": "fragments/BOOK-0254-18-8-separarea-datelor-cand-aceeasi-apli.md",
+      "heading_level": 3,
+      "title_at_migration": "18.8. Separarea datelor cand aceeasi aplicatie deserveste mai multi clienti",
+      "baseline_sha256": "27a78883a93008f791db22c14a34ddc594ad4447b0de18e34e117c681d18cdf3"
+    },
+    {
       "id": "BOOK-0160",
       "path": "fragments/BOOK-0160-19-fiabilitate-si-recuperare-un-sistem-b.md",
       "heading_level": 2,
@@ -1167,6 +1223,13 @@
       "baseline_sha256": "3bcae1dab8daea810964f6e9ca50bdf0cafda399ed81961fb1de8c1f0c4ce9ea"
     },
     {
+      "id": "BOOK-0255",
+      "path": "fragments/BOOK-0255-19-7-cand-avem-voie-sa-reincercam-o-oper.md",
+      "heading_level": 3,
+      "title_at_migration": "19.7. Cand avem voie sa reincercam o operatie",
+      "baseline_sha256": "ee2633e43a89f5e8741e81f1a4e5485f81e55055150aa90e27e60dffe31ee7de"
+    },
+    {
       "id": "BOOK-0167",
       "path": "fragments/BOOK-0167-20-cost-viteza-calitate-si-alegerea-unei.md",
       "heading_level": 2,
@@ -1207,6 +1270,13 @@
       "heading_level": 3,
       "title_at_migration": "20.5. Doua parghii concrete de cost",
       "baseline_sha256": "a903acdf907b4491c34e5b36c4f94b3ba64d520d0f704c22dc4965f125ebad99"
+    },
+    {
+      "id": "BOOK-0256",
+      "path": "fragments/BOOK-0256-20-6-cum-calculam-valoarea-unui-pilot-nu.md",
+      "heading_level": 3,
+      "title_at_migration": "20.6. Cum calculam valoarea unui pilot, nu doar costul API-ului",
+      "baseline_sha256": "56eecb069427a47091e1aca392aca6ac3b41134065ced4df60ee9590becb03bd"
     },
     {
       "id": "BOOK-0173",
@@ -1384,6 +1454,13 @@
       "baseline_sha256": "41dd2de5398e1cc302968f8fdb9422abee832a45fdbe9b4d86898bcbd47c6b0f"
     },
     {
+      "id": "BOOK-0257",
+      "path": "fragments/BOOK-0257-21-10-studiu-de-caz-g-un-tichet-de-supor.md",
+      "heading_level": 3,
+      "title_at_migration": "21.10. Studiu de caz G: un tichet de suport pornit de un eveniment",
+      "baseline_sha256": "a309a9888562d280029a3f9eb50cf996cd767db22b335783b20582157440835d"
+    },
+    {
       "id": "BOOK-0198",
       "path": "fragments/BOOK-0198-22-cum-incepi-propriul-sistem-fara-sa-sa.md",
       "heading_level": 2,
@@ -1459,6 +1536,13 @@
       "heading_level": 3,
       "title_at_migration": "22.10. Exercitiu de consolidare: procesul inaintea produsului",
       "baseline_sha256": "209cb91c75ecb772bd29d7d318c077d9b1557b490457f393016e584cd05eb4ff"
+    },
+    {
+      "id": "BOOK-0258",
+      "path": "fragments/BOOK-0258-22-11-un-traseu-de-invatare-care-produce.md",
+      "heading_level": 3,
+      "title_at_migration": "22.11. Un traseu de invatare care produce dovezi",
+      "baseline_sha256": "7d0178ca15f895b6aa5695b4b911fa73af00ccfc4fb03971fd49d840483ec6fb"
     },
     {
       "id": "BOOK-0209",

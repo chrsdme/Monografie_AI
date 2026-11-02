@@ -16,4 +16,3 @@
 
 Studiile E si F sunt **fictive**. Pseudocodul ilustreaza arhitectura, configurarile YAML sunt demonstrative, iar teste cu mock nu reprezinta probe de plata Shopify, transcriere YouTube ori incarcare video reala. Recomandarea de a incepe cu cea mai simpla arhitectura este sustinuta de [Anthropic, Building effective agents](https://www.anthropic.com/engineering/building-effective-agents).
 
-

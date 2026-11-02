@@ -208,6 +208,45 @@
 
 **[S49] Bechberger, D. (2026).** *From Goldfish to Elephant: Using Graphs for Long-Term Memory.* Prezentare GraphCon. <https://www.youtube.com/watch?v=GLVjk7musWw> . Sursa complementara despre memorie episodica, semantica, procedurala, relatii si temporalitate; nu descrie metoda EGM.
 
+<a id="s50"></a>
+
+**[S50] Boticiu, O. (f.d.).** *Lexiconul agentilor AI - dictionar explicat in romana (EN-RO), editia a doua.* <https://ovidiuboticiu.github.io/lexicon-ai/> . Dictionar educational complementar, 409 intrari, cinci trasee si 21 de scenarii la consultarea din 2 noiembrie 2026; nu este standard oficial de terminologie.
+
+<a id="s51"></a>
+
+**[S51] Elastic (f.d.).** *Reciprocal rank fusion.* <https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion> . Combinarea clasamentelor rezultate din cautari diferite; exemple de BM25, cautare vectoriala si RRF. Documentatie de produs, nu dovada ca metoda este superioara in orice colectie.
+
+<a id="s52"></a>
+
+**[S52] OWASP (2023).** *API1:2023 Broken Object Level Authorization.* <https://api-security.owasp.org/editions/2023/en/0xa1-broken-object-level-authorization/> . Necesitatea autorizarii la nivel de obiect, distinct de validarea identificatorului primit.
+
+<a id="s53"></a>
+
+**[S53] Stripe (f.d.).** *Idempotent requests.* <https://docs.stripe.com/api/idempotent_requests> . Exemplu de implementare a cheilor de idempotenta si a limitarilor asociate cu API-uri concrete.
+
+<a id="s54"></a>
+
+**[S54] Stripe (f.d.).** *Receive Stripe events in your webhook endpoint.* <https://docs.stripe.com/webhooks> . Evenimente, semnaturi si tratarea livrarii lor; exemplu de furnizor, nu standard universal pentru toate webhook-urile.
+
+<a id="s55"></a>
+
+**[S55] Pydantic (f.d.).** *Fields - Field constraints.* <https://docs.pydantic.dev/latest/concepts/fields/> . Validarea tipurilor si a constrangerilor declarate ale campurilor.
+
+<a id="s56"></a>
+
+**[S56] NIST (2024).** Autio, C. et al., *Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile (NIST AI 600-1).* <https://doi.org/10.6028/NIST.AI.600-1> . Profil de riscuri pentru AI generativa, complementar cadrului NIST AI RMF citat deja la [S15].
+
+<a id="s57"></a>
+
+**[S57] Model Context Protocol (2026).** *Specification, 2026-07-28.* <https://modelcontextprotocol.io/specification/2026-07-28> . Reguli de protocol, cereri stateless, capabilitati, extensii si principii de securitate. Complementara sursei de arhitectura [S07].
+
+<a id="s58"></a>
+
+**[S58] PostgreSQL Global Development Group (f.d.).** *Row Security Policies.* <https://www.postgresql.org/docs/current/ddl-rowsecurity.html> . Mecanismul RLS, politicile de rand si exceptiile pentru roluri privilegiate.
+
+<a id="s59"></a>
+
+**[S59] Anthropic (f.d.).** *Stop reasons and fallback.* <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons> . Deosebirea intre finalizare, apel de unealta, trunchiere, suspendare si refuz. Detaliile sunt specifice API-ului descris.
 
 ## Nota privind materialele folosite
 
